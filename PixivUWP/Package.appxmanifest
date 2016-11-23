@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="3969eae1-2ae5-47f0-8001-22b99b33211f"
+    Name="5e2ba6da-0419-4b82-8f83-dd58cca931b4"
     Publisher="CN=Thoma"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="3969eae1-2ae5-47f0-8001-22b99b33211f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="5e2ba6da-0419-4b82-8f83-dd58cca931b4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>PixivUWP</DisplayName>
