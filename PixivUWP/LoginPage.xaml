@@ -7,9 +7,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Width="400" Height="600" HorizontalAlignment="Center" VerticalAlignment="Center">
-            
+    <Grid Background="{ThemeResource ApplicationStartPageBackgroundThemeBrush}">
+        <Grid Background="{ThemeResource ApplicationStartPageBackgroundThemeBrush}" Width="Auto" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Center" Width="Auto" FontSize="20" Margin="0,0,0,20" VerticalAlignment="Bottom" Foreground="White">服务登录</TextBlock>
+            <Image Grid.Row="0" x:Name="logoimage" Source="Assets/SplashScreen.png" RenderTransformOrigin="0.5,0.5" MaxWidth="400"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
