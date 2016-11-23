@@ -25,6 +25,8 @@ namespace PixivUWP
         public LoginPage()
         {
             this.InitializeComponent();
+            var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+            curView.SetPreferredMinSize(new Windows.Foundation.Size(500,630));
         }
     }
 }

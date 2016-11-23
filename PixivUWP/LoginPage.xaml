@@ -8,7 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationStartPageBackgroundThemeBrush}">
-        <Grid Background="{ThemeResource ApplicationStartPageBackgroundThemeBrush}" Width="Auto" Height="470" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Source="Assets/Background.jpg" Stretch="UniformToFill"/>
+        <Grid Background="Transparent" Width="Auto" Height="470" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-40,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -36,6 +37,11 @@
                         </DataTemplate>
                     </PasswordBox.HeaderTemplate>
                 </PasswordBox>
+                <ToggleSwitch Grid.Row="2" Margin="20,0" Header="" OffContent="记住密码：关" OnContent="记住密码：开" Foreground="White"/>
+                <ToggleSwitch Grid.Row="2" HorizontalAlignment="Right" Margin="20,0" Header="" OffContent="自动登录：关" OnContent="自动登录：开" Foreground="White"/>
+                <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Foreground="White">
+                    登录
+                </Button>
             </Grid>
         </Grid>
     </Grid>
