@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static APITest.SensitiveData;
 
 namespace APITest
 {
@@ -10,6 +11,8 @@ namespace APITest
     {
         static void Main(string[] args)
         {
+            Task.Run(async () => await PixivDemo()).Wait();
         }
+
     }
 }
