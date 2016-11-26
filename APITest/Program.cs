@@ -19,7 +19,6 @@ namespace APITest
             var tokens = await Auth.AuthorizeAsync(username, passwd);
             Console.WriteLine(tokens.AccessToken);
             var follow = await tokens.GetMyFollowingWorksAsync();
-            Console.WriteLine(follow.Count);
             Console.ReadKey();
         }
 
