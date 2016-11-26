@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pixeez;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,13 @@ namespace APITest
     {
         static void Main(string[] args)
         {
-            Task.Run(async () => await PixivDemo()).Wait();
+            Task.Run(async () => await Program.PixivDemo()).Wait();
+        }
+        static async Task PixivDemo()
+        {
+            var tokens = await Auth.AuthorizeAsync(username, passwd);
+            Console.WriteLine(tokens.AccessToken);
+            Console.ReadKey();
         }
 
     }

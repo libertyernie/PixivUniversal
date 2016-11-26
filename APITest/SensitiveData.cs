@@ -9,11 +9,7 @@ namespace APITest
 {
     public static class SensitiveData
     {
-        public static async Task PixivDemo()
-        {
-            var tokens = await Auth.AuthorizeAsync("", "");
-            Console.WriteLine(tokens.AccessToken);
-            Console.ReadKey();
-        }
+        public static string username = "";
+        public static string passwd = "";
     }
 }
