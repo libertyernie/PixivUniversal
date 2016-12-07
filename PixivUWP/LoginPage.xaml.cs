@@ -76,6 +76,8 @@ namespace PixivUWP
                 BindableMargin margin2 = new Views.BindableMargin(logoimage_animated);
                 logoimage_animated.Opacity = 100;
                 margin2.Top = 0;
+                Data.TmpData.Username = txt_UserName.Text;
+                Data.TmpData.Password = txt_Password.Password;
                 (Window.Current.Content as Frame).Navigate(typeof(LoadingPage));
             };
             storyboard.Begin();

@@ -20,6 +20,7 @@ using Windows.Foundation.Metadata;
 using System.Diagnostics;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using Pixeez;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -33,7 +34,9 @@ namespace PixivUWP
         Storyboard storyboard = new Storyboard();
         bool isLoaded = false;
 
-        public LoadingPage()
+        public LoadingPage() : this(Data.TmpData.Username, Data.TmpData.Password) { }
+
+        public LoadingPage(string Username,string Password)
         {
             this.InitializeComponent();
             //settitlecolor();
@@ -83,7 +86,7 @@ namespace PixivUWP
                     image.Opacity = 100;
                     margin2.Top = -Window.Current.Bounds.Height / 4;
                     ring.IsActive = true;
-                    //BeginLoading();
+                    BeginLoading(Username, Password);
                 };
                 storyboard.Begin();
             };
@@ -113,8 +116,9 @@ namespace PixivUWP
         /// <summary>
         /// The function to load data and navigate to the next page.
         /// </summary>
-        private async void BeginLoading()
+        private async void BeginLoading(string username,string password)
         {
+            var token = await Auth.AuthorizeAsync(username, password);
         }
     }
 }
