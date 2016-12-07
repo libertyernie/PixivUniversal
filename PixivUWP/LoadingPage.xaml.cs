@@ -20,6 +20,8 @@ using Windows.Foundation.Metadata;
 using System.Diagnostics;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using Pixeez;
+using System.Threading.Tasks;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -31,9 +33,12 @@ namespace PixivUWP
     public sealed partial class LoadingPage : Page
     {
         Storyboard storyboard = new Storyboard();
+        Storyboard storyboard2 = new Storyboard();
         bool isLoaded = false;
 
-        public LoadingPage()
+        public LoadingPage() : this(Data.TmpData.Username, Data.TmpData.Password) { }
+
+        public LoadingPage(string Username, string Password)
         {
             this.InitializeComponent();
             //settitlecolor();
@@ -54,17 +59,17 @@ namespace PixivUWP
                 animation.KeyFrames.Add(f2);
                 Storyboard.SetTarget(animation, margin);
                 Storyboard.SetTargetProperty(animation, "Top");
-                DoubleAnimation animation2 = new DoubleAnimation();
-                Storyboard.SetTarget(animation2, image);
-                Storyboard.SetTargetProperty(animation2, "Opacity");
-                animation2.Duration = new Duration(TimeSpan.FromSeconds(1));
-                animation2.From = 0;
-                animation2.To = 100;
+                //DoubleAnimation animation2 = new DoubleAnimation();
+                //Storyboard.SetTarget(animation2, image);
+                //Storyboard.SetTargetProperty(animation2, "Opacity");
+                //animation2.Duration = new Duration(TimeSpan.FromSeconds(1));
+                //animation2.From = 0;
+                //animation2.To = 100;
                 //Windows Phones do not need the animation
                 if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
                 {
                     storyboard.Children.Add(animation);
-                    storyboard.Children.Add(animation2);
+                    //storyboard.Children.Add(animation2);
                 }
                 //Only phones should have this step
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -83,7 +88,7 @@ namespace PixivUWP
                     image.Opacity = 100;
                     margin2.Top = -Window.Current.Bounds.Height / 4;
                     ring.IsActive = true;
-                    //BeginLoading();
+                    BeginLoading(Username, Password);
                 };
                 storyboard.Begin();
             };
@@ -113,8 +118,67 @@ namespace PixivUWP
         /// <summary>
         /// The function to load data and navigate to the next page.
         /// </summary>
-        private async void BeginLoading()
+        private async void BeginLoading(string username, string password)
         {
+            try
+            {
+                var token = await Auth.AuthorizeAsync(username, password);
+            }
+            catch
+            {
+                status.Visibility = Visibility.Visible;
+            }
+        }
+
+        private async void status_Click(object sender, RoutedEventArgs e)
+        {
+            await rollBackAnimation();
+        }
+
+        private async Task rollBackAnimation()
+        {
+            status.Visibility = Visibility.Collapsed;
+            ring.IsActive = false;
+            BindableMargin margin = new Views.BindableMargin(image);
+            margin.Top = -Window.Current.Bounds.Height / 4;
+            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+            animation.EnableDependentAnimation = true;
+            EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+            f1.Value = -Window.Current.Bounds.Height / 4;
+            f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+            animation.KeyFrames.Add(f1);
+            EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+            f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 };
+            f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.8));
+            f2.Value = -315;
+            animation.KeyFrames.Add(f2);
+            Storyboard.SetTarget(animation, margin);
+            Storyboard.SetTargetProperty(animation, "Top");
+            //Windows Phones do not need the animation
+            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+            {
+                storyboard2.Children.Add(animation);
+                //storyboard.Children.Add(animation2);
+            }
+            //Only phones should have this step
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var appview = ApplicationView.GetForCurrentView();
+                appview.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                statusbar.ForegroundColor = Colors.White;
+                statusbar.BackgroundOpacity = 0;
+                await statusbar.HideAsync();
+            }
+            storyboard2.Completed += delegate
+            {
+                //Main animation finish
+                BindableMargin margin2 = new Views.BindableMargin(image);
+                image.Opacity = 100;
+                margin2.Top = -315;
+                Frame.Navigate(typeof(LoginPage));
+            };
+            storyboard2.Begin();
         }
     }
 }

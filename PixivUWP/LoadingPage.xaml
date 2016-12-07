@@ -12,10 +12,10 @@
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.4*"/>
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="2" x:Name="image" Source="Assets/SplashScreen.png" RenderTransformOrigin="0.5,0.5" Opacity="0" MaxWidth="400"/>
+        <Image Grid.RowSpan="2" x:Name="image" Source="Assets/SplashScreen.png" RenderTransformOrigin="0.5,0.5" MaxWidth="400"/>
         <ProgressRing x:Name="ring" Grid.Row="1" Width="25" Height="25" IsActive="False" Margin="0 5" Foreground="White" VerticalAlignment="Top"/>
-        <TextBlock x:Name="status" Foreground="White" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,100,0,0" Visibility="Collapsed">
-            无法连接到Pixiv服务，请检查网络连接
-        </TextBlock>
+        <Button x:Name="status" Foreground="White" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,100,0,0" Visibility="Collapsed" Click="status_Click">
+            无法连接到Pixiv，请检查网络连接和凭据
+        </Button>
     </Grid>
 </Page>
