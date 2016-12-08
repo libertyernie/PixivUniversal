@@ -123,6 +123,10 @@ namespace PixivUWP
             try
             {
                 var token = await Auth.AuthorizeAsync(username, password);
+                Data.TmpData.CurrentToken = token;
+                Frame.Navigate(typeof(MainPage));
+                Debug.Write("Access token: ");
+                Debug.WriteLine(token.AccessToken);
             }
             catch
             {
