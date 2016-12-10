@@ -66,7 +66,7 @@ namespace PixivUWP
                 //animation2.From = 0;
                 //animation2.To = 100;
                 //Windows Phones do not need the animation
-                if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+                //if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
                 {
                     storyboard.Children.Add(animation);
                     //storyboard.Children.Add(animation2);
@@ -159,7 +159,7 @@ namespace PixivUWP
             Storyboard.SetTarget(animation, margin);
             Storyboard.SetTargetProperty(animation, "Top");
             //Windows Phones do not need the animation
-            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+            //if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
             {
                 storyboard2.Children.Add(animation);
                 //storyboard.Children.Add(animation2);

@@ -56,7 +56,7 @@ namespace PixivUWP
             Storyboard.SetTarget(animation, margin);
             Storyboard.SetTargetProperty(animation, "Top");
             //Windows Phones do not need the animation
-            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+            //if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
             {
                 storyboard.Children.Add(animation);
             }
