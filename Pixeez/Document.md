@@ -5,12 +5,10 @@
 
 ### Objects
  这里介绍此API封装涉及到的大部分数据类型，这些类型的定义位于Pixeez.Objects名称空间下。
- |类名称|可访问性|描述|
- |---|---|---|
- |Authorize|公开的|用于储存已经被解析的Json授权结果|
- |Feed|公开的|用于储存新动态数据|
- |Pagination|公开的|用于储存当前页面的页码信息|
- |ProfileImageUrls|公开的|用于|
+ - Authorize类：公开的，用于储存已经被解析的Json授权结果；
+ - Feed类：公开的，用于储存新动态数据；
+ - Pagination类：公开的，用于储存当前页面的页码信息；
+ - ProfileImageUrls类：公开的，用于
 
 ### 许可
  本项目遵从MIT许可协议开源：
