@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace PixivUWP.ViewModels
 {
-    public class MainPageMaster
+    public class MainPageItemModel
     {
+        public string SmallImageURL { get; set; }
         public string ImageURL { get; set; }
         public string Title { get; set; }
-        public string Caption { get; set; }
         public string Tags { get; private set; }
         public bool IsLiked { get; set; }
+        public string Caption { get; set; }
         public string Size
         {
             get

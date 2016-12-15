@@ -15,9 +15,10 @@
     </Page.Transitions>
 
     <Page.Resources>
-        <DataTemplate x:Key="MasterGridViewItemTemplate">
+        <DataTemplate x:Key="ItemTemplate">
             
         </DataTemplate>
+        
     </Page.Resources>
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
