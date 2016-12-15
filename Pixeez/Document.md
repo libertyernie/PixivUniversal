@@ -19,8 +19,26 @@
  - UsersWork类：公开的，用于储存用户作品信息；
  - Work.cs内部定义的类：全部都是公开的，用于储存作品相关信息；
 
-### 方法
- 
+### 授权API封装
+ - Auth.AuthorizeAsync：异步，公开，返回Task<Token>，用于登录并获取Token；
+ - Auth.AuthorizeWithAccessToken：单步，公开，返回Token，用于恢复登录状态并重新获取Token；
+
+### 主要API封装
+ - Token.AccessToken：属性，不公开可写，公开可读，用于储存Token的字符串表达；
+ - Token.SendRequestAsync：公开，异步，用于发送自定义请求；
+ - Token.GetWorksAsync：公开，异步，返回Task<List<Work>>，用于获取作品列表；
+ - Token.GetUsersAsync：公开，异步，返回Task<List<User>>，用于获取用户；
+ - Token.GetMyFeedsAsync：公开，异步，返回Task<List<Feed>>，用于获取对应Token的动态；
+ - Token.GetMyFavoriteWorksAsync：公开，异步，返回Task<Paginated<UsersFavoriteWork>>，用于获取按页导航的对应Token的最喜爱的作品；
+ - Token.AddMyFavoriteWorksAsync：公开，异步，返回Task<List<UsersFavoriteWork>>，用于添加最喜爱的作品；
+ - Token.DeleteMyFavoriteWorksAsync：公开，异步，返回Task<List<UsersFavoriteWork>>，用于删除最喜爱的作品；
+ - Token.GetMyFollowingWorksAsync：公开，异步，返回Task<Paginated<UsersWork>>，用于获取对应Token处于Following状态的作品；
+ - Token.GetUsersWorksAsync：公开，异步，返回Task<Paginated<UsersWork>>，用于获取用户作品分页导航的列表；
+ - Token.GetUsersFavoriteWorksAsync：公开，异步，返回Task<Paginated<UsersFavoriteWork>>，用于获取用户最喜爱的作品分页导航的列表；
+ - Token.GetUsersFeedsAsync：公开，异步，返回Task<List<Feed>>，用于获取用户动态；
+ - Token.GetRankingAllAsync：公开，异步，返回Task<Paginated<Rank>>，用于获取热度排行的作品分页导航的列表；
+ - Token.SearchWorksAsync：公开，异步，返回Task<Paginated<Work>>，用于获取搜索结果分页导航的列表；
+ - Token.GetLatestWorksAsync：公开，异步，返回Task<Paginated<Work>>，用于获取最近的作品分页导航的列表；
 
 ### 许可
  本项目遵从MIT许可协议开源：
