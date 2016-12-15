@@ -40,6 +40,34 @@
  - Token.SearchWorksAsync：公开，异步，返回Task<Paginated<Work>>，用于获取搜索结果分页导航的列表；
  - Token.GetLatestWorksAsync：公开，异步，返回Task<Paginated<Work>>，用于获取最近的作品分页导航的列表；
 
+### 实例
+~~~cs
+class Program
+{
+    static void Main(string[] args)
+    {
+        Task.Run(async () => await Program.PixivDemo()).Wait();
+    }
+
+    static async Task PixivDemo()
+    {
+        // 请求授权
+        var tokens = await Pixeez.Auth.AuthorizeAsync("username", "password");
+
+        var work = await tokens.GetWorksAsync(51796422);
+        var user = await tokens.GetUsersAsync(11972);
+        var myfeeds = await tokens.GetMyFeedsAsync(true);
+        var usersWorks = await tokens.GetUsersWorksAsync(11972);
+        var usersFavoriteWorks = await tokens.GetUsersFavoriteWorksAsync(11972);
+        var ranking = await tokens.GetRankingAllAsync();
+        var search = await tokens.SearchWorksAsync("フランドール・スカーレット", mode: "tag");
+    }
+}
+~~~
+
+### 说明
+ 本API的C#封装基于原工程Pixeez改进，感谢原作者cucmberium（日本）对该工程的贡献以及对我们的授权。
+
 ### 许可
  本项目遵从MIT许可协议开源：
 
