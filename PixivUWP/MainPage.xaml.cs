@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PixivUWP.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +27,12 @@ namespace PixivUWP
         public MainPage()
         {
             this.InitializeComponent();
+            MenuItemList.ItemsSource = menuItems;
         }
+
+        public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
+        {
+            new MenuItem() {Symbol="",Label="今日焦点" }
+        };
     }
 }

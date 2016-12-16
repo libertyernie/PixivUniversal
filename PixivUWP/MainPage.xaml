@@ -16,7 +16,7 @@
 
     <Page.Resources>
         <Style x:Key="TogglePaneButtonStyle" TargetType="ToggleButton">
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
             <Setter Property="MinHeight" Value="48" />
             <Setter Property="MinWidth" Value="48" />
@@ -103,8 +103,8 @@
         </Style>
         <DataTemplate x:Key="MenuItemTemplate">
             <StackPanel Height="48" Orientation="Horizontal">
-                <SymbolIcon Symbol="{Binding Symbol}" Height="48" Width="48"/>
-                <TextBlock Text="{Binding Label}"/>
+                <TextBlock Text="{Binding Symbol}" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="24" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Label}" VerticalAlignment="Center" Margin="18 0 0 0"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -123,7 +123,7 @@
                 <RowDefinition x:Name="FeedbackButtonRow" Height="48"/>
             </Grid.RowDefinitions>
             <ToggleButton Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
-            <ListView Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}"/>
+            <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}"/>
         </Grid>
     </Grid>
 </Page>
