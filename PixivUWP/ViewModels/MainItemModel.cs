@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PixivUWP.ViewModels
 {
-    public class MainPageItemModel
+    public class MainItemModel
     {
         public string SmallImageURL { get; set; }
         public string ImageURL { get; set; }
