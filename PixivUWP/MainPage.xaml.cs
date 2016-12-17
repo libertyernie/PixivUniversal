@@ -1,4 +1,6 @@
-﻿using PixivUWP.ViewModels;
+﻿using Pixeez;
+using Pixeez.Objects;
+using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +10,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
@@ -24,11 +28,14 @@ namespace PixivUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Windows.UI.Xaml.Controls.Page
     {
+        private Tokens token;
+
         public MainPage()
         {
             this.InitializeComponent();
+            token = Data.TmpData.CurrentAuth.Tokens;
             if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
             {
                 TitlebarGrid.Visibility = Visibility.Collapsed;
@@ -37,6 +44,19 @@ namespace PixivUWP
             {
                 pad1.Width = new Windows.UI.Xaml.GridLength(0);
             }
+            tb_Username.Text = Data.TmpData.Username;
+            tb_Email.Text = Data.TmpData.CurrentAuth.Authorize.User.Email;
+            var asyncres = token.SendRequestAsync(MethodType.GET, 
+                Data.TmpData.CurrentAuth.Authorize.User.ProfileImageUrls.Px170x170, null);
+            var awaiter = asyncres.GetAwaiter();
+            awaiter.OnCompleted(async ()=>
+            {
+                var res = awaiter.GetResult();
+                BitmapImage img = new BitmapImage();
+                await img.SetSourceAsync((await res.GetResponseStreamAsync()).AsInputStream() as IRandomAccessStream);
+                img_BAvatar.Visibility = Visibility.Collapsed;
+                img_Avatar.ImageSource = img;
+            });
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(Title);

@@ -11,6 +11,6 @@ namespace PixivUWP.Data
     {
         public static string Username;
         public static string Password;
-        public static Pixeez.Tokens CurrentToken;
+        public static Pixeez.AuthResult CurrentAuth;
     }
 }

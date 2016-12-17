@@ -191,10 +191,15 @@
                             <ColumnDefinition Width="48"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="img_Avatar" Grid.Column="0" Height="54" Width="30" Stretch="Uniform" Source="Assets/Avatar.png"/>
+                        <Image Grid.Column="0" Height="36" Width="36" x:Name="img_BAvatar" Stretch="Uniform" Source="Assets/Avatar.png"/>
+                        <Ellipse Grid.Column="0" Height="36" Width="36">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="img_Avatar" Stretch="Uniform" ImageSource="Assets/Avatar.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
                         <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
-                            <TextBlock Text="这是用户名"/>
-                            <TextBlock Text="普通用户" FontSize="12" Foreground="Gray"/>
+                            <TextBlock x:Name="tb_Username" Text="这是用户名"/>
+                            <TextBlock x:Name="tb_Email" Text="邮件" FontSize="12" Foreground="Gray"/>
                         </StackPanel>
                     </Grid>
                 </Button>
