@@ -35,6 +35,11 @@ namespace PixivUWP
         public MainPage()
         {
             this.InitializeComponent();
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+            Window.Current.SetTitleBar(Title);
+            MenuItemList.ItemsSource = menuItems;
+            MenuItemList.SelectedIndex = 0;
             token = Data.TmpData.CurrentAuth.Tokens;
             if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
             {
@@ -57,10 +62,6 @@ namespace PixivUWP
                 img_BAvatar.Visibility = Visibility.Collapsed;
                 img_Avatar.ImageSource = img;
             });
-            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            coreTitleBar.ExtendViewIntoTitleBar = true;
-            Window.Current.SetTitleBar(Title);
-            MenuItemList.ItemsSource = menuItems;
         }
 
         public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
