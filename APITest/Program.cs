@@ -17,9 +17,9 @@ namespace APITest
         static async Task PixivDemo()
         {
             var tokens = await Auth.AuthorizeAsync(username, passwd);
-            Console.WriteLine(tokens.AccessToken);
-            var follow = await tokens.GetMyFollowingWorksAsync();
-            Console.WriteLine((await tokens.GetMyFavoriteWorksAsync()).Count);
+            Console.WriteLine(tokens.Tokens.AccessToken);
+            var follow = await tokens.Tokens.GetMyFollowingWorksAsync();
+            Console.WriteLine((await tokens.Tokens.GetMyFavoriteWorksAsync()).Count);
             Console.ReadKey();
         }
 

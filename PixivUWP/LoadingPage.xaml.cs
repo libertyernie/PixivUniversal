@@ -66,7 +66,7 @@ namespace PixivUWP
                 //animation2.From = 0;
                 //animation2.To = 100;
                 //Windows Phones do not need the animation
-                if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+                //if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
                 {
                     storyboard.Children.Add(animation);
                     //storyboard.Children.Add(animation2);
@@ -123,6 +123,10 @@ namespace PixivUWP
             try
             {
                 var token = await Auth.AuthorizeAsync(username, password);
+                Data.TmpData.CurrentAuth = token;
+                Frame.Navigate(typeof(MainPage));
+                Debug.Write("Access token: ");
+                Debug.WriteLine(token.Tokens.AccessToken);
             }
             catch
             {
@@ -155,7 +159,7 @@ namespace PixivUWP
             Storyboard.SetTarget(animation, margin);
             Storyboard.SetTargetProperty(animation, "Top");
             //Windows Phones do not need the animation
-            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+            //if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
             {
                 storyboard2.Children.Add(animation);
                 //storyboard.Children.Add(animation2);
@@ -176,6 +180,10 @@ namespace PixivUWP
                 BindableMargin margin2 = new Views.BindableMargin(image);
                 image.Opacity = 100;
                 margin2.Top = -315;
+                Data.AppDataHelper.SetValue("upasswd", "");
+                Data.AppDataHelper.SetValue("uname", "");
+                Data.AppDataHelper.SetValue("isauto", false.ToString());
+                Data.AppDataHelper.SetValue("isrem", false.ToString());
                 Frame.Navigate(typeof(LoginPage));
             };
             storyboard2.Begin();

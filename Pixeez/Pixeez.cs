@@ -47,6 +47,12 @@ namespace Pixeez
         }
     }
 
+    public struct AuthResult
+    {
+        public Tokens Tokens;
+        public Authorize Authorize;
+    }
+
     public class Auth
     {
         /// <summary>
@@ -55,7 +61,7 @@ namespace Pixeez
         /// <para>- <c>string</c> password (required)</para>
         /// </summary>
         /// <returns>Tokens.</returns>
-        public static async Task<Tokens> AuthorizeAsync(string username, string password)
+        public static async Task<AuthResult> AuthorizeAsync(string username, string password)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Referer", "http://www.pixiv.net/");
@@ -77,7 +83,10 @@ namespace Pixeez
             var json = await response.Content.ReadAsStringAsync();
             var authorize = JToken.Parse(json).SelectToken("response").ToObject<Authorize>();
 
-            return new Tokens(authorize.AccessToken);
+            AuthResult result = new Pixeez.AuthResult();
+            result.Authorize = authorize;
+            result.Tokens = new Tokens(authorize.AccessToken);
+            return result;
         }
 
         public static Tokens AuthorizeWithAccessToken(string accessToken)

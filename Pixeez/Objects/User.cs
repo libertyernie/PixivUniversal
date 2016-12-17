@@ -119,6 +119,9 @@ namespace Pixeez.Objects
         [JsonProperty("account")]
         public string Account { get; set; }
 
+        [JsonProperty("mail_address")]
+        public string Email { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

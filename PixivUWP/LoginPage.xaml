@@ -7,39 +7,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationStartPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image x:Name="logoimage_animated" Opacity="0" Source="Assets/SplashScreen.png" RenderTransformOrigin="0.5,0.5" MaxWidth="400" Margin="0,-315,0,0"/>
         <Grid x:Name="controls" Background="Transparent" Width="Auto" Height="470" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-40,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Center" Width="Auto" FontSize="20" Margin="0,0,0,20" VerticalAlignment="Bottom" Foreground="White">服务登录</TextBlock>
+            <TextBlock HorizontalAlignment="Center" Width="Auto" FontSize="20" Margin="0,0,0,20" VerticalAlignment="Bottom">服务登录</TextBlock>
             <Image Grid.Row="0" x:Name="logoimage" Source="Assets/SplashScreen.png" RenderTransformOrigin="0.5,0.5" MaxWidth="400"/>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="20,0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="0" Margin="20 0" x:Name="txt_UserName" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1">
+                <TextBox Grid.Row="0" Margin="20 0" x:Name="txt_UserName" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1" InputScope="Url" IsSpellCheckEnabled="False">
                     <TextBox.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock Foreground="White" FontSize="10">用户名</TextBlock>
+                            <TextBlock FontSize="10">用户名</TextBlock>
                         </DataTemplate>
                     </TextBox.HeaderTemplate>
                 </TextBox>
                 <PasswordBox Grid.Row="1" Margin="20 0" x:Name="txt_Password" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1">
                     <PasswordBox.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock Foreground="White" FontSize="10">密码</TextBlock>
+                            <TextBlock FontSize="10">密码</TextBlock>
                         </DataTemplate>
                     </PasswordBox.HeaderTemplate>
                 </PasswordBox>
-                <ToggleSwitch Grid.Row="2" Margin="20,0" Header="" OffContent="记住密码：关" OnContent="记住密码：开" Foreground="White"/>
-                <ToggleSwitch Grid.Row="2" HorizontalAlignment="Right" Margin="20,0" Header="" OffContent="自动登录：关" OnContent="自动登录：开" Foreground="White"/>
-                <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Foreground="White" Click="Button_Click">
+                <ToggleSwitch x:Name="s_remember" Grid.Row="2" Margin="20,0" Header="" OffContent="记住密码：关" OnContent="记住密码：开" Toggled="s_remember_Toggled"/>
+                <ToggleSwitch x:Name="s_auto" Grid.Row="2" HorizontalAlignment="Right" Margin="20,0" Header="" OffContent="自动登录：关" OnContent="自动登录：开" Toggled="s_auto_Toggled"/>
+                <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1">
                     登录
                 </Button>
             </Grid>

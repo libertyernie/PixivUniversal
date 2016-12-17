@@ -1,4 +1,5 @@
-﻿using PixivUWP.Views;
+﻿using PixivUWP.Data;
+using PixivUWP.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,16 @@ namespace PixivUWP
         public LoginPage()
         {
             this.InitializeComponent();
+            if (AppDataHelper.GetValue("uname") != null)
+                txt_UserName.Text = AppDataHelper.GetValue("uname") as string;
+            if (AppDataHelper.GetValue("upasswd") != null)
+                txt_Password.Password = AppDataHelper.GetValue("upasswd") as string;
+            if (AppDataHelper.GetValue("isauto") != null)
+                s_auto.IsOn = Convert.ToBoolean(AppDataHelper.GetValue("isauto") as string);
+            if (AppDataHelper.GetValue("isrem") != null)
+                s_remember.IsOn = Convert.ToBoolean(AppDataHelper.GetValue("isrem") as string);
+            if (s_auto.IsOn)
+                beginLoading();
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
         }
@@ -56,7 +67,7 @@ namespace PixivUWP
             Storyboard.SetTarget(animation, margin);
             Storyboard.SetTargetProperty(animation, "Top");
             //Windows Phones do not need the animation
-            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+            //if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
             {
                 storyboard.Children.Add(animation);
             }
@@ -78,9 +89,21 @@ namespace PixivUWP
                 margin2.Top = 0;
                 Data.TmpData.Username = txt_UserName.Text;
                 Data.TmpData.Password = txt_Password.Password;
+                storeData();
                 (Window.Current.Content as Frame).Navigate(typeof(LoadingPage));
             };
             storyboard.Begin();
+        }
+
+        private void storeData()
+        {
+            AppDataHelper.SetValue("uname", txt_UserName.Text);
+            if (s_remember.IsOn)
+                AppDataHelper.SetValue("upasswd", txt_Password.Password);
+            else
+                AppDataHelper.SetValue("upasswd", "");
+            AppDataHelper.SetValue("isrem", s_remember.IsOn.ToString());
+            AppDataHelper.SetValue("isauto", s_auto.IsOn.ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -93,6 +116,18 @@ namespace PixivUWP
             logoimage_animated.Opacity = 100;
             controls.Visibility = Visibility.Collapsed;
             await logoAnimation();
+        }
+
+        private void s_auto_Toggled(object sender, RoutedEventArgs e)
+        {
+            if((sender as ToggleSwitch).IsOn)
+                s_remember.IsOn = true;
+        }
+
+        private void s_remember_Toggled(object sender, RoutedEventArgs e)
+        {
+            if(!(sender as ToggleSwitch).IsOn)
+                s_auto.IsOn = false;
         }
     }
 }
