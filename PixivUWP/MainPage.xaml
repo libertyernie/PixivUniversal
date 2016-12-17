@@ -108,55 +108,83 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-
-    <Grid Background="{ThemeResource SystemControlHighlightListLowBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MenuColum" Width="48"/>
-            <ColumnDefinition x:Name="MainColum" Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="48" HorizontalAlignment="Left">
-            <Grid.RowDefinitions>
-                <RowDefinition x:Name="MenuToggleButtonRow" Height="48"/>
-                <RowDefinition x:Name="UserAvatarRow" Height="66"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition x:Name="SettingsButtonRow" Height="48"/>
-                <RowDefinition x:Name="FeedbackButtonRow" Height="48"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="btn_User" Grid.Row="1" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
-                <Grid Width="256">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image x:Name="img_Avatar" Grid.Column="0" Height="54" Width="30" Stretch="Uniform" Source="Assets/Avatar.png"/>
-                    <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
-                        <TextBlock Text="这是用户名"/>
-                        <TextBlock Text="普通用户" FontSize="12" Foreground="Gray"/>
-                    </StackPanel>
-                </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" x:Name="TitlebarRow"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="32" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="TitlebarGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="pad5" Width="48"/>
+                <ColumnDefinition x:Name="pad4" Width="48"/>
+                <ColumnDefinition x:Name="pad3" Width="48"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition x:Name="pad2" Width="60"/>
+                <ColumnDefinition x:Name="pad1" Width="130"/>
+            </Grid.ColumnDefinitions>
+            <Button BorderThickness="0" Width="48" Height="32" x:Name="btn_Back" Grid.Column="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
-            <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
-            <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}"/>
-            <Button x:Name="btn_Setting" Grid.Row="3" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
-                <Grid Width="256">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Height="Auto" VerticalAlignment="Center" Margin="11 0 0 0" Text="设置"/>
-                </Grid>
+            <Button BorderThickness="0" Width="48" Height="32" x:Name="btn_Refresh" Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
-            <Button x:Name="btn_Feedback" Grid.Row="4" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
-                <Grid Width="256">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Height="Auto" VerticalAlignment="Center" Margin="11 0 0 0" Text="反馈"/>
-                </Grid>
+            <Button BorderThickness="0" Width="48" Height="32" x:Name="btn_Lock" Grid.Column="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
+            <Grid x:Name="Title" Grid.Column="3" Background="Transparent">
+                <Image Source="Assets/SplashScreen.scale-200.png" Height="30"/>
+            </Grid>
+            <TextBlock Grid.Column="4" x:Name="version" Text="v0.0.1β" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0"/>
+        </Grid>
+        <Grid Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="MenuColum" Width="48"/>
+                <ColumnDefinition x:Name="MainColum" Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="48" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="MenuToggleButtonRow" Height="48"/>
+                    <RowDefinition x:Name="UserAvatarRow" Height="66"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition x:Name="SettingsButtonRow" Height="48"/>
+                    <RowDefinition x:Name="FeedbackButtonRow" Height="48"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btn_User" Grid.Row="1" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
+                    <Grid Width="256">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="img_Avatar" Grid.Column="0" Height="54" Width="30" Stretch="Uniform" Source="Assets/Avatar.png"/>
+                        <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
+                            <TextBlock Text="这是用户名"/>
+                            <TextBlock Text="普通用户" FontSize="12" Foreground="Gray"/>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+                <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
+                <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}"/>
+                <Button x:Name="btn_Setting" Grid.Row="3" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
+                    <Grid Width="256">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Height="Auto" VerticalAlignment="Center" Margin="11 0 0 0" Text="设置"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="btn_Feedback" Grid.Row="4" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
+                    <Grid Width="256">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Height="Auto" VerticalAlignment="Center" Margin="11 0 0 0" Text="反馈"/>
+                    </Grid>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

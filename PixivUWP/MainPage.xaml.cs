@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,6 +29,17 @@ namespace PixivUWP
         public MainPage()
         {
             this.InitializeComponent();
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                TitlebarGrid.Visibility = Visibility.Collapsed;
+            }
+            else if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Tablet)
+            {
+                pad1.Width = new Windows.UI.Xaml.GridLength(0);
+            }
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+            Window.Current.SetTitleBar(Title);
             MenuItemList.ItemsSource = menuItems;
         }
 
