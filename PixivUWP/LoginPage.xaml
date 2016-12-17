@@ -37,8 +37,8 @@
                         </DataTemplate>
                     </PasswordBox.HeaderTemplate>
                 </PasswordBox>
-                <ToggleSwitch x:Name="s_remember" Grid.Row="2" Margin="20,0" Header="" OffContent="记住密码：关" OnContent="记住密码：开" Toggled="s_remember_Toggled"/>
-                <ToggleSwitch x:Name="s_auto" Grid.Row="2" HorizontalAlignment="Right" Margin="20,0" Header="" OffContent="自动登录：关" OnContent="自动登录：开" Toggled="s_auto_Toggled"/>
+                <ToggleSwitch x:Name="s_remember" Grid.Row="2" Margin="20,0" Header="" OffContent="记住密码" OnContent="记住密码" Toggled="s_remember_Toggled"/>
+                <ToggleSwitch x:Name="s_auto" Grid.Row="2" HorizontalAlignment="Right" Margin="84,0,-16,0" Header="" OffContent="自动登录" OnContent="自动登录" Toggled="s_auto_Toggled"/>
                 <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1">
                     登录
                 </Button>
