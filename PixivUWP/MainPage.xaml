@@ -177,6 +177,7 @@
                 <ColumnDefinition x:Name="MenuColum" Width="48"/>
                 <ColumnDefinition x:Name="MainColum" Width="*"/>
             </Grid.ColumnDefinitions>
+            <Frame x:Name="MainFrame" Grid.Column="1"/>
             <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="48" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="MenuToggleButtonRow" Height="48"/>

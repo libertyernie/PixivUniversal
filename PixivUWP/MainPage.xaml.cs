@@ -49,7 +49,7 @@ namespace PixivUWP
             {
                 pad1.Width = new Windows.UI.Xaml.GridLength(0);
             }
-            tb_Username.Text = Data.TmpData.Username;
+            tb_Username.Text = Data.TmpData.CurrentAuth.Authorize.User.Name;
             tb_Email.Text = Data.TmpData.CurrentAuth.Authorize.User.Email;
             var asyncres = token.SendRequestAsync(MethodType.GET, 
                 Data.TmpData.CurrentAuth.Authorize.User.ProfileImageUrls.Px170x170, null);
