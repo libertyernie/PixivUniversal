@@ -98,6 +98,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\pg_Collection.xaml.cs">
+      <DependentUpon>pg_Collection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pg_Download.xaml.cs">
+      <DependentUpon>pg_Download.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pg_Feeds.xaml.cs">
+      <DependentUpon>pg_Feeds.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pg_Main.xaml.cs">
+      <DependentUpon>pg_Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pg_Mywork.xaml.cs">
+      <DependentUpon>pg_Mywork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pg_Settings.xaml.cs">
+      <DependentUpon>pg_Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainItemModel.cs" />
     <Compile Include="Data\AppDataHelper.cs" />
     <Compile Include="Data\TmpData.cs" />
@@ -152,6 +170,30 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\pg_Collection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pg_Download.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pg_Feeds.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pg_Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pg_Mywork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pg_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BindableMargin.xaml">
       <Generator>MSBuild:Compile</Generator>
