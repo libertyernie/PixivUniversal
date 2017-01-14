@@ -7,6 +7,14 @@
     <Application.Resources>
         <ResourceDictionary>
             <SolidColorBrush x:Key="ApplicationStartPageBackgroundThemeBrush" Color="#00adee"/>
+            <DataTemplate x:Key="StandardTileTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
