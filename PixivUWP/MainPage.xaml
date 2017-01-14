@@ -205,7 +205,7 @@
                     </Grid>
                 </Button>
                 <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
-                <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}"/>
+                <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}" SelectionChanged="MenuItemList_SelectionChanged"/>
                 <Button x:Name="btn_Setting" Style="{StaticResource DimButtonStyle}" Grid.Row="3" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
                     <Grid Width="256">
                         <Grid.ColumnDefinitions>
