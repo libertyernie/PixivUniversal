@@ -114,5 +114,15 @@ namespace PixivUWP
                 storyboard.Begin();
             }
         }
+
+        private void MenuItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch(MenuItemList.SelectedIndex)
+            {
+                case 0:
+                    MainFrame.Navigate(typeof(Pages.pg_Main));
+                    break;
+            }
+        }
     }
 }
