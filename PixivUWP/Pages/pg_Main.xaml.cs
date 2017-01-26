@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pixeez.Objects;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +21,31 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Main : Page
+    public sealed partial class pg_Main : Windows.UI.Xaml.Controls.Page
     {
         public pg_Main()
         {
             this.InitializeComponent();
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainlist.ItemsSource = await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync();
+
+        }
+
+        private async void Image_Loaded(object sender, RoutedEventArgs e)
+        {
+            var img = sender as Image;
+            if (img.DataContext!=null)
+            {
+                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
+                {
+                    var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                    await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                    img.Source = bitmap;
+                }
+            }
         }
     }
 }

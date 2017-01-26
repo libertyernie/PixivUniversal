@@ -112,7 +112,7 @@ namespace Pixeez
         /// <para>- <c>IDictionary</c> header (optional)</para>
         /// </summary>
         /// <returns>AsyncResponse.</returns>
-        public async Task<AsyncResponse> SendRequestAsync(MethodType type, string url, IDictionary<string, string> param, IDictionary<string, string> headers = null)
+        public async Task<AsyncResponse> SendRequestAsync(MethodType type, string url, IDictionary<string, string> param=null, IDictionary<string, string> headers = null)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Referer", "http://spapi.pixiv.net/");

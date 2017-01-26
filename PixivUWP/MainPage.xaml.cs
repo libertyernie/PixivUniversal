@@ -1,6 +1,5 @@
 ﻿using Pixeez;
 using Pixeez.Objects;
-using PixivUWP.Pages;
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -118,11 +117,10 @@ namespace PixivUWP
 
         private void MenuItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = e.AddedItems[0] as MenuItem;
-            switch(item.Label)
+            switch(MenuItemList.SelectedIndex)
             {
-                case "作品发现":
-                    MainFrame.Navigate(typeof(pg_Main));
+                case 0:
+                    MainFrame.Navigate(typeof(Pages.pg_Main));
                     break;
             }
         }

@@ -5,9 +5,16 @@
     xmlns:local="using:PixivUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:api="using:Pixeez.Objects"
+    mc:Ignorable="d" Loaded="Page_Loaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>这是pg_Main</TextBlock>
+        <ListView x:Name="mainlist" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <Image Height="200" Width="200" Loaded="Image_Loaded"></Image>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
