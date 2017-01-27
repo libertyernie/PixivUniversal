@@ -124,5 +124,11 @@ namespace PixivUWP
                     break;
             }
         }
+
+        private void btn_Setting_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItemList.SelectedIndex = -1;
+            MainFrame.Navigate(typeof(Pages.pg_Settings));
+        }
     }
 }

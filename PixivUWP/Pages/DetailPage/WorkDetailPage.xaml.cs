@@ -27,13 +27,25 @@ namespace PixivUWP.Pages.DetailPage
         {
             this.InitializeComponent();
         }
+        Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (e.Parameter as Work).ImageUrls.Large))
+            Work = e.Parameter as Work;
+            PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
+            try
             {
-                var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                bigimg.Source = bitmap;
+                title.Text = Work.Title;
+                user.Text = Work.User.Name;
+                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, Work.ImageUrls.Large))
+                {
+                    var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                    await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                    bigimg.Source = bitmap;
+                }
+            }
+            finally
+            {
+                PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, false);
             }
         }
     }

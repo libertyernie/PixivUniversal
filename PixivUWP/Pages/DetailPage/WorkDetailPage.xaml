@@ -8,6 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image x:Name="bigimg"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="571*"/>
+            <RowDefinition Height="69*"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="bigimg" />
+        <ProgressBar x:Name="pro" ></ProgressBar>
+        <TextBlock Grid.Row="1"><Bold><Run  x:Name="title"></Run></Bold><LineBreak/><Run x:Name="user"></Run></TextBlock>
     </Grid>
 </Page>

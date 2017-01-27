@@ -1,4 +1,5 @@
 ﻿using Pixeez.Objects;
+using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,14 +25,46 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Main : Windows.UI.Xaml.Controls.Page
     {
+        ItemViewList<Work> list = new ItemViewList<Work>();
         public pg_Main()
         {
             this.InitializeComponent();
+            list.LoadingMoreItems += List_LoadingMoreItems;
+            list.HasMoreItemsEvent += List_HasMoreItemsEvent;
+            MasterListView.ItemsSource = list;
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
         {
-            MasterListView.ItemsSource = await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync();
+            args.Value = !isfinish;
+        }
+
+        int nowpage = 1;
+        bool isfinish = false;
+        private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
+        {
+            var nowcount = list.Count;
+            try
+            {
+                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync(nowpage))
+                {
+                    list.Add(one);
+                }
+                nowpage++;
+            }
+            catch
+            {
+                isfinish = true;
+            }
+            finally
+            {
+                args.Item1.Complete((uint)(list.Count - nowcount));
+            }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            MasterListView.ItemsSource = list;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

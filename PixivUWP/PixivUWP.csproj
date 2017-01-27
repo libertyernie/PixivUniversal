@@ -119,6 +119,8 @@
     <Compile Include="Pages\pg_Settings.xaml.cs">
       <DependentUpon>pg_Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgressBarVisualHelper.cs" />
+    <Compile Include="ViewModels\ItemViewList.cs" />
     <Compile Include="ViewModels\MainItemModel.cs" />
     <Compile Include="Data\AppDataHelper.cs" />
     <Compile Include="Data\TmpData.cs" />
@@ -221,7 +223,6 @@
       <Name>PixivAPI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
