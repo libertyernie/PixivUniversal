@@ -65,7 +65,7 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Image Height="200" Width="200" Loaded="Image_Loaded"></Image>
+                    <Image Height="200" Width="200" DataContextChanged="Image_DataContextChanged" ></Image>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

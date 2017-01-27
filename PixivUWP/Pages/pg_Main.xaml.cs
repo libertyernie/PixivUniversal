@@ -35,19 +35,6 @@ namespace PixivUWP.Pages
 
         }
 
-        private async void Image_Loaded(object sender, RoutedEventArgs e)
-        {
-            var img = sender as Image;
-            if (img.DataContext!=null)
-            {
-                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
-                {
-                    var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                    await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                    img.Source = bitmap;
-                }
-            }
-        }
         private Work _lastSelectedItem;
 
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
@@ -74,19 +61,19 @@ namespace PixivUWP.Pages
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //var clickedItem = (ItemViewModel)e.ClickedItem;
-            //_lastSelectedItem = clickedItem;
+            var clickedItem = (Work)e.ClickedItem;
+            _lastSelectedItem = clickedItem;
 
-            //if (AdaptiveStates.CurrentState == NarrowState)
-            //{
-            //    // Use "drill in" transition for navigating from master list to detail view
-            //    Frame.Navigate(typeof(DetailPage), clickedItem.ItemId, new DrillInNavigationTransitionInfo());
-            //}
-            //else
-            //{
-            //    // Play a refresh animation when the user switches detail items.
-            //    EnableContentTransitions();
-            //}
+            if (AdaptiveStates.CurrentState == NarrowState)
+            {
+                // Use "drill in" transition for navigating from master list to detail view
+                //Frame.Navigate(typeof(DetailPage), clickedItem.ItemId, new DrillInNavigationTransitionInfo());
+            }
+            else
+            {
+                // Play a refresh animation when the user switches detail items.
+                EnableContentTransitions();
+            }
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
@@ -106,6 +93,20 @@ namespace PixivUWP.Pages
             if (DetailContentPresenter != null)
             {
                 DetailContentPresenter.ContentTransitions.Clear();
+            }
+        }
+
+        private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            var img = sender as Image;
+            if (img.DataContext != null)
+            {
+                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
+                {
+                    var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                    await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                    img.Source = bitmap;
+                }
             }
         }
     }
