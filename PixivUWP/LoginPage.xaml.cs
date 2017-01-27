@@ -27,7 +27,7 @@ namespace PixivUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class LoginPage : Yinyue200.NavigationHelper.BasicPage
+    public sealed partial class LoginPage : Page
     {
         Storyboard storyboard = new Storyboard();
 

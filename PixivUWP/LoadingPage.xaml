@@ -1,4 +1,4 @@
-﻿<NavigationHelper:BasicPage
+﻿<Page
     xmlns:NavigationHelper="using:Yinyue200.NavigationHelper"
     x:Class="PixivUWP.LoadingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -19,4 +19,4 @@
             无法连接到Pixiv，请检查网络连接和凭据
         </Button>
     </Grid>
-</NavigationHelper:BasicPage>
+</Page>

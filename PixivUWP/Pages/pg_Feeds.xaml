@@ -1,5 +1,4 @@
-﻿<NavigationHelper:RestPage
-    xmlns:NavigationHelper="using:Yinyue200.NavigationHelper"
+﻿<Page
     x:Class="PixivUWP.Pages.pg_Feeds"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,4 +11,4 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     </Grid>
-</NavigationHelper:RestPage>
+</Page>

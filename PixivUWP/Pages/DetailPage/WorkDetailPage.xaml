@@ -14,6 +14,6 @@
         </Grid.RowDefinitions>
         <Image x:Name="bigimg" />
         <ProgressBar x:Name="pro" ></ProgressBar>
-        <TextBlock Grid.Row="1"><Bold><Run  x:Name="title"></Run></Bold><LineBreak/><Run x:Name="user"></Run></TextBlock>
+        <TextBlock Grid.Row="1"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Run x:Name="user"></Run><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
     </Grid>
 </Page>

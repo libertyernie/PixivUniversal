@@ -34,8 +34,11 @@ namespace PixivUWP.Pages.DetailPage
             PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
             try
             {
+                siz.Text = "("+Work.Height?.ToString() + "x" + Work.Width?.ToString()+")";
+                des.Text = Work.Caption;
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
+                tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, Work.ImageUrls.Large))
                 {
                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();

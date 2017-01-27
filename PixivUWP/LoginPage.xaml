@@ -1,5 +1,4 @@
-﻿<NavigationHelper:BasicPage
-    xmlns:NavigationHelper="using:Yinyue200.NavigationHelper"
+﻿<Page
     x:Class="PixivUWP.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -46,4 +45,4 @@
             </Grid>
         </Grid>
     </Grid>
-</NavigationHelper:BasicPage>
+</Page>

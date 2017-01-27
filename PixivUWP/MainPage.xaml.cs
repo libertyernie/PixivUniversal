@@ -28,7 +28,7 @@ namespace PixivUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class MainPage : Yinyue200.NavigationHelper.RestPage
+    public sealed partial class MainPage : Windows.UI.Xaml.Controls.Page
     {
         private Tokens token;
 
@@ -121,6 +121,18 @@ namespace PixivUWP
             {
                 case 0:
                     MainFrame.Navigate(typeof(Pages.pg_Main));
+                    break;
+                case 1:
+                    MainFrame.Navigate(typeof(Pages.pg_Feeds));
+                    break;
+                case 2:
+                    MainFrame.Navigate(typeof(Pages.pg_Mywork));
+                    break;
+                case 3:
+                    MainFrame.Navigate(typeof(Pages.pg_Collection));
+                    break;
+                case 4:
+                    MainFrame.Navigate(typeof(Pages.pg_Download));
                     break;
             }
         }
