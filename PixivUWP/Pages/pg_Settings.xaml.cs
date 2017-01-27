@@ -20,7 +20,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Settings : Page
+    public sealed partial class pg_Settings : Yinyue200.NavigationHelper.RestPage
     {
         public pg_Settings()
         {
