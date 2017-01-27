@@ -159,9 +159,9 @@ namespace PixivUWP
                     case Windows.Security.Credentials.UI.UserConsentVerificationResult.DeviceBusy:
                     case Windows.Security.Credentials.UI.UserConsentVerificationResult.RetriesExhausted:
                     case Windows.Security.Credentials.UI.UserConsentVerificationResult.Canceled:
-                        await new Windows.UI.Popups.MessageDialog("当前识别设备不可用").ShowAsync();
-                        return;
                     default:
+                        await new Windows.UI.Popups.MessageDialog("当前识别设备不可用").ShowAsync();
+                        btn_Lock.IsChecked = true;
                         return;
                 }
                 btn_Lock.IsChecked = false;
