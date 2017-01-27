@@ -35,6 +35,7 @@ namespace PixivUWP.Pages.DetailPage
             try
             {
                 siz.Text = "("+Work.Height?.ToString() + "x" + Work.Width?.ToString()+")";
+                fs.IsChecked = Work.FavoriteId!=0;
                 des.Text = Work.Caption;
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
@@ -49,6 +50,30 @@ namespace PixivUWP.Pages.DetailPage
             finally
             {
                 PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, false);
+            }
+        }
+
+        private async void fs_Click(object sender, RoutedEventArgs e)
+        {
+            fs.IsEnabled = false;
+            try
+            {
+                if (fs.IsChecked != true)
+                {
+                    await PixivUWP.Data.TmpData.CurrentAuth.Tokens.DeleteMyFavoriteWorksAsync(Work.Id.Value);
+                }
+                else
+                {
+                    await PixivUWP.Data.TmpData.CurrentAuth.Tokens.AddMyFavoriteWorksAsync(Work.Id.Value);
+                }
+            }
+            catch
+            {
+                fs.IsChecked = !fs.IsChecked;
+            }
+            finally
+            {
+                fs.IsEnabled = true;
             }
         }
     }

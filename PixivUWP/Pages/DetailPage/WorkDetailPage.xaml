@@ -11,9 +11,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="571*"/>
             <RowDefinition Height="69*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Image x:Name="bigimg" />
         <ProgressBar x:Name="pro" ></ProgressBar>
         <TextBlock Grid.Row="1"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Run x:Name="user"></Run><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+        <CommandBar Grid.Row="2">
+            <AppBarToggleButton x:Name="fs" Icon="Favorite" Click="fs_Click"/>
+        </CommandBar>
     </Grid>
 </Page>
