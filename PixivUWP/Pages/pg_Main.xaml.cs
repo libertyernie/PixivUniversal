@@ -22,16 +22,20 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Main : Yinyue200.NavigationHelper.RestPage
+    public sealed partial class pg_Main : Windows.UI.Xaml.Controls.Page
     {
         public pg_Main()
         {
             this.InitializeComponent();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             MasterListView.ItemsSource = await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
 
         }
 
@@ -46,10 +50,15 @@ namespace PixivUWP.Pages
         {
             var isNarrow = newState == NarrowState;
 
-            if (isNarrow && oldState == DefaultState && _lastSelectedItem != null)
+            if (isNarrow)
             {
                 // Resize down to the detail item. Don't play a transition.
-                //Frame.Navigate(typeof(DetailPage), _lastSelectedItem.ItemId, new SuppressNavigationTransitionInfo());
+                //Frame.Navigate(typeof(DetailPage.WorkDetailPage), _lastSelectedItem, new SuppressNavigationTransitionInfo());
+                Grid.SetColumn(DetailContentPresenter, 0);
+            }
+            else
+            {
+                Grid.SetColumn(DetailContentPresenter, 1);
             }
 
             EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
@@ -67,10 +76,16 @@ namespace PixivUWP.Pages
             if (AdaptiveStates.CurrentState == NarrowState)
             {
                 // Use "drill in" transition for navigating from master list to detail view
-                //Frame.Navigate(typeof(DetailPage), clickedItem.ItemId, new DrillInNavigationTransitionInfo());
+                //Frame.Navigate(typeof(DetailPage.WorkDetailPage), clickedItem, new DrillInNavigationTransitionInfo());
+                DetailContentPresenter.Navigate(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
+
+                Grid.SetColumn(DetailContentPresenter, 0);
+
             }
             else
             {
+
+                Grid.SetColumn(DetailContentPresenter, 1);
                 // Play a refresh animation when the user switches detail items.
                 EnableContentTransitions();
             }
@@ -107,6 +122,15 @@ namespace PixivUWP.Pages
                     await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
                     img.Source = bitmap;
                 }
+            }
+        }
+
+        private void MasterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AdaptiveStates.CurrentState != NarrowState)
+            {
+                //DetailContentPresenter.;
+                DetailContentPresenter.Navigate(typeof(DetailPage.WorkDetailPage),MasterListView.SelectedValue);
             }
         }
     }

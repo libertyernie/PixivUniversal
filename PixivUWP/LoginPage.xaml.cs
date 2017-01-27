@@ -47,7 +47,6 @@ namespace PixivUWP
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
         }
-
         private async Task logoAnimation()
         {
             //Perform the animations
@@ -81,19 +80,22 @@ namespace PixivUWP
                 statusbar.BackgroundOpacity = 0;
                 await statusbar.HideAsync();
             }
-            storyboard.Completed += delegate
-            {
-                //Main animation finish
-                BindableMargin margin2 = new Views.BindableMargin(logoimage_animated);
-                logoimage_animated.Opacity = 100;
-                margin2.Top = 0;
-                Data.TmpData.Username = txt_UserName.Text;
-                Data.TmpData.Password = txt_Password.Password;
-                storeData();
-                (Window.Current.Content as Frame).Navigate(typeof(LoadingPage));
-            };
+            storyboard.Completed += Storyboard_Completed;
             storyboard.Begin();
         }
+
+        private void Storyboard_Completed(object sender, object e)
+        {
+            //Main animation finish
+            BindableMargin margin2 = new Views.BindableMargin(logoimage_animated);
+            logoimage_animated.Opacity = 100;
+            margin2.Top = 0;
+            Data.TmpData.Username = txt_UserName.Text;
+            Data.TmpData.Password = txt_Password.Password;
+            storeData();
+            (Window.Current.Content as Frame).Navigate(typeof(LoadingPage));
+        }
+
 
         private void storeData()
         {

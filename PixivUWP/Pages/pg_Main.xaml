@@ -1,4 +1,4 @@
-﻿<NavigationHelper:RestPage
+﻿<Page
     xmlns:NavigationHelper="using:Yinyue200.NavigationHelper"
     x:Class="PixivUWP.Pages.pg_Main"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -57,7 +57,7 @@
             Grid.Row="1"
             ItemContainerTransitions="{x:Null}"
             IsItemClickEnabled="True"
-            ItemClick="MasterListView_ItemClick">
+            ItemClick="MasterListView_ItemClick" SelectionChanged="MasterListView_SelectionChanged">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -70,19 +70,17 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ContentPresenter
+        <Frame
             x:Name="DetailContentPresenter"
             Grid.Column="1"
             Grid.RowSpan="2"
             BorderThickness="1,0,0,0"
-            Padding="24,0"
             BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-            Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
             >
-            <ContentPresenter.ContentTransitions>
+            <Frame.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->
                 <TransitionCollection />
-            </ContentPresenter.ContentTransitions>
-        </ContentPresenter>
+            </Frame.ContentTransitions>
+        </Frame>
     </Grid>
-</NavigationHelper:RestPage>
+</Page>
