@@ -142,5 +142,36 @@ namespace PixivUWP
             MenuItemList.SelectedIndex = -1;
             MainFrame.Navigate(typeof(Pages.pg_Settings));
         }
+
+        private async void btn_Lock_Click(object sender, RoutedEventArgs e)
+        {
+            if(contentroot.Visibility == Visibility.Collapsed)
+            {
+                switch (await Windows.Security.Credentials.UI.UserConsentVerifier.RequestVerificationAsync("验证您的身份"))
+                {
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.Verified:
+                        break;
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.DeviceNotPresent:
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.NotConfiguredForUser:
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.DisabledByPolicy:
+                        await new Windows.UI.Popups.MessageDialog("当前识别设备未配置或被系统策略禁用，将默认通过验证").ShowAsync();
+                        break;
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.DeviceBusy:
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.RetriesExhausted:
+                    case Windows.Security.Credentials.UI.UserConsentVerificationResult.Canceled:
+                        await new Windows.UI.Popups.MessageDialog("当前识别设备不可用").ShowAsync();
+                        return;
+                    default:
+                        return;
+                }
+                btn_Lock.IsChecked = false;
+                contentroot.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                contentroot.Visibility = Visibility.Collapsed;
+                btn_Lock.IsChecked = true;
+            }
+        }
     }
 }
