@@ -26,5 +26,10 @@ namespace PixivUWP.Pages
         {
             this.InitializeComponent();
         }
+
+        private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://pdp/?productid=9nblggh1xvd2", UriKind.Absolute));
+        }
     }
 }

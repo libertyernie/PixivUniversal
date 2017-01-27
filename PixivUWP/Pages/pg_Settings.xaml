@@ -16,8 +16,12 @@
             ThomasW.Fan<LineBreak/>
             <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/><LineBreak/><LineBreak/>
             <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy">Pixiv在线服务隐私声明</Hyperlink><LineBreak/>
-            <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term">Pixiv在线服务许可协议</Hyperlink><LineBreak/>        
+            <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term">Pixiv在线服务许可协议</Hyperlink><LineBreak/>
             THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            <LineBreak/><LineBreak/><LineBreak/>
+            <Bold>友情链接</Bold><LineBreak/>
+            <!--请自行在此添加-->
+            <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/>
         </TextBlock>
     </Grid>
 </Page>
