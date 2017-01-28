@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="Converter\TagsToStr.cs" />
     <Compile Include="Data\WorkEqualityComparer.cs" />
+    <Compile Include="Pages\DetailPage\IRefreshable.cs" />
     <Compile Include="Pages\DetailPage\WorkDetailPage.xaml.cs">
       <DependentUpon>WorkDetailPage.xaml</DependentUpon>
     </Compile>
@@ -114,6 +115,9 @@
     </Compile>
     <Compile Include="Pages\pg_Feeds.xaml.cs">
       <DependentUpon>pg_Feeds.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterDetailControl.xaml.cs">
+      <DependentUpon>MasterDetailControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\pg_Main.xaml.cs">
       <DependentUpon>pg_Main.xaml</DependentUpon>
@@ -196,6 +200,10 @@
     <Page Include="Pages\pg_Feeds.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MasterDetailControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\pg_Main.xaml">
       <SubType>Designer</SubType>

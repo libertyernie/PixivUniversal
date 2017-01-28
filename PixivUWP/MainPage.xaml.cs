@@ -47,10 +47,20 @@ namespace PixivUWP
     public sealed partial class MainPage : Windows.UI.Xaml.Controls.Page
     {
         private Tokens token;
+        //public static MainPage Current { get; private set; }
+
+        //public Button RefrechButton
+        //{
+        //    get
+        //    {
+        //        return btn_Refresh;
+        //    }
+        //}
 
         public MainPage()
         {
             this.InitializeComponent();
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(Title);
@@ -68,16 +78,25 @@ namespace PixivUWP
             }
             tb_Username.Text = Data.TmpData.CurrentAuth.Authorize.User.Name;
             tb_Email.Text = Data.TmpData.CurrentAuth.Authorize.User.Email;
-            var asyncres = token.SendRequestAsync(MethodType.GET, 
+            var asyncres = token.SendRequestAsync(MethodType.GET,
                 Data.TmpData.CurrentAuth.Authorize.User.ProfileImageUrls.Px170x170, null);
             var awaiter = asyncres.GetAwaiter();
-            awaiter.OnCompleted(async ()=>
+            awaiter.OnCompleted(async () =>
             {
                 var res = awaiter.GetResult();
                 BitmapImage img = new BitmapImage();
                 await img.SetSourceAsync((await res.GetResponseStreamAsync()).AsInputStream() as IRandomAccessStream);
                 img_BAvatar.Visibility = Visibility.Collapsed;
                 img_Avatar.ImageSource = img;
+            });
+        }
+
+        private async void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+        {
+            e.Handled = true;
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                btn_Back_Click(null, null);
             });
         }
 
@@ -140,7 +159,7 @@ namespace PixivUWP
 
         private void MenuItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(MenuItemList.SelectedIndex==-1)
+            if (MenuItemList.SelectedIndex == -1)
             {
                 return;
             }
@@ -167,7 +186,7 @@ namespace PixivUWP
 
         private async void btn_Lock_Click(object sender, RoutedEventArgs e)
         {
-            if(contentroot.Visibility == Visibility.Collapsed)
+            if (contentroot.Visibility == Visibility.Collapsed)
             {
                 switch (await Windows.Security.Credentials.UI.UserConsentVerifier.RequestVerificationAsync("验证您的身份"))
                 {
@@ -203,11 +222,55 @@ namespace PixivUWP
                 return;
             }
             MenuItemList.SelectedIndex = -1;
-            switch(MenuBottomItemList.SelectedIndex)
+            switch (MenuBottomItemList.SelectedIndex)
             {
                 case 0:
                     MainFrame.Navigate(typeof(Pages.pg_Settings));
                     break;
+            }
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            //Current = null;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Current = this;
+        }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if(MainFrame.Content!=null)
+            {
+                MainFrame.Content = null;
+            }
+            else
+            {
+                Frame.BackStack.Clear();
+                if (MenuItemList.SelectedIndex != 0)
+                {
+                    MenuItemList.SelectedIndex = 0;
+                }
+                else
+                {
+                    Frame.GoBack();
+                }
+            }
+        }
+
+        private async void btn_Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            btn_Refresh.IsEnabled = false;
+            var obj = MainFrame.Content as Pages.DetailPage.IRefreshable;
+            try
+            {
+                await obj.RefreshAsync();
+            }
+            finally
+            {
+                btn_Refresh.IsEnabled = true;
             }
         }
     }

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:viewmodels="using:PixivUWP.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" >
 
     <Page.Transitions>
         <TransitionCollection>
@@ -164,7 +164,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <Setter Property="MinWidth" Value="48" />
         </Style>
     </Page.Resources>
-    <Grid>
+    <Grid Loaded="Page_Loaded" Unloaded="Page_Unloaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" x:Name="TitlebarRow"/>
             <RowDefinition Height="*"/>
@@ -178,10 +178,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <ColumnDefinition x:Name="pad2" Width="60"/>
                 <ColumnDefinition x:Name="pad1" Width="130"/>
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource DimButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Back" Grid.Column="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Button Style="{StaticResource DimButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Back" Grid.Column="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Back_Click">
                 <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
-            <Button Style="{StaticResource DimButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Refresh" Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Button Style="{StaticResource DimButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Refresh" Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Refresh_Click" >
                 <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
             <ToggleButton Style="{StaticResource ToggleButtonStyle1}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Lock" Grid.Column="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Lock_Click">

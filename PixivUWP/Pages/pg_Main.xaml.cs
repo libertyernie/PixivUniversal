@@ -48,6 +48,8 @@ namespace PixivUWP.Pages
             list.LoadingMoreItems += List_LoadingMoreItems;
             list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
+            mdc.MasterListView = MasterListView;
+
         }
 
         private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
@@ -89,77 +91,11 @@ namespace PixivUWP.Pages
 
         }
 
-        private Work _lastSelectedItem;
-
-        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            UpdateForVisualState(e.NewState, e.OldState);
-        }
-
-        private void UpdateForVisualState(VisualState newState, VisualState oldState = null)
-        {
-            var isNarrow = newState == NarrowState;
-
-            if (isNarrow)
-            {
-                // Resize down to the detail item. Don't play a transition.
-                //Frame.Navigate(typeof(DetailPage.WorkDetailPage), _lastSelectedItem, new SuppressNavigationTransitionInfo());
-                Grid.SetColumn(DetailContentPresenter, 0);
-            }
-            else
-            {
-                Grid.SetColumn(DetailContentPresenter, 1);
-            }
-
-            EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
-            if (DetailContentPresenter != null)
-            {
-                EntranceNavigationTransitionInfo.SetIsTargetElement(DetailContentPresenter, !isNarrow);
-            }
-        }
-
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (Work)e.ClickedItem;
-            _lastSelectedItem = clickedItem;
-
-            if (AdaptiveStates.CurrentState == NarrowState)
-            {
-                // Use "drill in" transition for navigating from master list to detail view
-                //Frame.Navigate(typeof(DetailPage.WorkDetailPage), clickedItem, new DrillInNavigationTransitionInfo());
-                DetailContentPresenter.Navigate(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
-
-                Grid.SetColumn(DetailContentPresenter, 0);
-
-            }
-            else
-            {
-
-                Grid.SetColumn(DetailContentPresenter, 1);
-                // Play a refresh animation when the user switches detail items.
-                EnableContentTransitions();
-            }
+            mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
         }
 
-        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Assure we are displaying the correct item. This is necessary in certain adaptive cases.
-            MasterListView.SelectedItem = _lastSelectedItem;
-        }
-
-        private void EnableContentTransitions()
-        {
-            DetailContentPresenter.ContentTransitions.Clear();
-            DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
-        }
-
-        private void DisableContentTransitions()
-        {
-            if (DetailContentPresenter != null)
-            {
-                DetailContentPresenter.ContentTransitions.Clear();
-            }
-        }
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
@@ -181,15 +117,6 @@ namespace PixivUWP.Pages
 
             }
 
-        }
-
-        private void MasterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (AdaptiveStates.CurrentState != NarrowState)
-            {
-                //DetailContentPresenter.;
-                DetailContentPresenter.Navigate(typeof(DetailPage.WorkDetailPage),MasterListView.SelectedValue);
-            }
         }
     }
 }

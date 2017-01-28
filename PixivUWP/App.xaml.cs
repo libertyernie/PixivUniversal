@@ -47,14 +47,10 @@ namespace PixivUWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            UnhandledException += App_UnhandledException;
+            //UnhandledException += App_UnhandledException;
             Microsoft.HockeyApp.HockeyClient.Current.Configure("dd4a5cc7b28845c9804fc0cc29beb64b");//如果你创建了一个新的项目根据本项目，请删除这行代码
         }
 
-        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// 在应用程序由最终用户正常启动时进行调用。

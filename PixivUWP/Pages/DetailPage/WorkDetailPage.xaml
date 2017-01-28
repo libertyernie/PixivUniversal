@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="571*"/>
@@ -31,7 +30,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         </Grid.RowDefinitions>
         <Image x:Name="bigimg" />
         <ProgressBar x:Name="pro" ></ProgressBar>
-        <TextBlock Grid.Row="1"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Run x:Name="user"></Run><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+        <ScrollViewer  Grid.Row="1">
+            <TextBlock><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Run x:Name="user"></Run><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+        </ScrollViewer>
         <CommandBar Grid.Row="2">
             <AppBarToggleButton x:Name="fs" Label="收藏" Icon="Favorite" Click="fs_Click"/>
         </CommandBar>
