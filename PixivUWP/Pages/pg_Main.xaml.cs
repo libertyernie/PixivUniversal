@@ -64,7 +64,8 @@ namespace PixivUWP.Pages
             {
                 foreach (var one in await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync(nowpage))
                 {
-                    list.Add(one);
+                    if(!list.Contains(one,Data.WorkEqualityComparer.Default))
+                        list.Add(one);
                 }
                 nowpage++;
             }
@@ -162,16 +163,24 @@ namespace PixivUWP.Pages
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            var img = sender as Image;
-            if (img.DataContext != null)
+            try
             {
-                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
+                var img = sender as Image;
+                if (img.DataContext != null)
                 {
-                    var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                    await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                    img.Source = bitmap;
+                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
+                    {
+                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                        img.Source = bitmap;
+                    }
                 }
             }
+            catch
+            {
+
+            }
+
         }
 
         private void MasterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

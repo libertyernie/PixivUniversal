@@ -52,7 +52,7 @@ namespace PixivUWP.Pages.DetailPage
             {
                 siz.Text = "("+Work.Height?.ToString() + "x" + Work.Width?.ToString()+")";
                 fs.IsChecked = Work.FavoriteId!=0;
-                des.Text = Work.Caption;
+                des.Text = Work.Caption??string.Empty;
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
