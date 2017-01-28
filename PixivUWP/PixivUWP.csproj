@@ -102,6 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\TagsToStr.cs" />
+    <Compile Include="Data\WorkEqualityComparer.cs" />
     <Compile Include="Pages\DetailPage\WorkDetailPage.xaml.cs">
       <DependentUpon>WorkDetailPage.xaml</DependentUpon>
     </Compile>

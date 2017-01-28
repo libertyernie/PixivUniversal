@@ -88,52 +88,59 @@ namespace PixivUWP
             new MenuItem() {Symbol="",Label="我的收藏" },
             new MenuItem() {Symbol="",Label="下载任务" }
         };
+        public ObservableCollection<MenuItem> menuBottomItems = new ObservableCollection<MenuItem>()
+        {
+            new MenuItem() {Symbol="",Label="设置" },
+            new MenuItem() {Symbol="",Label="反馈" },
+        };
 
         private void MenuToggle_Click(object sender, RoutedEventArgs e)
         {
-            var _sender = sender as ToggleButton;
-            Storyboard storyboard = new Storyboard();
-            if(_sender.IsChecked==true)
-            {
-                DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                animation.EnableDependentAnimation = true;
-                EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
-                f1.Value = 48;
-                f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
-                animation.KeyFrames.Add(f1);
-                EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
-                f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseOut, Power = 4 };
-                f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.3));
-                f2.Value = 256;
-                animation.KeyFrames.Add(f2);
-                Storyboard.SetTarget(animation, MainMenu);
-                Storyboard.SetTargetProperty(animation, "Width");
-                storyboard.Children.Add(animation);
-                storyboard.Begin();
-            }
-            else
-            {
-                DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                animation.EnableDependentAnimation = true;
-                EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
-                f1.Value = 256;
-                f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
-                animation.KeyFrames.Add(f1);
-                EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
-                f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseOut, Power = 4 };
-                f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.3));
-                f2.Value = 48;
-                animation.KeyFrames.Add(f2);
-                Storyboard.SetTarget(animation, MainMenu);
-                Storyboard.SetTargetProperty(animation, "Width");
-                storyboard.Children.Add(animation);
-                storyboard.Begin();
-            }
+            contentroot.IsPaneOpen = !contentroot.IsPaneOpen;
+            //var _sender = sender as ToggleButton;
+            //Storyboard storyboard = new Storyboard();
+            //if(_sender.IsChecked==true)
+            //{
+            //    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+            //    animation.EnableDependentAnimation = true;
+            //    EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+            //    f1.Value = 48;
+            //    f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
+            //    animation.KeyFrames.Add(f1);
+            //    EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+            //    f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseOut, Power = 4 };
+            //    f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.3));
+            //    f2.Value = 256;
+            //    animation.KeyFrames.Add(f2);
+            //    Storyboard.SetTarget(animation, MainMenu);
+            //    Storyboard.SetTargetProperty(animation, "Width");
+            //    storyboard.Children.Add(animation);
+            //    storyboard.Begin();
+            //}
+            //else
+            //{
+            //    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+            //    animation.EnableDependentAnimation = true;
+            //    EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+            //    f1.Value = 256;
+            //    f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
+            //    animation.KeyFrames.Add(f1);
+            //    EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+            //    f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseOut, Power = 4 };
+            //    f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.3));
+            //    f2.Value = 48;
+            //    animation.KeyFrames.Add(f2);
+            //    Storyboard.SetTarget(animation, MainMenu);
+            //    Storyboard.SetTargetProperty(animation, "Width");
+            //    storyboard.Children.Add(animation);
+            //    storyboard.Begin();
+            //}
         }
 
         private void MenuItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch(MenuItemList.SelectedIndex)
+            MenuBottomItemList.SelectedIndex = -1;
+            switch (MenuItemList.SelectedIndex)
             {
                 case 0:
                     MainFrame.Navigate(typeof(Pages.pg_Main));
@@ -151,12 +158,6 @@ namespace PixivUWP
                     MainFrame.Navigate(typeof(Pages.pg_Download));
                     break;
             }
-        }
-
-        private void btn_Setting_Click(object sender, RoutedEventArgs e)
-        {
-            MenuItemList.SelectedIndex = -1;
-            MainFrame.Navigate(typeof(Pages.pg_Settings));
         }
 
         private async void btn_Lock_Click(object sender, RoutedEventArgs e)
@@ -187,6 +188,17 @@ namespace PixivUWP
             {
                 contentroot.Visibility = Visibility.Collapsed;
                 btn_Lock.IsChecked = true;
+            }
+        }
+
+        private void MenuBottomItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MenuItemList.SelectedIndex = -1;
+            switch(MenuBottomItemList.SelectedIndex)
+            {
+                case 0:
+                    MainFrame.Navigate(typeof(Pages.pg_Settings));
+                    break;
             }
         }
     }
