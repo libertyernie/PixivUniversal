@@ -192,61 +192,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </Grid>
             <TextBlock Grid.Column="4" x:Name="version" Text="v0.0.1β" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0"/>
         </Grid>
-        <Grid x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="MenuColum" Width="48"/>
-                <ColumnDefinition x:Name="MainColum" Width="*"/>
-            </Grid.ColumnDefinitions>
+        <SplitView x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}" DisplayMode="CompactOverlay" OpenPaneLength="256">
             <Frame x:Name="MainFrame" Grid.Column="1"/>
-            <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="48" HorizontalAlignment="Left">
-                <Grid.RowDefinitions>
-                    <RowDefinition x:Name="MenuToggleButtonRow" Height="48"/>
-                    <RowDefinition x:Name="UserAvatarRow" Height="66"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition x:Name="SettingsButtonRow" Height="48"/>
-                    <RowDefinition x:Name="FeedbackButtonRow" Height="48"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="btn_User" Style="{StaticResource DimButtonStyle}" Grid.Row="1" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
-                    <Grid Width="256">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Height="36" Width="36" x:Name="img_BAvatar" Stretch="Uniform" Source="Assets/Avatar.png"/>
-                        <Ellipse Grid.Column="0" Height="36" Width="36">
-                            <Ellipse.Fill>
-                                <ImageBrush x:Name="img_Avatar" Stretch="Uniform" ImageSource="Assets/Avatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
-                            <TextBlock x:Name="tb_Username" Text="这是用户名"/>
-                            <TextBlock x:Name="tb_Email" Text="邮件" FontSize="12" Foreground="Gray"/>
-                        </StackPanel>
-                    </Grid>
-                </Button>
-                <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
-                <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}" SelectionChanged="MenuItemList_SelectionChanged"/>
-                <Button x:Name="btn_Setting" Style="{StaticResource DimButtonStyle}" Grid.Row="3" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0" Click="btn_Setting_Click">
-                    <Grid Width="256">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Grid.Column="1" Height="Auto" VerticalAlignment="Center" Margin="11 0 0 0" Text="设置"/>
-                    </Grid>
-                </Button>
-                <Button x:Name="btn_Feedback" Style="{StaticResource DimButtonStyle}" Grid.Row="4" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
-                    <Grid Width="256">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Grid.Column="1" Height="Auto" VerticalAlignment="Center" Margin="11 0 0 0" Text="反馈"/>
-                    </Grid>
-                </Button>
-            </Grid>
-        </Grid>
+            <SplitView.Pane>
+                <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="256" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="MenuToggleButtonRow" Height="48"/>
+                        <RowDefinition x:Name="UserAvatarRow" Height="66"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition x:Name="SettingsButtonRow" Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btn_User" Style="{StaticResource DimButtonStyle}" Grid.Row="1" Height="66" Width="256" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0" Padding="0">
+                        <Grid Width="256">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Height="36" Width="36" x:Name="img_BAvatar" Stretch="Uniform" Source="Assets/Avatar.png"/>
+                            <Ellipse Grid.Column="0" Height="36" Width="36">
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="img_Avatar" Stretch="Uniform" ImageSource="Assets/Avatar.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
+                                <TextBlock x:Name="tb_Username" Text="这是用户名"/>
+                                <TextBlock x:Name="tb_Email" Text="邮件" FontSize="12" Foreground="Gray"/>
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                    <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
+                    <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}" SelectionChanged="MenuItemList_SelectionChanged"/>
+                    <ListView x:Name="MenuBottomItemList" Grid.Row="3" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuBottomItems}" SelectionChanged="MenuBottomItemList_SelectionChanged" />
+
+
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
     </Grid>
 </Page>
