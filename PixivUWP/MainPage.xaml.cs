@@ -215,7 +215,7 @@ namespace PixivUWP
             }
         }
 
-        private void MenuBottomItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void MenuBottomItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MenuBottomItemList.SelectedIndex == -1)
             {
@@ -227,6 +227,16 @@ namespace PixivUWP
                 case 0:
                     MainFrame.Navigate(typeof(Pages.pg_Settings));
                     break;
+                case 1:
+                    if(Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported())
+                    {
+                        await Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault().LaunchAsync();
+                    }
+                    else
+                    {
+                        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://git.oschina.net/ThomasWFan/PixivUniversal/issues", UriKind.Absolute));
+                    }
+                    goto case 0;
             }
         }
 
