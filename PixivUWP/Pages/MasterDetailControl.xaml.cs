@@ -161,7 +161,7 @@ namespace PixivUWP.Pages
 
         public async virtual Task RefreshAsync()
         {
-            var ir=DetailContentPresenter as IRefreshable;
+            var ir=DetailContentPresenter.Content as IRefreshable;
             if(ir!=null)
             {
                 await ir.RefreshAsync();
