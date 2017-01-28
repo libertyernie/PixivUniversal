@@ -31,6 +31,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
+using PixivUWP.Pages.DetailPage;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -39,7 +41,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public partial class MasterDetailControl : UserControl
+    public partial class MasterDetailControl : UserControl, DetailPage.IRefreshable
     {
         public MasterDetailControl()
         {
@@ -155,6 +157,15 @@ namespace PixivUWP.Pages
 
             }
 
+        }
+
+        public async virtual Task RefreshAsync()
+        {
+            var ir=DetailContentPresenter as IRefreshable;
+            if(ir!=null)
+            {
+                await ir.RefreshAsync();
+            }
         }
     }
 }

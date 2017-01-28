@@ -31,6 +31,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using PixivUWP.Pages.DetailPage;
+using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -39,7 +41,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Collection : Windows.UI.Xaml.Controls.Page
+    public sealed partial class pg_Collection : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable
     {
         ItemViewList<UsersFavoriteWork> list = new ItemViewList<UsersFavoriteWork>();
         public pg_Collection()
@@ -109,6 +111,11 @@ namespace PixivUWP.Pages
                 }
             }
             catch { }
+        }
+
+        public Task RefreshAsync()
+        {
+            return ((IRefreshable)mdc).RefreshAsync();
         }
     }
 }
