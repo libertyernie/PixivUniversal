@@ -1,5 +1,5 @@
 ﻿//PixivUniversal
-//Copyright(C) 2017 Pixiv Plus Project
+//Copyright(C) 2017 Pixeez Plus Project
 
 //This program is free software; you can redistribute it and/or
 //modify it under the terms of the GNU General Public License
@@ -24,9 +24,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PixivUWP")]
 [assembly: AssemblyDescription("https://git.oschina.net/ThomasWFan/PixivUniversal")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Pixiv Plus Project")]
+[assembly: AssemblyCompany("Pixeez Plus Project")]
 [assembly: AssemblyProduct("PixivUWP")]
-[assembly: AssemblyCopyright("Copyright(C) 2017 Pixiv Plus Project")]
+[assembly: AssemblyCopyright("Copyright(C) 2017 Pixeez Plus Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
