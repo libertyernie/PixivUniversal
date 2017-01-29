@@ -91,13 +91,25 @@ namespace PixivUWP
             });
         }
 
-        private async void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+        private void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
-            e.Handled = true;
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            if (!(MainFrame.Content is Pages.DetailPage.BlankPage))
             {
-                btn_Back_Click(null, null);
-            });
+                var ib = MainFrame.Content as Pages.IBackable;
+                if (ib != null && ib.GoBack() == false)
+                {
+                    //MainFrame.Navigate(typeof(Pages.DetailPage.BlankPage));
+                    if (e != null) e.Handled = Goback();
+                }
+                else
+                {
+                    if (e != null) e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e != null) e.Handled = Goback();
+            }
         }
 
         public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
@@ -252,22 +264,27 @@ namespace PixivUWP
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
-            if(MainFrame.Content!=null)
+            MainPage_BackRequested(null, null);
+        }
+
+        private bool Goback()
+        {
+            Frame.BackStack.Clear();
+            if (MenuItemList.SelectedIndex != 0)
             {
-                MainFrame.Content = null;
+                MenuItemList.SelectedIndex = 0;
+                return true;
             }
             else
             {
-                Frame.BackStack.Clear();
-                if (MenuItemList.SelectedIndex != 0)
-                {
-                    MenuItemList.SelectedIndex = 0;
-                }
-                else
+                if(Frame.CanGoBack)
                 {
                     Frame.GoBack();
+                    return true;
                 }
             }
+            return false;
+
         }
 
         private async void btn_Refresh_Click(object sender, RoutedEventArgs e)

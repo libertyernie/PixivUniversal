@@ -41,7 +41,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Main : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable
+    public sealed partial class pg_Main : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable
     {
         ItemViewList<Work> list = new ItemViewList<Work>();
         public pg_Main()
@@ -124,6 +124,11 @@ namespace PixivUWP.Pages
         public Task RefreshAsync()
         {
             return ((IRefreshable)mdc).RefreshAsync();
+        }
+
+        public bool GoBack()
+        {
+            return ((IBackable)mdc).GoBack();
         }
     }
 }
