@@ -12,6 +12,13 @@
  - 归并请求建议指定测试人员；
  - 规定非强制性，但是建议的，请自由进行贡献；
 
+
+### 编译
+
+使用 Visual Studio 2015 或更高版本打开该项目的sln文件
+
+如果无法编译，您可能需要安装14393版本的 UWP SDK以及[Microsoft Store Services SDK](http://aka.ms/store-em-sdk)
+
 ### 许可
  本项目遵从GPLv2许可协议开源：
 
