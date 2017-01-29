@@ -175,7 +175,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <ColumnDefinition x:Name="pad4" Width="48"/>
                 <ColumnDefinition x:Name="pad3" Width="48"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition x:Name="pad2" Width="60"/>
+                <ColumnDefinition x:Name="pad2" Width="auto"/>
                 <ColumnDefinition x:Name="pad1" Width="130"/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource DimButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Back" Grid.Column="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Back_Click">
@@ -190,7 +190,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <Grid x:Name="Title" Grid.Column="3" Background="Transparent">
                 <Image Source="Assets/SplashScreen.scale-200.png" Height="30"/>
             </Grid>
-            <TextBlock Grid.Column="4" x:Name="version" Text="v0.0.1β" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0"/>
+            <TextBlock Grid.Column="4" x:Name="version" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0"/>
         </Grid>
         <SplitView x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}" DisplayMode="CompactOverlay" OpenPaneLength="256">
             <Frame x:Name="MainFrame" Grid.Column="1"/>

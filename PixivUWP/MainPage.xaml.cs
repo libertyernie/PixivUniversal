@@ -60,6 +60,7 @@ namespace PixivUWP
         public MainPage()
         {
             this.InitializeComponent();
+            version.Text = "v" + Data.VersionHelper.GetThisAppVersionString().ToString() + "β";
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
