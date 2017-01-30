@@ -84,11 +84,16 @@ namespace PixivUWP
             var awaiter = asyncres.GetAwaiter();
             awaiter.OnCompleted(async () =>
             {
-                var res = awaiter.GetResult();
-                BitmapImage img = new BitmapImage();
-                await img.SetSourceAsync((await res.GetResponseStreamAsync()).AsInputStream() as IRandomAccessStream);
-                img_BAvatar.Visibility = Visibility.Collapsed;
-                img_Avatar.ImageSource = img;
+                try
+                {
+                    var res = awaiter.GetResult();
+                    BitmapImage img = new BitmapImage();
+                    await img.SetSourceAsync((await res.GetResponseStreamAsync()).AsInputStream() as IRandomAccessStream);
+                    img_BAvatar.Visibility = Visibility.Collapsed;
+                    img_Avatar.ImageSource = img;
+                }
+                catch { }
+
             });
         }
 
