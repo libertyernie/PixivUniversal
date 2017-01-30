@@ -147,7 +147,12 @@ namespace Pixeez
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
             return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
         }
-
+        public async Task<AsyncResponse> SendRequestToGetImageAsync(MethodType type, string url, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Referer", "https://app-api.pixiv.net/");
+            return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
+        }
         public async Task<AsyncResponse> SendRequestWithoutAuthAsync(MethodType type, string url,bool needauth=false, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
             var httpClient = new HttpClient();
