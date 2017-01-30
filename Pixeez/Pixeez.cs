@@ -77,21 +77,39 @@ namespace Pixeez
         /// <para>- <c>string</c> password (required)</para>
         /// </summary>
         /// <returns>Tokens.</returns>
-        public static async Task<AuthResult> AuthorizeAsync(string username, string password)
+        public static async Task<AuthResult> AuthorizeAsync(string username, string password,string refreshtoken)
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Referer", "http://www.pixiv.net/");
-            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/5.8.0");
+            //httpClient.DefaultRequestHeaders.Add("Referer", "http://www.pixiv.net/");
+            httpClient.DefaultRequestHeaders.Add("App-OS", "ios");
+            httpClient.DefaultRequestHeaders.Add("App-OS-Version", "10.2.1");
+            httpClient.DefaultRequestHeaders.Add("App-Version", "6.4.0");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)");
 
-            var param = new FormUrlEncodedContent(new Dictionary<string, string>
+            FormUrlEncodedContent param;
+            if (refreshtoken == null)
             {
-                { "username", username },
-                { "password", password },
-                { "grant_type", "password" },
-                { "client_id", "bYGKuGVw91e0NMfPGp44euvGt59s" },
-                { "client_secret", "HP3RmkgAmEGro0gn1x9ioawQE8WMfvLXDz3ZqxpK" },
-            });
-
+                param = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "get_secure_url","1" },
+                    { "client_id", "bYGKuGVw91e0NMfPGp44euvGt59s" },
+                    { "client_secret", "HP3RmkgAmEGro0gn1x9ioawQE8WMfvLXDz3ZqxpK" },
+                    { "grant_type", "password" },
+                    { "username" ,username },
+                    { "password" ,password },
+                });
+            }
+            else
+            {
+                param = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "get_secure_url","1" },
+                    { "client_id", "bYGKuGVw91e0NMfPGp44euvGt59s" },
+                    { "client_secret", "HP3RmkgAmEGro0gn1x9ioawQE8WMfvLXDz3ZqxpK" },
+                    { "grant_type", "refresh_token" },
+                    { "refresh_token" ,refreshtoken },
+                });
+            }
             var response = await httpClient.PostAsync("https://oauth.secure.pixiv.net/auth/token", param);
             if (!response.IsSuccessStatusCode)
                 throw new InvalidOperationException();
@@ -99,7 +117,7 @@ namespace Pixeez
             var json = await response.Content.ReadAsStringAsync();
             var authorize = JToken.Parse(json).SelectToken("response").ToObject<Authorize>();
 
-            AuthResult result = new Pixeez.AuthResult();
+            var result = new Pixeez.AuthResult();
             result.Authorize = authorize;
             result.Tokens = new Tokens(authorize.AccessToken);
             return result;
@@ -113,28 +131,36 @@ namespace Pixeez
 
     public class Tokens
     {
+        public string RefreshToken { get; set; }
+
         public string AccessToken { get; private set; }
 
         internal Tokens(string accessToken)
         {
             this.AccessToken = accessToken;
         }
-
-        /// <summary>
-        /// <para>Available parameters:</para>
-        /// <para>- <c>MethodType</c> type (required) [ GET, POST ]</para>
-        /// <para>- <c>string</c> url (required)</para>
-        /// <para>- <c>IDictionary</c> param (required)</para>
-        /// <para>- <c>IDictionary</c> header (optional)</para>
-        /// </summary>
-        /// <returns>AsyncResponse.</returns>
-        public async Task<AsyncResponse> SendRequestAsync(MethodType type, string url, IDictionary<string, string> param=null, IDictionary<string, string> headers = null)
+        public async Task<AsyncResponse> SendRequestWithAuthAsync(MethodType type, string url, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Referer", "http://spapi.pixiv.net/");
-            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/5.8.0");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/5.8.7");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
+            return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
+        }
 
+        public async Task<AsyncResponse> SendRequestWithoutAuthAsync(MethodType type, string url,bool needauth=false, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("App-OS", "ios");
+            httpClient.DefaultRequestHeaders.Add("App-OS-Version", "10.2.1");
+            httpClient.DefaultRequestHeaders.Add("App-Version", "6.4.0");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)");
+            if(needauth) httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
+            return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
+        }
+
+        private static async Task<AsyncResponse> SendRequestWithoutHeaderAsync(MethodType type, string url, IDictionary<string, string> param, IDictionary<string, string> headers, HttpClient httpClient)
+        {
             if (headers != null)
             {
                 foreach (var header in headers)
@@ -167,7 +193,7 @@ namespace Pixeez
                     }
                     uri += query_string;
                 }
-                
+
                 var response = await httpClient.DeleteAsync(uri);
                 asyncResponse = new AsyncResponse(response);
             }
@@ -197,9 +223,92 @@ namespace Pixeez
             return asyncResponse;
         }
 
+
+        //public async Task GetMyFollowingWorksAsync(string restrict = "public",string offset=null)
+        //{
+        //    var dic = new Dictionary<string, string> { { "restrict", restrict } };
+        //    if (offset != null)
+        //        dic["offset"] = offset;
+        //    await SendRequestWithoutAuthAsync(MethodType.GET, "https://app-api.pixiv.net/v2/illust/follow", param: dic, needauth: true);
+        //}
+
+        //public async Task GetMyFollowingUsers(string authorid,int page= 1,int per_page= 30)
+        //{
+        //    string url = "https://public-api.secure.pixiv.net/v1/users/"+ authorid +"/following.json";
+        //    await SendRequestWithAuthAsync(MethodType.GET, url, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", per_page.ToString() } });
+        //}
+        public string format_bool(bool value)
+        {
+            if(value )
+            {
+                return "true";
+            }
+            return "false";
+        }
+
+        public async Task<RecommendedRootobject> GetRecommendedWorks(string content_type = "illust", bool include_ranking_label = true, string filter = "for_ios",
+            string max_bookmark_id_for_recommend = null, string min_bookmark_id_for_recent_illust = null,
+string offset = null, bool? include_ranking_illusts = null, string bookmark_illust_ids = null, bool req_auth = false)
+        {
+            string url;
+            if (req_auth)
+                url = "https://app-api.pixiv.net/v1/illust/recommended";
+            else
+                url = "https://app-api.pixiv.net/v1/illust/recommended-nologin";
+            var dic = new Dictionary<string, string>() {
+                { "content_type",content_type},
+                { "include_ranking_label", format_bool( include_ranking_label)},
+                { "filter", filter }
+            };
+            if (max_bookmark_id_for_recommend != null)
+                dic["max_bookmark_id_for_recommend"] = max_bookmark_id_for_recommend;
+            if (min_bookmark_id_for_recent_illust != null)
+                dic["min_bookmark_id_for_recent_illust"] = min_bookmark_id_for_recent_illust;
+            if (offset != null)
+                dic["offset"] = offset;
+            if (include_ranking_illusts.HasValue)
+                dic["include_ranking_illusts"] = format_bool(include_ranking_illusts.Value);
+            if (!req_auth)
+            {
+                dic["bookmark_illust_ids"] = bookmark_illust_ids;
+            }
+
+            return await GetRecommendedWorksWithUrl(url,req_auth, dic);
+        }
+
+        public async Task<RecommendedRootobject> GetRecommendedWorksWithUrl(string url, bool req_auth=true, Dictionary<string, string> dic=null)
+        {
+            using (var res = await SendRequestWithoutAuthAsync(MethodType.GET, url, req_auth, dic))
+            {
+                var str = await res.GetResponseStringAsync();
+                return JToken.Parse(str).ToObject<RecommendedRootobject>();
+            }
+        }
+
+
+
+
+
+        /// <summary>
+        /// <para>Available parameters:</para>
+        /// <para>- <c>MethodType</c> type (required) [ GET, POST ]</para>
+        /// <para>- <c>string</c> url (required)</para>
+        /// <para>- <c>IDictionary</c> param (required)</para>
+        /// <para>- <c>IDictionary</c> header (optional)</para>
+        /// </summary>
+        /// <returns>AsyncResponse.</returns>
+        public async Task<AsyncResponse> SendRequestAsync(MethodType type, string url, IDictionary<string, string> param=null, IDictionary<string, string> headers = null)
+        {
+            return await SendRequestWithAuthAsync(type, url, param, headers);
+        }
+
         private async Task<T> AccessApiAsync<T>(MethodType type, string url, IDictionary<string, string> param, IDictionary<string, string> headers = null) where T : class
         {
-            using (var response = await this.SendRequestAsync(type, url, param, headers))
+            return await AccessApiAsync<T>(await this.SendRequestAsync(type, url, param, headers));
+        }
+        private async Task<T> AccessApiAsync<T>(AsyncResponse res) where T : class
+        {
+            using (var response = res)
             {
                 var json = await response.GetResponseStringAsync();
                 var obj = JToken.Parse(json).SelectToken("response").ToObject<T>();
@@ -216,7 +325,7 @@ namespace Pixeez
         /// <para>- <c>long</c> illustId (required)</para>
         /// </summary>
         /// <returns>Works.</returns>
-        public async Task<List<Work>> GetWorksAsync(long illustId)
+        public async Task<List<NormalWork>> GetWorksAsync(long illustId)
         {
             var url = "https://public-api.secure.pixiv.net/v1/works/" + illustId.ToString() + ".json";
 
@@ -227,7 +336,7 @@ namespace Pixeez
                 { "include_stats", "true" },
             };
 
-            return await this.AccessApiAsync<List<Work>>(MethodType.GET, url, param);
+            return await this.AccessApiAsync<List<NormalWork>>(MethodType.GET, url, param);
         }
 
         /// <summary>
@@ -253,6 +362,7 @@ namespace Pixeez
         }
 
         /// <summary>
+        /// 获取我的订阅
         /// <para>Available parameters:</para>
         /// <para>- <c>long</c> maxId (optional)</para>
         /// <para>- <c>bool</c> showR18 (optional)</para>
@@ -508,7 +618,7 @@ namespace Pixeez
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>Works. (Pagenated)</returns>
-        public async Task<Paginated<Work>> SearchWorksAsync(string query, int page = 1, int perPage = 30, string mode = "text", string period = "all", string order = "desc", string sort = "date", bool includeSanityLevel = true)
+        public async Task<Paginated<NormalWork>> SearchWorksAsync(string query, int page = 1, int perPage = 30, string mode = "text", string period = "all", string order = "desc", string sort = "date", bool includeSanityLevel = true)
         {
             var url = "https://public-api.secure.pixiv.net/v1/search/works.json";
 
@@ -528,7 +638,7 @@ namespace Pixeez
                 { "profile_image_sizes", "px_170x170,px_50x50" } ,
             };
 
-            return await this.AccessApiAsync<Paginated<Work>>(MethodType.GET, url, param);
+            return await this.AccessApiAsync<Paginated<NormalWork>>(MethodType.GET, url, param);
         }
 
         /// <summary>
@@ -538,7 +648,7 @@ namespace Pixeez
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>Works. (Pagenated)</returns>
-        public async Task<Paginated<Work>> GetLatestWorksAsync(int page = 1, int perPage = 30, bool includeSanityLevel = true)
+        public async Task<Paginated<NormalWork>> GetLatestWorksAsync(int page = 1, int perPage = 30, bool includeSanityLevel = true)
         {
             var url = "https://public-api.secure.pixiv.net/v1/works.json";
 
@@ -553,7 +663,7 @@ namespace Pixeez
                 { "profile_image_sizes", "px_170x170,px_50x50" } ,
             };
 
-            return await this.AccessApiAsync<Paginated<Work>>(MethodType.GET, url, param);
+            return await this.AccessApiAsync<Paginated<NormalWork>>(MethodType.GET, url, param);
         }
     }
 }

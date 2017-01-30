@@ -71,10 +71,10 @@ namespace PixivUWP.Pages.DetailPage
             try
             {
                 siz.Text = "(" + Work.Height?.ToString() + "x" + Work.Width?.ToString() + ") " + new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
-                fs.IsChecked = Work.FavoriteId != 0;
+                fs.IsChecked = Work.IsBookMarked();
                 des.Text = Work.Caption ?? string.Empty;
                 title.Text = Work.Title;
-                user.Text = Work.User.Name + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")";
+                user.Text = Work.User.Name+"("+Work.GetCreatedDate().ToString()+")"   /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, Work.ImageUrls.Medium))
                 {

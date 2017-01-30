@@ -23,8 +23,42 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:api="using:Pixeez.Objects"
     mc:Ignorable="d" Loaded="Page_Loaded">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+    <local:MasterDetailControl x:Name="mdc">
+        <local:MasterDetailControl.MasterContent>
+            <Grid x:Name="LayoutRoot">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock
+            Text="最新作品"
+            Margin="12,8,8,8"
+            Style="{ThemeResource TitleTextBlockStyle}" />
 
-    </Grid>
+                <ListView
+            x:Name="MasterListView"
+            Grid.Row="1"
+            ItemContainerTransitions="{x:Null}"
+            IsItemClickEnabled="True"
+            ItemClick="MasterListView_ItemClick" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Height="200" Width="200" DataContextChanged="Image_DataContextChanged" ></Image>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </local:MasterDetailControl.MasterContent>
+    </local:MasterDetailControl>
 </Page>

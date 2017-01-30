@@ -41,10 +41,12 @@
     <Compile Include="Objects\Paginated.cs" />
     <Compile Include="Objects\ProfileImageUrls.cs" />
     <Compile Include="Objects\Rank.cs" />
+    <Compile Include="Objects\IllustWork.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Objects\UsersFavoriteWork.cs" />
     <Compile Include="Objects\UsersWork.cs" />
     <Compile Include="Objects\Work.cs" />
+    <Compile Include="Objects\WorkHelper.cs" />
     <Compile Include="Pixeez.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

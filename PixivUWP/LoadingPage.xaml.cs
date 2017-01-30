@@ -138,7 +138,7 @@ namespace PixivUWP
         {
             try
             {
-                var token = await Auth.AuthorizeAsync(username, password);
+                var token = await Auth.AuthorizeAsync(username, password,null);
                 Data.TmpData.CurrentAuth = token;
                 Frame.Navigate(typeof(MainPage));
                 Debug.Write("Access token: ");

@@ -37,7 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock
-            Text="最新作品"
+            Text="我的推荐"
             Margin="12,8,8,8"
             Style="{ThemeResource TitleTextBlockStyle}" />
 
