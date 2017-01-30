@@ -43,7 +43,7 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Mywork : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<IllustWork> list = new ItemViewList<IllustWork>();
         public pg_Mywork()
         {
             this.InitializeComponent();
@@ -51,22 +51,23 @@ namespace PixivUWP.Pages
             list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
         {
-            args.Value = !isfinish;
+            args.Value = nexturl != string.Empty;
         }
 
         int nowpage = 1;
-        bool isfinish = false;
-        private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
+        string nexturl = null;
+        private async void List_LoadingMoreItems(ItemViewList<IllustWork> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
         {
             var nowcount = list.Count;
             try
             {
-                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.GetMyFollowingWorksAsync())
+                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetMyFollowingWorksAsync() : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
+                nexturl = root.next_url ?? string.Empty;
+                foreach (var one in root.illusts)
                 {
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
@@ -75,7 +76,7 @@ namespace PixivUWP.Pages
             }
             catch
             {
-                isfinish = true;
+                nexturl = string.Empty;
             }
             finally
             {
@@ -102,7 +103,7 @@ namespace PixivUWP.Pages
                 var img = sender as Image;
                 if (img.DataContext != null)
                 {
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
+                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.SquareMedium))
                     {
                         var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                         await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());

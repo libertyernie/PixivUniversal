@@ -273,15 +273,15 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
                 dic["bookmark_illust_ids"] = bookmark_illust_ids;
             }
 
-            return await GetRecommendedWorksWithUrl(url,req_auth, dic);
+            return await AccessNewApiAsync<RecommendedRootobject>(url,req_auth, dic);
         }
 
-        public async Task<RecommendedRootobject> GetRecommendedWorksWithUrl(string url, bool req_auth=true, Dictionary<string, string> dic=null)
+        public async Task<T> AccessNewApiAsync<T>(string url, bool req_auth=true, Dictionary<string, string> dic=null, MethodType methodtype= MethodType.GET)
         {
-            using (var res = await SendRequestWithoutAuthAsync(MethodType.GET, url, req_auth, dic))
+            using (var res = await SendRequestWithoutAuthAsync(methodtype, url, req_auth, dic))
             {
                 var str = await res.GetResponseStringAsync();
-                return JToken.Parse(str).ToObject<RecommendedRootobject>();
+                return JToken.Parse(str).ToObject<T>();
             }
         }
 
@@ -393,22 +393,22 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>UsersFavoriteWorks. (Pagenated)</returns>
-        public async Task<Paginated<UsersFavoriteWork>> GetMyFavoriteWorksAsync(int page = 1, int perPage = 30, string publicity = "public", bool includeSanityLevel = true)
+        public async Task<RecommendedRootobject> GetUserFavoriteWorksAsync(long user_id, string restrict = "public",string filter= "for_ios",int? max_bookmark_id= null,string tag= null,bool req_auth= false)
         {
-            var url = "https://public-api.secure.pixiv.net/v1/me/favorite_works.json";
+            var url = "https://app-api.pixiv.net/v1/user/bookmarks/illust";
 
             var param = new Dictionary<string, string>
             {
-                { "page", page.ToString() } ,
-                { "per_page", perPage.ToString() } ,
-                { "publicity", publicity } ,
-                { "include_stats", "1" } ,
-                { "include_sanity_level", Convert.ToInt32(includeSanityLevel).ToString() } ,
-                { "image_sizes", "px_128x128,small,medium,large,px_480mw" } ,
-                { "profile_image_sizes", "px_170x170,px_50x50" } ,
+                { "user_id", user_id.ToString() } ,
+                { "restrict", restrict.ToString() } ,
+                { "filter", filter } ,
             };
-
-            return await this.AccessApiAsync<Paginated<UsersFavoriteWork>>(MethodType.GET, url, param);
+            if(max_bookmark_id.HasValue)
+            {
+                param.Add("max_bookmark_id", max_bookmark_id.Value.ToString());
+            }
+            if (tag != null) param.Add("tag", tag);
+            return await this.AccessNewApiAsync<RecommendedRootobject>(url, dic:param,req_auth:req_auth);
         }
         
         /// <summary>
@@ -481,22 +481,18 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>UsersWorks. (Pagenated)</returns>
-        public async Task<Paginated<UsersWork>> GetMyFollowingWorksAsync(int page = 1, int perPage = 30, string publicity = "public", bool includeSanityLevel = true)
+        public async Task<RecommendedRootobject> GetMyFollowingWorksAsync(string restrict="public",int? offset= null)
         {
-            var url = "https://public-api.secure.pixiv.net/v1/me/following/works.json";
+            var url = "https://app-api.pixiv.net/v2/illust/follow";
 
             var param = new Dictionary<string, string>
             {
-                { "page", page.ToString() } ,
-                { "per_page", perPage.ToString() } ,
-                { "publicity", publicity } ,
-                { "include_stats", "1" } ,
-                { "include_sanity_level", Convert.ToInt32(includeSanityLevel).ToString() } ,
-                { "image_sizes", "px_128x128,small,medium,large,px_480mw" } ,
-                { "profile_image_sizes", "px_170x170,px_50x50" } ,
+                { "restrict", restrict } ,
             };
+            if (offset.HasValue)
+                param.Add("offset", offset.Value.ToString());
 
-            return await this.AccessApiAsync<Paginated<UsersWork>>(MethodType.GET, url, param);
+            return await this.AccessNewApiAsync<RecommendedRootobject>(url, dic: param);
         }
 
         /// <summary>
@@ -508,6 +504,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>UsersWorks. (Pagenated)</returns>
+        [Obsolete]
         public async Task<Paginated<UsersWork>> GetUsersWorksAsync(long authorId, int page = 1, int perPage = 30, string publicity = "public", bool includeSanityLevel = true)
         {
             var url = "https://public-api.secure.pixiv.net/v1/users/" + authorId.ToString() + "/works.json";
@@ -535,6 +532,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>UsersFavoriteWorks. (Pagenated)</returns>
+        [Obsolete]
         public async Task<Paginated<UsersFavoriteWork>> GetUsersFavoriteWorksAsync(long authorId, int page = 1, int perPage = 30, string publicity = "public", bool includeSanityLevel = true)
         {
             var url = "https://public-api.secure.pixiv.net/v1/users/" + authorId.ToString() + "/favorite_works.json";

@@ -66,7 +66,7 @@ namespace PixivUWP.Pages
             var nowcount = list.Count;
             try
             {
-                var root = nexturl==null? await Data.TmpData.CurrentAuth.Tokens.GetRecommendedWorks(): await Data.TmpData.CurrentAuth.Tokens.GetRecommendedWorksWithUrl(nexturl);
+                var root = nexturl==null? await Data.TmpData.CurrentAuth.Tokens.GetRecommendedWorks(): await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
                 nexturl = root.next_url ?? string.Empty;
                 foreach (var one in root.illusts)
                 {
