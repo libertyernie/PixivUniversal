@@ -112,6 +112,7 @@
       <DependentUpon>WorkDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\IBackable.cs" />
+    <Compile Include="Pages\IMaster.cs" />
     <Compile Include="Pages\pg_Collection.xaml.cs">
       <DependentUpon>pg_Collection.xaml</DependentUpon>
     </Compile>
@@ -132,6 +133,9 @@
     </Compile>
     <Compile Include="Pages\pg_Settings.xaml.cs">
       <DependentUpon>pg_Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgressBarVisualHelper.cs" />
     <Compile Include="ViewModels\ItemViewList.cs" />
@@ -223,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\pg_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

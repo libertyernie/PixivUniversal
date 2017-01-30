@@ -292,7 +292,20 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
 
 
 
-
+        public async Task AddFavouriteUser(long user_id,string publicity= "public")
+        {
+            await SendRequestAsync(MethodType.POST, "https://public-api.secure.pixiv.net/v1/me/favorite-users.json", new Dictionary<string, string> { { "target_user_id", user_id.ToString() }, { "publicity", publicity } });
+        }
+        /// <summary>
+        /// 可批量解除，逗号分隔
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="publicity"></param>
+        /// <returns></returns>
+        public async Task DeleteFavouriteUser(string user_id, string publicity = "public")
+        {
+            await SendRequestAsync(MethodType.DELETE, "https://public-api.secure.pixiv.net/v1/me/favorite-users.json", new Dictionary<string, string> { { "delete_ids", user_id.ToString() }, { "publicity", publicity } });
+        }
 
         /// <summary>
         /// <para>Available parameters:</para>

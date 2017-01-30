@@ -92,5 +92,10 @@ namespace PixivUWP.Pages.DetailPage
                 PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, false);
             }
         }
+
+        private void gz_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
