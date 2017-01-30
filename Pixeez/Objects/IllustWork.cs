@@ -37,7 +37,7 @@ namespace Pixeez.Objects
         public MetaPages[] meta_pages { get; set; }
         public int total_view { get; set; }
         public int total_bookmarks { get; set; }
-        public bool is_bookmarked { get; set; }
+        public bool? is_bookmarked { get; set; }
         [JsonProperty("visible")]
         public bool Visible { get; set; }
         public bool is_muted { get; set; }
@@ -61,7 +61,7 @@ namespace Pixeez.Objects
 
         public override bool IsBookMarked()
         {
-            return is_bookmarked;
+            return is_bookmarked??true;
         }
 
         public override DateTime GetCreatedDate()

@@ -105,6 +105,7 @@ namespace PixivUWP.Pages
             try
             {
                 var img = sender as Image;
+                img.Source = null;
                 if (img.DataContext != null)
                 {
                     using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))

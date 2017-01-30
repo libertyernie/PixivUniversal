@@ -39,7 +39,7 @@ namespace Pixeez.Objects
         public string Publicity { get; set; }
 
         [JsonProperty("work")]
-        public Work Work { get; set; }
+        public NormalWork Work { get; set; }
     }
 
 }

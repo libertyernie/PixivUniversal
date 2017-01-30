@@ -49,6 +49,6 @@ namespace Pixeez.Objects
         public int? PreviousRank { get; set; }
 
         [JsonProperty("work")]
-        public Work Work { get; set; }
+        public NormalWork Work { get; set; }
     }
 }

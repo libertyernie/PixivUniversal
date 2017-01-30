@@ -152,6 +152,7 @@ namespace Pixeez.Objects
 
         [JsonProperty("is_premium")]
         public bool? IsPremium { get; set; }
+        public bool? is_followed { get; set; }
 
         [JsonProperty("profile_image_urls")]
         public ProfileImageUrls ProfileImageUrls { get; set; }

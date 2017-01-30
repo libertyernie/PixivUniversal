@@ -106,6 +106,7 @@ namespace PixivUWP.Pages
             try
             {
                 var img = sender as Image;
+                img.Source = null;
                 if (img.DataContext != null)
                 {
                     var work = (img.DataContext as Work);

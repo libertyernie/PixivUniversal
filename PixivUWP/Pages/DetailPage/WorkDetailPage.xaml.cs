@@ -68,6 +68,8 @@ namespace PixivUWP.Pages.DetailPage
         public async Task RefreshAsync()
         {
             PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
+            gz.IsEnabled = false;
+
             try
             {
                 siz.Text = "(" + Work.Height?.ToString() + "x" + Work.Width?.ToString() + ") " + new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
@@ -82,6 +84,17 @@ namespace PixivUWP.Pages.DetailPage
                     await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
                     bigimg.Source = bitmap;
                 }
+                if (Work.User.is_followed.HasValue)
+                    gz.IsChecked = Work.User.is_followed;
+                else
+                {
+                    var user=await Data.TmpData.CurrentAuth.Tokens.GetUsersAsync(Work.User.Id.Value);
+                    if (user[0].IsFollowing.HasValue)
+                        gz.IsChecked = user[0].IsFollowing;
+                    else
+                        gz.Visibility = Visibility.Collapsed;
+                }
+                gz.IsEnabled = true;
             }
             catch
             {
@@ -93,9 +106,24 @@ namespace PixivUWP.Pages.DetailPage
             }
         }
 
-        private void gz_Click(object sender, RoutedEventArgs e)
+        private async void gz_Click(object sender, RoutedEventArgs e)
         {
-
+            gz.IsEnabled = false;
+            try
+            {
+                if(gz.IsChecked==true)
+                    await Data.TmpData.CurrentAuth.Tokens.AddFavouriteUser(Work.User.Id.Value);
+                else
+                    await Data.TmpData.CurrentAuth.Tokens.DeleteFavouriteUser(Work.User.Id.Value.ToString());
+            }
+            catch
+            {
+                gz.IsChecked = !gz.IsChecked;
+            }
+            finally
+            {
+                gz.IsEnabled = true;
+            }
         }
     }
 }
