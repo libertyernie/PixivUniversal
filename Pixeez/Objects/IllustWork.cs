@@ -68,6 +68,11 @@ namespace Pixeez.Objects
         {
             return CreatedTime;
         }
+
+        public override void SetBookMarkedValue(bool value)
+        {
+            is_bookmarked = value;
+        }
     }
 
     public class MetaSinglePage

@@ -112,9 +112,10 @@ namespace PixivUWP.Pages.DetailPage
             try
             {
                 if(gz.IsChecked==true)
-                    await Data.TmpData.CurrentAuth.Tokens.AddFavouriteUser(Work.User.Id.Value);
+                    await Data.TmpData.CurrentAuth.Tokens.AddFavouriteUser(Work.User.Id.Value);            
                 else
                     await Data.TmpData.CurrentAuth.Tokens.DeleteFavouriteUser(Work.User.Id.Value.ToString());
+                Work.User.is_followed = gz.IsChecked;
             }
             catch
             {

@@ -105,6 +105,11 @@ namespace Pixeez.Objects
         {
             return CreatedTime.LocalDateTime;
         }
+
+        public override void SetBookMarkedValue(bool value)
+        {
+            FavoriteId = value ? -1 : 0;
+        }
     }
     public abstract class Work:IWorkExtended
     {
@@ -167,7 +172,7 @@ namespace Pixeez.Objects
 
         [JsonProperty("content_type")]
         public string ContentType { get; set; }
-
+        public abstract void SetBookMarkedValue(bool value);
         public abstract bool IsBookMarked();
         public abstract DateTime GetCreatedDate();
     }
