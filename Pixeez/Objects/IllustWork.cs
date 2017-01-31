@@ -41,7 +41,7 @@ namespace Pixeez.Objects
         [JsonProperty("visible")]
         public bool Visible { get; set; }
         public bool is_muted { get; set; }
-        [JsonProperty("created_date")]
+        [JsonProperty("create_date")]
         public DateTime CreatedTime
         {
             get;set;
