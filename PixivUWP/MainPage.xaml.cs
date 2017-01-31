@@ -195,6 +195,7 @@ namespace PixivUWP
                     MainFrame.Navigate(typeof(Pages.pg_Download));
                     break;
             }
+            contentroot.IsPaneOpen = false;
         }
 
         private async void btn_Lock_Click(object sender, RoutedEventArgs e)
@@ -251,6 +252,8 @@ namespace PixivUWP
                     }
                     goto case 0;
             }
+            contentroot.IsPaneOpen = false;
+
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
