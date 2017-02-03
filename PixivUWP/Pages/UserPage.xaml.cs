@@ -40,7 +40,7 @@ namespace PixivUWP.Pages
         {
             try
             {
-                username.Text = pix_user.Name + "(" + pix_user.Email + ")";
+                pivot.Title = pix_user.Name + "(" + pix_user.Email + ")";
                 using (var res = await PixivUWP.Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, pix_user.ProfileImageUrls.Px170x170))
                 {
                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();

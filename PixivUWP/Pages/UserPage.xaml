@@ -9,6 +9,16 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock><Run x:Name="username"></Run></TextBlock>
-        <Image x:Name="userpro"></Image>
+        <Pivot x:Name="pivot">
+            <PivotItem Header="个人资料">
+                <Image x:Name="userpro"></Image>
+            </PivotItem>
+            <PivotItem Header="作品">
+                
+            </PivotItem>
+            <PivotItem Header="收藏">
+
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
