@@ -84,13 +84,13 @@ namespace Pixeez.Objects
     public class Tag
     {
         [JsonProperty("name")]
-
         public string Name { get; set; }
     }
 
     public class MetaPages
     {
-        public ImageUrls image_urls { get; set; }
+        [JsonProperty("image_urls")]
+        public ImageUrls ImageUrls { get; set; }
     }
 }
 
