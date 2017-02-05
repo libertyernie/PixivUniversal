@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock TextWrapping="Wrap"><Bold>Pixiv Universal</Bold>
             Copyright (C) 2017 Pixeez Plus Project<LineBreak/>
                         This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
@@ -42,5 +42,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <!--请自行在此添加-->
             <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/>
         </TextBlock>
-    </Grid>
+        <ComboBox x:Name="backpolicy" Header="后台下载策略" SelectionChanged="backpolicy_SelectionChanged">
+            <ComboBoxItem>仅非按流量计费的连接</ComboBoxItem>
+            <ComboBoxItem>根据你的流量使用情况</ComboBoxItem>
+            <ComboBoxItem>除非你启用了“限制后台数据”</ComboBoxItem>
+        </ComboBox>
+    </StackPanel>
 </Page>

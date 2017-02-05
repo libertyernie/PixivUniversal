@@ -24,6 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>暂不支持该功能</TextBlock>
+        <TextBlock>该功能开发中</TextBlock>
+        <ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:DownloadTask">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Name}"/>
+                        <ProgressBar Maximum="{x:Bind MaxValue}" Value="{x:Bind Value}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

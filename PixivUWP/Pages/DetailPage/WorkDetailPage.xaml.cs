@@ -127,5 +127,10 @@ namespace PixivUWP.Pages.DetailPage
                 gz.IsEnabled = true;
             }
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Data.DownloadManager.AddTask(Work.ImageUrls.Original ?? Work.ImageUrls.Large ?? (Work as Pixeez.Objects.IllustWork)?.meta_single_page.OriginalImageUrl,Work.Id+"_p0");
+        }
     }
 }

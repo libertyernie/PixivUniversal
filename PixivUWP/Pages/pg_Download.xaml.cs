@@ -33,6 +33,46 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PixivUWP.Pages
 {
+    class DownloadTask:DependencyObject
+    {
+
+
+        public string Name
+        {
+            get { return (string)GetValue(NameProperty); }
+            set { SetValue(NameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Name.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NameProperty =
+            DependencyProperty.Register("Name", typeof(string), typeof(DownloadTask), new PropertyMetadata(string.Empty));
+
+
+
+        public int MaxValue
+        {
+            get { return (int)GetValue(MaxValueProperty); }
+            set { SetValue(MaxValueProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MaxValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MaxValueProperty =
+            DependencyProperty.Register("MaxValue", typeof(int), typeof(DownloadTask), new PropertyMetadata(0));
+
+
+
+        public int Value
+        {
+            get { return (int)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(int), typeof(DownloadTask), new PropertyMetadata(0));
+
+
+    }
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
@@ -41,6 +81,14 @@ namespace PixivUWP.Pages
         public pg_Download()
         {
             this.InitializeComponent();
+        }
+        public async void load()
+        {
+            var downloads=await Windows.Networking.BackgroundTransfer.BackgroundDownloader.GetCurrentDownloadsAsync();
+            foreach(var one in downloads )
+            {
+                //one.
+            }
         }
     }
 }
