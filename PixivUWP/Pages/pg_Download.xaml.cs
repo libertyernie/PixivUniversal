@@ -82,6 +82,7 @@ namespace PixivUWP.Pages
         public pg_Download()
         {
             this.InitializeComponent();
+            listview.ItemsSource = tasks;
         }
         ObservableCollection<DownloadTask> tasks = new ObservableCollection<DownloadTask>();
         List<IAsyncOperationWithProgress<DownloadOperation, DownloadOperation>> list = new List<IAsyncOperationWithProgress<DownloadOperation, DownloadOperation>>();
@@ -105,19 +106,32 @@ namespace PixivUWP.Pages
         }
         public void progresschange(IAsyncOperationWithProgress<DownloadOperation, DownloadOperation> a, DownloadOperation b)
         {
-            dic[b.Guid].Value = (int)(b.Progress.BytesReceived / b.Progress.TotalBytesToReceive * 100);
+            var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+              {
+                  dic[b.Guid].Value = (int)(b.Progress.BytesReceived / b.Progress.TotalBytesToReceive * 100);
+              });
         }
         public void progresschange(IAsyncOperationWithProgress<DownloadOperation, DownloadOperation> a, AsyncStatus b)
         {
-            tasks.Remove(dic[a.AsTask().Result.Guid]);
+            var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                tasks.Remove(dic[a.AsTask().Result.Guid]);
+            });
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             foreach (var one in list)
             {
-                one.Progress = null;
-                one.Completed = null;
+                try
+                {
+                    one.Progress = null;
+                    one.Completed = null;
+                }
+                catch
+                {
+
+                }
             }
         }
 

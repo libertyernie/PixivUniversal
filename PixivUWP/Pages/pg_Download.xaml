@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock>该功能开发中</TextBlock>
-        <ListView>
+        <ListView x:Name="listview">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:DownloadTask">
                     <StackPanel>
