@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>该功能开发中</TextBlock>
         <ListView x:Name="listview">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:DownloadTask">
@@ -36,4 +35,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="opendownloadpos"  Label="打开下载位置" Icon="Folder" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

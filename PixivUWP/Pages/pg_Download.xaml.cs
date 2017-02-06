@@ -23,6 +23,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.BackgroundTransfer;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -138,6 +139,12 @@ namespace PixivUWP.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             load();
+        }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Data.DownloadManager.getpicfolder();
+            await Launcher.LaunchFolderAsync(Data.DownloadManager.pictureFolder);
         }
     }
 }
