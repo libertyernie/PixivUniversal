@@ -31,10 +31,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <Image x:Name="bigimg" />
         <ProgressBar x:Name="pro" ></ProgressBar>
         <ScrollViewer  Grid.Row="1">
-            <TextBlock><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Hyperlink><Run x:Name="user"></Run></Hyperlink><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+            <TextBlock TextWrapping="Wrap"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Hyperlink><Run x:Name="user"></Run></Hyperlink><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
         </ScrollViewer>
         <CommandBar Grid.Row="2">
-            <AppBarButton Label="下载" Icon="Download" Click="AppBarButton_Click"/>
+            <AppBarButton x:Name="downloadbutton" Label="下载" Icon="Download" Click="AppBarButton_Click"/>
             <AppBarToggleButton x:Name="fs" Label="收藏" Icon="Favorite" Click="fs_Click"/>
             <AppBarToggleButton x:Name="gz" Label="关注该作者" Icon="AddFriend" Click="gz_Click" />
 

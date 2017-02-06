@@ -128,9 +128,17 @@ namespace PixivUWP.Pages.DetailPage
             }
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            Data.DownloadManager.AddTask(Work.ImageUrls.Original ?? Work.ImageUrls.Large ?? (Work as Pixeez.Objects.IllustWork)?.meta_single_page.OriginalImageUrl,Work.Id+"_p0");
+            downloadbutton.IsEnabled = false;
+            try
+            {
+                await Data.DownloadManager.AddTaskAsync(Work.ImageUrls.Original ?? (Work as Pixeez.Objects.IllustWork)?.meta_single_page.OriginalImageUrl?? Work.ImageUrls.Large , Work.Id + "_p0");
+            }
+            finally
+            {
+                downloadbutton.IsEnabled = true;
+            }
         }
     }
 }

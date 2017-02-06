@@ -42,23 +42,36 @@ namespace PixivUWP.Data
                 try
                 {
                     var file = await pictureFolder.CreateFileAsync(filename + ex, CreationCollisionOption.FailIfExists);
-                    var downloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader();
-                    downloader.SetRequestHeader("Referer", "https://app-api.pixiv.net/");
+                    Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy costpolicy;
                     switch (policy)
                     {
                         default:
                         case 0:
-                            downloader.CostPolicy = Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy.UnrestrictedOnly;
+                            costpolicy = Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy.UnrestrictedOnly;
                             break;
                         case 1:
-                            downloader.CostPolicy = Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy.Default;
+                            costpolicy = Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy.Default;
                             break;
                         case 2:
-                            downloader.CostPolicy = Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy.Always;
+                            costpolicy = Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy.Always;
                             break;
+                        case 3:
+                            using (var res = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, url))
+                            {
+                                using (var stream = await res.GetResponseStreamAsync())
+                                {
+                                    using (var filestream = await file.OpenStreamForWriteAsync())
+                                    {
+                                        await stream.CopyToAsync(filestream);
+                                    }
+                                }
+                            }
+                            return;
                     }
+                    var downloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader() { CostPolicy = costpolicy };
+                    downloader.SetRequestHeader("Referer", "https://app-api.pixiv.net/");
                     var op = downloader.CreateDownload(result, file);
-                    await op.StartAsync();
+                    var a=op.StartAsync();
                 }
                 catch { }
             }

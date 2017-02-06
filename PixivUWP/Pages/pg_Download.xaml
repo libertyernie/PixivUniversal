@@ -24,7 +24,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listview" SelectionMode="None">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap">如果下载长期无法完成，请前往设置禁用后台下载</TextBlock>
+        <ListView x:Name="listview" SelectionMode="None" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:DownloadTask">
                     <StackPanel>
