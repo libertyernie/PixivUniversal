@@ -88,12 +88,14 @@ namespace PixivUWP.Pages
         ObservableCollection<DownloadTask> tasks = new ObservableCollection<DownloadTask>();
         List<IAsyncOperationWithProgress<DownloadOperation, DownloadOperation>> list = new List<IAsyncOperationWithProgress<DownloadOperation, DownloadOperation>>();
         Dictionary<Guid, DownloadTask> dic = new Dictionary<Guid, DownloadTask>();
+        Dictionary<uint, DownloadOperation> dic2 = new Dictionary<uint, DownloadOperation>();
         public async void load()
         {
             var downloads=await BackgroundDownloader.GetCurrentDownloadsAsync();
             list.Clear();
             dic.Clear();
             tasks.Clear();
+            dic2.Clear();
             foreach(var one in downloads )
             {
                 var two = one.AttachAsync();
@@ -101,6 +103,7 @@ namespace PixivUWP.Pages
                 var dt = new DownloadTask() { Name = one.ResultFile.Name };
                 tasks.Add(dt);
                 dic.Add(one.Guid,dt);
+                dic2.Add(two.Id, one);
                 two.Progress = progresschange;
                 two.Completed = progresschange;
             }
@@ -116,7 +119,36 @@ namespace PixivUWP.Pages
         {
             var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                tasks.Remove(dic[a.AsTask().Result.Guid]);
+                switch (b)
+                {
+                    default:
+                    case AsyncStatus.Started:
+                    case AsyncStatus.Canceled:
+                    case AsyncStatus.Completed:
+                        break;
+                    case AsyncStatus.Error:
+                        new Controls.MyToast(dic2[a.Id].ResultFile.Name +"下载失败").Show();
+                        break;
+                }
+                try
+                {
+                    tasks.Remove(dic[a.AsTask().Result.Guid]);
+                }
+                catch(OperationCanceledException)
+                {
+
+                }
+                catch
+                {
+                    try
+                    {
+                        tasks.Remove(dic[dic2[a.Id].Guid]);
+                    }
+                    catch
+                    {
+                        new Controls.MyToast("出现未知错误" + a.Id).Show();
+                    }
+                }
             });
         }
 
@@ -156,6 +188,7 @@ namespace PixivUWP.Pages
             list.Clear();
             dic.Clear();
             tasks.Clear();
+            dic2.Clear();
         }
     }
 }
