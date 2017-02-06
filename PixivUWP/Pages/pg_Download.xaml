@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listview">
+        <ListView x:Name="listview" SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:DownloadTask">
                     <StackPanel>
@@ -38,6 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="opendownloadpos"  Label="打开下载位置" Icon="Folder" Click="AppBarButton_Click"/>
+            <AppBarButton x:Name="cancelall" Label="取消所有" Icon="Cancel" Click="cancelall_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

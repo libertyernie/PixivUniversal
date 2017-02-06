@@ -146,5 +146,16 @@ namespace PixivUWP.Pages
             await Data.DownloadManager.getpicfolder();
             await Launcher.LaunchFolderAsync(Data.DownloadManager.pictureFolder);
         }
+
+        private void cancelall_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var one in list)
+            {
+                one.Cancel();
+            }
+            list.Clear();
+            dic.Clear();
+            tasks.Clear();
+        }
     }
 }
