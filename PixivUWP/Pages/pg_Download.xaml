@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock TextWrapping="Wrap">如果下载长期无法完成，请前往设置禁用后台下载</TextBlock>
         <ListView x:Name="listview" SelectionMode="None" Grid.Row="1">
@@ -39,11 +40,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
-    <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Grid.Row="2">
             <AppBarButton x:Name="opendownloadpos"  Label="打开下载位置" Icon="Folder" Click="AppBarButton_Click"/>
             <AppBarButton x:Name="cancelall" Label="取消所有" Icon="Cancel" Click="cancelall_Click"/>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>
