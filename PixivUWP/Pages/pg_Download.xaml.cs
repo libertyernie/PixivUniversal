@@ -16,11 +16,13 @@
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.BackgroundTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -35,7 +37,6 @@ namespace PixivUWP.Pages
 {
     class DownloadTask:DependencyObject
     {
-
 
         public string Name
         {
@@ -57,7 +58,7 @@ namespace PixivUWP.Pages
 
         // Using a DependencyProperty as the backing store for MaxValue.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register("MaxValue", typeof(int), typeof(DownloadTask), new PropertyMetadata(0));
+            DependencyProperty.Register("MaxValue", typeof(int), typeof(DownloadTask), new PropertyMetadata(100));
 
 
 
@@ -71,24 +72,58 @@ namespace PixivUWP.Pages
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(int), typeof(DownloadTask), new PropertyMetadata(0));
 
-
     }
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class pg_Download : Page
     {
+
         public pg_Download()
         {
             this.InitializeComponent();
         }
+        ObservableCollection<DownloadTask> tasks = new ObservableCollection<DownloadTask>();
+        List<IAsyncOperationWithProgress<DownloadOperation, DownloadOperation>> list = new List<IAsyncOperationWithProgress<DownloadOperation, DownloadOperation>>();
+        Dictionary<Guid, DownloadTask> dic = new Dictionary<Guid, DownloadTask>();
         public async void load()
         {
-            var downloads=await Windows.Networking.BackgroundTransfer.BackgroundDownloader.GetCurrentDownloadsAsync();
+            var downloads=await BackgroundDownloader.GetCurrentDownloadsAsync();
+            list.Clear();
+            dic.Clear();
+            tasks.Clear();
             foreach(var one in downloads )
             {
-                //one.
+                var two = one.AttachAsync();
+                list.Add(two);
+                var dt = new DownloadTask() { Name = one.ResultFile.Name };
+                tasks.Add(dt);
+                dic.Add(one.Guid,dt);
+                two.Progress = progresschange;
+                two.Completed = progresschange;
             }
+        }
+        public void progresschange(IAsyncOperationWithProgress<DownloadOperation, DownloadOperation> a, DownloadOperation b)
+        {
+            dic[b.Guid].Value = (int)(b.Progress.BytesReceived / b.Progress.TotalBytesToReceive * 100);
+        }
+        public void progresschange(IAsyncOperationWithProgress<DownloadOperation, DownloadOperation> a, AsyncStatus b)
+        {
+            tasks.Remove(dic[a.AsTask().Result.Guid]);
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var one in list)
+            {
+                one.Progress = null;
+                one.Completed = null;
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            load();
         }
     }
 }
