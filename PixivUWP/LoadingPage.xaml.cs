@@ -90,8 +90,8 @@ namespace PixivUWP
                 //Only phones should have this step
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {
-                    var appview = ApplicationView.GetForCurrentView();
-                    appview.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                    //var appview = ApplicationView.GetForCurrentView();
+                    //appview.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
                     var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
                     statusbar.ForegroundColor = Colors.White;
                     statusbar.BackgroundOpacity = 0;
@@ -183,8 +183,8 @@ namespace PixivUWP
             //Only phones should have this step
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                var appview = ApplicationView.GetForCurrentView();
-                appview.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                //var appview = ApplicationView.GetForCurrentView();
+                //appview.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
                 var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
                 statusbar.ForegroundColor = Colors.White;
                 statusbar.BackgroundOpacity = 0;
