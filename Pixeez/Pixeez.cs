@@ -460,15 +460,15 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <returns>UsersWorks. (Pagenated)</returns>
         public async Task<List<UsersFavoriteWork>> DeleteMyFavoriteWorksAsync(IEnumerable<long> workIds, string publicity = "public")
         {
-            var url = "https://public-api.secure.pixiv.net/v1/me/favorite_works.json";
+            var url = "https://app-api.pixiv.net/v1/illust/bookmark/delete";
 
             var param = new Dictionary<string, string>
             {
-                { "work_id", string.Join(",", workIds.Select(x => x.ToString())) } ,
-                { "publicity", publicity } ,
+                { "illust_id", string.Join(",", workIds.Select(x => x.ToString())) } ,
+                //{ "publicity", publicity } ,
             };
 
-            return await this.AccessApiAsync<List<UsersFavoriteWork>>(MethodType.DELETE, url, param);
+            return await this.AccessApiAsync<List<UsersFavoriteWork>>(MethodType.POST, url, param);
         }
 
         /// <summary>
@@ -479,15 +479,15 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <returns>UsersWorks. (Pagenated)</returns>
         public async Task<Paginated<UsersFavoriteWork>> DeleteMyFavoriteWorksAsync(long workId, string publicity = "public")
         {
-            var url = "https://public-api.secure.pixiv.net/v1/me/favorite_works.json";
+            var url = "https://app-api.pixiv.net/v1/illust/bookmark/delete";
 
             var param = new Dictionary<string, string>
             {
-                { "work_id", workId.ToString() } ,
-                { "publicity", publicity } ,
+                { "illust_id", workId.ToString() } ,
+                //{ "publicity", publicity } ,
             };
 
-            return await this.AccessApiAsync<Paginated<UsersFavoriteWork>>(MethodType.DELETE, url, param);
+            return await this.AccessApiAsync<Paginated<UsersFavoriteWork>>(MethodType.POST, url, param);
         }
 
         /// <summary>
