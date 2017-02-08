@@ -54,6 +54,7 @@ namespace PixivUWP.Pages.DetailPage
                 {
                     await PixivUWP.Data.TmpData.CurrentAuth.Tokens.AddMyFavoriteWorksAsync(Work.Id.Value);
                 }
+                Work.SetBookMarkedValue(fs.IsChecked==true);
             }
             catch
             {
