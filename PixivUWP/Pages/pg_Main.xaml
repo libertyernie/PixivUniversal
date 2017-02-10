@@ -36,11 +36,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock
-            Text="我的推荐"
-            Margin="12,8,8,8"
-            Style="{ThemeResource TitleTextBlockStyle}" />
-
+                <Grid Background="WhiteSmoke">
+                    <TextBlock
+                    Text="我的推荐"
+                    Width="Auto"
+                    Margin="16"
+                    FontSize="18"
+                    HorizontalAlignment="Center"/>
+                </Grid>
                 <ListView
             x:Name="MasterListView"
             Grid.Row="1"
@@ -54,16 +57,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="150" BorderThickness="1" BorderBrush="Gray" Margin="-14 -1 0 0">
+                            <Grid Height="150" BorderThickness="1" Width="350" BorderBrush="Gray" Margin="-14 -1 0 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="139"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0" Height="125" Width="125" DataContextChanged="Image_DataContextChanged" Stretch="Fill" Margin="14 0 0 0"/>
                                 <StackPanel Grid.Column="1" Orientation="Vertical" Height="125" VerticalAlignment="Center" Margin="16 0 0 0">
-                                    <TextBlock x:Name="lbl_Title" Text="Title" DataContextChanged="lbl_DataContextChanged" Tag="Title"/>
-                                    <TextBlock x:Name="lbl_Author" Text="Author" DataContextChanged="lbl_DataContextChanged" Tag="Author"/>
-                                    <TextBlock x:Name="lbl_Size" Text="Size" DataContextChanged="lbl_DataContextChanged" Tag="Size"/>
+                                    <TextBlock x:Name="lbl_Title" Text="Title" DataContextChanged="lbl_Title_DataContextChanged" Tag="Title" TextTrimming="WordEllipsis" Width="141" HorizontalAlignment="Left"/>
+                                    <TextBlock x:Name="lbl_Size" Text="Size" DataContextChanged="lbl_Size_DataContextChanged" Tag="Size"/>
+                                    <TextBlock x:Name="lbl_Author" Text="Author" DataContextChanged="lbl_Author_DataContextChanged" Tag="Author" Width="141" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

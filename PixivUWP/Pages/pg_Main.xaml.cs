@@ -110,7 +110,7 @@ namespace PixivUWP.Pages
                 if (img.DataContext != null)
                 {
                     var work = (img.DataContext as Work);
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, work.ImageUrls.Small?? work.ImageUrls.SquareMedium))
+                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, work.ImageUrls.Small??work.ImageUrls.SquareMedium))
                     {
                         var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                         await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
@@ -135,23 +135,38 @@ namespace PixivUWP.Pages
             return ((IBackable)mdc).GoBack();
         }
 
-        private void lbl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void lbl_Title_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             try
             {
                 var lbl = sender as TextBlock;
-                switch(lbl.Tag as string)
-                {
-                    case "Title":
-                        lbl.Text = (lbl.DataContext as Work)?.Title;
-                        break;
-                    case "Author":
-                        lbl.Text = (lbl.DataContext as Work)?.User.Name;
-                        break;
-                    default:
-                        lbl.Text = (lbl.DataContext as Work)?.Width.ToString() + "*" + (lbl.DataContext as Work)?.Height.ToString();
-                        break;
-                }
+                lbl.Text = (lbl.DataContext as Work)?.Title;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void lbl_Author_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            try
+            {
+                var lbl = sender as TextBlock;
+                lbl.Text = (lbl.DataContext as Work)?.User.Name;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void lbl_Size_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            try
+            {
+                var lbl = sender as TextBlock;
+                lbl.Text = (lbl.DataContext as Work)?.Width.ToString() + "*" + (lbl.DataContext as Work)?.Height.ToString();
             }
             catch
             {
