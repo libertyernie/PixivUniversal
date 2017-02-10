@@ -54,7 +54,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Image Height="200" Width="200" DataContextChanged="Image_DataContextChanged" ></Image>
+                            <Grid Height="150" BorderThickness="1" BorderBrush="Gray" Margin="-14 -1 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="139"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Height="125" Width="125" DataContextChanged="Image_DataContextChanged" Stretch="Fill" Margin="14 0 0 0"/>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" Height="125" VerticalAlignment="Center" Margin="16 0 0 0">
+                                    <TextBlock x:Name="lbl_Title" Text="Title" DataContextChanged="lbl_DataContextChanged" Tag="Title"/>
+                                    <TextBlock x:Name="lbl_Author" Text="Author" DataContextChanged="lbl_DataContextChanged" Tag="Author"/>
+                                    <TextBlock x:Name="lbl_Size" Text="Size" DataContextChanged="lbl_DataContextChanged" Tag="Size"/>
+                                </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

@@ -134,5 +134,29 @@ namespace PixivUWP.Pages
         {
             return ((IBackable)mdc).GoBack();
         }
+
+        private void lbl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            try
+            {
+                var lbl = sender as TextBlock;
+                switch(lbl.Tag as string)
+                {
+                    case "Title":
+                        lbl.Text = (lbl.DataContext as Work)?.Title;
+                        break;
+                    case "Author":
+                        lbl.Text = (lbl.DataContext as Work)?.User.Name;
+                        break;
+                    default:
+                        lbl.Text = (lbl.DataContext as Work)?.Width.ToString() + "*" + (lbl.DataContext as Work)?.Height.ToString();
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
