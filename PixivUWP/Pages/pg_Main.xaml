@@ -31,7 +31,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <local:MasterDetailControl x:Name="mdc">
         <local:MasterDetailControl.MasterContent>
             <Grid x:Name="LayoutRoot">
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -71,6 +70,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                         <TextBlock FontSize="12" Text="{Binding Height}"/>
                                     </StackPanel>
                                     <TextBlock FontSize="12" Text="{Binding User.Name}" Width="141" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
+                                    <TextBlock FontSize="12" Text="{Binding total_bookmarks}"/>
                                 </StackPanel>
                                 <Rectangle Height="1" Fill="Gray" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
                             </Grid>
