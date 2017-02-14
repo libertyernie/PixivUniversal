@@ -61,6 +61,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     <ColumnDefinition Width="139"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
+                                <ProgressRing Grid.Column="0" IsActive="True"/>
                                 <Image Grid.Column="0" Height="125" Width="125" DataContextChanged="Image_DataContextChanged" Stretch="Uniform" Margin="14 0 0 0"/>
                                 <StackPanel Grid.Column="1" Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="16 0 0 0" Width="135">
                                     <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Title}" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
