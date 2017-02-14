@@ -122,7 +122,7 @@ namespace PixivUWP
         {
             new MenuItem() {Symbol="",Label="作品发现" },
             new MenuItem() {Symbol="",Label="最新动态" },
-            new MenuItem() {Symbol="",Label="个人作品" },
+            new MenuItem() {Symbol="",Label="我的关注" },
             new MenuItem() {Symbol="",Label="我的收藏" },
             new MenuItem() {Symbol="",Label="下载任务" }
         };
