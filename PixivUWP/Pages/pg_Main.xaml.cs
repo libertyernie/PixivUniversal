@@ -110,7 +110,7 @@ namespace PixivUWP.Pages
                 if (img.DataContext != null)
                 {
                     var work = (img.DataContext as Work);
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, work.ImageUrls.Small?? work.ImageUrls.SquareMedium))
+                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, work.ImageUrls.Medium))
                     {
                         var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                         await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());

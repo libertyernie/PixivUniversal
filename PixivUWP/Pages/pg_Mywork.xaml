@@ -35,11 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock
-            Text="我关注作者的作品"
-            Margin="12,8,8,8"
-            Style="{ThemeResource TitleTextBlockStyle}" />
-
+                <Grid Background="WhiteSmoke">
+                    <TextBlock
+                    Text="我的关注"
+                    Width="Auto"
+                    Margin="16"
+                    FontSize="18"
+                    HorizontalAlignment="Center"/>
+                </Grid>
                 <ListView
             x:Name="MasterListView"
             Grid.Row="1"
@@ -53,7 +56,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Image Height="200" Width="200" DataContextChanged="Image_DataContextChanged" ></Image>
+                            <Grid Height="150" Margin="-14 0 -14 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="139"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <ProgressRing Grid.Column="0" IsActive="True"/>
+                                <Image Grid.Column="0" Height="125" Width="125" DataContextChanged="Image_DataContextChanged" Stretch="Uniform" Margin="14 0 0 0"/>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="16 0 0 0" Width="135">
+                                    <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Title}" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="{Binding Width}"/>
+                                        <TextBlock FontSize="12" Text="*"/>
+                                        <TextBlock FontSize="12" Text="{Binding Height}"/>
+                                    </StackPanel>
+                                    <TextBlock FontSize="12" Text="{Binding User.Name}" Width="125" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
+                                    <TextBlock FontSize="16"/>
+                                    <Button BorderThickness="1" Background="Transparent" HorizontalAlignment="Right">
+                                        <ContentPresenter>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="" HorizontalAlignment="Center"/>
+                                                <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </ContentPresenter>
+                                    </Button>
+                                </StackPanel>
+                                <Rectangle Height="1" Fill="Gray" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

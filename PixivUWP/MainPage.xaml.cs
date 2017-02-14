@@ -122,7 +122,7 @@ namespace PixivUWP
         {
             new MenuItem() {Symbol="",Label="作品发现" },
             new MenuItem() {Symbol="",Label="最新动态" },
-            new MenuItem() {Symbol="",Label="个人作品" },
+            new MenuItem() {Symbol="",Label="我的关注" },
             new MenuItem() {Symbol="",Label="我的收藏" },
             new MenuItem() {Symbol="",Label="下载任务" }
         };
@@ -296,18 +296,19 @@ namespace PixivUWP
 
         }
 
-        private async void btn_Refresh_Click(object sender, RoutedEventArgs e)
+        private void btn_Refresh_Click(object sender, RoutedEventArgs e)
         {
-            btn_Refresh.IsEnabled = false;
-            var obj = MainFrame.Content as Pages.DetailPage.IRefreshable;
-            try
-            {
-                await obj.RefreshAsync();
-            }
-            finally
-            {
-                btn_Refresh.IsEnabled = true;
-            }
+            //btn_Refresh.IsEnabled = false;
+            //var obj = MainFrame.Content as Pages.DetailPage.IRefreshable;
+            //try
+            //{
+            //    await obj.RefreshAsync();
+            //}
+            //finally
+            //{
+            //    btn_Refresh.IsEnabled = true;
+            //}
+            MainFrame.Navigate(MainFrame.Content.GetType());
         }
     }
 }
