@@ -168,6 +168,7 @@
   <ItemGroup>
     <Content Include="Assets\Avatar.png" />
     <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\beta-testing.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
