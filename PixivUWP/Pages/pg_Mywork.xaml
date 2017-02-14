@@ -73,10 +73,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     <TextBlock FontSize="12" Text="{Binding User.Name}" Width="125" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
                                     <TextBlock FontSize="16"/>
                                     <Button BorderThickness="1" Background="Transparent" HorizontalAlignment="Right" Width="80">
-                                        <ContentPresenter>
+                                        <ContentPresenter HorizontalAlignment="Left">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                                 <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="" HorizontalAlignment="Center"/>
-                                                <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center"/>
+                                                <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32"/>
                                             </StackPanel>
                                         </ContentPresenter>
                                     </Button>
