@@ -56,9 +56,10 @@ namespace PixivUWP.Pages.DetailPage
                 }
                 Work.SetBookMarkedValue(fs.IsChecked==true);
             }
-            catch
+            catch(Exception ex)
             {
-                fs.IsChecked = !fs.IsChecked;
+                if (!(ex is NullReferenceException))
+                    fs.IsChecked = !fs.IsChecked;
             }
             finally
             {
