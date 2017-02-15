@@ -77,14 +77,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     </StackPanel>
                                     <TextBlock FontSize="12" Text="{Binding User.Name}" Width="125" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
                                     <TextBlock FontSize="16"/>
-                                    <Button BorderThickness="1" Background="Transparent" HorizontalAlignment="Right">
-                                        <ContentPresenter>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding BookMarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center"/>
-                                                <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center"/>
+                                    <Grid Background="Transparent" HorizontalAlignment="Right" Width="60">
+                                        <ContentPresenter HorizontalAlignment="Left">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                                                <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32"/>
                                             </StackPanel>
                                         </ContentPresenter>
-                                    </Button>
+                                    </Grid>
                                 </StackPanel>
                                 <Rectangle Height="1" Fill="Gray" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
                             </Grid>
