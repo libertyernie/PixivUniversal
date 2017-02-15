@@ -22,7 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:api="using:Pixeez.Objects"
+    xmlns:converter="using:PixivUWP.Converter"
     mc:Ignorable="d" Loaded="Page_Loaded">
+    <Page.Resources>
+        <converter:IsLikedCvt x:Key="IsLikedCvt"/>
+    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
@@ -75,7 +79,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     <Button BorderThickness="1" Background="Transparent" HorizontalAlignment="Right" Width="80">
                                         <ContentPresenter HorizontalAlignment="Left">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="" HorizontalAlignment="Center"/>
+                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center"/>
                                                 <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32"/>
                                             </StackPanel>
                                         </ContentPresenter>
