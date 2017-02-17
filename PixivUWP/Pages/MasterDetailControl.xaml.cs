@@ -33,6 +33,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
 using PixivUWP.Pages.DetailPage;
+using PixivUWP.Views;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -86,34 +87,60 @@ namespace PixivUWP.Pages
                 // Resize down to the detail item. Don't play a transition.
                 //Frame.Navigate(typeof(DetailPage.WorkDetailPage), _lastSelectedItem, new SuppressNavigationTransitionInfo());
                 Grid.SetColumn(DetailContentPresenter, 0);
-                MasterListView.SelectionMode = ListViewSelectionMode.None;
+                Grid.SetRow(DetailContentPresenter, 1);
+                if (DetailContentPresenter.Content != null)
+                    DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0 - LayoutRoot.ActualHeight, 0, 0);
+                //MasterListView.SelectionMode = ListViewSelectionMode.None;
             }
             else
             {
                 Grid.SetColumn(DetailContentPresenter, 1);
+                Grid.SetRow(DetailContentPresenter, 0);
+                DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
+                //MasterListView.SelectionMode = ListViewSelectionMode.Single;
             }
         }
         object _lastSelectedItem;
         public void MasterListView_ItemClick(Type sender, object e)
         {
             _lastSelectedItem = e;
-
+            DetailContentPresenter.Navigate(sender, e);
             if (AdaptiveStates.CurrentState == NarrowState)
             {
                 // Use "drill in" transition for navigating from master list to detail view
                 //Frame.Navigate(typeof(DetailPage.WorkDetailPage), clickedItem, new DrillInNavigationTransitionInfo());
-
                 Grid.SetColumn(DetailContentPresenter, 0);
-
+                Grid.SetRow(DetailContentPresenter, 1);
+                BindableMargin margin = new BindableMargin(DetailContentPresenter);
+                margin.Top = 0;
+                DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+                animation.EnableDependentAnimation = true;
+                EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+                f1.Value = 0;
+                f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+                animation.KeyFrames.Add(f1);
+                EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+                f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 };
+                f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.6));
+                f2.Value = 0 - LayoutRoot.ActualHeight;
+                animation.KeyFrames.Add(f2);
+                Storyboard.SetTarget(animation, margin);
+                Storyboard.SetTargetProperty(animation, "Top");
+                Storyboard storyboard = new Storyboard();
+                storyboard.Children.Add(animation);
+                storyboard.Completed += delegate
+                  {
+                      margin.Top = 0 - LayoutRoot.ActualHeight;
+                  };
+                storyboard.Begin();
             }
             else
             {
-
                 Grid.SetColumn(DetailContentPresenter, 1);
+                Grid.SetRow(DetailContentPresenter, 0);
                 // Play a refresh animation when the user switches detail items.
                 EnableContentTransitions();
             }
-            DetailContentPresenter.Navigate(sender, e);
 
         }
 
@@ -172,7 +199,35 @@ namespace PixivUWP.Pages
         {
             if(DetailContentPresenter.Content!=null)
             {
-                DetailContentPresenter.Content = null;
+                if (AdaptiveStates.CurrentState == NarrowState)
+                {
+                    BindableMargin margin = new BindableMargin(DetailContentPresenter);
+                    margin.Top = 0 - LayoutRoot.ActualHeight;
+                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+                    animation.EnableDependentAnimation = true;
+                    EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+                    f1.Value = 0 - LayoutRoot.ActualHeight;
+                    f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.1));
+                    animation.KeyFrames.Add(f1);
+                    EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+                    f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 };
+                    f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.4));
+                    f2.Value = 0;
+                    animation.KeyFrames.Add(f2);
+                    Storyboard.SetTarget(animation, margin);
+                    Storyboard.SetTargetProperty(animation, "Top");
+                    Storyboard storyboard = new Storyboard();
+                    storyboard.Children.Add(animation);
+                    storyboard.Completed += delegate
+                      {
+                          DetailContentPresenter.Content = null;
+                          margin.Top = 0;
+                      };
+                    storyboard.Begin();
+                }
+                else
+                    DetailContentPresenter.Content = null;
+                MasterListView.SelectedItem = null;
                 return true;
             }
             return false;
