@@ -88,6 +88,7 @@ namespace PixivUWP.Pages
                 //Frame.Navigate(typeof(DetailPage.WorkDetailPage), _lastSelectedItem, new SuppressNavigationTransitionInfo());
                 Grid.SetColumn(DetailContentPresenter, 0);
                 Grid.SetRow(DetailContentPresenter, 1);
+                DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
                 if (DetailContentPresenter.Content != null)
                     DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0 - LayoutRoot.ActualHeight, 0, 0);
                 //MasterListView.SelectionMode = ListViewSelectionMode.None;
@@ -96,6 +97,7 @@ namespace PixivUWP.Pages
             {
                 Grid.SetColumn(DetailContentPresenter, 1);
                 Grid.SetRow(DetailContentPresenter, 0);
+                DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(1, 0, 0, 0);
                 DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
                 //MasterListView.SelectionMode = ListViewSelectionMode.Single;
             }
@@ -111,6 +113,7 @@ namespace PixivUWP.Pages
                 //Frame.Navigate(typeof(DetailPage.WorkDetailPage), clickedItem, new DrillInNavigationTransitionInfo());
                 Grid.SetColumn(DetailContentPresenter, 0);
                 Grid.SetRow(DetailContentPresenter, 1);
+                DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
                 BindableMargin margin = new BindableMargin(DetailContentPresenter);
                 margin.Top = 0;
                 DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
@@ -138,6 +141,7 @@ namespace PixivUWP.Pages
             {
                 Grid.SetColumn(DetailContentPresenter, 1);
                 Grid.SetRow(DetailContentPresenter, 0);
+                DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(1, 0, 0, 0);
                 // Play a refresh animation when the user switches detail items.
                 EnableContentTransitions();
             }
