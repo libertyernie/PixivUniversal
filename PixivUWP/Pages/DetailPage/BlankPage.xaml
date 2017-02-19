@@ -8,6 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Height="Auto" VerticalAlignment="Bottom" Margin="0">
+            <StackPanel Orientation="Horizontal" Height="128" Width="Auto" HorizontalAlignment="Center">
+                <Image Source="ms-appx:///Assets/SplashScreen.png" Margin="-32 0 0 0"/>
+                <Image Source="ms-appx:///Assets/beta-testing-logo.png" Height="64" Margin="-48 0 0 0"/>
+            </StackPanel>
+            <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" Margin="64,0"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -47,8 +47,17 @@ namespace PixivUWP.Pages
         public MasterDetailControl()
         {
             this.InitializeComponent();
+            DetailContentPresenter.Navigate(typeof(BlankPage));
         }
 
+        struct backitem
+        {
+            public Type sender;
+            public object e;
+            public int selectedindex;
+        }
+
+        List<backitem> backstack = new List<backitem>();
 
         public ListView MasterListView
         {
@@ -107,6 +116,11 @@ namespace PixivUWP.Pages
         {
             _lastSelectedItem = e;
             DetailContentPresenter.Navigate(sender, e);
+            backitem tmpitem = new Pages.MasterDetailControl.backitem();
+            tmpitem.sender = sender;
+            tmpitem.e = e;
+            tmpitem.selectedindex = MasterListView.SelectedIndex;
+            backstack.Add(tmpitem);
             if (AdaptiveStates.CurrentState == NarrowState)
             {
                 // Use "drill in" transition for navigating from master list to detail view
@@ -201,7 +215,9 @@ namespace PixivUWP.Pages
 
         public bool GoBack()
         {
-            if(DetailContentPresenter.Content!=null)
+            if (backstack.Count == 0)
+                return false;
+            if(backstack.Count==1)
             {
                 if (AdaptiveStates.CurrentState == NarrowState)
                 {
@@ -224,17 +240,34 @@ namespace PixivUWP.Pages
                     storyboard.Children.Add(animation);
                     storyboard.Completed += delegate
                       {
+                          backstack.Clear();
                           DetailContentPresenter.Content = null;
                           margin.Top = 0;
                       };
                     storyboard.Begin();
                 }
                 else
-                    DetailContentPresenter.Content = null;
+                {
+                    backstack.Clear();
+                    DetailContentPresenter.Navigate(typeof(BlankPage));
+                }
                 MasterListView.SelectedItem = null;
                 return true;
             }
+            else if(backstack.Count>1)
+            {
+                MasterListView.SelectedIndex = backstack[backstack.Count - 1].selectedindex;
+                backstack.RemoveAt(backstack.Count - 1);
+                DetailContentPresenter.Navigate(backstack[backstack.Count - 1].sender, backstack[backstack.Count - 1].e);
+                return true;
+            }
             return false;
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(AdaptiveStates.CurrentState == NarrowState&& DetailContentPresenter.Content != null)
+                DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0 - LayoutRoot.ActualHeight, 0, 0);
         }
     }
 }

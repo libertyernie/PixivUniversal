@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:api="using:Pixeez.Objects"
+    SizeChanged="UserControl_SizeChanged"
     mc:Ignorable="d">
     <UserControl.Transitions>
         <TransitionCollection>
