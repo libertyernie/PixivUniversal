@@ -44,6 +44,8 @@ namespace PixivUWP.Pages
     /// </summary>
     public partial class MasterDetailControl : UserControl, DetailPage.IRefreshable, IBackable
     {
+        bool isBlank = true;
+
         public MasterDetailControl()
         {
             this.InitializeComponent();
@@ -98,8 +100,10 @@ namespace PixivUWP.Pages
                 Grid.SetColumn(DetailContentPresenter, 0);
                 Grid.SetRow(DetailContentPresenter, 1);
                 DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
-                if (DetailContentPresenter.Content != null)
+                if (!isBlank)
                     DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0 - LayoutRoot.ActualHeight, 0, 0);
+                else
+                    DetailContentPresenter.Content = null;
                 //MasterListView.SelectionMode = ListViewSelectionMode.None;
             }
             else
@@ -108,6 +112,8 @@ namespace PixivUWP.Pages
                 Grid.SetRow(DetailContentPresenter, 0);
                 DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(1, 0, 0, 0);
                 DetailContentPresenter.Margin = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
+                if (isBlank)
+                    DetailContentPresenter.Navigate(typeof(BlankPage));
                 //MasterListView.SelectionMode = ListViewSelectionMode.Single;
             }
         }
@@ -121,6 +127,7 @@ namespace PixivUWP.Pages
             tmpitem.e = e;
             tmpitem.selectedindex = MasterListView.SelectedIndex;
             backstack.Add(tmpitem);
+            isBlank = false;
             if (AdaptiveStates.CurrentState == NarrowState)
             {
                 // Use "drill in" transition for navigating from master list to detail view
@@ -242,6 +249,7 @@ namespace PixivUWP.Pages
                       {
                           backstack.Clear();
                           DetailContentPresenter.Content = null;
+                          isBlank = true;
                           margin.Top = 0;
                       };
                     storyboard.Begin();
@@ -250,6 +258,7 @@ namespace PixivUWP.Pages
                 {
                     backstack.Clear();
                     DetailContentPresenter.Navigate(typeof(BlankPage));
+                    isBlank = true;
                 }
                 MasterListView.SelectedItem = null;
                 return true;
