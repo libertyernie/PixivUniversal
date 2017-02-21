@@ -57,8 +57,8 @@
                                     <Grid Background="Transparent" HorizontalAlignment="Right" Width="60">
                                         <ContentPresenter HorizontalAlignment="Left">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
-                                                <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32"/>
+                                                <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding IsLiked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                                                <TextBlock FontSize="12" Text="{Binding Stats.FavoritedCount.Public}" HorizontalAlignment="Center" Width="32"/>
                                             </StackPanel>
                                         </ContentPresenter>
                                     </Grid>
