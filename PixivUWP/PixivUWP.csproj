@@ -134,6 +134,9 @@
     <Compile Include="Pages\pg_Mywork.xaml.cs">
       <DependentUpon>pg_Mywork.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\pg_Search.xaml.cs">
+      <DependentUpon>pg_Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\pg_Settings.xaml.cs">
       <DependentUpon>pg_Settings.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\pg_Mywork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pg_Search.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
