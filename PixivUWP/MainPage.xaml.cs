@@ -395,5 +395,12 @@ namespace PixivUWP
             MenuToggle.IsChecked = true;
             MenuToggle_Click(null, null);
         }
+
+        private void Searchbox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            MenuToggle.IsChecked = false;
+            MenuToggle_Click(null, null);
+            MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
+        }
     }
 }

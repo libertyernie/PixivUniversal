@@ -630,7 +630,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>string</c> mode (optional) [ text, tag, exact_tag, caption ]</para>
         /// <para>- <c>string</c> period (optional) [ all, day, week, month ]</para>
         /// <para>- <c>string</c> order (optional) [ desc, asc ]</para>
-        /// <para>- <c>string</c> sort (optional) [ date ]</para>
+        /// <para>- <c>string</c> sort (optional) [ date, popular ]</para>
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>Works. (Pagenated)</returns>
