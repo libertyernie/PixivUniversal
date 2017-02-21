@@ -325,7 +325,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </Grid>
             <TextBlock Grid.Column="4" x:Name="version" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0"/>
         </Grid>
-        <SplitView x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}" DisplayMode="CompactOverlay" OpenPaneLength="256">
+        <SplitView x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}" DisplayMode="CompactOverlay" OpenPaneLength="256" PaneClosing="contentroot_PaneClosing">
             <Frame x:Name="MainFrame" Grid.Column="1"/>
             <SplitView.Pane>
                 <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="256" HorizontalAlignment="Left">
@@ -354,7 +354,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             </StackPanel>
                         </Grid>
                     </Button>
-                    <AutoSuggestBox x:Name="Searchbox" Grid.Row="2" QueryIcon="Find" PlaceholderText="搜索Pixiv..." VerticalAlignment="Center" Style="{StaticResource AutoSuggestWithoutBorder}"/>
+                    <AutoSuggestBox x:Name="Searchbox" Grid.Row="2" QueryIcon="Find" PlaceholderText="搜索Pixiv..." VerticalAlignment="Center" Style="{StaticResource AutoSuggestWithoutBorder}" Visibility="Collapsed" Opacity="0" Margin="5 0"/>
+                    <Button x:Name="SearchBtn" Grid.Row="2" Style="{StaticResource DimButtonStyle}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="48" Width="48" Click="SearchBtn_Click">
+                        <TextBlock FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
                     <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
                     <ListView x:Name="MenuItemList" Grid.Row="3" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}" SelectionChanged="MenuItemList_SelectionChanged"/>
                     <ListView x:Name="MenuBottomItemList" Grid.Row="4" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuBottomItems}" SelectionChanged="MenuBottomItemList_SelectionChanged" />
