@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:api="using:Pixeez.Objects"
+    SizeChanged="UserControl_SizeChanged"
     mc:Ignorable="d">
     <UserControl.Transitions>
         <TransitionCollection>
@@ -56,12 +57,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <ColumnDefinition x:Name="DetailColumn" Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
         <ContentPresenter Content="{x:Bind MasterContent}"/>
 
         <Frame
             x:Name="DetailContentPresenter"
             Grid.Column="1"
-            Grid.RowSpan="2"
+            Grid.Row="0"
             BorderThickness="1,0,0,0"
             BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
             >

@@ -43,7 +43,7 @@ namespace PixivUWP.Data
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static void SetValue(string key, string value)
+        public static void SetValue(string key, object value)
             => localSettings.Values[key] = value;
 
         /// <summary>

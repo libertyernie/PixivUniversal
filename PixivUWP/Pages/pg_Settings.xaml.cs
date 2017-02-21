@@ -41,11 +41,24 @@ namespace PixivUWP.Pages
         public pg_Settings()
         {
             this.InitializeComponent();
+            try
+            {
+                backpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("BackgroundTransferCostPolicy");
+            }
+            catch
+            {
+                backpolicy.SelectedIndex = 0;
+            }
         }
 
         private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://pdp/?productid=9nblggh1xvd2", UriKind.Absolute));
+        }
+
+        private void backpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Data.AppDataHelper.SetValue("BackgroundTransferCostPolicy", backpolicy.SelectedIndex);
         }
     }
 }

@@ -39,6 +39,10 @@ namespace Pixeez.Objects
 
         [JsonProperty("px_480mw")]
         public string Px480mw { get; set; }
+        [JsonProperty("square_medium")]
+        public string SquareMedium { get; set; }
+        [JsonProperty("original")]
+        public string Original { get; set; }
     }
 
     public class FavoritedCount
@@ -81,8 +85,41 @@ namespace Pixeez.Objects
         [JsonProperty("pages")]
         public IList<Page> Pages { get; set; }
     }
+    public class NormalWork:Work
+    {
+        [JsonProperty("tags")]
+        public override IList<string> Tags { get; set; }
+        [JsonProperty("created_time")]
+        public DateTimeOffset CreatedTime { get; set; }
+        [JsonProperty("favorite_id")]
+        public long? FavoriteId { get; set; }
 
-    public class Work
+        public bool BookMarked
+        {
+            get
+            {
+                return IsBookMarked();
+            }
+        }
+
+        public override bool IsBookMarked()
+        {
+            if (FavoriteId == 0)
+                return false;
+            return true;
+        }
+
+        public override DateTime GetCreatedDate()
+        {
+            return CreatedTime.LocalDateTime;
+        }
+
+        public override void SetBookMarkedValue(bool value)
+        {
+            FavoriteId = value ? -1 : 0;
+        }
+    }
+    public abstract class Work:IWorkExtended
     {
 
         [JsonProperty("id")]
@@ -94,8 +131,7 @@ namespace Pixeez.Objects
         [JsonProperty("caption")]
         public string Caption { get; set; }
 
-        [JsonProperty("tags")]
-        public IList<string> Tags { get; set; }
+        public virtual IList<string> Tags { get; set; }
 
         [JsonProperty("tools")]
         public IList<string> Tools { get; set; }
@@ -118,9 +154,6 @@ namespace Pixeez.Objects
         [JsonProperty("age_limit")]
         public string AgeLimit { get; set; }
 
-        [JsonProperty("created_time")]
-        public DateTimeOffset CreatedTime { get; set; }
-
         [JsonProperty("reuploaded_time")]
         public string ReuploadedTime { get; set; }
 
@@ -132,9 +165,6 @@ namespace Pixeez.Objects
 
         [JsonProperty("is_liked")]
         public bool? IsLiked { get; set; }
-
-        [JsonProperty("favorite_id")]
-        public long? FavoriteId { get; set; }
 
         [JsonProperty("page_count")]
         public int? PageCount { get; set; }
@@ -150,5 +180,8 @@ namespace Pixeez.Objects
 
         [JsonProperty("content_type")]
         public string ContentType { get; set; }
+        public abstract void SetBookMarkedValue(bool value);
+        public abstract bool IsBookMarked();
+        public abstract DateTime GetCreatedDate();
     }
 }

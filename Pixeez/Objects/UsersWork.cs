@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace Pixeez.Objects
 {
-    public class UsersWork:Work
+    public class UsersWork:NormalWork
     {
         [JsonProperty("sanity_level")]
         public string SanityLevel { get; set; }
