@@ -94,6 +94,14 @@ namespace Pixeez.Objects
         [JsonProperty("favorite_id")]
         public long? FavoriteId { get; set; }
 
+        public bool BookMarked
+        {
+            get
+            {
+                return IsBookMarked();
+            }
+        }
+
         public override bool IsBookMarked()
         {
             if (FavoriteId == 0)
