@@ -28,6 +28,8 @@ namespace PixivUWP.Pages
     {
         ItemViewList<Work> list = new ItemViewList<Work>();
         string _query;
+        bool _bypopular;
+
         public pg_Search()
         {
             this.InitializeComponent();
@@ -40,6 +42,7 @@ namespace PixivUWP.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _query = e.Parameter as string;
+            qText.Text = _query;
             MasterListView.ItemsSource = list;
         }
 
@@ -56,7 +59,7 @@ namespace PixivUWP.Pages
             var nowcount = list.Count;
             try
             {
-                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.SearchWorksAsync(_query))
+                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.SearchWorksAsync(_query, 1, 30, "text", "all", "desc", _bypopular ? "popular" : "date"))
                 {
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
@@ -115,6 +118,20 @@ namespace PixivUWP.Pages
         public bool GoBack()
         {
             return ((IBackable)mdc).GoBack();
+        }
+
+        private void byPopularity_Checked(object sender, RoutedEventArgs e)
+        {
+            _bypopular = true;
+            list.Clear();
+            MasterListView.ItemsSource = list;
+        }
+
+        private void byPopularity_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _bypopular = false;
+            list.Clear();
+            MasterListView.ItemsSource = list;
         }
     }
 }

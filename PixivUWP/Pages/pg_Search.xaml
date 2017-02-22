@@ -23,7 +23,10 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid Background="WhiteSmoke">
-                    
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <TextBlock x:Name="qText" HorizontalAlignment="Center" Width="Auto" Margin="16" FontSize="18"/>
+                        <CheckBox x:Name="byPopularity" HorizontalAlignment="Center" Content="按照热门度排序" Checked="byPopularity_Checked" Unchecked="byPopularity_Unchecked"/>
+                    </StackPanel>
                 </Grid>
                 <ListView
             x:Name="MasterListView"
