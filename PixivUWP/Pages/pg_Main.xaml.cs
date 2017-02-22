@@ -127,6 +127,8 @@ namespace PixivUWP.Pages
 
         public Task RefreshAsync()
         {
+            list.Clear();
+            MasterListView.ItemsSource = list;
             return ((IRefreshable)mdc).RefreshAsync();
         }
 
