@@ -59,7 +59,7 @@ namespace PixivUWP.Pages
             var nowcount = list.Count;
             try
             {
-                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.SearchWorksAsync(_query, 1, 30, "text", "all", "desc", _bypopular ? "popular" : "date"))
+                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.SearchWorksAsync(_query, nowpage, 30, "text", "all", "desc", _bypopular ? "popular" : "date"))
                 {
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
