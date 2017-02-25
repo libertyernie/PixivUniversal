@@ -150,38 +150,39 @@ namespace PixivUWP.Pages.DetailPage
         private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
             //弹出该作者的信息
-
-            if (Data.TmpData.OpenedWindows.TryGetValue(Work.User.Id,out int value))
+            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async() =>
             {
-                await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
-            }
-            else
-            {
-                int newViewId = -1;
-
-                CoreApplicationView newView = CoreApplication.CreateNewView();
-
-                await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                if (Data.TmpData.OpenedWindows.TryGetValue(Work.User.Id, out int value))
                 {
-                    var newWindow = Window.Current;
-                    var newAppView = ApplicationView.GetForCurrentView();
-                    newAppView.Consolidated += async (e, e1) =>
+                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                }
+                else
+                {
+                    int newViewId = -1;
+
+                    CoreApplicationView newView = CoreApplication.CreateNewView();
+
+                    await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        var newWindow = Window.Current;
+                        var newAppView = ApplicationView.GetForCurrentView();
+                        newAppView.Consolidated += async (e, e1) =>
                         {
-                            Data.TmpData.OpenedWindows.Remove(Work.User.Id);
-                        });
-                    };
-                    var frame = new Frame();
-                    frame.Navigate(typeof(Win_UserInfo), Work.User);
-                    newWindow.Content = frame;
-                    newWindow.Activate();
-                    newViewId = newAppView.Id;
-                });
-                var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+                            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Data.TmpData.OpenedWindows.Remove(Work.User.Id);
+                            });
+                        };
+                        var frame = new Frame();
+                        frame.Navigate(typeof(Win_UserInfo), Work.User);
+                        newWindow.Content = frame;
+                        newWindow.Activate();
+                        newViewId = newAppView.Id;
+                    });
+                    var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
 
-            }
+                }
+            });           
         }
-
     }
 }
