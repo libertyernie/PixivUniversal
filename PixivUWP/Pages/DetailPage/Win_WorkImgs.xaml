@@ -28,8 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <FlipViewItem>
-                        <Grid>
-                            <Image DataContextChanged="Image_DataContextChanged"></Image>
+                        <Grid DataContextChanged="Image_DataContextChanged">
+                            <Image x:Name="img" />
                             <ProgressRing x:Name="pro"/>
                         </Grid>
                     </FlipViewItem>

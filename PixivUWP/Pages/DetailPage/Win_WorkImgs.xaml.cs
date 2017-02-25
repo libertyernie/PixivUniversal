@@ -49,35 +49,48 @@ namespace PixivUWP.Pages.DetailPage
             base.OnNavigatedTo(e);
             work = e.Parameter as IllustWork;
             flipview.ItemsSource = work.meta_pages;
+            flipview.SelectedIndex = 0;
         }
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             var page=args.NewValue as MetaPages;
-            var img = sender as Image;
-            if(img.Parent is Panel pl)
+            if(sender is Panel pl)
             {
-                if(pl.FindName("pro") is ProgressRing pro)
+                if(pl.FindName("img") is Image img)
                 {
-                    ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
-                    try
+                    img.Source = null;
+                    if (pl.FindName("pro") is ProgressRing pro)
                     {
-                        using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, page.ImageUrls.Original ?? page.ImageUrls.Large ?? page.ImageUrls.Medium))
+                        ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
+                        try
                         {
-                            var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                            await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                            img.Source = bitmap;
+                            using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, page.ImageUrls.Original ?? page.ImageUrls.Large ?? page.ImageUrls.Medium))
+                            {
+                                var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                                await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                                img.Source = bitmap;
+                            }
+                        }
+                        catch
+                        {
+                            new Controls.MyToast("有图片加载失败").Show();
+                        }
+                        finally
+                        {
+                            ProgressBarVisualHelper.SetYFHelperVisibility(pro, false);
                         }
                     }
-                    catch
-                    {
-                        new Controls.MyToast("有图片加载失败").Show();
-                    }
-                    finally
-                    {
-                        ProgressBarVisualHelper.SetYFHelperVisibility(pro, false);
-                    }
                 }
+                else
+                {
+                    //RoutedEventHandler reh= (se, ee) =>
+                    //{
+                    //    Image_DataContextChanged(sender, args);
+                    //};
+                    //pl.Loaded += reh;
+                }
+
             }
         }
 
