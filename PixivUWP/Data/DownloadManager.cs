@@ -27,8 +27,7 @@ namespace PixivUWP.Data
             {
                 ex = ".jpg";
             }
-            Uri result;
-            if (Uri.TryCreate(url, UriKind.Absolute, out result))
+            if (Uri.TryCreate(url, UriKind.Absolute, out Uri result))
             {
                 int policy;
                 try
@@ -71,7 +70,7 @@ namespace PixivUWP.Data
                     var downloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader() { CostPolicy = costpolicy };
                     downloader.SetRequestHeader("Referer", "https://app-api.pixiv.net/");
                     var op = downloader.CreateDownload(result, file);
-                    var a=op.StartAsync();
+                    var a = op.StartAsync();
                 }
                 catch { }
             }
