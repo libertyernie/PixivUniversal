@@ -98,22 +98,10 @@ namespace PixivUWP.Pages
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            try
-            {
-                var img = sender as Image;
-                img.Source = null;
-                if (img.DataContext != null)
-                {
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.SquareMedium))
-                    {
-                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                        img.Source = bitmap;
-                    }
-                }
-            }
-            catch { }
+            await Data.TmpData.LoadPictureAsync(sender);
         }
+
+
 
         public Task RefreshAsync()
         {

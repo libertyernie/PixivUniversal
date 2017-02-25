@@ -55,11 +55,29 @@ namespace PixivUWP.Pages.DetailPage
         {
             var page=args.NewValue as MetaPages;
             var img = sender as Image;
-            using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, page.ImageUrls.Original?? page.ImageUrls.Large?? page.ImageUrls.Medium))
+            if(img.Parent is Panel pl)
             {
-                var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                img.Source = bitmap;
+                if(pl.FindName("pro") is ProgressRing pro)
+                {
+                    ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
+                    try
+                    {
+                        using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, page.ImageUrls.Original ?? page.ImageUrls.Large ?? page.ImageUrls.Medium))
+                        {
+                            var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                            await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                            img.Source = bitmap;
+                        }
+                    }
+                    catch
+                    {
+                        new Controls.MyToast("有图片加载失败").Show();
+                    }
+                    finally
+                    {
+                        ProgressBarVisualHelper.SetYFHelperVisibility(pro, false);
+                    }
+                }
             }
         }
 
@@ -77,6 +95,26 @@ namespace PixivUWP.Pages.DetailPage
                 }
             }
 
+        }
+
+        private async void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(sender is AppBarButton downloadbutton&& flipview.SelectedValue is MetaPages sv)
+            {
+                downloadbutton.IsEnabled = false;
+                try
+                {
+                    var filename = work.Id + "_p" + flipview.SelectedIndex.ToString();
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                    {
+                        await Data.DownloadManager.AddTaskAsync(sv.ImageUrls.Original ?? sv.ImageUrls.Large ?? sv.ImageUrls.Medium,filename);
+                    });
+                }
+                finally
+                {
+                    downloadbutton.IsEnabled = true;
+                }
+            }
         }
     }
 }

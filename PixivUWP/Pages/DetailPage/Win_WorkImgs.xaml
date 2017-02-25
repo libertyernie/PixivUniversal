@@ -13,7 +13,8 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.--><Page
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-->
+<Page
     x:Class="PixivUWP.Pages.DetailPage.Win_WorkImgs"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -27,7 +28,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <FlipViewItem>
-                        <Image DataContextChanged="Image_DataContextChanged"></Image>
+                        <Grid>
+                            <Image DataContextChanged="Image_DataContextChanged"></Image>
+                            <ProgressRing x:Name="pro"/>
+                        </Grid>
                     </FlipViewItem>
                 </DataTemplate>
             </FlipView.ItemTemplate>
@@ -36,6 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarToggleButton Label="全屏" Icon="FullScreen" Click="AppBarButton_Click"/>
+            <AppBarButton Label="下载当前" Icon="Download" Click="AppBarButton_Click_1"/>
         </CommandBar>
     </Page.BottomAppBar>
 
