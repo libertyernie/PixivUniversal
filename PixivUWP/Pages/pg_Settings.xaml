@@ -23,16 +23,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock TextWrapping="Wrap"><Bold>Pixiv Universal</Bold>
-            Copyright (C) 2017 Pixeez Plus Project<LineBreak/>
-                        This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
-    This is free software, and you are welcome to redistribute it under certain conditions;<LineBreak/>
-            Click <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-2.0.html">here</Hyperlink> for details.
-        <LineBreak/><LineBreak/>
-            这是一个Pixiv网站的第三方应用<LineBreak/>
-            开发：<LineBreak/><!--请自行在此添加-->
+        <TextBlock TextWrapping="Wrap"><Bold>Pixiv Universal</Bold><LineBreak/>
+            Copyright (C) 2017 Pixeez Plus Project<LineBreak/><LineBreak/>
+            This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
+            This is free software, and you are welcome to redistribute it under certain conditions;<LineBreak/>
+            Click <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-2.0.html">here</Hyperlink> for details.<LineBreak/><LineBreak/>
+            这是一个使用C#语言编写的，基于Pixiv网站的第三方应用。<LineBreak/><LineBreak/>
+            开发者：<LineBreak/><!--请自行在此添加-->
             <Hyperlink NavigateUri="mailto:thomasw.fan@gmail.com">ThomasW.Fan</Hyperlink><LineBreak/>
-            <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/><LineBreak/><LineBreak/>
+            <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/>
+             <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko（见习）</Hyperlink><LineBreak/>
+            <LineBreak/><LineBreak/><LineBreak/>
+            <Bold>在线协议</Bold><LineBreak/>
             <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy">Pixiv在线服务隐私声明</Hyperlink><LineBreak/>
             <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term">Pixiv在线服务许可协议</Hyperlink><LineBreak/>
             
@@ -40,7 +42,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <LineBreak/><LineBreak/><LineBreak/>
             <Bold>友情链接</Bold><LineBreak/>
             <!--请自行在此添加-->
-            <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/>
+            <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/><LineBreak/>
+           <Bold>设置</Bold>
         </TextBlock>
         <ComboBox x:Name="backpolicy" Header="后台下载策略(仅对新启动的下载有效)" SelectionChanged="backpolicy_SelectionChanged">
             <ComboBoxItem>仅非按流量计费的连接</ComboBoxItem>
