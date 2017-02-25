@@ -28,5 +28,6 @@ namespace PixivUWP.Data
         public static string Username;
         public static string Password;
         public static Pixeez.AuthResult CurrentAuth;
+        public static Dictionary<object, int> OpenedWindows = new Dictionary<object, int>();
     }
 }
