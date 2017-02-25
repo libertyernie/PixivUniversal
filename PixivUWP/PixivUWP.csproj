@@ -111,6 +111,9 @@
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DetailPage\IRefreshable.cs" />
+    <Compile Include="Pages\DetailPage\Win_WorkImgs.xaml.cs">
+      <DependentUpon>Win_WorkImgs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DetailPage\WorkDetailPage.xaml.cs">
       <DependentUpon>WorkDetailPage.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\DetailPage\BlankPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DetailPage\Win_WorkImgs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

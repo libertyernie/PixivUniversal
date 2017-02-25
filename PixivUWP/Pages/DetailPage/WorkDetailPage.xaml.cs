@@ -43,6 +43,11 @@ namespace PixivUWP.Pages.DetailPage
         {
             Work = e.Parameter as Work;
             await RefreshAsync();
+            if (Work is IllustWork iw)
+            {
+                if(iw.meta_pages != null && iw.meta_pages.Length > 1)
+                    watchbigimg.Visibility = Visibility.Visible;
+            }
         }
 
         private async void fs_Click(object sender, RoutedEventArgs e)
@@ -179,10 +184,50 @@ namespace PixivUWP.Pages.DetailPage
                         newWindow.Activate();
                         newViewId = newAppView.Id;
                     });
+                    Data.TmpData.OpenedWindows[Work.User.Id] = newViewId;
                     var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
 
                 }
             });           
+        }
+
+        private async void watchbigimg_Click(object sender, RoutedEventArgs e)
+        {           
+            string id = "work" + Work.Id;
+            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (Data.TmpData.OpenedWindows.TryGetValue(id, out int value))
+                {
+                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                }
+                else
+                {
+                    int newViewId = -1;
+
+                    CoreApplicationView newView = CoreApplication.CreateNewView();
+
+                    await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var newWindow = Window.Current;
+                        var newAppView = ApplicationView.GetForCurrentView();
+                        newAppView.Consolidated += async (a, e1) =>
+                        {
+                            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Data.TmpData.OpenedWindows.Remove(id);
+                            });
+                        };
+                        var frame = new Frame();
+                        frame.Navigate(typeof(DetailPage.Win_WorkImgs), Work);
+                        newWindow.Content = frame;
+                        newWindow.Activate();
+                        newViewId = newAppView.Id;
+                    });
+                    Data.TmpData.OpenedWindows[id] = newViewId;
+                    var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+                }
+            });
         }
     }
 }
