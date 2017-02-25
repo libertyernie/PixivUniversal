@@ -1,10 +1,26 @@
-﻿using Pixeez.Objects;
-using PixivUWP.Pages.DetailPage;
+﻿//PixivUniversal
+//Copyright(C) 2017 Pixeez Plus Project
+
+//This program is free software; you can redistribute it and/or
+//modify it under the terms of the GNU General Public License
+//as published by the Free Software Foundation; version 2
+//of the License.
+
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+//GNU General Public License for more details.
+
+//You should have received a copy of the GNU General Public License
+//along with this program; if not, write to the Free Software
+//Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+using Pixeez.Objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -14,21 +30,31 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Threading.Tasks;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
 namespace PixivUWP.Pages
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class UserPage : Windows.UI.Xaml.Controls.Page,IRefreshable
+    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable
     {
-        public UserPage()
+        public Win_UserInfo()
         {
             this.InitializeComponent();
         }
+
+        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+
+        }
+
         User pix_user;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {

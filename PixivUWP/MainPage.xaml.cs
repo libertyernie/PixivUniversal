@@ -137,8 +137,10 @@ namespace PixivUWP
             if(!contentroot.IsPaneOpen)
             {
                 Storyboard storyboard = new Storyboard();
-                DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames();
-                animation1.EnableDependentAnimation = true;
+                DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames()
+                {
+                    EnableDependentAnimation = true
+                };
                 EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
                 f1.Value = 0;
                 f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
@@ -353,8 +355,10 @@ namespace PixivUWP
         private void contentroot_PaneClosing(SplitView sender, SplitViewPaneClosingEventArgs args)
         {
             Storyboard storyboard = new Storyboard();
-            DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames();
-            animation1.EnableDependentAnimation = true;
+            DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames()
+            {
+                EnableDependentAnimation = true
+            };
             EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
             f1.Value = 0;
             f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));

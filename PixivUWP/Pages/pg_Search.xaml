@@ -7,9 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:PixivUWP.Converter"
     mc:Ignorable="d">
-    <Page.Resources>
-        <converter:IsLikedCvt x:Key="IsLikedCvt"/>
-    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />

@@ -142,5 +142,10 @@ namespace PixivUWP.Pages.DetailPage
                 downloadbutton.IsEnabled = true;
             }
         }
+
+        private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            //弹出该作者的信息
+        }
     }
 }

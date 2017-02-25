@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <Image x:Name="bigimg" />
         <ProgressBar x:Name="pro" ></ProgressBar>
         <ScrollViewer  Grid.Row="1">
-            <TextBlock TextWrapping="Wrap"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Hyperlink><Run x:Name="user"></Run></Hyperlink><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+            <TextBlock TextWrapping="Wrap"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Hyperlink Click="Hyperlink_Click"><Run x:Name="user"></Run></Hyperlink><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
         </ScrollViewer>
         <CommandBar Grid.Row="2">
             <AppBarButton x:Name="downloadbutton" Label="下载" Icon="Download" Click="AppBarButton_Click"/>

@@ -24,9 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:api="using:Pixeez.Objects"
     xmlns:converter="using:PixivUWP.Converter"
     mc:Ignorable="d" Loaded="Page_Loaded">
-    <Page.Resources>
-        <converter:IsLikedCvt x:Key="IsLikedCvt"/>
-    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
