@@ -20,6 +20,10 @@ using System.IO;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Controls;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -143,9 +147,22 @@ namespace PixivUWP.Pages.DetailPage
             }
         }
 
-        private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
             //弹出该作者的信息
+            CoreApplicationView newView = CoreApplication.CreateNewView();
+            int newViewId = -1;
+            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                var newWindow = Window.Current;
+                var newAppView = ApplicationView.GetForCurrentView();
+                var frame = new Frame();
+                frame.Navigate(typeof(Win_UserInfo),Work.User);
+                newWindow.Content = frame;
+                newWindow.Activate();
+                newViewId = newAppView.Id;
+            });
+            var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
     }
 }

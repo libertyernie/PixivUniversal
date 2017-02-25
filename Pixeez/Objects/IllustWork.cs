@@ -19,11 +19,17 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 namespace Pixeez.Objects
 {
-    public class RecommendedRootobject
+
+
+    public class Illusts
     {
         public IllustWork[] illusts { get; set; }
-        public object[] ranking_illusts { get; set; }
         public string next_url { get; set; }
+    }
+
+    public class RecommendedRootobject: Illusts
+    {
+        public object[] ranking_illusts { get; set; }
     }
 
     public class IllustWork : Work
@@ -44,14 +50,14 @@ namespace Pixeez.Objects
         [JsonProperty("create_date")]
         public DateTime CreatedTime
         {
-            get;set;
+            get; set;
         }
         public override IList<string> Tags
         {
             get
             {
                 List<string> tg = new List<string>();
-                foreach(var one in tags)
+                foreach (var one in tags)
                 {
                     tg.Add(one.Name);
                 }
@@ -61,7 +67,7 @@ namespace Pixeez.Objects
 
         public override bool IsBookMarked()
         {
-            return is_bookmarked??true;
+            return is_bookmarked ?? true;
         }
 
         public override DateTime GetCreatedDate()

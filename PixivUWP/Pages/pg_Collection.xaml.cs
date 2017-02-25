@@ -65,7 +65,7 @@ namespace PixivUWP.Pages
             var nowcount = list.Count;
             try
             {
-                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(Data.TmpData.CurrentAuth.Authorize.User.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
+                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(Data.TmpData.CurrentAuth.Authorize.User.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl);
                 nexturl = root.next_url ?? string.Empty;
                 foreach (var one in root.illusts)
                 {

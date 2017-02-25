@@ -59,7 +59,6 @@ namespace PixivUWP.Pages
             args.Value = nexturl!=string.Empty;
         }
 
-        int nowpage = 1;
         string nexturl = null;
         private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
         {
@@ -73,7 +72,6 @@ namespace PixivUWP.Pages
                     if(!list.Contains(one,Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
-                nowpage++;
             }
             catch
             {

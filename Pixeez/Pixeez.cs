@@ -411,7 +411,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>bool</c> includeSanityLevel (optional)</para>
         /// </summary>
         /// <returns>UsersFavoriteWorks. (Pagenated)</returns>
-        public async Task<RecommendedRootobject> GetUserFavoriteWorksAsync(long user_id, string restrict = "public",string filter= "for_ios",int? max_bookmark_id= null,string tag= null,bool req_auth= true)
+        public async Task<Illusts> GetUserFavoriteWorksAsync(long user_id, string restrict = "public",string filter= "for_ios",int? max_bookmark_id= null,string tag= null,bool req_auth= true)
         {
             var url = "https://app-api.pixiv.net/v1/user/bookmarks/illust";
 
@@ -426,7 +426,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
                 param.Add("max_bookmark_id", max_bookmark_id.Value.ToString());
             }
             if (tag != null) param.Add("tag", tag);
-            return await this.AccessNewApiAsync<RecommendedRootobject>(url, dic:param,req_auth:req_auth);
+            return await this.AccessNewApiAsync<Illusts>(url, dic:param,req_auth:req_auth);
         }
         
         /// <summary>
@@ -512,7 +512,36 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
 
             return await this.AccessNewApiAsync<RecommendedRootobject>(url, dic: param);
         }
+        /// <summary>
+        /// 获取用户作品列表 (无需登录)
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="type"></param>
+        /// <param name="filter"></param>
+        /// <param name="offset"></param>
+        /// <param name="req_auth"></param>
+        /// <returns></returns>
+        public async Task<Illusts> GetUserWorksAsync(long user_id,string type= "illust",string filter="for_ios",int? offset= null,bool req_auth= true)
+        {
+            var url = "https://app-api.pixiv.net/v1/user/illusts";
 
+            var param = new Dictionary<string, string>
+            {
+                {"user_id",user_id.ToString() },
+                {
+                    "type",type
+                },
+                {
+                    "filter",
+                    filter
+                }
+            };
+            if(offset!=null)
+            {
+                param["offset"] = offset.Value.ToString();
+            }
+            return await this.AccessNewApiAsync<Illusts>(url,req_auth, param);
+        }
         /// <summary>
         /// <para>Available parameters:</para>
         /// <para>- <c>long</c> authorId (required)</para>
