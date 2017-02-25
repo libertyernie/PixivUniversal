@@ -21,4 +21,4 @@
 
 ### 许可
 
- 本项目遵从 [GPLv2](LISENSE) 许可协议开源
+ 本项目遵从 [GPLv2](LISENSE.md) 许可协议开源
