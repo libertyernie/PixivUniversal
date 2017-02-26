@@ -102,6 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MyToast.xaml.cs" />
+    <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
     <Compile Include="Data\DownloadManager.cs" />
     <Compile Include="Data\VersionHelper.cs" />
@@ -168,6 +169,8 @@
   <ItemGroup>
     <Content Include="Assets\Avatar.png" />
     <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\beta-testing-logo.png" />
+    <Content Include="Assets\beta-testing.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
