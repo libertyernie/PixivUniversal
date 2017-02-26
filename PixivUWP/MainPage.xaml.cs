@@ -265,12 +265,13 @@ namespace PixivUWP
                         btn_Lock.IsChecked = true;
                         return;
                 }
-                btn_Lock.IsChecked = false;
+                btn_Lock.IsChecked = false;             
                 contentroot.Visibility = Visibility.Visible;
             }
             else
             {
                 contentroot.Visibility = Visibility.Collapsed;
+                
                 btn_Lock.IsChecked = true;
             }
         }
