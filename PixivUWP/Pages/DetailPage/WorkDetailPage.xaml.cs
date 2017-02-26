@@ -229,5 +229,44 @@ namespace PixivUWP.Pages.DetailPage
                 }
             });
         }
+
+        private async void relate_Click(object sender, RoutedEventArgs e)
+        {
+            string id = "related" + Work.Id;
+            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (Data.TmpData.OpenedWindows.TryGetValue(id, out int value))
+                {
+                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                }
+                else
+                {
+                    int newViewId = -1;
+
+                    CoreApplicationView newView = CoreApplication.CreateNewView();
+
+                    await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var newWindow = Window.Current;
+                        var newAppView = ApplicationView.GetForCurrentView();
+                        newAppView.Consolidated += async (a, e1) =>
+                        {
+                            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Data.TmpData.OpenedWindows.Remove(id);
+                            });
+                        };
+                        var frame = new Frame();
+                        frame.Navigate(typeof(Win_Related), Work);
+                        newWindow.Content = frame;
+                        newWindow.Activate();
+                        newViewId = newAppView.Id;
+                    });
+                    Data.TmpData.OpenedWindows[id] = newViewId;
+                    var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+                }
+            });
+        }
     }
 }

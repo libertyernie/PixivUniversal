@@ -142,6 +142,9 @@
     <Compile Include="Pages\pg_Settings.xaml.cs">
       <DependentUpon>pg_Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Win_Related.xaml.cs">
+      <DependentUpon>Win_Related.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Win_UserInfo.xaml.cs">
       <DependentUpon>Win_UserInfo.xaml</DependentUpon>
     </Compile>
@@ -249,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\pg_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Win_Related.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

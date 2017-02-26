@@ -39,7 +39,7 @@ namespace Pixeez
         {
             this.Source = source;
         }
-        
+
         public HttpResponseMessage Source { get; }
 
         public Task<Stream> GetResponseStreamAsync()
@@ -77,7 +77,7 @@ namespace Pixeez
         /// <para>- <c>string</c> password (required)</para>
         /// </summary>
         /// <returns>Tokens.</returns>
-        public static async Task<AuthResult> AuthorizeAsync(string username, string password,string refreshtoken)
+        public static async Task<AuthResult> AuthorizeAsync(string username, string password, string refreshtoken)
         {
             var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Add("Referer", "http://www.pixiv.net/");
@@ -153,14 +153,14 @@ namespace Pixeez
             httpClient.DefaultRequestHeaders.Add("Referer", "https://app-api.pixiv.net/");
             return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
         }
-        public async Task<AsyncResponse> SendRequestWithoutAuthAsync(MethodType type, string url,bool needauth=false, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
+        public async Task<AsyncResponse> SendRequestWithoutAuthAsync(MethodType type, string url, bool needauth = false, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("App-OS", "ios");
             httpClient.DefaultRequestHeaders.Add("App-OS-Version", "10.2.1");
             httpClient.DefaultRequestHeaders.Add("App-Version", "6.4.0");
             httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)");
-            if(needauth) httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
+            if (needauth) httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
             return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
         }
 
@@ -244,7 +244,7 @@ namespace Pixeez
         //}
         public string format_bool(bool value)
         {
-            if(value )
+            if (value)
             {
                 return "true";
             }
@@ -278,10 +278,10 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
                 dic["bookmark_illust_ids"] = bookmark_illust_ids;
             }
 
-            return await AccessNewApiAsync<RecommendedRootobject>(url,req_auth, dic);
+            return await AccessNewApiAsync<RecommendedRootobject>(url, req_auth, dic);
         }
 
-        public async Task<T> AccessNewApiAsync<T>(string url, bool req_auth=true, Dictionary<string, string> dic=null, MethodType methodtype= MethodType.GET)
+        public async Task<T> AccessNewApiAsync<T>(string url, bool req_auth = true, Dictionary<string, string> dic = null, MethodType methodtype = MethodType.GET)
         {
             using (var res = await SendRequestWithoutAuthAsync(methodtype, url, req_auth, dic))
             {
@@ -291,8 +291,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         }
 
 
-
-        public async Task AddFavouriteUser(long user_id,string publicity= "public")
+        public async Task AddFavouriteUser(long user_id, string publicity = "public")
         {
             await SendRequestAsync(MethodType.POST, "https://public-api.secure.pixiv.net/v1/me/favorite-users.json", new Dictionary<string, string> { { "target_user_id", user_id.ToString() }, { "publicity", publicity } });
         }
@@ -315,7 +314,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>IDictionary</c> header (optional)</para>
         /// </summary>
         /// <returns>AsyncResponse.</returns>
-        public async Task<AsyncResponse> SendRequestAsync(MethodType type, string url, IDictionary<string, string> param=null, IDictionary<string, string> headers = null)
+        public async Task<AsyncResponse> SendRequestAsync(MethodType type, string url, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
             return await SendRequestWithAuthAsync(type, url, param, headers);
         }
@@ -338,11 +337,27 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
             }
         }
 
+        public async Task<Illusts> GetRelatedWorks(long illust_id, string filter = "for_ios", string seed_illust_ids = null, bool req_auth = true)
+        {
+            string url = "https://app-api.pixiv.net/v1/illust/related";
+            var dic = new Dictionary<string, string>()
+            {
+                { "illust_id", illust_id.ToString() },
+                { "filter", filter }
+            };
+            //            if type(seed_illust_ids) == str:
+            //            params['seed_illust_ids'] = seed_illust_ids
+            //        if type(seed_illust_ids) == list:
+            //params['seed_illust_ids'] = ",".join([str(iid) for iid in seed_illust_ids])
+            return await AccessNewApiAsync<Illusts>(url, req_auth, dic);
+        }
+
         /// <summary>
         /// <para>Available parameters:</para>
         /// <para>- <c>long</c> illustId (required)</para>
         /// </summary>
         /// <returns>Works.</returns>
+        [Obsolete]
         public async Task<List<NormalWork>> GetWorksAsync(long illustId)
         {
             var url = "https://public-api.secure.pixiv.net/v1/works/" + illustId.ToString() + ".json";
@@ -435,15 +450,14 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>string</c> publicity (optional) [ public, private ]</para>
         /// </summary>
         /// <returns>UsersWorks. (Pagenated)</returns>
-        public async Task<List<UsersFavoriteWork>> AddMyFavoriteWorksAsync(long workId, string comment = "", IEnumerable<string> tags = null, string publicity = "public")
+        public async Task<List<UsersFavoriteWork>> AddMyFavoriteWorksAsync(long workId, IEnumerable<string> tags = null, string publicity = "public")
         {
-            var url = "https://public-api.secure.pixiv.net/v1/me/favorite_works.json";
+            var url = "https://app-api.pixiv.net/v1/illust/bookmark/add";
 
             var param = new Dictionary<string, string>
             {
-                { "work_id", workId.ToString() } ,
-                { "publicity", publicity } ,
-                { "comment", comment } ,
+                { "illust_id", workId.ToString() } ,
+                { "restrict", publicity } ,
             };
 
             if (tags != null)

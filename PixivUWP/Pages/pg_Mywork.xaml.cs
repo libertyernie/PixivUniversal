@@ -84,11 +84,6 @@ namespace PixivUWP.Pages
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            MasterListView.ItemsSource = list;
-        }
-
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
