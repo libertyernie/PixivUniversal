@@ -101,6 +101,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ContextFlyoutSetter.cs" />
     <Compile Include="Controls\MyToast.xaml.cs" />
     <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
@@ -283,8 +284,8 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pixeez\PixivAPI.csproj">
-      <Project>{06950fe8-5f63-4931-83df-b70002281cb5}</Project>
+    <ProjectReference Include="..\PixivAPI\PixivAPI.csproj">
+      <Project>{64a77199-1953-453a-9f5e-e387fb022b9d}</Project>
       <Name>PixivAPI</Name>
     </ProjectReference>
   </ItemGroup>

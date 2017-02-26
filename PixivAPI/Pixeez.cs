@@ -42,24 +42,54 @@ namespace Pixeez
 
         public HttpResponseMessage Source { get; }
 
-        public Task<Stream> GetResponseStreamAsync()
+        public virtual Task<Stream> GetResponseStreamAsync()
         {
             return this.Source.Content.ReadAsStreamAsync();
         }
 
-        public Task<string> GetResponseStringAsync()
+        public virtual Task<string> GetResponseStringAsync()
         {
             return this.Source.Content.ReadAsStringAsync();
         }
 
-        public Task<byte[]> GetResponseByteArrayAsync()
+        public virtual Task<byte[]> GetResponseByteArrayAsync()
         {
             return this.Source.Content.ReadAsByteArrayAsync();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             this.Source?.Dispose();
+        }
+    }
+
+    public class StreamAsyncResponse : AsyncResponse
+    {
+        public Stream Stream { get; set; }
+        public StreamAsyncResponse(HttpResponseMessage source,Stream stream) : base(source)
+        {
+            Stream = stream;
+        }
+
+        public override Task<Stream> GetResponseStreamAsync()
+        {
+            return Task.FromResult(Stream);
+        }
+
+        public async override Task<string> GetResponseStringAsync()
+        {
+            return await new StreamReader(Stream).ReadToEndAsync();
+        }
+
+        public override Task<byte[]> GetResponseByteArrayAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Dispose()
+        {
+            Source?.Dispose();
+            this.Stream?.Dispose();
         }
     }
 
@@ -160,6 +190,8 @@ namespace Pixeez
             httpClient.DefaultRequestHeaders.Add("App-OS-Version", "10.2.1");
             httpClient.DefaultRequestHeaders.Add("App-Version", "6.4.0");
             httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)");
+            httpClient.DefaultRequestHeaders.AcceptEncoding.TryParseAdd("gzip");
+            httpClient.DefaultRequestHeaders.AcceptLanguage.TryParseAdd("zh_CN");
             if (needauth) httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
             return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
         }
@@ -177,6 +209,7 @@ namespace Pixeez
             if (type == MethodType.POST)
             {
                 var reqParam = new FormUrlEncodedContent(param);
+                //reqParam.Headers.ContentType=""
                 var response = await httpClient.PostAsync(url, reqParam);
                 asyncResponse = new AsyncResponse(response);
             }
@@ -194,7 +227,7 @@ namespace Pixeez
                         else
                             query_string += "&";
 
-                        query_string += kvp.Key + "=" + WebUtility.UrlEncode(kvp.Value);
+                        query_string += WebUtility.UrlEncode(kvp.Key) + "=" + WebUtility.UrlEncode(kvp.Value);
                     }
                     uri += query_string;
                 }
@@ -222,7 +255,15 @@ namespace Pixeez
                 }
 
                 var response = await httpClient.GetAsync(uri);
-                asyncResponse = new AsyncResponse(response);
+                string vl = response.Content.Headers.ContentEncoding.FirstOrDefault();
+                if (vl != null && vl=="gzip")
+                {
+                    asyncResponse = new StreamAsyncResponse(response,new System.IO.Compression.GZipStream(await response.Content.ReadAsStreamAsync(),System.IO.Compression.CompressionMode.Decompress));
+                }
+                else
+                {
+                    asyncResponse = new AsyncResponse(response);
+                }
             }
 
             return asyncResponse;
@@ -339,7 +380,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
 
         public async Task<Illusts> GetRelatedWorks(long illust_id, string filter = "for_ios", string seed_illust_ids = null, bool req_auth = true)
         {
-            string url = "https://app-api.pixiv.net/v1/illust/related";
+            string url = "https://app-api.pixiv.net/v2/illust/related";
             var dic = new Dictionary<string, string>()
             {
                 { "illust_id", illust_id.ToString() },
@@ -450,9 +491,9 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>string</c> publicity (optional) [ public, private ]</para>
         /// </summary>
         /// <returns>UsersWorks. (Pagenated)</returns>
-        public async Task<List<UsersFavoriteWork>> AddMyFavoriteWorksAsync(long workId, IEnumerable<string> tags = null, string publicity = "public")
+        public async Task AddMyFavoriteWorksAsync(long workId, IEnumerable<string> tags = null, string publicity = "public")
         {
-            var url = "https://app-api.pixiv.net/v1/illust/bookmark/add";
+            var url = "https://app-api.pixiv.net/v2/illust/bookmark/add";
 
             var param = new Dictionary<string, string>
             {
@@ -461,9 +502,12 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
             };
 
             if (tags != null)
-                param.Add("tags", string.Join(",", tags));
+                param.Add("tags[]", string.Join(",", tags));
 
-            return await this.AccessApiAsync<List<UsersFavoriteWork>>(MethodType.POST, url, param);
+            using (var res = await this.SendRequestWithoutAuthAsync(MethodType.POST, url, param: param, needauth: true))
+            {
+                res.Source.EnsureSuccessStatusCode();
+            }
         }
 
         /// <summary>

@@ -268,5 +268,42 @@ namespace PixivUWP.Pages.DetailPage
                 }
             });
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var tags = inputbox.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            fs.IsEnabled = false;
+            try
+            {
+                await PixivUWP.Data.TmpData.CurrentAuth.Tokens.AddMyFavoriteWorksAsync(Work.Id.Value, tags);
+                fs.IsChecked = true;
+                Work.SetBookMarkedValue(fs.IsChecked == true);
+            }
+            catch
+            {
+                new Controls.MyToast("操作失败").Show();
+            }
+            finally
+            {
+                fs.IsEnabled = true;
+            }
+        }
+
+        private void fs_Loaded(object sender, RoutedEventArgs e)
+        {
+            bool allowFocusOnInteractionAvailable =
+    Windows.Foundation.Metadata.ApiInformation.IsPropertyPresent(
+        "Windows.UI.Xaml.FrameworkElement",
+        "AllowFocusOnInteraction");
+
+            if (allowFocusOnInteractionAvailable)
+            {
+                var s = sender as FrameworkElement;
+                if (s != null)
+                {
+                    s.AllowFocusOnInteraction = true;
+                }
+            }
+        }
     }
 }
