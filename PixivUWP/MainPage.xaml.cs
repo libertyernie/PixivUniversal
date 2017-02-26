@@ -134,6 +134,47 @@ namespace PixivUWP
 
         private void MenuToggle_Click(object sender, RoutedEventArgs e)
         {
+            if(!contentroot.IsPaneOpen)
+            {
+                Storyboard storyboard = new Storyboard();
+                DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames()
+                {
+                    EnableDependentAnimation = true
+                };
+                EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+                f1.Value = 0;
+                f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
+                animation1.KeyFrames.Add(f1);
+                EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+                f2.Value = 1;
+                f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+                animation1.KeyFrames.Add(f2);
+                DoubleAnimationUsingKeyFrames animation2 = new DoubleAnimationUsingKeyFrames();
+                animation2.EnableDependentAnimation = true;
+                EasingDoubleKeyFrame f3 = new EasingDoubleKeyFrame();
+                f3.Value = 1;
+                f3.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
+                animation2.KeyFrames.Add(f3);
+                EasingDoubleKeyFrame f4 = new EasingDoubleKeyFrame();
+                f4.Value = 0;
+                f4.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+                animation2.KeyFrames.Add(f4);
+                Storyboard.SetTarget(animation1, Searchbox);
+                Storyboard.SetTarget(animation2, SearchBtn);
+                Storyboard.SetTargetProperty(animation1, "Opacity");
+                Storyboard.SetTargetProperty(animation2, "Opacity");
+                storyboard.Children.Add(animation1);
+                storyboard.Children.Add(animation2);
+                storyboard.Completed += delegate
+                  {
+                      Searchbox.Opacity = 1;
+                      Searchbox.Visibility = Visibility.Visible;
+                      SearchBtn.Opacity = 0;
+                      SearchBtn.Visibility = Visibility.Collapsed;
+                  };
+                Searchbox.Visibility = Visibility.Visible;
+                storyboard.Begin();
+            }
             contentroot.IsPaneOpen = !contentroot.IsPaneOpen;
             //var _sender = sender as ToggleButton;
             //Storyboard storyboard = new Storyboard();
@@ -309,6 +350,61 @@ namespace PixivUWP
             //    btn_Refresh.IsEnabled = true;
             //}
             MainFrame.Navigate(MainFrame.Content.GetType());
+        }
+
+        private void contentroot_PaneClosing(SplitView sender, SplitViewPaneClosingEventArgs args)
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames()
+            {
+                EnableDependentAnimation = true
+            };
+            EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
+            f1.Value = 0;
+            f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
+            animation1.KeyFrames.Add(f1);
+            EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
+            f2.Value = 1;
+            f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+            animation1.KeyFrames.Add(f2);
+            DoubleAnimationUsingKeyFrames animation2 = new DoubleAnimationUsingKeyFrames();
+            animation2.EnableDependentAnimation = true;
+            EasingDoubleKeyFrame f3 = new EasingDoubleKeyFrame();
+            f3.Value = 1;
+            f3.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0));
+            animation2.KeyFrames.Add(f3);
+            EasingDoubleKeyFrame f4 = new EasingDoubleKeyFrame();
+            f4.Value = 0;
+            f4.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+            animation2.KeyFrames.Add(f4);
+            Storyboard.SetTarget(animation2, Searchbox);
+            Storyboard.SetTarget(animation1, SearchBtn);
+            Storyboard.SetTargetProperty(animation1, "Opacity");
+            Storyboard.SetTargetProperty(animation2, "Opacity");
+            storyboard.Children.Add(animation1);
+            storyboard.Children.Add(animation2);
+            storyboard.Completed += delegate
+            {
+                Searchbox.Opacity = 0;
+                Searchbox.Visibility = Visibility.Collapsed;
+                SearchBtn.Opacity = 1;
+                SearchBtn.Visibility = Visibility.Visible;
+            };
+            SearchBtn.Visibility = Visibility.Visible;
+            storyboard.Begin();
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MenuToggle.IsChecked = true;
+            MenuToggle_Click(null, null);
+        }
+
+        private void Searchbox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            MenuToggle.IsChecked = false;
+            MenuToggle_Click(null, null);
+            MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
         }
     }
 }

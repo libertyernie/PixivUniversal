@@ -31,6 +31,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.HockeyApp;
+using System.Threading.Tasks;
 
 namespace PixivUWP
 {
@@ -39,6 +40,7 @@ namespace PixivUWP
     /// </summary>
     sealed partial class App : Application
     {
+        Windows.UI.ViewManagement.ApplicationView mainview;
         /// <summary>
         /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
         /// 已执行，逻辑上等同于 main() 或 WinMain()。
@@ -49,6 +51,15 @@ namespace PixivUWP
             this.Suspending += OnSuspending;
             //UnhandledException += App_UnhandledException;
             Microsoft.HockeyApp.HockeyClient.Current.Configure("dd4a5cc7b28845c9804fc0cc29beb64b");//如果你创建了一个新的项目根据本项目，请删除这行代码
+        }
+
+        private async void CurrentView_Consolidated(Windows.UI.ViewManagement.ApplicationView sender, Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs args)
+        {
+            if(Data.TmpData.OpenedWindows.Count>0)
+            {
+                await SaveDataAsync();
+                Exit();
+            }
         }
 
 
@@ -65,6 +76,11 @@ namespace PixivUWP
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            if(mainview==null)
+            {
+                mainview = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+                mainview.Consolidated += CurrentView_Consolidated;
+            }
             Frame rootFrame = Window.Current.Content as Frame;
 
             // 不要在窗口已包含内容时重复应用程序初始化，
@@ -116,11 +132,16 @@ namespace PixivUWP
         /// </summary>
         /// <param name="sender">挂起的请求的源。</param>
         /// <param name="e">有关挂起请求的详细信息。</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
+            await SaveDataAsync();
             deferral.Complete();
+        }
+        public Task SaveDataAsync()
+        {
+            return Task.CompletedTask;
         }
     }
 }

@@ -20,6 +20,10 @@ using System.IO;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Controls;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -39,6 +43,11 @@ namespace PixivUWP.Pages.DetailPage
         {
             Work = e.Parameter as Work;
             await RefreshAsync();
+            if (Work is IllustWork iw)
+            {
+                if(iw.meta_pages != null && iw.meta_pages.Length > 1)
+                    watchbigimg.Visibility = Visibility.Visible;
+            }
         }
 
         private async void fs_Click(object sender, RoutedEventArgs e)
@@ -140,6 +149,160 @@ namespace PixivUWP.Pages.DetailPage
             finally
             {
                 downloadbutton.IsEnabled = true;
+            }
+        }
+
+        private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            //弹出该作者的信息
+            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async() =>
+            {
+                if (Data.TmpData.OpenedWindows.TryGetValue(Work.User.Id, out int value))
+                {
+                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                }
+                else
+                {
+                    int newViewId = -1;
+
+                    CoreApplicationView newView = CoreApplication.CreateNewView();
+
+                    await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var newWindow = Window.Current;
+                        var newAppView = ApplicationView.GetForCurrentView();
+                        newAppView.Consolidated += async (e, e1) =>
+                        {
+                            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Data.TmpData.OpenedWindows.Remove(Work.User.Id);
+                            });
+                        };
+                        var frame = new Frame();
+                        frame.Navigate(typeof(Win_UserInfo), Work.User);
+                        newWindow.Content = frame;
+                        newWindow.Activate();
+                        newViewId = newAppView.Id;
+                    });
+                    Data.TmpData.OpenedWindows[Work.User.Id] = newViewId;
+                    var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+                }
+            });           
+        }
+
+        private async void watchbigimg_Click(object sender, RoutedEventArgs e)
+        {           
+            string id = "work" + Work.Id;
+            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (Data.TmpData.OpenedWindows.TryGetValue(id, out int value))
+                {
+                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                }
+                else
+                {
+                    int newViewId = -1;
+
+                    CoreApplicationView newView = CoreApplication.CreateNewView();
+
+                    await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var newWindow = Window.Current;
+                        var newAppView = ApplicationView.GetForCurrentView();
+                        newAppView.Consolidated += async (a, e1) =>
+                        {
+                            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Data.TmpData.OpenedWindows.Remove(id);
+                            });
+                        };
+                        var frame = new Frame();
+                        frame.Navigate(typeof(DetailPage.Win_WorkImgs), Work);
+                        newWindow.Content = frame;
+                        newWindow.Activate();
+                        newViewId = newAppView.Id;
+                    });
+                    Data.TmpData.OpenedWindows[id] = newViewId;
+                    var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+                }
+            });
+        }
+
+        private async void relate_Click(object sender, RoutedEventArgs e)
+        {
+            string id = "related" + Work.Id;
+            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (Data.TmpData.OpenedWindows.TryGetValue(id, out int value))
+                {
+                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                }
+                else
+                {
+                    int newViewId = -1;
+
+                    CoreApplicationView newView = CoreApplication.CreateNewView();
+
+                    await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var newWindow = Window.Current;
+                        var newAppView = ApplicationView.GetForCurrentView();
+                        newAppView.Consolidated += async (a, e1) =>
+                        {
+                            await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Data.TmpData.OpenedWindows.Remove(id);
+                            });
+                        };
+                        var frame = new Frame();
+                        frame.Navigate(typeof(Win_Related), Work);
+                        newWindow.Content = frame;
+                        newWindow.Activate();
+                        newViewId = newAppView.Id;
+                    });
+                    Data.TmpData.OpenedWindows[id] = newViewId;
+                    var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+                }
+            });
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var tags = inputbox.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            fs.IsEnabled = false;
+            try
+            {
+                await PixivUWP.Data.TmpData.CurrentAuth.Tokens.AddMyFavoriteWorksAsync(Work.Id.Value, tags);
+                fs.IsChecked = true;
+                Work.SetBookMarkedValue(fs.IsChecked == true);
+            }
+            catch
+            {
+                new Controls.MyToast("操作失败").Show();
+            }
+            finally
+            {
+                fs.IsEnabled = true;
+            }
+        }
+
+        private void fs_Loaded(object sender, RoutedEventArgs e)
+        {
+            bool allowFocusOnInteractionAvailable =
+    Windows.Foundation.Metadata.ApiInformation.IsPropertyPresent(
+        "Windows.UI.Xaml.FrameworkElement",
+        "AllowFocusOnInteraction");
+
+            if (allowFocusOnInteractionAvailable)
+            {
+                var s = sender as FrameworkElement;
+                if (s != null)
+                {
+                    s.AllowFocusOnInteraction = true;
+                }
             }
         }
     }

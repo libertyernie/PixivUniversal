@@ -24,11 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Height="Auto" VerticalAlignment="Bottom" Margin="0">
+        <StackPanel Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="0">
             <StackPanel Orientation="Horizontal" Height="128" Width="Auto" HorizontalAlignment="Center">
                 <Image Source="ms-appx:///Assets/SplashScreen.png" Margin="-32 0 0 0"/>
                 <Image Source="ms-appx:///Assets/beta-testing-logo.png" Height="64" Margin="-48 0 0 0"/>
@@ -39,7 +35,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="1.2*"/>
                 </Grid.ColumnDefinitions>
-                <AutoSuggestBox x:Name="SearchBox" Grid.Column="1" QueryIcon="Find" PlaceholderText="搜索Pixiv..."/>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" PlaceholderText="搜索Pixiv..."/>
+                    <TextBlock x:Name="changeLog" HorizontalAlignment="Left" FontSize="14" TextWrapping="Wrap"/>
+                </StackPanel>
             </Grid>
         </StackPanel>
     </Grid>

@@ -122,10 +122,12 @@ namespace PixivUWP.Pages
         {
             _lastSelectedItem = e;
             DetailContentPresenter.Navigate(sender, e);
-            backitem tmpitem = new Pages.MasterDetailControl.backitem();
-            tmpitem.sender = sender;
-            tmpitem.e = e;
-            tmpitem.selectedindex = MasterListView.SelectedIndex;
+            backitem tmpitem = new Pages.MasterDetailControl.backitem()
+            {
+                sender = sender,
+                e = e,
+                selectedindex = MasterListView.SelectedIndex
+            };
             backstack.Add(tmpitem);
             isBlank = false;
             if (AdaptiveStates.CurrentState == NarrowState)
@@ -135,18 +137,26 @@ namespace PixivUWP.Pages
                 Grid.SetColumn(DetailContentPresenter, 0);
                 Grid.SetRow(DetailContentPresenter, 1);
                 DetailContentPresenter.BorderThickness = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
-                BindableMargin margin = new BindableMargin(DetailContentPresenter);
-                margin.Top = 0;
-                DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                animation.EnableDependentAnimation = true;
-                EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
-                f1.Value = 0;
-                f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2));
+                BindableMargin margin = new BindableMargin(DetailContentPresenter)
+                {
+                    Top = 0
+                };
+                DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames()
+                {
+                    EnableDependentAnimation = true
+                };
+                EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame()
+                {
+                    Value = 0,
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.2))
+                };
                 animation.KeyFrames.Add(f1);
-                EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
-                f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 };
-                f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.6));
-                f2.Value = 0 - LayoutRoot.ActualHeight;
+                EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame()
+                {
+                    EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 },
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.6)),
+                    Value = 0 - LayoutRoot.ActualHeight
+                };
                 animation.KeyFrames.Add(f2);
                 Storyboard.SetTarget(animation, margin);
                 Storyboard.SetTargetProperty(animation, "Top");
@@ -213,8 +223,7 @@ namespace PixivUWP.Pages
 
         public async virtual Task RefreshAsync()
         {
-            var ir=DetailContentPresenter.Content as IRefreshable;
-            if(ir!=null)
+            if (DetailContentPresenter.Content is IRefreshable ir)
             {
                 await ir.RefreshAsync();
             }
@@ -228,18 +237,26 @@ namespace PixivUWP.Pages
             {
                 if (AdaptiveStates.CurrentState == NarrowState)
                 {
-                    BindableMargin margin = new BindableMargin(DetailContentPresenter);
-                    margin.Top = 0 - LayoutRoot.ActualHeight;
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    animation.EnableDependentAnimation = true;
-                    EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame();
-                    f1.Value = 0 - LayoutRoot.ActualHeight;
-                    f1.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.1));
+                    BindableMargin margin = new BindableMargin(DetailContentPresenter)
+                    {
+                        Top = 0 - LayoutRoot.ActualHeight
+                    };
+                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames()
+                    {
+                        EnableDependentAnimation = true
+                    };
+                    EasingDoubleKeyFrame f1 = new EasingDoubleKeyFrame()
+                    {
+                        Value = 0 - LayoutRoot.ActualHeight,
+                        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.1))
+                    };
                     animation.KeyFrames.Add(f1);
-                    EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame();
-                    f2.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 };
-                    f2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.4));
-                    f2.Value = 0;
+                    EasingDoubleKeyFrame f2 = new EasingDoubleKeyFrame()
+                    {
+                        EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut, Power = 4 },
+                        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.4)),
+                        Value = 0
+                    };
                     animation.KeyFrames.Add(f2);
                     Storyboard.SetTarget(animation, margin);
                     Storyboard.SetTargetProperty(animation, "Top");

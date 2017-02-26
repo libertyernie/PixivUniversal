@@ -1,44 +1,22 @@
-﻿<!--PixivUniversal
-Copyright(C) 2017 Pixeez Plus Project
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; version 2
-of the License.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-->
-<Page
-    x:Class="PixivUWP.Pages.pg_Mywork"
+﻿<Page
+    x:Class="PixivUWP.Pages.Win_Related"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter="using:PixivUWP.Converter"
     mc:Ignorable="d">
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition />
-        </TransitionCollection>
-    </Page.Transitions>
+
     <local:MasterDetailControl x:Name="mdc">
         <local:MasterDetailControl.MasterContent>
             <Grid x:Name="LayoutRoot">
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid Background="WhiteSmoke">
                     <TextBlock
-                    Text="我的关注"
+                    Text="相关作品"
                     Width="Auto"
                     Margin="16"
                     FontSize="18"

@@ -24,9 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:api="using:Pixeez.Objects"
     xmlns:converter="using:PixivUWP.Converter"
     mc:Ignorable="d" Loaded="Page_Loaded">
-    <Page.Resources>
-        <converter:IsLikedCvt x:Key="IsLikedCvt"/>
-    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
@@ -65,7 +62,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     <ColumnDefinition Width="139"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <ProgressRing Grid.Column="0" IsActive="True" Margin="14 0 0 0"/>
+                                <ProgressRing x:Name="pro" Grid.Column="0" IsActive="True" Margin="14 0 0 0"/>
                                 <Image Grid.Column="0" Height="125" Width="125" DataContextChanged="Image_DataContextChanged" Stretch="Uniform" Margin="14 0 0 0"/>
                                 <StackPanel Grid.Column="1" Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="16 0 0 0" Width="135">
                                     <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Title}" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
