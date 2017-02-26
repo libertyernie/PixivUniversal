@@ -265,14 +265,28 @@ namespace PixivUWP
                         btn_Lock.IsChecked = true;
                         return;
                 }
-                btn_Lock.IsChecked = false;             
-                contentroot.Visibility = Visibility.Visible;
+                btn_Lock.IsChecked = false;
+                await setvis(Visibility.Visible);
             }
             else
             {
-                contentroot.Visibility = Visibility.Collapsed;
-                
+                await setvis(Visibility.Collapsed);
                 btn_Lock.IsChecked = true;
+            }
+        }
+
+        private async System.Threading.Tasks.Task setvis(Visibility vis)
+        {
+            contentroot.Visibility = vis;
+            foreach (var one in CoreApplication.Views)
+            {
+                if (one != CoreApplication.MainView)
+                {
+                    await one.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        Window.Current.Content.Visibility = vis;
+                    });
+                }
             }
         }
 
