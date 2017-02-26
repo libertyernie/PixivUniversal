@@ -19,12 +19,14 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 namespace Pixeez.Objects
 {
+    public class ListRootObject
+    {
+        public string next_url { get; set; }
+    }
 
-
-    public class Illusts
+    public class Illusts: ListRootObject
     {
         public IllustWork[] illusts { get; set; }
-        public string next_url { get; set; }
     }
 
     public class RecommendedRootobject: Illusts
