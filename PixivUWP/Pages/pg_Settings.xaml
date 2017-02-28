@@ -13,7 +13,8 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.--><Page
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-->
+<Page
     x:Class="PixivUWP.Pages.pg_Settings"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -33,13 +34,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <Hyperlink NavigateUri="mailto:thomasw.fan@gmail.com">ThomasW.Fan</Hyperlink><LineBreak/>
             <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/>
              <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko（见习）</Hyperlink><LineBreak/>
-            <LineBreak/><LineBreak/><LineBreak/>
+            <LineBreak/><LineBreak/>
             <Bold>在线协议</Bold><LineBreak/>
             <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy">Pixiv在线服务隐私声明</Hyperlink><LineBreak/>
             <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term">Pixiv在线服务许可协议</Hyperlink><LineBreak/>
-            
-
-            <LineBreak/><LineBreak/><LineBreak/>
+            <LineBreak/><LineBreak/>
             <Bold>友情链接</Bold><LineBreak/>
             <!--请自行在此添加-->
             <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/><LineBreak/>
@@ -51,5 +50,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <ComboBoxItem>除非你启用了“限制后台数据”</ComboBoxItem>
             <ComboBoxItem>禁用后台下载</ComboBoxItem>
         </ComboBox>
+        <TextBlock TextWrapping="Wrap">
+        <Bold>服务登出</Bold>
+        </TextBlock>
+        <Button x:Name="userlogout" Content="登出" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" Width="260" IsEnabled="False" Margin="10,0,0,0"/>
+       
     </StackPanel>
 </Page>

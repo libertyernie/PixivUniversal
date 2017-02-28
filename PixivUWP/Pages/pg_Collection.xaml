@@ -30,16 +30,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <local:MasterDetailControl x:Name="mdc">
         <local:MasterDetailControl.MasterContent>
             <Grid x:Name="LayoutRoot">
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock
-            Text="我的收藏"
-            Margin="12,8,8,8"
-            Style="{ThemeResource TitleTextBlockStyle}" />
-
+                <Grid Background="WhiteSmoke">
+                    <TextBlock
+                    Text="我的收藏"
+                    Width="Auto"
+                    Margin="16"
+                    FontSize="18"
+                    HorizontalAlignment="Center"/>
+                </Grid>
                 <ListView
             x:Name="masterListView"
             Grid.Row="1"
@@ -63,5 +65,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </Grid>
         </local:MasterDetailControl.MasterContent>
     </local:MasterDetailControl>
-
 </Page>

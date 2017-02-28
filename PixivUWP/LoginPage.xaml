@@ -42,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBox Grid.Row="0" Margin="20 0" x:Name="txt_UserName" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1" InputScope="Url" IsSpellCheckEnabled="False">
                     <TextBox.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock FontSize="10">用户名</TextBlock>
+                            <TextBlock FontSize="10">Pixiv ID或邮箱地址</TextBlock>
                         </DataTemplate>
                     </TextBox.HeaderTemplate>
                 </TextBox>
