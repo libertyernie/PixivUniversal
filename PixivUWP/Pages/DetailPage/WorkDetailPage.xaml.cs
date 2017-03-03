@@ -237,8 +237,7 @@ namespace PixivUWP.Pages.DetailPage
 
             if (allowFocusOnInteractionAvailable)
             {
-                var s = sender as FrameworkElement;
-                if (s != null)
+                if (sender is FrameworkElement s)
                 {
                     s.AllowFocusOnInteraction = true;
                 }
