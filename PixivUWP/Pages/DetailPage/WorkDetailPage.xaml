@@ -42,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <controls:ContextFlyoutSetter.CompatibleContextFlyout>
                     <Flyout>
                         <StackPanel>
-                            <TextBox x:Name="inputbox"/>
+                            <TextBox x:Name="inputbox" Loaded="inputbox_Loaded"/>
                             <Button Click="Button_Click">OK</Button>
                         </StackPanel>
                     </Flyout>

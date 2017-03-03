@@ -243,5 +243,25 @@ namespace PixivUWP.Pages.DetailPage
                 }
             }
         }
+
+        private async void inputbox_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(sender is TextBox tb)
+            {
+                var sb = new System.Text.StringBuilder();
+                foreach (var one in (await Data.TmpData.CurrentAuth.Tokens.GetBookMarkedDetailAsync(Work.Id.Value)).bookmark_detail.tags)
+                {
+                    if(one.is_registered==true)
+                    {
+                        if (sb.Length != 0)
+                        {
+                            sb.Append(',');
+                        }
+                        sb.Append(one.Name);
+                    }
+                }
+                tb.Text = sb.ToString();
+            }
+        }
     }
 }

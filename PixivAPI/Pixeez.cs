@@ -330,12 +330,13 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
                 return JToken.Parse(str).ToObject<T>();
             }
         }
-        public async Task<BookmarkDetailRootobject> GetBookMarkedDetailAsync(long illust_id)
+        public async Task<BookmarkDetailRootobject> GetBookMarkedDetailAsync(long illust_id, string restrict = "public")
         {
             string url = "https://app-api.pixiv.net/v2/illust/bookmark/detail";
             var dic = new Dictionary<string, string>()
             {
                 { "illust_id", illust_id.ToString() },
+                { "restrict", restrict.ToString() }
             };
             return await AccessNewApiAsync<BookmarkDetailRootobject>(url, true, dic);
         }
@@ -345,7 +346,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
             string url = "https://app-api.pixiv.net/v1/user/bookmark-tags/illust";
             var dic = new Dictionary<string, string>()
             {
-                { "illust_id", restrict.ToString() },
+                { "restrict", restrict.ToString() },
             };
             return await AccessNewApiAsync<BookmarkDetailRootobject>(url, true, dic);
         }
