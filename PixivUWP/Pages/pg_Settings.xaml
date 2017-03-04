@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <TextBlock TextWrapping="Wrap" Margin="5,5,5,0"><Bold>Pixiv Universal</Bold><LineBreak/>
+            <TextBlock TextWrapping="Wrap"><Bold>Pixiv Universal</Bold><LineBreak/>
             Copyright (C) 2017 Pixeez Plus Project<LineBreak/><LineBreak/>
             This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
             This is free software, and you are welcome to redistribute it under certain conditions;<LineBreak/>
@@ -44,13 +44,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/><LineBreak/>
            <Bold>设置</Bold>
             </TextBlock>
-            <ComboBox x:Name="backpolicy" Header="后台下载策略(仅对新启动的下载有效)" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,0">
+            <ComboBox x:Name="backpolicy" Header="后台下载策略(仅对新启动的下载有效)" SelectionChanged="backpolicy_SelectionChanged">
                 <ComboBoxItem>仅非按流量计费的连接</ComboBoxItem>
                 <ComboBoxItem>根据你的流量使用情况</ComboBoxItem>
                 <ComboBoxItem>除非你启用了“限制后台数据”</ComboBoxItem>
                 <ComboBoxItem>禁用后台下载</ComboBoxItem>
             </ComboBox>
-            <TextBlock TextWrapping="Wrap" Margin="5,0,0,0">
+            <TextBlock TextWrapping="Wrap">
         <Bold>服务登出</Bold>
             </TextBlock>
             <Button x:Name="userlogout" Content="登出" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" Width="260" IsEnabled="False" Margin="10,0,0,0"/>
