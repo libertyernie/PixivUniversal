@@ -36,8 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ColumnDefinition Width="1.2*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="1">
-                    <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" PlaceholderText="搜索Pixiv..."/>
-                    <TextBlock x:Name="changeLog" HorizontalAlignment="Left" FontSize="14" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="changeLog" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,10,0,0"/>
                 </StackPanel>
             </Grid>
         </StackPanel>
