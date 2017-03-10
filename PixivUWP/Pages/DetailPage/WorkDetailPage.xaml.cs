@@ -182,7 +182,33 @@ namespace PixivUWP.Pages.DetailPage
                     {
                         var newWindow = Window.Current;
                         var newAppView = ApplicationView.GetForCurrentView();
-                        newAppView.Consolidated += async (a, e1) =>
+                        var sysnm = Windows.UI.Core.SystemNavigationManager.GetForCurrentView();
+                        var frame = new Frame();
+                        frame.Navigated += (s, e) =>
+                        {
+                            if(frame.Content is IBackable)
+                                sysnm.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+                            else
+                                sysnm.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                        };
+                        sysnm.BackRequested += (s, e) =>
+                        {
+                            if(frame.Content is IBackable iba)
+                            {
+                                if (!iba.GoBack())
+                                {
+                                    var a=Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                    {
+                                        Window.Current.Close();
+                                    });
+                                }
+                                else
+                                {
+                                    //e.Handled = true;
+                                }
+                            }
+                        };
+                        newWindow.Closed += async(s, e) =>
                         {
                             Window.Current.Content = null;
                             await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -190,7 +216,6 @@ namespace PixivUWP.Pages.DetailPage
                                 Data.TmpData.OpenedWindows.Remove(id);
                             });
                         };
-                        var frame = new Frame();
                         frame.Navigate(page, par);
                         newWindow.Content = frame;
                         newWindow.Activate();

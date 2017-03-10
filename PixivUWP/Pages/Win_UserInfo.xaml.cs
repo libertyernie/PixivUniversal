@@ -40,7 +40,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable
+    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable
     {
         public Win_UserInfo()
         {
@@ -160,6 +160,20 @@ namespace PixivUWP.Pages
         private void PivotItem_Loaded_1(object sender, RoutedEventArgs e)
         {
             //MasterListView_fav.ItemsSource = await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(pix_user.Id.Value);
+        }
+
+        public bool GoBack()
+        {
+            switch(pivot.SelectedIndex)
+            {
+                default:
+                case 0:
+                    return false;
+                case 1:
+                    return mdc.GoBack();
+                case 2:
+                    return mdc_fav.GoBack();
+            }
         }
     }
 }
