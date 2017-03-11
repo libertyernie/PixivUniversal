@@ -53,9 +53,9 @@ namespace PixivUWP.Pages
             mdc.MasterListView = MasterListView;
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl != string.Empty;
+            args.Item1 = nexturl != string.Empty;
         }
 
         int nowpage = 1;
@@ -84,11 +84,6 @@ namespace PixivUWP.Pages
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            MasterListView.ItemsSource = list;
-        }
-
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
@@ -98,25 +93,15 @@ namespace PixivUWP.Pages
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            try
-            {
-                var img = sender as Image;
-                img.Source = null;
-                if (img.DataContext != null)
-                {
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.SquareMedium))
-                    {
-                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                        img.Source = bitmap;
-                    }
-                }
-            }
-            catch { }
+            await Data.TmpData.LoadPictureAsync(sender);
         }
+
+
 
         public Task RefreshAsync()
         {
+            list.Clear();
+            MasterListView.ItemsSource = list;
             return ((IRefreshable)mdc).RefreshAsync();
         }
 

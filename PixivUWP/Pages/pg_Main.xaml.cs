@@ -54,12 +54,11 @@ namespace PixivUWP.Pages
 
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl!=string.Empty;
+            args.Item1 = nexturl!=string.Empty;
         }
 
-        int nowpage = 1;
         string nexturl = null;
         private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
         {
@@ -73,7 +72,6 @@ namespace PixivUWP.Pages
                     if(!list.Contains(one,Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
-                nowpage++;
             }
             catch
             {
@@ -103,30 +101,13 @@ namespace PixivUWP.Pages
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            try
-            {
-                var img = sender as Image;
-                img.Source = null;
-                if (img.DataContext != null)
-                {
-                    var work = (img.DataContext as Work);
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, work.ImageUrls.Medium))
-                    {
-                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                        img.Source = bitmap;
-                    }
-                }
-            }
-            catch
-            {
-
-            }
-
+            await Data.TmpData.LoadPictureAsync(sender);
         }
 
         public Task RefreshAsync()
         {
+            list.Clear();
+            MasterListView.ItemsSource = list;
             return ((IRefreshable)mdc).RefreshAsync();
         }
 

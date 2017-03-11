@@ -242,3 +242,6 @@ ModelManifest.xml
 .fake/
 /APITest/SensitiveData/SensitiveData.cs
 /PixivUWP/_pkginfo.txt
+/PixivAndroid/PixivAndroid.csproj.bak
+/PixivAndroid/PixivAndroid.csproj.bak
+/PixivAndroid/PixivAndroid.csproj.bak

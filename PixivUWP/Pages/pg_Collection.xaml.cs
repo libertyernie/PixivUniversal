@@ -53,9 +53,9 @@ namespace PixivUWP.Pages
             mdc.MasterListView = masterListView;
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl != string.Empty;
+            args.Item1 = nexturl != string.Empty;
         }
 
         int nowpage = 1;
@@ -65,7 +65,7 @@ namespace PixivUWP.Pages
             var nowcount = list.Count;
             try
             {
-                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(Data.TmpData.CurrentAuth.Authorize.User.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
+                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(Data.TmpData.CurrentAuth.Authorize.User.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl);
                 nexturl = root.next_url ?? string.Empty;
                 foreach (var one in root.illusts)
                 {

@@ -41,6 +41,14 @@ namespace PixivUWP.Pages.DetailPage
         public BlankPage()
         {
             this.InitializeComponent();
+            changeLog.Text =
+                @"版本：v0.0.12.0β
+本版相较上版作出的改动：
+修复了多窗口逻辑混乱的问题
+
+请志愿测试人员重点测试：
+1、多图查看中会出现的乱序和闪退问题；
+2、按热门度的搜索排序（需要P站高级会员）；";
         }
     }
 }
