@@ -54,9 +54,9 @@ namespace PixivUWP.Pages
 
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl!=string.Empty;
+            args.Item1 = nexturl!=string.Empty;
         }
 
         string nexturl = null;

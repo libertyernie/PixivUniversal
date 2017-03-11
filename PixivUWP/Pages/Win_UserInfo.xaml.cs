@@ -57,9 +57,9 @@ namespace PixivUWP.Pages
         string nexturl = null;
         string nexturl_fav = null;
 
-        private void List_fav_HasMoreItemsEvent(ItemViewList<Work> sender, ValuePackage<bool> args)
+        private void List_fav_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl_fav != string.Empty;
+            args.Item1 = nexturl_fav != string.Empty;
         }
 
         private async void List_fav_LoadingMoreItems(ItemViewList<Work> sender, Tuple<OperationDeferral<uint>, uint> args)
@@ -108,9 +108,9 @@ namespace PixivUWP.Pages
             }
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl != string.Empty;
+            args.Item1= nexturl != string.Empty;
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)

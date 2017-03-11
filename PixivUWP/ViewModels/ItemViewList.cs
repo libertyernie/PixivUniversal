@@ -36,14 +36,14 @@ namespace PixivUWP.ViewModels
         //{
         //    get; set;
         //}
-        public event TypedEventHandler</*Book*/ItemViewList<T>, ValuePackage<bool>> HasMoreItemsEvent;
+        public event TypedEventHandler</*Book*/ItemViewList<T>, PackageTuple.WriteableTuple<bool>> HasMoreItemsEvent;
         public bool HasMoreItems
         {
             get
             {
-                var vp = new ValuePackage<bool>();
+                var vp = new PackageTuple.WriteableTuple<bool>(default(bool));
                 HasMoreItemsEvent.Invoke(this, vp);
-                return vp.Value;
+                return vp.Item1;
                 //if (IdList == null)
                 //{
                 //    return false;

@@ -53,9 +53,9 @@ namespace PixivUWP.Pages
             mdc.MasterListView = MasterListView;
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = nexturl != string.Empty;
+            args.Item1 = nexturl != string.Empty;
         }
 
         int nowpage = 1;

@@ -54,9 +54,9 @@ namespace PixivUWP.Pages
 
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = !isfinish;
+            args.Item1= !isfinish;
         }
 
         int nowpage = 1;
