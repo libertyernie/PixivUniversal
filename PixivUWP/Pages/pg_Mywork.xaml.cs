@@ -43,7 +43,7 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Mywork : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<IllustWork> list = new ItemViewList<IllustWork>();
         public pg_Mywork()
         {
             this.InitializeComponent();
@@ -51,22 +51,23 @@ namespace PixivUWP.Pages
             list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, Yinyue200.OperationDeferral.ValuePackage<bool> args)
+        private void List_HasMoreItemsEvent(ItemViewList<IllustWork> sender, PackageTuple.WriteableTuple<bool> args)
         {
-            args.Value = !isfinish;
+            args.Item1 = nexturl != string.Empty;
         }
 
         int nowpage = 1;
-        bool isfinish = false;
-        private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
+        string nexturl = null;
+        private async void List_LoadingMoreItems(ItemViewList<IllustWork> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
         {
             var nowcount = list.Count;
             try
             {
-                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.GetMyFollowingWorksAsync())
+                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetMyFollowingWorksAsync() : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
+                nexturl = root.next_url ?? string.Empty;
+                foreach (var one in root.illusts)
                 {
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
@@ -75,17 +76,12 @@ namespace PixivUWP.Pages
             }
             catch
             {
-                isfinish = true;
+                nexturl = string.Empty;
             }
             finally
             {
                 args.Item1.Complete((uint)(list.Count - nowcount));
             }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            MasterListView.ItemsSource = list;
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -97,24 +93,15 @@ namespace PixivUWP.Pages
 
         private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            try
-            {
-                var img = sender as Image;
-                if (img.DataContext != null)
-                {
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
-                    {
-                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                        img.Source = bitmap;
-                    }
-                }
-            }
-            catch { }
+            await Data.TmpData.LoadPictureAsync(sender);
         }
+
+
 
         public Task RefreshAsync()
         {
+            list.Clear();
+            MasterListView.ItemsSource = list;
             return ((IRefreshable)mdc).RefreshAsync();
         }
 

@@ -101,13 +101,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ContextFlyoutSetter.cs" />
+    <Compile Include="Controls\MyToast.xaml.cs" />
+    <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
+    <Compile Include="Data\DownloadManager.cs" />
     <Compile Include="Data\VersionHelper.cs" />
     <Compile Include="Data\WorkEqualityComparer.cs" />
     <Compile Include="Pages\DetailPage\BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DetailPage\IRefreshable.cs" />
+    <Compile Include="Pages\DetailPage\Win_WorkImgs.xaml.cs">
+      <DependentUpon>Win_WorkImgs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DetailPage\WorkDetailPage.xaml.cs">
       <DependentUpon>WorkDetailPage.xaml</DependentUpon>
     </Compile>
@@ -130,8 +137,17 @@
     <Compile Include="Pages\pg_Mywork.xaml.cs">
       <DependentUpon>pg_Mywork.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\pg_Search.xaml.cs">
+      <DependentUpon>pg_Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\pg_Settings.xaml.cs">
       <DependentUpon>pg_Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Win_Related.xaml.cs">
+      <DependentUpon>Win_Related.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Win_UserInfo.xaml.cs">
+      <DependentUpon>Win_UserInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgressBarVisualHelper.cs" />
     <Compile Include="ViewModels\ItemViewList.cs" />
@@ -162,6 +178,8 @@
   <ItemGroup>
     <Content Include="Assets\Avatar.png" />
     <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\beta-testing-logo.png" />
+    <Content Include="Assets\beta-testing.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
@@ -178,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\MyToast.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LoadingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +213,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\DetailPage\BlankPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DetailPage\Win_WorkImgs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,7 +248,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\pg_Search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\pg_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Win_Related.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Win_UserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,8 +284,8 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pixeez\PixivAPI.csproj">
-      <Project>{06950fe8-5f63-4931-83df-b70002281cb5}</Project>
+    <ProjectReference Include="..\PixivAPI\PixivAPI.csproj">
+      <Project>{64a77199-1953-453a-9f5e-e387fb022b9d}</Project>
       <Name>PixivAPI</Name>
     </ProjectReference>
   </ItemGroup>

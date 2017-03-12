@@ -23,32 +23,23 @@ using System.Threading.Tasks;
 
 namespace Pixeez.Objects
 {
-    public class Rank
+    public class UsersFavoriteWork
     {
 
-        [JsonProperty("content")]
-        public string Content { get; set; }
+        [JsonProperty("id")]
+        public long? Id { get; set; }
 
-        [JsonProperty("mode")]
-        public string Mode { get; set; }
+        [JsonProperty("comment")]
+        public string Comment { get; set; }
 
-        [JsonProperty("date")]
-        public DateTimeOffset Date { get; set; }
+        [JsonProperty("tags")]
+        public IList<string> Tags { get; set; }
 
-        [JsonProperty("works")]
-        public IList<RankWork> Works { get; set; }
-    }
-
-    public class RankWork
-    {
-
-        [JsonProperty("rank")]
-        public int? Rank { get; set; }
-
-        [JsonProperty("previous_rank")]
-        public int? PreviousRank { get; set; }
+        [JsonProperty("publicity")]
+        public string Publicity { get; set; }
 
         [JsonProperty("work")]
-        public Work Work { get; set; }
+        public NormalWork Work { get; set; }
     }
+
 }

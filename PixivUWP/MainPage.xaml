@@ -30,7 +30,59 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     </Page.Transitions>
 
     <Page.Resources>
-
+        <Style x:Key="AutoSuggestWithoutBorder" TargetType="AutoSuggestBox">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="TextBoxStyle" Value="{StaticResource AutoSuggestBoxTextBoxStyle}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AutoSuggestBox">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="Orientation">
+                                    <VisualState x:Name="Landscape"/>
+                                    <VisualState x:Name="Portrait"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <TextBox x:Name="TextBox"
+                Style="{TemplateBinding TextBoxStyle}"
+                PlaceholderText="{TemplateBinding PlaceholderText}"
+                Header="{TemplateBinding Header}"
+                Width="{TemplateBinding Width}"
+                BorderThickness="1"
+                ScrollViewer.BringIntoViewOnFocusChange="False"
+                Canvas.ZIndex="0"
+                Margin="0"
+                DesiredCandidateWindowAlignment="BottomEdge"/>
+                            <Popup x:Name="SuggestionsPopup">
+                                <Border x:Name="SuggestionsContainer" BorderThickness="0">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform x:Name="UpwardTransform"/>
+                                    </Border.RenderTransform>
+                                    <ListView
+            x:Name="SuggestionsList"
+            Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+            BorderThickness="0"
+            BorderBrush="{ThemeResource SystemControlForegroundChromeHighBrush}"
+            DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
+            IsItemClickEnabled="True"
+            ItemTemplate="{TemplateBinding ItemTemplate}"
+            ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+            ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
+            MaxHeight="{ThemeResource AutoSuggestListMaxHeight}"
+            Margin="{ThemeResource AutoSuggestListMargin}"
+            Padding="{ThemeResource AutoSuggestListPadding}">
+                                        <ListView.ItemContainerTransitions>
+                                            <TransitionCollection />
+                                        </ListView.ItemContainerTransitions>
+                                    </ListView>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="DimButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -159,9 +211,87 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBlock Text="{Binding Label}" VerticalAlignment="Center" Margin="18 0 0 0"/>
             </StackPanel>
         </DataTemplate>
-        <Style x:Key="ToggleButtonStyle1" TargetType="ToggleButton">
+        <Style x:Key="LockButtonStyle" TargetType="ToggleButton">
             <Setter Property="MinHeight" Value="32" />
             <Setter Property="MinWidth" Value="48" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid Background="{TemplateBinding Background}" x:Name="LayoutRoot">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(Grid.Background)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(Grid.Background)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(Grid.Background)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedPressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(Grid.Background)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedPointOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(Grid.Background)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedDisabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Page.Resources>
     <Grid Loaded="Page_Loaded" Unloaded="Page_Unloaded">
@@ -184,21 +314,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <Button Style="{StaticResource DimButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Refresh" Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Refresh_Click" >
                 <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
-            <ToggleButton Style="{StaticResource ToggleButtonStyle1}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Lock" Grid.Column="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Lock_Click">
+            <ToggleButton Style="{StaticResource LockButtonStyle}" BorderThickness="0" Width="48" Height="32" x:Name="btn_Lock" Grid.Column="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Click="btn_Lock_Click">
                 <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </ToggleButton>
             <Grid x:Name="Title" Grid.Column="3" Background="Transparent">
-                <Image Source="Assets/SplashScreen.scale-200.png" Height="30"/>
+                <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Center">
+                    <Image Source="Assets/SplashScreen.scale-200.png" Height="30"/>
+                    <Image Source="Assets/beta-testing.png" Height="30" Margin="-10 0 0 0"/>
+                </StackPanel>
             </Grid>
             <TextBlock Grid.Column="4" x:Name="version" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0"/>
         </Grid>
-        <SplitView x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}" DisplayMode="CompactOverlay" OpenPaneLength="256">
+        <SplitView x:Name="contentroot" Grid.Row="1" Background="{ThemeResource SystemControlHighlightListLowBrush}" DisplayMode="CompactOverlay" OpenPaneLength="256" PaneClosing="contentroot_PaneClosing">
             <Frame x:Name="MainFrame" Grid.Column="1"/>
             <SplitView.Pane>
                 <Grid x:Name="MainMenu" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0" Grid.ColumnSpan="2" Width="256" HorizontalAlignment="Left">
                     <Grid.RowDefinitions>
                         <RowDefinition x:Name="MenuToggleButtonRow" Height="48"/>
                         <RowDefinition x:Name="UserAvatarRow" Height="66"/>
+                        <RowDefinition x:Name="SearchBoxRow" Height="48"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition x:Name="SettingsButtonRow" Height="auto"/>
                     </Grid.RowDefinitions>
@@ -215,16 +349,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                 </Ellipse.Fill>
                             </Ellipse>
                             <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
-                                <TextBlock x:Name="tb_Username" Text="这是用户名"/>
-                                <TextBlock x:Name="tb_Email" Text="邮件" FontSize="12" Foreground="Gray"/>
+                                <TextBlock x:Name="tb_Username" Text="用户昵称"/>
+                                <TextBlock x:Name="tb_Email" Text="邮箱" FontSize="12" Foreground="Gray"/>
                             </StackPanel>
                         </Grid>
                     </Button>
+                    <AutoSuggestBox x:Name="Searchbox" QuerySubmitted="Searchbox_QuerySubmitted" Grid.Row="2" QueryIcon="Find" PlaceholderText="搜索Pixiv…" VerticalAlignment="Center" Style="{StaticResource AutoSuggestWithoutBorder}" Visibility="Collapsed" Opacity="0" Margin="5 0"/>
+                    <Button x:Name="SearchBtn" Grid.Row="2" Style="{StaticResource DimButtonStyle}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="48" Width="48" Click="SearchBtn_Click">
+                        <TextBlock FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
                     <ToggleButton x:Name="MenuToggle" Click="MenuToggle_Click" IsChecked="False" Grid.Row="0" Style="{StaticResource TogglePaneButtonStyle}" Width="48" Height="48"/>
-                    <ListView x:Name="MenuItemList" Grid.Row="2" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}" SelectionChanged="MenuItemList_SelectionChanged"/>
-                    <ListView x:Name="MenuBottomItemList" Grid.Row="3" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuBottomItems}" SelectionChanged="MenuBottomItemList_SelectionChanged" />
-
-
+                    <ListView x:Name="MenuItemList" Grid.Row="3" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuItems}" SelectionChanged="MenuItemList_SelectionChanged"/>
+                    <ListView x:Name="MenuBottomItemList" Grid.Row="4" ItemTemplate="{StaticResource MenuItemTemplate}" ItemsSource="{Binding menuBottomItems}" SelectionChanged="MenuBottomItemList_SelectionChanged" />
                 </Grid>
             </SplitView.Pane>
         </SplitView>

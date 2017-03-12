@@ -21,9 +21,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:local="using:PixivUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap"><Bold>下载任务</Bold><LineBreak></LineBreak >（如果下载长期无法完成，请前往设置禁用后台下载）</TextBlock>
+        <ListView x:Name="listview" SelectionMode="None" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:DownloadTask">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Name}"/>
+                        <ProgressBar Maximum="{x:Bind MaxValue}" Value="{x:Bind Value}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <CommandBar Grid.Row="2">
+            <AppBarButton x:Name="opendownloadpos"  Label="打开下载位置" Icon="Folder" Click="AppBarButton_Click"/>
+            <AppBarButton x:Name="cancelall" Label="取消所有" Icon="Cancel" Click="cancelall_Click"/>
+        </CommandBar>
     </Grid>
 </Page>

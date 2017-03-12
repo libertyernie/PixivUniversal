@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:local="using:PixivUWP.Pages.DetailPage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:PixivUWP.Controls"
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -31,10 +32,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <Image x:Name="bigimg" />
         <ProgressBar x:Name="pro" ></ProgressBar>
         <ScrollViewer  Grid.Row="1">
-            <TextBlock><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Run x:Name="user"></Run><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+            <TextBlock TextWrapping="Wrap"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Hyperlink Click="Hyperlink_Click"><Run x:Name="user"></Run></Hyperlink><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
         </ScrollViewer>
         <CommandBar Grid.Row="2">
-            <AppBarToggleButton x:Name="fs" Label="收藏" Icon="Favorite" Click="fs_Click"/>
+            <AppBarButton x:Name="relate" Label="相关作品"  Icon="Link" Click="relate_Click"/>
+            <AppBarButton Visibility="Collapsed" x:Name="watchbigimg" Label="查看全部" Click="watchbigimg_Click" Icon="ViewAll"/>
+            <AppBarButton x:Name="downloadbutton" Label="下载" Icon="Download" Click="AppBarButton_Click"/>
+            <AppBarToggleButton x:Name="fs" Label="收藏" Icon="Favorite" Click="fs_Click" Loaded="fs_Loaded">
+                <controls:ContextFlyoutSetter.CompatibleContextFlyout>
+                    <Flyout>
+                        <StackPanel>
+                            <TextBox x:Name="inputbox" Loaded="inputbox_Loaded"/>
+                            <Button Click="Button_Click">OK</Button>
+                        </StackPanel>
+                    </Flyout>
+                </controls:ContextFlyoutSetter.CompatibleContextFlyout>
+            </AppBarToggleButton>
+            <AppBarToggleButton x:Name="gz" Label="关注该作者" Icon="AddFriend" Click="gz_Click" />
+
         </CommandBar>
     </Grid>
 </Page>

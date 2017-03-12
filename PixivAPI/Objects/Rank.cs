@@ -23,9 +23,32 @@ using System.Threading.Tasks;
 
 namespace Pixeez.Objects
 {
-    public class UsersWork:Work
+    public class Rank
     {
-        [JsonProperty("sanity_level")]
-        public string SanityLevel { get; set; }
+
+        [JsonProperty("content")]
+        public string Content { get; set; }
+
+        [JsonProperty("mode")]
+        public string Mode { get; set; }
+
+        [JsonProperty("date")]
+        public DateTimeOffset Date { get; set; }
+
+        [JsonProperty("works")]
+        public IList<RankWork> Works { get; set; }
+    }
+
+    public class RankWork
+    {
+
+        [JsonProperty("rank")]
+        public int? Rank { get; set; }
+
+        [JsonProperty("previous_rank")]
+        public int? PreviousRank { get; set; }
+
+        [JsonProperty("work")]
+        public NormalWork Work { get; set; }
     }
 }
