@@ -33,6 +33,40 @@ namespace PixivUWP.Data
         public static string Password;
         public static Pixeez.AuthResult CurrentAuth;
         public static Dictionary<object, int> OpenedWindows = new Dictionary<object, int>();
+
+
+        public static bool GetEnableAutoLoadWorkImg(Image obj)
+        {
+            return (bool)obj.GetValue(EnableAutoLoadWorkImgProperty);
+        }
+
+        public static void SetEnableAutoLoadWorkImg(Image obj, bool value)
+        {
+            obj.SetValue(EnableAutoLoadWorkImgProperty, value);
+        }
+
+        private static void OnEnableAutoLoadWorkImgChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is bool vl&&obj is Image img)
+            {
+                if(vl)
+                    img.DataContextChanged += Img_DataContextChanged;
+                else
+                    img.DataContextChanged -= Img_DataContextChanged;
+            }
+
+        }
+
+        private async static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            await LoadPictureAsync(sender);
+        }
+
+        // Using a DependencyProperty as the backing store for EnableAutoLoadWorkImg.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EnableAutoLoadWorkImgProperty =
+            DependencyProperty.RegisterAttached("EnableAutoLoadWorkImg", typeof(bool), typeof(Image), new PropertyMetadata(false, OnEnableAutoLoadWorkImgChanged));
+
+
         public static async Task LoadPictureAsync(FrameworkElement sender)
         {
             try

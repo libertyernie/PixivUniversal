@@ -91,11 +91,6 @@ namespace PixivUWP.Pages
 
 
 
-        private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            await Data.TmpData.LoadPictureAsync(sender);
-        }
-
 
 
         public Task RefreshAsync()

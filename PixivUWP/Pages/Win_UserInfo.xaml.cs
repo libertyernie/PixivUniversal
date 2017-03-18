@@ -118,10 +118,6 @@ namespace PixivUWP.Pages
             (sender == MasterListView?mdc:mdc_fav).MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
         }
 
-        private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            await Data.TmpData.LoadPictureAsync(sender);
-        }
 
         User pix_user;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
