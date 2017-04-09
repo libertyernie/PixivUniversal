@@ -41,7 +41,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <LineBreak/><LineBreak/>
             <Bold>友情链接</Bold><LineBreak/>
             <!--请自行在此添加-->
-            <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/><LineBreak/>
+            <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/>
+            <Hyperlink Click="Hyperlink_Click2">MoeSpirit</Hyperlink><LineBreak/><LineBreak/>
            <Bold>设置</Bold>
             </TextBlock>
             <ComboBox x:Name="backpolicy" Header="后台下载策略(仅对新启动的下载有效)" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,0">

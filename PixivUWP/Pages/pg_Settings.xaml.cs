@@ -56,6 +56,11 @@ namespace PixivUWP.Pages
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://pdp/?productid=9nblggh1xvd2", UriKind.Absolute));
         }
 
+        private async void Hyperlink_Click2(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/moespirit", UriKind.Absolute));
+        }
+
         private void backpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Data.AppDataHelper.SetValue("BackgroundTransferCostPolicy", backpolicy.SelectedIndex);
