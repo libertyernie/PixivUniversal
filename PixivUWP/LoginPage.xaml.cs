@@ -55,10 +55,10 @@ namespace PixivUWP
             if (AppDataHelper.GetValue("upasswd") != null)
                 txt_Password.Password = AppDataHelper.GetValue("upasswd") as string;
             if (AppDataHelper.GetValue("isauto") != null)
-                s_auto.IsOn = Convert.ToBoolean(AppDataHelper.GetValue("isauto") as string);
+                s_auto.IsChecked = Convert.ToBoolean(AppDataHelper.GetValue("isauto") as string);
             if (AppDataHelper.GetValue("isrem") != null)
-                s_remember.IsOn = Convert.ToBoolean(AppDataHelper.GetValue("isrem") as string);
-            if (s_auto.IsOn)
+                s_remember.IsChecked = Convert.ToBoolean(AppDataHelper.GetValue("isrem") as string);
+            if (s_auto.IsChecked==true)
                 beginLoading();
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
@@ -116,12 +116,12 @@ namespace PixivUWP
         private void storeData()
         {
             AppDataHelper.SetValue("uname", txt_UserName.Text);
-            if (s_remember.IsOn)
+            if (s_remember.IsChecked==true)
                 AppDataHelper.SetValue("upasswd", txt_Password.Password);
             else
                 AppDataHelper.SetValue("upasswd", "");
-            AppDataHelper.SetValue("isrem", s_remember.IsOn.ToString());
-            AppDataHelper.SetValue("isauto", s_auto.IsOn.ToString());
+            AppDataHelper.SetValue("isrem", s_remember.IsChecked.ToString());
+            AppDataHelper.SetValue("isauto", s_auto.IsChecked.ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -138,14 +138,14 @@ namespace PixivUWP
 
         private void s_auto_Toggled(object sender, RoutedEventArgs e)
         {
-            if((sender as ToggleSwitch).IsOn)
-                s_remember.IsOn = true;
+            if((sender as CheckBox).IsChecked==true)
+                s_remember.IsChecked = true;
         }
 
         private void s_remember_Toggled(object sender, RoutedEventArgs e)
         {
-            if(!(sender as ToggleSwitch).IsOn)
-                s_auto.IsOn = false;
+            if((sender as CheckBox).IsChecked!=true)
+                s_auto.IsChecked = false;
         }
     }
 }

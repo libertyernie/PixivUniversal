@@ -47,20 +47,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             Grid.Row="1"
             ItemContainerTransitions="{x:Null}"
             IsItemClickEnabled="True"
-            ItemClick="MasterListView_ItemClick">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Image Height="200" Width="200" DataContextChanged="Image_DataContextChanged" ></Image>
-                                <TextBlock Text="{Binding Tags,Converter={StaticResource TagsToStr}}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+            ItemClick="MasterListView_ItemClick" Style="{StaticResource workitemstyle}">
                 </ListView>
             </Grid>
         </local:MasterDetailControl.MasterContent>
