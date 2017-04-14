@@ -42,23 +42,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBox Grid.Row="0" Margin="20 0" x:Name="txt_UserName" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1" InputScope="Url" IsSpellCheckEnabled="False">
                     <TextBox.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock FontSize="10">Pixiv ID或邮箱地址</TextBlock>
+                            <TextBlock FontSize="10" x:Uid="headerNameEmail"/>
                         </DataTemplate>
                     </TextBox.HeaderTemplate>
                 </TextBox>
                 <PasswordBox Grid.Row="1" Margin="20 0" x:Name="txt_Password" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1">
                     <PasswordBox.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock FontSize="10">密码</TextBlock>
+                            <TextBlock FontSize="10" x:Uid="headerPassword"/>
                         </DataTemplate>
                     </PasswordBox.HeaderTemplate>
                 </PasswordBox>
-                <CheckBox x:Name="s_remember" Grid.Row="2" Margin="20,0" Content="记住密码" Checked="s_remember_Toggled" Unchecked="s_remember_Toggled"/>
-                <CheckBox x:Name="s_auto" Grid.Row="2" HorizontalAlignment="Right" Margin="84,0,-16,0" Content="自动登录" Unchecked="s_auto_Toggled" Checked="s_auto_Toggled"/>
-                <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1">
-                    登录
-                </Button>
-                <HyperlinkButton Margin="0,0,20,0" Grid.Row="3" NavigateUri="http://www.pixiv.net" HorizontalAlignment="Right" VerticalAlignment="Bottom">注册</HyperlinkButton>
+                <CheckBox x:Name="s_remember" Grid.Row="2" Margin="20,0" x:Uid="chkboxRem" Checked="s_remember_Toggled" Unchecked="s_remember_Toggled"/>
+                <CheckBox x:Name="s_auto" Grid.Row="2" HorizontalAlignment="Right" Margin="84,0,-16,0" x:Uid="chkboxAuto" Unchecked="s_auto_Toggled" Checked="s_auto_Toggled"/>
+                <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1" x:Uid="btnLogin"/>
+                <HyperlinkButton Margin="0,0,20,0" Grid.Row="3" NavigateUri="http://www.pixiv.net" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Uid="hyperlkSignup"/>
             </Grid>
         </Grid>
     </Grid>

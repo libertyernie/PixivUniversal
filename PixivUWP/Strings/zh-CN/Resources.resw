@@ -129,11 +129,11 @@
     <value>记住密码</value>
     <comment>登录界面记住密码复选框说明</comment>
   </data>
-  <data name="headerNameEmail.Content" xml:space="preserve">
+  <data name="headerNameEmail.Text" xml:space="preserve">
     <value>Pixiv ID或邮箱地址</value>
     <comment>登录界面用户名输入框说明</comment>
   </data>
-  <data name="headerPassword.Content" xml:space="preserve">
+  <data name="headerPassword.Text" xml:space="preserve">
     <value>密码</value>
     <comment>登录界面密码输入框说明</comment>
   </data>
