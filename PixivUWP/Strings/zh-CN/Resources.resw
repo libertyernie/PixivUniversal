@@ -133,6 +133,10 @@
     <value>记住密码</value>
     <comment>登录界面记住密码复选框说明</comment>
   </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>反馈</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
   <data name="headerNameEmail.Text" xml:space="preserve">
     <value>Pixiv ID或邮箱地址</value>
     <comment>登录界面用户名输入框说明</comment>
@@ -144,5 +148,33 @@
   <data name="hyperlkSignup.Content" xml:space="preserve">
     <value>注册</value>
     <comment>注册超链接文字</comment>
+  </data>
+  <data name="pgCollection" xml:space="preserve">
+    <value>我的收藏</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="pgDownload" xml:space="preserve">
+    <value>下载任务</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="pgFeeds" xml:space="preserve">
+    <value>最新动态</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="pgMain" xml:space="preserve">
+    <value>作品发现</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="pgMywork" xml:space="preserve">
+    <value>我的关注</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="pgSettings" xml:space="preserve">
+    <value>设置</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="searchBox.PlaceholderText" xml:space="preserve">
+    <value>搜索Pixiv…</value>
+    <comment>搜索框提示文字</comment>
   </data>
 </root>

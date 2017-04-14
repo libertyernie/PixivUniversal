@@ -349,12 +349,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                 </Ellipse.Fill>
                             </Ellipse>
                             <StackPanel Grid.Column="1" Height="Auto" Orientation="Vertical" VerticalAlignment="Center" Margin="11 0 0 0">
-                                <TextBlock x:Name="tb_Username" Text="用户昵称"/>
-                                <TextBlock x:Name="tb_Email" Text="邮箱" FontSize="12" Foreground="Gray"/>
+                                <TextBlock x:Name="tb_Username"/>
+                                <TextBlock x:Name="tb_Email" FontSize="12" Foreground="Gray"/>
                             </StackPanel>
                         </Grid>
                     </Button>
-                    <AutoSuggestBox x:Name="Searchbox" QuerySubmitted="Searchbox_QuerySubmitted" Grid.Row="2" QueryIcon="Find" PlaceholderText="搜索Pixiv…" VerticalAlignment="Center" Style="{StaticResource AutoSuggestWithoutBorder}" Visibility="Collapsed" Opacity="0" Margin="5 0"/>
+                    <AutoSuggestBox x:Name="Searchbox" QuerySubmitted="Searchbox_QuerySubmitted" Grid.Row="2" QueryIcon="Find" x:Uid="searchBox" VerticalAlignment="Center" Style="{StaticResource AutoSuggestWithoutBorder}" Visibility="Collapsed" Opacity="0" Margin="5 0"/>
                     <Button x:Name="SearchBtn" Grid.Row="2" Style="{StaticResource DimButtonStyle}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="48" Width="48" Click="SearchBtn_Click">
                         <TextBlock FontSize="16" FontFamily="Segoe MDL2 Assets" Text="" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Button>

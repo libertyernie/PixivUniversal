@@ -60,6 +60,14 @@ namespace PixivUWP
         public MainPage()
         {
             this.InitializeComponent();
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            menuItems[0].Label = loader.GetString("pgMain");
+            menuItems[1].Label = loader.GetString("pgFeeds");
+            menuItems[2].Label = loader.GetString("pgMywork");
+            menuItems[3].Label = loader.GetString("pgCollection");
+            menuItems[4].Label = loader.GetString("pgDownload");
+            menuBottomItems[0].Label = loader.GetString("pgSettings");
+            menuBottomItems[1].Label = loader.GetString("Feedback");
             version.Text = "v" + Data.VersionHelper.GetThisAppVersionString().ToString() + "β";
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
@@ -120,16 +128,16 @@ namespace PixivUWP
 
         public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
         {
-            new MenuItem() {Symbol="",Label="作品发现" },
-            new MenuItem() {Symbol="",Label="最新动态" },
-            new MenuItem() {Symbol="",Label="我的关注" },
-            new MenuItem() {Symbol="",Label="我的收藏" },
-            new MenuItem() {Symbol="",Label="下载任务" }
+            new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""}
         };
         public ObservableCollection<MenuItem> menuBottomItems = new ObservableCollection<MenuItem>()
         {
-            new MenuItem() {Symbol="",Label="设置" },
-            new MenuItem() {Symbol="",Label="反馈" },
+            new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
         };
 
         private void MenuToggle_Click(object sender, RoutedEventArgs e)
