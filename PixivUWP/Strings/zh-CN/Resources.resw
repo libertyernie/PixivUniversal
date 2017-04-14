@@ -225,6 +225,26 @@
     <value>设置</value>
     <comment>枢纽标题</comment>
   </data>
+  <data name="abbAddFriend.Label" xml:space="preserve">
+    <value>关注该作者</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbDownload.Label" xml:space="preserve">
+    <value>下载</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbFavorite.Label" xml:space="preserve">
+    <value>收藏</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbRelate.Label" xml:space="preserve">
+    <value>相关作品</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbWatchBig.Label" xml:space="preserve">
+    <value>查看大图</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
   <data name="aboutText1.Text" xml:space="preserve">
     <value>这是一个使用C#语言编写的，基于Pixiv网站的第三方应用。</value>
     <comment>关于说明</comment>
