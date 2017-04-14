@@ -285,4 +285,12 @@
     <value>不考虑是否被采纳，排名不分先后，不包含主要开发者</value>
     <comment>贡献者说明</comment>
   </data>
+  <data name="contriText6.Text" xml:space="preserve">
+    <value>以下来自IT之家：</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText7.Text" xml:space="preserve">
+    <value>以下来自内测群：</value>
+    <comment>贡献者说明</comment>
+  </data>
 </root>
