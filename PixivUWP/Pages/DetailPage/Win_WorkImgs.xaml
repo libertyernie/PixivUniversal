@@ -39,8 +39,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarToggleButton Label="全屏" Icon="FullScreen" Click="AppBarButton_Click"/>
-            <AppBarButton Label="下载当前" Icon="Download" Click="AppBarButton_Click_1"/>
+            <AppBarToggleButton x:Uid="abbFullScreen" Icon="FullScreen" Click="AppBarButton_Click"/>
+            <AppBarButton x:Uid="abbDownloadThis" Icon="Download" Click="AppBarButton_Click_1"/>
         </CommandBar>
     </Page.BottomAppBar>
 
