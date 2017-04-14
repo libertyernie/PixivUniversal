@@ -29,7 +29,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="Wrap"><Bold>图片下载</Bold><LineBreak></LineBreak >（遇到无法下载问题，可尝试禁用后台下载解决）</TextBlock>
+        <StackPanel Orientation="Vertical">
+            <TextBlock FontWeight="Bold" x:Uid="pgDownload"/>
+            <TextBlock x:Uid="downloadHint"/>
+        </StackPanel>
         <ListView x:Name="listview" SelectionMode="None" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:DownloadTask">
@@ -41,8 +44,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </ListView.ItemTemplate>
         </ListView>
         <CommandBar Grid.Row="2">
-            <AppBarButton x:Name="opendownloadpos"  Label="下载文件夹" Icon="Folder" Click="AppBarButton_Click"/>
-            <AppBarButton x:Name="cancelall" Label="取消所有" Icon="Cancel" Click="cancelall_Click"/>
+            <AppBarButton x:Name="opendownloadpos"  x:Uid="downloadPos" Icon="Folder" Click="AppBarButton_Click"/>
+            <AppBarButton x:Name="cancelall" x:Uid="cancelAll" Icon="Cancel" Click="cancelall_Click"/>
         </CommandBar>
     </Grid>
 </Page>

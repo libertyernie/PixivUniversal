@@ -38,7 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </Grid.RowDefinitions>
                 <Grid Background="WhiteSmoke">
                     <TextBlock
-                    Text="作品发现"
+                    x:Uid="pgMain"
                     Width="Auto"
                     Margin="16"
                     FontSize="18"

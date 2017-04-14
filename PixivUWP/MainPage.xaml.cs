@@ -61,12 +61,12 @@ namespace PixivUWP
         {
             this.InitializeComponent();
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            menuItems[0].Label = loader.GetString("pgMain");
-            menuItems[1].Label = loader.GetString("pgFeeds");
-            menuItems[2].Label = loader.GetString("pgMywork");
-            menuItems[3].Label = loader.GetString("pgCollection");
-            menuItems[4].Label = loader.GetString("pgDownload");
-            menuBottomItems[0].Label = loader.GetString("pgSettings");
+            menuItems[0].Label = loader.GetString("Main");
+            menuItems[1].Label = loader.GetString("Feeds");
+            menuItems[2].Label = loader.GetString("Mywork");
+            menuItems[3].Label = loader.GetString("Collection");
+            menuItems[4].Label = loader.GetString("Download");
+            menuBottomItems[0].Label = loader.GetString("Settings");
             menuBottomItems[1].Label = loader.GetString("Feedback");
             version.Text = "v" + Data.VersionHelper.GetThisAppVersionString().ToString() + "β";
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;

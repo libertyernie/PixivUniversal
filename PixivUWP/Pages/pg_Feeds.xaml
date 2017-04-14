@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </Grid.RowDefinitions>
                 <Grid Background="WhiteSmoke">
                     <TextBlock
-                    Text="最新动态"
+                    x:Uid="pgFeeds"
                     Width="Auto"
                     Margin="16"
                     FontSize="18"

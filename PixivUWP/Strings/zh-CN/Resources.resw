@@ -125,6 +125,10 @@
     <value>哎呀~登录失败了！请检查网络连接和凭据后点此重试</value>
     <comment>登录失败按钮文字</comment>
   </data>
+  <data name="cancelAll.Label" xml:space="preserve">
+    <value>取消所有</value>
+    <comment>下载页面AppBar按钮文字</comment>
+  </data>
   <data name="chkboxAuto.Content" xml:space="preserve">
     <value>自动登录</value>
     <comment>登录界面自动登录复选框说明</comment>
@@ -133,8 +137,28 @@
     <value>记住密码</value>
     <comment>登录界面记住密码复选框说明</comment>
   </data>
+  <data name="Collection" xml:space="preserve">
+    <value>我的收藏</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>下载任务</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="downloadHint.Text" xml:space="preserve">
+    <value>（遇到无法下载问题，可尝试禁用后台下载解决）</value>
+    <comment>下载页面提示语</comment>
+  </data>
+  <data name="downloadPos.Label" xml:space="preserve">
+    <value>下载文件夹</value>
+    <comment>下载页面AppBar按钮文字</comment>
+  </data>
   <data name="Feedback" xml:space="preserve">
     <value>反馈</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="Feeds" xml:space="preserve">
+    <value>最新动态</value>
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
   <data name="headerNameEmail.Text" xml:space="preserve">
@@ -149,32 +173,40 @@
     <value>注册</value>
     <comment>注册超链接文字</comment>
   </data>
-  <data name="pgCollection" xml:space="preserve">
-    <value>我的收藏</value>
-    <comment>左侧汉堡菜单提示文字</comment>
-  </data>
-  <data name="pgDownload" xml:space="preserve">
-    <value>下载任务</value>
-    <comment>左侧汉堡菜单提示文字</comment>
-  </data>
-  <data name="pgFeeds" xml:space="preserve">
-    <value>最新动态</value>
-    <comment>左侧汉堡菜单提示文字</comment>
-  </data>
-  <data name="pgMain" xml:space="preserve">
+  <data name="Main" xml:space="preserve">
     <value>作品发现</value>
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
-  <data name="pgMywork" xml:space="preserve">
+  <data name="Mywork" xml:space="preserve">
     <value>我的关注</value>
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
-  <data name="pgSettings" xml:space="preserve">
-    <value>设置</value>
-    <comment>左侧汉堡菜单提示文字</comment>
+  <data name="pgCollection.Text" xml:space="preserve">
+    <value>我的收藏</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgDownload.Text" xml:space="preserve">
+    <value>下载任务</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgFeeds.Text" xml:space="preserve">
+    <value>最新动态</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgMain.Text" xml:space="preserve">
+    <value>作品发现</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgMywork.Text" xml:space="preserve">
+    <value>我的关注</value>
+    <comment>页标题</comment>
   </data>
   <data name="searchBox.PlaceholderText" xml:space="preserve">
     <value>搜索Pixiv…</value>
     <comment>搜索框提示文字</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+    <comment>左侧汉堡菜单提示文字</comment>
   </data>
 </root>
