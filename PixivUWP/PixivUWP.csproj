@@ -102,6 +102,7 @@
     <None Include="PixivUWP_StoreKey.pfx" />
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
