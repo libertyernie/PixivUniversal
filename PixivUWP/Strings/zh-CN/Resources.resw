@@ -209,4 +209,20 @@
     <value>设置</value>
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
+  <data name="comboPolicy.Header" xml:space="preserve">
+    <value>后台下载策略(仅对新启动的下载有效)</value>
+    <comment>组合框提示语</comment>
+  </data>
+  <data name="pivotAbout.Header" xml:space="preserve">
+    <value>关于</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotContributors.Header" xml:space="preserve">
+    <value>贡献者</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotSettings.Header" xml:space="preserve">
+    <value>设置</value>
+    <comment>枢纽标题</comment>
+  </data>
 </root>
