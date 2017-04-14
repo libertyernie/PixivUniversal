@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem x:Uid="pivotSettings">
             <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,0">
@@ -55,9 +55,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </TextBlock>
         </PivotItem>
         <PivotItem x:Uid="pivotContributors">
-            <TextBlock TextWrapping="Wrap" Margin="5,5,5,0">
-                <Run x:Uid="contriText1"/><LineBreak/><Run x:Uid="contriText2"/>
-            </TextBlock>
+            <StackPanel Orientation="Vertical">
+                <TextBlock TextWrapping="Wrap" Margin="5,5,5,0">
+                <Run x:Uid="contriText1"/><LineBreak/><Run x:Uid="contriText2"/><LineBreak/><LineBreak/>
+                <Bold><Run x:Uid="contriText3"/></Bold><LineBreak/>
+                <Run x:Uid="contriText4"/><LineBreak/>
+                <Run x:Uid="contriText5"/>
+                </TextBlock>
+            </StackPanel>
         </PivotItem>
     </Pivot>
 </Page>

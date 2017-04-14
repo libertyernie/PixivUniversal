@@ -273,4 +273,16 @@
     <value>正因为各位，我们才能变得更好！</value>
     <comment>贡献者说明</comment>
   </data>
+  <data name="contriText3.Text" xml:space="preserve">
+    <value>Pixiv UWP贡献人员名单</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText4.Text" xml:space="preserve">
+    <value>包含建议、意见、批评和设计</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText5.Text" xml:space="preserve">
+    <value>不考虑是否被采纳，排名不分先后，不包含主要开发者</value>
+    <comment>贡献者说明</comment>
+  </data>
 </root>

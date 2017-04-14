@@ -189,6 +189,8 @@
     <Content Include="Assets\beta-testing.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Contributors_ithome.txt" />
+    <Content Include="Contributors_qqgroup.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
