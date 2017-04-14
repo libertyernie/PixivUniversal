@@ -121,6 +121,10 @@
     <value>登录</value>
     <comment>登录按钮文字</comment>
   </data>
+  <data name="btnLoginError.Content" xml:space="preserve">
+    <value>哎呀~登录失败了！请检查网络连接和凭据后点此重试</value>
+    <comment>登录失败按钮文字</comment>
+  </data>
   <data name="chkboxAuto.Content" xml:space="preserve">
     <value>自动登录</value>
     <comment>登录界面自动登录复选框说明</comment>
