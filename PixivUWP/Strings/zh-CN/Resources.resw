@@ -321,4 +321,28 @@
     <value>全屏</value>
     <comment>大图页面底部按钮说明</comment>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>操作失败</value>
+    <comment>提示语</comment>
+  </data>
+  <data name="ErrorLoading" xml:space="preserve">
+    <value>加载失败</value>
+    <comment>提示语</comment>
+  </data>
+  <data name="pgRelated.Text" xml:space="preserve">
+    <value>相关作品</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pivotCollection.Header" xml:space="preserve">
+    <value>收藏</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotUserInfo.Header" xml:space="preserve">
+    <value>个人资料</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotWorks.Header" xml:space="preserve">
+    <value>作品</value>
+    <comment>枢纽标题</comment>
+  </data>
 </root>

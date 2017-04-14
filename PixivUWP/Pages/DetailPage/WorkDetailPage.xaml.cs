@@ -34,9 +34,15 @@ namespace PixivUWP.Pages.DetailPage
     /// </summary>
     public sealed partial class WorkDetailPage : Windows.UI.Xaml.Controls.Page, IRefreshable
     {
+        string err1 = "";
+        string err2 = "";
+
         public WorkDetailPage()
         {
             this.InitializeComponent();
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            err1 = loader.GetString("ErrorLoading");
+            err2 = loader.GetString("Error");
         }
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -110,7 +116,7 @@ namespace PixivUWP.Pages.DetailPage
             }
             catch
             {
-                await new Windows.UI.Popups.MessageDialog("加载失败").ShowAsync();
+                await new Windows.UI.Popups.MessageDialog(err1).ShowAsync();
             }
             finally
             {
@@ -245,7 +251,7 @@ namespace PixivUWP.Pages.DetailPage
             }
             catch
             {
-                new Controls.MyToast("操作失败").Show();
+                new Controls.MyToast(err2).Show();
             }
             finally
             {
