@@ -26,10 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem x:Uid="pivotSettings">
             <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,0">
-                <ComboBoxItem>仅非按流量计费的连接</ComboBoxItem>
-                <ComboBoxItem>根据你的流量使用情况</ComboBoxItem>
-                <ComboBoxItem>除非你启用了“限制后台数据”</ComboBoxItem>
-                <ComboBoxItem>禁用后台下载</ComboBoxItem>
+                <ComboBoxItem x:Uid="backPolicy1"/>
+                <ComboBoxItem x:Uid="backPolicy2"/>
+                <ComboBoxItem x:Uid="backPolicy3"/>
+                <ComboBoxItem x:Uid="backPolicy4"/>
             </ComboBox>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">
@@ -39,26 +39,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
                 This is free software, and you are welcome to redistribute it under certain conditions;<LineBreak/>
                 Click <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-2.0.html">here</Hyperlink> for details.<LineBreak/><LineBreak/>
-                这是一个使用C#语言编写的，基于Pixiv网站的第三方应用。<LineBreak/><LineBreak/>
-                <Bold>在线协议</Bold><LineBreak/>
-                <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy">Pixiv在线服务隐私声明</Hyperlink><LineBreak/>
-                <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term">Pixiv在线服务许可协议</Hyperlink><LineBreak/>
+                <Run x:Uid="aboutText1"/><LineBreak/><LineBreak/>
+                <Bold><Run x:Uid="aboutText2"/></Bold><LineBreak/>
+                <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy"><Run x:Uid="aboutText3"/></Hyperlink><LineBreak/>
+                <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term"><Run x:Uid="aboutText4"/></Hyperlink><LineBreak/>
                 <LineBreak/>
-                <Bold>开发者</Bold><LineBreak/><!--请自行在此添加-->
+                <Bold><Run x:Uid="aboutText5"/></Bold><LineBreak/>
                 <Hyperlink NavigateUri="mailto:thomasw.fan@gmail.com">ThomasW.Fan</Hyperlink><LineBreak/>
                 <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/>
                 <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko</Hyperlink><LineBreak/>
                 <LineBreak/>
-                <Bold>友情链接</Bold><LineBreak/>
-                <!--请自行在此添加-->
+                <Bold><Run x:Uid="aboutText6"/></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click2">MoeSpirit</Hyperlink><LineBreak/><LineBreak/>
             </TextBlock>
         </PivotItem>
         <PivotItem x:Uid="pivotContributors">
-            <TextBlock TextWrapping="Wrap" Margin="5,5,5,0"><!--请自行在此添加-->
-            感谢以下伙伴对我们的帮助与支持。<LineBreak/>正因为各位，我们才能变得更好！
-            
+            <TextBlock TextWrapping="Wrap" Margin="5,5,5,0">
+                <Run x:Uid="contriText1"/><LineBreak/><Run x:Uid="contriText2"/>
             </TextBlock>
         </PivotItem>
     </Pivot>
