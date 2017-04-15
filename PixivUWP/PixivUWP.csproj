@@ -102,11 +102,6 @@
     <None Include="PixivUWP_StoreKey.pfx" />
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\zh-Hans-SG\Resources.resw" />
-    <PRIResource Include="Strings\zh-SG\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hans-CN\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hans\Resources.resw" />
-    <PRIResource Include="Strings\zh\Resources.resw" />
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
