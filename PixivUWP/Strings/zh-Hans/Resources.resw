@@ -285,32 +285,32 @@
     <value>禁用后台下载</value>
     <comment>后台策略描述</comment>
   </data>
+  <data name="contriTitle.Text" xml:space="preserve">
+    <value>Pixiv UWP 贡献人员名单</value>
+    <comment>贡献者标题</comment>
+  </data>
   <data name="contriText1.Text" xml:space="preserve">
-    <value>感谢以下伙伴对我们的帮助与支持。</value>
+    <value>下面在本软件的开发中提出意见与建议的朋友，我们感谢大家对社区的支持与帮助。</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText2.Text" xml:space="preserve">
-    <value>正因为各位，我们才能变得更好！</value>
+    <value>正因为各位，一切才能变得更好！</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText3.Text" xml:space="preserve">
-    <value>Pixiv UWP贡献人员名单</value>
+    <value>（名单排名不分先后）</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText4.Text" xml:space="preserve">
-    <value>包含建议、意见、批评和设计</value>
-    <comment>贡献者说明</comment>
+    <value />
+    <comment>贡献者说明（留空备用）</comment>
   </data>
   <data name="contriText5.Text" xml:space="preserve">
-    <value>不考虑是否被采纳，排名不分先后，不包含主要开发者</value>
+    <value>来自IT之家</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText6.Text" xml:space="preserve">
-    <value>以下来自IT之家：</value>
-    <comment>贡献者说明</comment>
-  </data>
-  <data name="contriText7.Text" xml:space="preserve">
-    <value>以下来自内测群：</value>
+    <value>来自内测群</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="abbDownloadThis.Label" xml:space="preserve">
