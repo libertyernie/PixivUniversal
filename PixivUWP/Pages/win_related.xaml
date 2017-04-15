@@ -16,7 +16,7 @@
                 </Grid.RowDefinitions>
                 <Grid Background="WhiteSmoke">
                     <TextBlock
-                    x:Uid="pgRelated"
+                    Text="相关作品"
                     Width="Auto"
                     Margin="16"
                     FontSize="18"

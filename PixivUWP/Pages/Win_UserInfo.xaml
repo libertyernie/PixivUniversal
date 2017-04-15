@@ -24,12 +24,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
 
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <PivotItem x:Uid="pivotUserInfo">
+        <PivotItem Header="个人资料">
             <Image x:Name="userpro" Width="168" Height="170" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             
         </PivotItem>
 
-        <PivotItem x:Uid="pivotWorks" Loaded="PivotItem_Loaded">
+        <PivotItem Header="作品" Loaded="PivotItem_Loaded">
             <local:MasterDetailControl x:Name="mdc">
                 <local:MasterDetailControl.MasterContent>
                     <Grid x:Name="LayoutRoot">
@@ -48,7 +48,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </local:MasterDetailControl.MasterContent>
             </local:MasterDetailControl>
         </PivotItem>
-        <PivotItem x:Uid="pivotCollection" Loaded="PivotItem_Loaded_1">
+        <PivotItem Header="收藏" Loaded="PivotItem_Loaded_1">
             <local:MasterDetailControl x:Name="mdc_fav">
                 <local:MasterDetailControl.MasterContent>
                     <Grid x:Name="LayoutRoot_fav">
