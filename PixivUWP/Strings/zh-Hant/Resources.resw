@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnLogin.Content" xml:space="preserve">
+    <value>登入</value>
+    <comment>登录按钮文字</comment>
+  </data>
+  <data name="btnLoginError.Content" xml:space="preserve">
+    <value>哎呀~登入失敗了！請檢查網路連結後點此重試</value>
+    <comment>登录失败按钮文字</comment>
+  </data>
+  <data name="cancelAll.Label" xml:space="preserve">
+    <value>取消所有</value>
+    <comment>下载页面AppBar按钮文字</comment>
+  </data>
+  <data name="chkboxAuto.Content" xml:space="preserve">
+    <value>自動登入</value>
+    <comment>登录界面自动登录复选框说明</comment>
+  </data>
+  <data name="chkboxRem.Content" xml:space="preserve">
+    <value>記住密碼</value>
+    <comment>登录界面记住密码复选框说明</comment>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>我的收藏</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>下載任務</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="downloadHint.Text" xml:space="preserve">
+    <value>（遇到無法下載問題，可嘗試禁用後台下載解决）</value>
+    <comment>下载页面提示语</comment>
+  </data>
+  <data name="downloadPos.Label" xml:space="preserve">
+    <value>下載資料夾</value>
+    <comment>下载页面AppBar按钮文字</comment>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>反饋</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="Feeds" xml:space="preserve">
+    <value>最新資訊</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="headerNameEmail.Text" xml:space="preserve">
+    <value>Pixiv ID或電子郵件地址</value>
+    <comment>登录界面用户名输入框说明</comment>
+  </data>
+  <data name="headerPassword.Text" xml:space="preserve">
+    <value>密碼</value>
+    <comment>登录界面密码输入框说明</comment>
+  </data>
+  <data name="hyperlkSignup.Content" xml:space="preserve">
+    <value>註冊</value>
+    <comment>注册超链接文字</comment>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>作品發現</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="Mywork" xml:space="preserve">
+    <value>我的關注</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="pgCollection.Text" xml:space="preserve">
+    <value>我的收藏</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgDownload.Text" xml:space="preserve">
+    <value>下載任務</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgFeeds.Text" xml:space="preserve">
+    <value>最新資訊</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgMain.Text" xml:space="preserve">
+    <value>作品發現</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pgMywork.Text" xml:space="preserve">
+    <value>我的關注</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="searchBox.PlaceholderText" xml:space="preserve">
+    <value>搜尋Pixiv…</value>
+    <comment>搜索框提示文字</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="comboPolicy.Header" xml:space="preserve">
+    <value>後台下載策略(僅對新啟動的下載有效)</value>
+    <comment>组合框提示语</comment>
+  </data>
+  <data name="pivotAbout.Header" xml:space="preserve">
+    <value>關於</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotContributors.Header" xml:space="preserve">
+    <value>貢獻者</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotSettings.Header" xml:space="preserve">
+    <value>設定</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="abbAddFriend.Label" xml:space="preserve">
+    <value>關注該作者</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbDownload.Label" xml:space="preserve">
+    <value>下載</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbFavorite.Label" xml:space="preserve">
+    <value>收藏</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbRelate.Label" xml:space="preserve">
+    <value>相關作品</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="abbWatchBig.Label" xml:space="preserve">
+    <value>查看大圖</value>
+    <comment>作品详细页面底部按钮说明</comment>
+  </data>
+  <data name="aboutText1.Text" xml:space="preserve">
+    <value>這是一個使用C#語言編寫，基於Pixiv網站的第三方應用程式。</value>
+    <comment>关于说明</comment>
+  </data>
+  <data name="aboutText2.Text" xml:space="preserve">
+    <value>在線協議</value>
+    <comment>关于说明</comment>
+  </data>
+  <data name="aboutText3.Text" xml:space="preserve">
+    <value>Pixiv在線服務隱私聲明</value>
+    <comment>关于说明</comment>
+  </data>
+  <data name="aboutText4.Text" xml:space="preserve">
+    <value>Pixiv在線服務許可協議</value>
+    <comment>关于说明</comment>
+  </data>
+  <data name="aboutText5.Text" xml:space="preserve">
+    <value>開發者</value>
+    <comment>关于说明</comment>
+  </data>
+  <data name="aboutText6.Text" xml:space="preserve">
+    <value>友情連結</value>
+    <comment>关于说明</comment>
+  </data>
+  <data name="backPolicy1.Content" xml:space="preserve">
+    <value>僅非按資料用量計費的連結</value>
+    <comment>后台策略描述</comment>
+  </data>
+  <data name="backPolicy2.Content" xml:space="preserve">
+    <value>根據你的資料用量使用情況</value>
+    <comment>后台策略描述</comment>
+  </data>
+  <data name="backPolicy3.Content" xml:space="preserve">
+    <value>除非你啟用了“限制後台資料”</value>
+    <comment>后台策略描述</comment>
+  </data>
+  <data name="backPolicy4.Content" xml:space="preserve">
+    <value>禁用後台下載</value>
+    <comment>后台策略描述</comment>
+  </data>
+  <data name="contriText1.Text" xml:space="preserve">
+    <value>感謝以下伙伴對我們的幫助與支持。</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText2.Text" xml:space="preserve">
+    <value>正因為各位，我們才能變得更好！</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText3.Text" xml:space="preserve">
+    <value>Pixiv UWP貢獻人員名單</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText4.Text" xml:space="preserve">
+    <value>包含建議、意見，批評和設計</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText5.Text" xml:space="preserve">
+    <value>不考慮是否被採納，排名不分先後，不包含主要開發者</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText6.Text" xml:space="preserve">
+    <value>以下來自IT之家：</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="contriText7.Text" xml:space="preserve">
+    <value>以下來自内測群：</value>
+    <comment>贡献者说明</comment>
+  </data>
+  <data name="abbDownloadThis.Label" xml:space="preserve">
+    <value>下載當前</value>
+    <comment>大图页面底部按钮说明</comment>
+  </data>
+  <data name="abbFullScreen.Label" xml:space="preserve">
+    <value>全螢幕</value>
+    <comment>大图页面底部按钮说明</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>操作失敗</value>
+    <comment>提示语</comment>
+  </data>
+  <data name="ErrorLoading" xml:space="preserve">
+    <value>載入失敗</value>
+    <comment>提示语</comment>
+  </data>
+  <data name="pgRelated.Text" xml:space="preserve">
+    <value>相關作品</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="pivotCollection.Header" xml:space="preserve">
+    <value>收藏</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotUserInfo.Header" xml:space="preserve">
+    <value>個人資料</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="pivotWorks.Header" xml:space="preserve">
+    <value>作品</value>
+    <comment>枢纽标题</comment>
+  </data>
+  <data name="chkByPop.Content" xml:space="preserve">
+    <value>按熱度排序（僅高級用戶）</value>
+    <comment>搜索筛选条件</comment>
+  </data>
+</root>
