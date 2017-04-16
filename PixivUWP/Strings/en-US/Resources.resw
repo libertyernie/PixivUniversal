@@ -286,7 +286,7 @@
     <comment>后台策略描述</comment>
   </data>
   <data name="contriText1.Text" xml:space="preserve">
-    <value>Thank the following contributors who gave us great support. </value>
+    <value>Thank the following contributors for giving us great support. </value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText2.Text" xml:space="preserve">
