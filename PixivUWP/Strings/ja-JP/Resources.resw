@@ -146,7 +146,7 @@
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
   <data name="downloadHint.Text" xml:space="preserve">
-    <value>[ダウンロードできない問題がある場合，バックグラウンドダウンロードのソリューションを無効にすることができます]</value>
+    <value>[ダウンロードできない問題がある場合，バックグラウンドのダウンロードソリューションをディセーブルにすることができます]</value>
     <comment>下载页面提示语</comment>
   </data>
   <data name="downloadPos.Label" xml:space="preserve">
@@ -210,7 +210,7 @@
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
   <data name="comboPolicy.Header" xml:space="preserve">
-    <value>楽屋でダウンロード策略 [新しいスタートアップのダウンロードにのみ有効]</value>
+    <value>バックグラウンドダウンロード [新しいダウンロード操作のみ]</value>
     <comment>组合框提示语</comment>
   </data>
   <data name="pivotAbout.Header" xml:space="preserve">
@@ -278,15 +278,15 @@
     <comment>后台策略描述</comment>
   </data>
   <data name="backPolicy3.Content" xml:space="preserve">
-    <value>あなたが使うのは「楽屋データを制限することで」</value>
+    <value>あなたが使うのは「バックグラウンド データを制限す」事ことで</value>
     <comment>后台策略描述</comment>
   </data>
   <data name="backPolicy4.Content" xml:space="preserve">
-    <value>楽屋のダウンロードを禁止</value>
+    <value>バックグラウンドダウンロードをディセーブルにする</value>
     <comment>后台策略描述</comment>
   </data>
   <data name="contriText1.Text" xml:space="preserve">
-    <value>私たちの助けと支持に感謝します。</value>
+    <value>下記の協力者の方々、ご支援を感謝しております</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText2.Text" xml:space="preserve">
@@ -307,7 +307,7 @@
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText6.Text" xml:space="preserve">
-    <value>以下はITの家から：</value>
+    <value>以下はIThome.com：</value>
     <comment>贡献者说明</comment>
   </data>
   <data name="contriText7.Text" xml:space="preserve">
