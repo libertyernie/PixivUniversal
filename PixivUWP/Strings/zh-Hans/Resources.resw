@@ -349,4 +349,15 @@
     <value>按热门度排序（仅高级会员）</value>
     <comment>搜索筛选条件</comment>
   </data>
+  <data name="PopupContent" xml:space="preserve">
+    <value>1、提供了英语、日语和繁体中文的支持；
+2、使用了全新的设置与关于界面并增加了贡献者名单；
+3、解决了相关作品、作者信息页面后退导航错乱的问题；
+4、修复了导致应用崩溃的若干问题。</value>
+    <comment>更新内容</comment>
+  </data>
+  <data name="PopupTitle" xml:space="preserve">
+    <value>版本 V1.0.14β 更新内容</value>
+    <comment>更新内容弹出标题</comment>
+  </data>
 </root>

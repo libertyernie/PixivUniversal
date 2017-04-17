@@ -346,4 +346,17 @@
     <value>作品</value>
     <comment>枢纽标题</comment>
   </data>
+  <data name="PopupContent" xml:space="preserve">
+    <value>1 英語、日本語、繁体字中国語のサポートを提供します。
+2 新しい設定インターフェイスと約インターフェイスが使用されます。 寄稿者一覧を追加。
+3 「関連作品」と「著者情報」ページの後方ナビゲーション障害の問題を解決。
+4 アプリケーションがクラッシュする原因となる問題を修正します。
+
+私たちの翻訳は、より良い翻訳スキームをお持ちの場合、ボランティアによって行われ、お問い合わせください。</value>
+    <comment>更新内容</comment>
+  </data>
+  <data name="PopupTitle" xml:space="preserve">
+    <value>バージョン v 1.0.14 βの更新</value>
+    <comment>更新内容弹出标题</comment>
+  </data>
 </root>

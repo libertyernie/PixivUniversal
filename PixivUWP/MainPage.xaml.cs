@@ -23,6 +23,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -103,6 +104,13 @@ namespace PixivUWP
                 catch { }
 
             });
+        }
+
+        private bool checkVersion()
+        {
+            if ((string)Data.AppDataHelper.GetValue("last_version") == Data.VersionHelper.GetThisAppVersionString().ToString()) return false;
+            Data.AppDataHelper.SetValue("last_version", Data.VersionHelper.GetThisAppVersionString().ToString());
+            return true;
         }
 
         private void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
@@ -330,9 +338,11 @@ namespace PixivUWP
             //Current = null;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //Current = this;
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            if (checkVersion())
+                await new Windows.UI.Popups.MessageDialog(loader.GetString("PopupContent"), loader.GetString("PopupTitle")).ShowAsync();
         }
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)

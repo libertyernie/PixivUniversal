@@ -102,6 +102,7 @@
     <None Include="PixivUWP_StoreKey.pfx" />
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\ja-JP\Resources.resw" />
     <PRIResource Include="Strings\ja\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
