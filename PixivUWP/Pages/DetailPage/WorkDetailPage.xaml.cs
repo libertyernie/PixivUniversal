@@ -174,11 +174,11 @@ namespace PixivUWP.Pages.DetailPage
         {
             await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                if (Data.TmpData.OpenedWindows.TryGetValue(id, out int value))
-                {
-                    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
-                }
-                else
+                //if (Data.TmpData.OpenedWindows.TryGetValue(id, out int value))
+                //{
+                //    await ApplicationViewSwitcher.TryShowAsStandaloneAsync(value);
+                //}
+                //else
                 {
                     int newViewId = -1;
 
