@@ -22,7 +22,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class Win_Related : Windows.UI.Xaml.Controls.Page
+    public sealed partial class Win_Related : Windows.UI.Xaml.Controls.Page, IBackable
     {
         ItemViewList<Work> list = new ItemViewList<Work>();
         public Win_Related()
@@ -78,6 +78,9 @@ namespace PixivUWP.Pages
             mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
         }
 
-
+        public bool GoBack()
+        {
+            return ((IBackable)mdc).GoBack();
+        }
     }
 }

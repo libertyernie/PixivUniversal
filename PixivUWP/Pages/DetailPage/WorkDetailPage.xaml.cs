@@ -210,7 +210,7 @@ namespace PixivUWP.Pages.DetailPage
                                 }
                                 else
                                 {
-                                    //e.Handled = true;
+                                    e.Handled = true;
                                 }
                             }
                         };
