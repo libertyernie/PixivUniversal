@@ -359,4 +359,8 @@
     <value>バージョン v 1.0.14 βの更新</value>
     <comment>更新内容弹出标题</comment>
   </data>
+  <data name="chkByPop.Content" xml:space="preserve">
+    <value>Sort by Popularity (Premium)</value>
+    <comment>搜索筛选条件</comment>
+  </data>
 </root>
