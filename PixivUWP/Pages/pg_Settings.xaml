@@ -25,12 +25,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
 
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem x:Uid="pivotSettings">
-            <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,0">
-                <ComboBoxItem x:Uid="backPolicy1"/>
-                <ComboBoxItem x:Uid="backPolicy2"/>
-                <ComboBoxItem x:Uid="backPolicy3"/>
-                <ComboBoxItem x:Uid="backPolicy4"/>
-            </ComboBox>
+            <StackPanel>
+                <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,0">
+                    <ComboBoxItem x:Uid="backPolicy1"/>
+                    <ComboBoxItem x:Uid="backPolicy2"/>
+                    <ComboBoxItem x:Uid="backPolicy3"/>
+                    <ComboBoxItem x:Uid="backPolicy4"/>
+                </ComboBox>
+                
+            </StackPanel>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">
             <TextBlock TextWrapping="Wrap" Margin="5,5,5,0">
