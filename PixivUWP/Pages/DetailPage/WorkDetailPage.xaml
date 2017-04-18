@@ -25,14 +25,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="571*"/>
-            <RowDefinition Height="69*"/>
+            <RowDefinition Height="550*"/>
+            <RowDefinition Height="80*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Image x:Name="bigimg" />
-        <ProgressBar x:Name="pro" ></ProgressBar>
+        <Image x:Name="bigimg" Margin="2,2,2,0" />
+        <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
         <ScrollViewer  Grid.Row="1">
-            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap"><Bold><Run  x:Name="title"></Run></Bold><Run x:Name="siz"></Run><LineBreak/><Hyperlink Click="Hyperlink_Click"><Run x:Name="user"></Run></Hyperlink><LineBreak/><Run x:Name="tags"></Run><LineBreak/><Run x:Name="des"></Run></TextBlock>
+            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="10,0,10,0">
+                <Bold><Run  x:Name="title"></Run></Bold><LineBreak/>
+                <Hyperlink Click="Hyperlink_Click"><Run x:Name="user"></Run></Hyperlink><LineBreak/>
+                Tags :<Run x:Name="tags"></Run><LineBreak/>
+                <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run><LineBreak/>
+                <Run x:Name="des"></Run>
+            </TextBlock>
         </ScrollViewer>
         <CommandBar Grid.Row="2">
             <AppBarButton x:Name="relate" x:Uid="abbRelate" Icon="Link" Click="relate_Click"/>
@@ -41,15 +47,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <AppBarToggleButton x:Name="fs" x:Uid="abbFavorite" Icon="Favorite" Click="fs_Click" Loaded="fs_Loaded">
                 <controls:ContextFlyoutSetter.CompatibleContextFlyout>
                     <Flyout>
-                        <StackPanel>
+                        <StackPanel> <!--请完成此处资源改造--> 
+                            <TextBlock TextWrapping="Wrap" >分类：</TextBlock>
                             <TextBox x:Name="inputbox" Loaded="inputbox_Loaded"/>
-                            <Button Click="Button_Click">OK</Button>
+                            <Button Click="Button_Click" Margin="0,5,0,0" HorizontalAlignment="Center">确定</Button>
                         </StackPanel>
                     </Flyout>
                 </controls:ContextFlyoutSetter.CompatibleContextFlyout>
             </AppBarToggleButton>
             <AppBarToggleButton x:Name="gz" x:Uid="abbAddFriend" Icon="AddFriend" Click="gz_Click" />
-
         </CommandBar>
     </Grid>
 </Page>
