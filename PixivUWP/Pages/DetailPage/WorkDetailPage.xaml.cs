@@ -89,13 +89,15 @@ namespace PixivUWP.Pages.DetailPage
 
             try
             {
-                siz.Text = "(" + Work.Height?.ToString() + "x" + Work.Width?.ToString() + ") " + new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
+                title.Text = Work.Title;
+                user.Text = Work.User.Name;
+                siz.Text = " · " + Work.Height?.ToString() + "x" + Work.Width?.ToString();
+                tool.Text = " · " + new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
                 fs.IsChecked = Work.IsBookMarked();
                 string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
                 des.Text = Work.Caption ?? string.Empty;
-                title.Text = Work.Title;
-                user.Text = Work.User.Name+"("+Work.GetCreatedDate().ToString()+")"   /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
-                tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
+                time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
+                tags.Text = "Tags : " + new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, url))
                 {
                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();

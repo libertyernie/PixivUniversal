@@ -25,8 +25,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
 
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem x:Uid="pivotUserInfo">
-            <Image x:Name="userpro" Width="168" Height="170" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            
+            <StackPanel Orientation="Vertical">
+                <Image x:Name="userpro" Width="170" Height="170" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="userinfo" TextWrapping="Wrap" Margin="10,5,10,0"/> <!--用户详细信息占位，等待后端代码补全-->
+            </StackPanel>
         </PivotItem>
 
         <PivotItem x:Uid="pivotWorks" Loaded="PivotItem_Loaded">
