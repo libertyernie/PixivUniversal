@@ -91,7 +91,7 @@ namespace PixivUWP.Pages.DetailPage
             {
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
-                siz.Text = Work.Height?.ToString() + "x" + Work.Width?.ToString();
+                siz.Text = Work.Width?.ToString() + "×" + Work.Height?.ToString();
                 tool.Text = new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
                 fs.IsChecked = Work.IsBookMarked();
                 string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
