@@ -147,6 +147,7 @@ namespace PixivUWP
             catch
             {
                 status.Visibility = Visibility.Visible;
+                ProgressBarVisualHelper.SetYFHelperVisibility(ring, false);
             }
         }
 
@@ -158,7 +159,6 @@ namespace PixivUWP
         private async Task rollBackAnimation()
         {
             status.Visibility = Visibility.Collapsed;
-            ring.IsActive = false;
             BindableMargin margin = new Views.BindableMargin(image);
             margin.Top = -Window.Current.Bounds.Height / 4;
             DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
