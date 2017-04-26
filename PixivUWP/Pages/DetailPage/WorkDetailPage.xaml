@@ -25,22 +25,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="550*"/>
-            <RowDefinition Height="80*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="90*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Image x:Name="bigimg" Margin="2,2,2,0" />
         <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
-        <ScrollViewer  Grid.Row="1">
-            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="10,0,10,0">
+        <ScrollViewer  Grid.Row="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left">
+            <TextBlock  Margin="5,0,2,0">
                 <Bold><Run  x:Name="title"></Run></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click"><Run x:Name="user"></Run></Hyperlink><LineBreak/>
-                Tags :<Run x:Name="tags"></Run><LineBreak/>
-                <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run><LineBreak/>
-                <Run x:Name="des"></Run>
             </TextBlock>
         </ScrollViewer>
-        <CommandBar Grid.Row="2">
+        <Pivot Grid.Row="2" x:Name="pivot">
+            <PivotItem Header="Profile" Margin="10,0">
+                <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,0,10,0">
+                    <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run><LineBreak/>
+                    Tags :<Run x:Name="tags"></Run><LineBreak/>
+                    <Run x:Name="des"></Run>
+                </TextBlock>
+            </PivotItem>
+            <PivotItem  Header="Comments">
+                <!--评论占位-->
+                No Data
+            </PivotItem>
+        </Pivot>
+        <CommandBar Grid.Row="3">
             <AppBarButton x:Name="relate" x:Uid="abbRelate" Icon="Link" Click="relate_Click"/>
             <AppBarButton Visibility="Collapsed" x:Name="watchbigimg" x:Uid="abbWatchBig" Click="watchbigimg_Click" Icon="ViewAll"/>
             <AppBarButton x:Name="downloadbutton" x:Uid="abbDownload" Icon="Download" Click="AppBarButton_Click"/>
