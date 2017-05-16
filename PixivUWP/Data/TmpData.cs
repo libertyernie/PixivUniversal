@@ -59,6 +59,8 @@ namespace PixivUWP.Data
 
         private async static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
+            var img = sender as Image;
+            img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
             await LoadPictureAsync(sender);
         }
 
@@ -79,7 +81,6 @@ namespace PixivUWP.Data
                         try
                         {
                             var img = sender as Image;
-                            img.Source = null;
                             if (img.DataContext != null)
                             {
                                 var work = (img.DataContext as Work);

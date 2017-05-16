@@ -34,8 +34,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <converter:IsLikedCvt x:Key="IsLikedCvt"/>
             <DataTemplate x:Key="workitem">
                 <Grid Height="Auto" Margin="-10 2 -10 2">
-                    <ProgressRing x:Name="pro" IsActive="True" Margin="0 0 0 0"/>
-                    <Image Name="img" MinHeight="125" Stretch="UniformToFill" local:TmpData.EnableAutoLoadWorkImg="True"/>
+                    <Image Name="img" MinHeight="125" Stretch="UniformToFill" local:TmpData.EnableAutoLoadWorkImg="True" Source="Assets/BlankHolder.jpg"/>
+                    <ProgressRing x:Name="pro" IsActive="True" Margin="0 0 0 0" HorizontalAlignment="Center"/>
                     <Grid Grid.Row="1" Background="White" Opacity="0.8" VerticalAlignment="Bottom" Height="48">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -48,19 +48,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
-                    <StackPanel Visibility="Collapsed" Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="16 0 0 0" Width="135">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="12" Text="{Binding Width}"/>
-                            <TextBlock FontSize="12" Text="×"/>
-                            <TextBlock FontSize="12" Text="{Binding Height}"/>
-                        </StackPanel>
-                        <TextBlock FontSize="16"/>
-                        <Grid Background="Transparent" HorizontalAlignment="Right" Width="60">
-                            <ContentPresenter HorizontalAlignment="Left">
-
-                            </ContentPresenter>
-                        </Grid>
-                    </StackPanel>
                 </Grid>
             </DataTemplate>
             <Style x:Key="StretchListViewItem" TargetType="ListViewItem">

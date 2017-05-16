@@ -204,6 +204,7 @@
     <Content Include="Assets\Background.jpg" />
     <Content Include="Assets\beta-testing-logo.png" />
     <Content Include="Assets\beta-testing.png" />
+    <Content Include="Assets\BlankHolder.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Contributors_ithome.txt" />
