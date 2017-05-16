@@ -52,6 +52,18 @@ namespace PixivUWP.Pages
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
 
+            loadAsync();
+        }
+
+        private async Task loadAsync()
+        {
+            var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetRecommendedWorks() : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
+            nexturl = root.next_url ?? string.Empty;
+            foreach (var one in root.illusts)
+            {
+                if (!list.Contains(one, Data.WorkEqualityComparer.Default))
+                    list.Add(one);
+            }
         }
 
         private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)

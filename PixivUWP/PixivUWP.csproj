@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Controls\ContextFlyoutSetter.cs" />
     <Compile Include="Controls\MyToast.xaml.cs" />
+    <Compile Include="Controls\WaterfallPanel.cs" />
     <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
     <Compile Include="Data\DownloadManager.cs" />
