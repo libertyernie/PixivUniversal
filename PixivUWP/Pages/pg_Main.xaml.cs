@@ -53,6 +53,10 @@ namespace PixivUWP.Pages
             mdc.MasterListView = MasterListView;
 
             loadAsync();
+            loadAsync();
+            loadAsync();
+            loadAsync();
+            loadAsync();
         }
 
         private async Task loadAsync()
