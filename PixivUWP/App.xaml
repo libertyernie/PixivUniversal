@@ -37,7 +37,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ProgressRing x:Name="pro" IsActive="True" Margin="0 0 0 0"/>
                     <Image Name="img" MinHeight="125" Stretch="UniformToFill" local:TmpData.EnableAutoLoadWorkImg="True"/>
                     <Grid Grid.Row="1" Background="White" Opacity="0.8" VerticalAlignment="Bottom" Height="48">
-                        <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding Title}" Margin="5" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold" Text="{Binding Title}" Margin="5" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
+                        <TextBlock FontSize="12" Grid.Row="1" Text="{Binding User.Name}" Margin="5 0 0 0" Width="100" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <StackPanel Margin="0 0 5 0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                            <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32" VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Grid>
                     <StackPanel Visibility="Collapsed" Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="16 0 0 0" Width="135">
                         <StackPanel Orientation="Horizontal">
@@ -45,14 +54,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             <TextBlock FontSize="12" Text="×"/>
                             <TextBlock FontSize="12" Text="{Binding Height}"/>
                         </StackPanel>
-                        <TextBlock FontSize="12" Text="{Binding User.Name}" Width="125" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
                         <TextBlock FontSize="16"/>
                         <Grid Background="Transparent" HorizontalAlignment="Right" Width="60">
                             <ContentPresenter HorizontalAlignment="Left">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
-                                    <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32"/>
-                                </StackPanel>
+
                             </ContentPresenter>
                         </Grid>
                     </StackPanel>

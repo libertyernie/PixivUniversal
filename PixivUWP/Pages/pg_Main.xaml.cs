@@ -54,9 +54,6 @@ namespace PixivUWP.Pages
 
             loadAsync();
             loadAsync();
-            loadAsync();
-            loadAsync();
-            loadAsync();
         }
 
         private async Task loadAsync()
