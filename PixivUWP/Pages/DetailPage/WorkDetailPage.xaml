@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <Pivot Grid.Row="2" x:Name="pivot">
             <PivotItem Header="Profile" Margin="0">
                 <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,0,10,0">
-                    <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run><LineBreak/>
+                    <Run x:Name="time"></Run> | <Run x:Name="siz"></Run> | <Run x:Name="tool"></Run><LineBreak/>
                     Tags :<Run x:Name="tags"></Run><LineBreak/>
                     <Run x:Name="des"></Run>
                 </TextBlock>
