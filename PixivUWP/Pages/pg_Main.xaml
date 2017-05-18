@@ -45,22 +45,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     FontSize="18"
                     HorizontalAlignment="Center"/>
                 </Grid>
-                <ListView
+                <ScrollViewer Grid.Row="1" x:Name="scrollRoot" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_ViewChanged">
+                    <ListView
                     x:Name="MasterListView"
-                    Grid.Row="1"
                     ItemContainerTransitions="{x:Null}"
                     IsItemClickEnabled="True"
                     ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
-                    ScrollViewer.VerticalScrollMode="Enabled"
+                    ScrollViewer.VerticalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <controls:WaterfallPanel ColumnNum="2"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WaterfallPanel ColumnNum="2"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </ScrollViewer>
             </Grid>
         </local:MasterDetailControl.MasterContent>
     </local:MasterDetailControl>
