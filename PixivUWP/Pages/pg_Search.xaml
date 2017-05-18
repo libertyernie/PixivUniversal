@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:PixivUWP.Converter"
+    xmlns:controls="using:PixivUWP.Controls"
     mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
@@ -25,13 +26,23 @@
                         <CheckBox x:Name="byPopularity" HorizontalAlignment="Center" x:Uid="chkByPop" Checked="byPopularity_Checked" Unchecked="byPopularity_Unchecked"/>
                     </StackPanel>
                 </Grid>
-                <ListView
-            x:Name="MasterListView"
-            Grid.Row="1"
-            ItemContainerTransitions="{x:Null}"
-            IsItemClickEnabled="True"
-            ItemClick="MasterListView_ItemClick"  Style="{StaticResource workitemstyle}">
-                </ListView>
+                <ScrollViewer Grid.Row="1" x:Name="scrollRoot" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_ViewChanged">
+                    <ListView
+                    x:Name="MasterListView"
+                    ItemContainerTransitions="{x:Null}"
+                    IsItemClickEnabled="True"
+                    ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WaterfallPanel ColumnNum="2"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </ScrollViewer>
             </Grid>
         </local:MasterDetailControl.MasterContent>
     </local:MasterDetailControl>
