@@ -75,9 +75,9 @@ namespace PixivUWP.Data
             {
                 if (sender.Parent is Panel pl)
                 {
-                    if (pl.FindName("pro") is ProgressRing ring)
+                    if (pl.FindName("pro") is TextBlock ring)
                     {
-                        ProgressBarVisualHelper.SetYFHelperVisibility(ring, true);
+                        ring.Visibility = Visibility.Visible;
                         try
                         {
                             var img = sender as Image;
@@ -94,7 +94,7 @@ namespace PixivUWP.Data
                         }
                         finally
                         {
-                            ProgressBarVisualHelper.SetYFHelperVisibility(ring, false);
+                            ring.Visibility = Visibility.Collapsed;
                         }
                     }
                 }
