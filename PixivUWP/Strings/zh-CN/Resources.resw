@@ -350,11 +350,11 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>这是一个测试版本。测试人员重点测试：瀑布流工作。</value>
+    <value>这是一个内部测试版本。测试人员需重点测试：页面瀑布流的工作状态。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.0.15β 更新内容</value>
+    <value>内部测试版本 V1.0.15β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
 </root>
