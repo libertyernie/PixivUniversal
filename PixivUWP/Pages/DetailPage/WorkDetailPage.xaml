@@ -25,34 +25,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="0">
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="7*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Image x:Name="bigimg" Margin="1,2,2,2" />
         <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
-        <ScrollViewer  Grid.Row="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left">
-            <TextBlock  Margin="5,5,5,0" VerticalAlignment="Bottom" Padding="0">
+        <TextBlock  Margin="5,0" VerticalAlignment="Bottom" Padding="0">
                 <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
-                <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink><LineBreak/>
-            </TextBlock>
-        </ScrollViewer>
-        <Pivot Grid.Row="2" x:Name="pivot">
+                <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>
+        </TextBlock>
+        <Pivot Grid.Row="2" x:Name="pivot" Margin="5,0">
             <PivotItem Header="Profile" Margin="0">
-                <StackPanel>
-                <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,0,10,0">
+                <ScrollViewer>
+                    <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="5,0,0,0">
                     <Run x:Name="time"></Run> | <Run x:Name="siz"></Run> | <Run x:Name="tool"></Run><LineBreak/>
                     Tags :<Run x:Name="tags"></Run><LineBreak/>
                     <Run x:Name="des"></Run>
-                </TextBlock>
-                </StackPanel>
+                    </TextBlock>
+                </ScrollViewer>
             </PivotItem>
             <PivotItem  Header="Comments" Margin="12,0">
                 <StackPanel>
                     <TextBlock TextWrapping="Wrap" >您的评论：</TextBlock>
                     <TextBox InputScope="Text" Margin="0,0,60,0" />
-                </StackPanel> 
+                </StackPanel>
             </PivotItem>
         </Pivot>
         <CommandBar Grid.Row="3">
