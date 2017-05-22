@@ -350,14 +350,27 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1、提供了英语、日语和繁体中文的支持；
-2、使用了全新的设置与关于界面并增加了贡献者名单；
-3、解决了相关作品、作者信息页面后退导航错乱的问题；
-4、修复了导致应用崩溃的若干问题。</value>
+    <value>这是一个内部测试版本。测试人员需重点测试：页面瀑布流的工作状态。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.0.14β 更新内容</value>
+    <value>内部测试版本 V1.0.15β 更新内容</value>
     <comment>更新内容弹出标题</comment>
+  </data>
+  <data name="comboLoadPolicy.Header" xml:space="preserve">
+    <value>加载模式</value>
+    <comment>加载模式标题</comment>
+  </data>
+  <data name="loadpolicy1.Content" xml:space="preserve">
+    <value>同步加载（默认）</value>
+    <comment>同步加载</comment>
+  </data>
+  <data name="loadpolicy2.Content" xml:space="preserve">
+    <value>排程加载</value>
+    <comment>排程加载</comment>
+  </data>
+  <data name="loadpolicyinfo.Text" xml:space="preserve">
+    <value>*注意：如果您的网络连接状况（指到Pixiv的连接，下同）较好，使用同步加载能尽快完整显示所有结果；如果您的网络连接状况较差，使用排程加载能避免大面积图片加载失败并缩短单张加载耗时</value>
+    <comment>加载模式说明</comment>
   </data>
 </root>

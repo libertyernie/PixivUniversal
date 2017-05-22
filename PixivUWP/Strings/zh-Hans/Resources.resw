@@ -357,4 +357,20 @@
     <value>内部测试版本 V1.0.15β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
+  <data name="comboLoadPolicy.Header" xml:space="preserve">
+    <value>加载模式</value>
+    <comment>加载模式标题</comment>
+  </data>
+  <data name="loadpolicy1.Content" xml:space="preserve">
+    <value>同步加载（默认）</value>
+    <comment>同步加载</comment>
+  </data>
+  <data name="loadpolicy2.Content" xml:space="preserve">
+    <value>排程加载</value>
+    <comment>排程加载</comment>
+  </data>
+  <data name="loadpolicyinfo.Text" xml:space="preserve">
+    <value>*注意：如果您的网络连接状况（指到Pixiv的连接，下同）较好，使用同步加载能尽快完整显示所有结果；如果您的网络连接状况较差，使用排程加载能避免大面积图片加载失败并缩短单张加载耗时</value>
+    <comment>加载模式说明</comment>
+  </data>
 </root>

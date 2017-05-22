@@ -78,6 +78,14 @@ namespace PixivUWP.Pages
             {
                 backpolicy.SelectedIndex = 0;
             }
+            try
+            {
+                loadpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("LoadPolicy");
+            }
+            catch
+            {
+                loadpolicy.SelectedIndex = 0;
+            }
         }
 
         private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
@@ -93,6 +101,11 @@ namespace PixivUWP.Pages
         private void backpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Data.AppDataHelper.SetValue("BackgroundTransferCostPolicy", backpolicy.SelectedIndex);
+        }
+
+        private void loadpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Data.AppDataHelper.SetValue("LoadPolicy", loadpolicy.SelectedIndex);
         }
     }
 }
