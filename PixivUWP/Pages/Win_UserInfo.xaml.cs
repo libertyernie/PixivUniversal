@@ -54,8 +54,6 @@ namespace PixivUWP.Pages
             mdc_fav.MasterListView = MasterListView_fav;
             MasterListView.ItemsSource = list;
             MasterListView_fav.ItemsSource = list_fav;
-            var result_fav = firstLoadAsync_fav();
-            var result = firstLoadAsync();
         }
 
         private async Task firstLoadAsync()
@@ -192,6 +190,8 @@ namespace PixivUWP.Pages
         {
             pix_user = e.Parameter as User;
             await RefreshAsync();
+            var result_fav = firstLoadAsync_fav();
+            var result = firstLoadAsync();
         }
 
         public async Task RefreshAsync()

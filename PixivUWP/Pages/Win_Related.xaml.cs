@@ -34,7 +34,6 @@ namespace PixivUWP.Pages
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-            var result = firstLoadAsync();
         }
 
         private async Task firstLoadAsync()
@@ -77,6 +76,7 @@ namespace PixivUWP.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Work = e.Parameter as Work;
+            var result = firstLoadAsync();
         }
         string nexturl = null;
         //private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
