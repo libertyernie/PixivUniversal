@@ -354,7 +354,7 @@
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>内部测试版本 V1.0.15β 更新内容</value>
+    <value>内部测试版本 V1.0.16β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
