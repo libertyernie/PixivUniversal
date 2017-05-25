@@ -38,7 +38,6 @@ namespace PixivUWP.Pages
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-            var result = firstLoadAsync();
         }
 
         private async Task firstLoadAsync()
@@ -53,6 +52,7 @@ namespace PixivUWP.Pages
             _query = e.Parameter as string;
             qText.Text = _query;
             MasterListView.ItemsSource = list;
+            var result = firstLoadAsync();
         }
 
         bool _isLoading = false;
