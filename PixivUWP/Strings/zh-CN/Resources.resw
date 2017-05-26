@@ -350,11 +350,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>这是一个内部测试版本。测试人员需重点测试：页面瀑布流的工作状态。</value>
+    <value>1. 修改页面显示方式为瀑布流；
+2. 增加“排程加载”选项（暂无作用）；
+3. 修正部分导致崩溃的问题；
+
+注意：该版本内存占用较高，下版本会进行优化。在搜索页面刷新依然会导致应用崩溃，下版本将修复。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>内部测试版本 V1.0.16β 更新内容</value>
+    <value>内部测试版本 V1.0.17β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
