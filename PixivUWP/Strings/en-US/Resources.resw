@@ -354,11 +354,27 @@
 2. Provide two selections of Load Mode (place holder with no effect);
 3. Fix bugs.
 
-Our translations are done by human contributors, so it will be appreciated if you can provide better translations.</value>
+Info: This version may cause high memory usage, which will be improved in the next version. Refreshing the Search page crashes the app, which will be fixed in the next version.</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
     <value>Update: V1.0.17β</value>
     <comment>更新内容弹出标题</comment>
+  </data>
+  <data name="comboLoadPolicy.Header" xml:space="preserve">
+    <value>Load Mode (*Place Holder)</value>
+    <comment>加载模式标题</comment>
+  </data>
+  <data name="loadpolicy1.Content" xml:space="preserve">
+    <value>Multi-Task (Default)</value>
+    <comment>同步加载</comment>
+  </data>
+  <data name="loadpolicy2.Content" xml:space="preserve">
+    <value>Single-Task</value>
+    <comment>排程加载</comment>
+  </data>
+  <data name="loadpolicyinfo.Text" xml:space="preserve">
+    <value>*Info: Multi-Task mode can provide better experience, while Single Task mode requires lower network speed.</value>
+    <comment>加载模式说明</comment>
   </data>
 </root>
