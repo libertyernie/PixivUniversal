@@ -59,6 +59,8 @@ namespace PixivUWP.Data
 
         private async static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
+            var img = sender as Image;
+            img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
             await LoadPictureAsync(sender);
         }
 
@@ -73,13 +75,12 @@ namespace PixivUWP.Data
             {
                 if (sender.Parent is Panel pl)
                 {
-                    if (pl.FindName("pro") is ProgressRing ring)
+                    if (pl.FindName("pro") is TextBlock ring)
                     {
-                        ProgressBarVisualHelper.SetYFHelperVisibility(ring, true);
+                        ring.Visibility = Visibility.Visible;
                         try
                         {
                             var img = sender as Image;
-                            img.Source = null;
                             if (img.DataContext != null)
                             {
                                 var work = (img.DataContext as Work);
@@ -93,7 +94,7 @@ namespace PixivUWP.Data
                         }
                         finally
                         {
-                            ProgressBarVisualHelper.SetYFHelperVisibility(ring, false);
+                            ring.Visibility = Visibility.Collapsed;
                         }
                     }
                 }

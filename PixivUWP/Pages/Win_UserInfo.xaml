@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:local="using:PixivUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:PixivUWP.Controls"
     mc:Ignorable="d">
 
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -39,13 +40,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <ListView Style="{StaticResource workitemstyle}"
-            x:Name="MasterListView"
-            Grid.Row="1"
-            ItemContainerTransitions="{x:Null}"
-            IsItemClickEnabled="True"
-            ItemClick="MasterListView_ItemClick" >
-                        </ListView>
+                        <ScrollViewer Grid.Row="1" x:Name="scrollRoot" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_ViewChanged">
+                            <ListView
+                    x:Name="MasterListView"
+                    ItemContainerTransitions="{x:Null}"
+                    IsItemClickEnabled="True"
+                    ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <controls:WaterfallPanel ColumnNum="2"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                        </ScrollViewer>
                     </Grid>
                 </local:MasterDetailControl.MasterContent>
             </local:MasterDetailControl>
@@ -58,13 +69,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <ListView
-            x:Name="MasterListView_fav"
-            Grid.Row="1"
-            ItemContainerTransitions="{x:Null}"
-            IsItemClickEnabled="True"
-            ItemClick="MasterListView_ItemClick"  Style="{StaticResource workitemstyle}" >
-                        </ListView>
+                        <ScrollViewer Grid.Row="1" x:Name="scrollRoot_fav" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_fav_ViewChanged">
+                            <ListView
+                    x:Name="MasterListView_fav"
+                    ItemContainerTransitions="{x:Null}"
+                    IsItemClickEnabled="True"
+                    ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <controls:WaterfallPanel ColumnNum="2"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                        </ScrollViewer>
                     </Grid>
                 </local:MasterDetailControl.MasterContent>
             </local:MasterDetailControl>

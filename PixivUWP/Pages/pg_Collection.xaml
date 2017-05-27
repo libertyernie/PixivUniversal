@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:api="using:Pixeez.Objects"
+    xmlns:controls="using:PixivUWP.Controls"
     xmlns:converter="using:PixivUWP.Converter"
     mc:Ignorable="d">
     <Page.Resources>
@@ -47,13 +48,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     FontSize="18"
                     HorizontalAlignment="Center"/>
                 </Grid>
-                <ListView
-            x:Name="masterListView"
-            Grid.Row="1"
-            ItemContainerTransitions="{x:Null}"
-            IsItemClickEnabled="True"
-            ItemClick="MasterListView_ItemClick" Style="{StaticResource workitemstyle}">
-                </ListView>
+                <ScrollViewer Grid.Row="1" x:Name="scrollRoot" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_ViewChanged">
+                    <ListView
+                    x:Name="MasterListView"
+                    ItemContainerTransitions="{x:Null}"
+                    IsItemClickEnabled="True"
+                    ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollMode="Disabled"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WaterfallPanel ColumnNum="2"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </ScrollViewer>
             </Grid>
         </local:MasterDetailControl.MasterContent>
     </local:MasterDetailControl>

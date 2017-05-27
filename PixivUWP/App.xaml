@@ -33,32 +33,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </DataTemplate>
             <converter:IsLikedCvt x:Key="IsLikedCvt"/>
             <DataTemplate x:Key="workitem">
-                <Grid Height="150" Margin="-14 0 -14 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="139"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <ProgressRing x:Name="pro" Grid.Column="0" IsActive="True" Margin="14 0 0 0"/>
-                    <Image Name="img" Grid.Column="0" Height="125" Width="125" Stretch="Uniform" Margin="14 0 0 0" local:TmpData.EnableAutoLoadWorkImg="True"/>
-                    <StackPanel Grid.Column="1" Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="16 0 0 0" Width="135">
-                        <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Title}" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="12" Text="{Binding Width}"/>
-                            <TextBlock FontSize="12" Text="×"/>
-                            <TextBlock FontSize="12" Text="{Binding Height}"/>
+                <Grid Height="Auto" Margin="-10 2 -10 2">
+                    <Image Name="img" MinHeight="125" Stretch="UniformToFill" local:TmpData.EnableAutoLoadWorkImg="True" Source="Assets/BlankHolder.jpg"/>
+                    <TextBlock x:Name="pro" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Loading..."/>
+                    <Grid Grid.Row="1" Background="White" Opacity="0.8" VerticalAlignment="Bottom" Height="40">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold" Text="{Binding Title}" Margin="5 5 5 0" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
+                        <TextBlock FontSize="10" Grid.Row="1" Text="{Binding User.Name}" Margin="5 0 0 0" Width="100" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <StackPanel Margin="0 0 0 0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+                            <TextBlock FontSize="10" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32" VerticalAlignment="Center"/>
                         </StackPanel>
-                        <TextBlock FontSize="12" Text="{Binding User.Name}" Width="125" TextTrimming="WordEllipsis" HorizontalAlignment="Left"/>
-                        <TextBlock FontSize="16"/>
-                        <Grid Background="Transparent" HorizontalAlignment="Right" Width="60">
-                            <ContentPresenter HorizontalAlignment="Left">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="{Binding is_bookmarked,Converter={StaticResource IsLikedCvt}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
-                                    <TextBlock FontSize="12" Text="{Binding total_bookmarks}" HorizontalAlignment="Center" Width="32"/>
-                                </StackPanel>
-                            </ContentPresenter>
-                        </Grid>
-                    </StackPanel>
-                    <Rectangle Height="1" Fill="Gray" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+                    </Grid>
                 </Grid>
             </DataTemplate>
             <Style x:Key="StretchListViewItem" TargetType="ListViewItem">

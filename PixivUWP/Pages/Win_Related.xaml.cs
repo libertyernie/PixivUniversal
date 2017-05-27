@@ -2,9 +2,11 @@
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,26 +30,25 @@ namespace PixivUWP.Pages
         public Win_Related()
         {
             this.InitializeComponent();
-            list.LoadingMoreItems += List_LoadingMoreItems;
-            list.HasMoreItemsEvent += List_HasMoreItemsEvent;
+            //list.LoadingMoreItems += List_LoadingMoreItems;
+            //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
+        private async Task firstLoadAsync()
         {
-            args.Item1 = nexturl != string.Empty;
+            while (scrollRoot.ScrollableHeight - 500 <= 10)
+                if (await loadAsync() == false)
+                    return;
         }
-        Work Work;
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+
+        bool _isLoading = false;
+        private async Task<bool> loadAsync()
         {
-            Work = e.Parameter as Work;
-        }
-        string nexturl = null;
-        private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
-        {
-            var nowcount = list.Count;
+            if (_isLoading) return true;
+            Debug.WriteLine("loadAsync() called.");
+            _isLoading = true;
             try
             {
                 var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetRelatedWorks(Work.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
@@ -57,16 +58,49 @@ namespace PixivUWP.Pages
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
+                _isLoading = false;
+                return true;
             }
             catch
             {
-                nexturl = string.Empty;
-            }
-            finally
-            {
-                args.Item1.Complete((uint)(list.Count - nowcount));
+                _isLoading = false;
+                return false;
             }
         }
+
+        //private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
+        //{
+        //    args.Item1 = nexturl != string.Empty;
+        //}
+        Work Work;
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Work = e.Parameter as Work;
+            var result = firstLoadAsync();
+        }
+        string nexturl = null;
+        //private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
+        //{
+        //    var nowcount = list.Count;
+        //    try
+        //    {
+        //        var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetRelatedWorks(Work.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<RecommendedRootobject>(nexturl);
+        //        nexturl = root.next_url ?? string.Empty;
+        //        foreach (var one in root.illusts)
+        //        {
+        //            if (!list.Contains(one, Data.WorkEqualityComparer.Default))
+        //                list.Add(one);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        nexturl = string.Empty;
+        //    }
+        //    finally
+        //    {
+        //        args.Item1.Complete((uint)(list.Count - nowcount));
+        //    }
+        //}
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -81,6 +115,15 @@ namespace PixivUWP.Pages
         public bool GoBack()
         {
             return ((IBackable)mdc).GoBack();
+        }
+
+        double _originHeight = 0;
+        private void scrollRoot_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            if (scrollRoot.VerticalOffset == _originHeight) return;
+            _originHeight = scrollRoot.VerticalOffset;
+            if (scrollRoot.VerticalOffset <= scrollRoot.ScrollableHeight - 500) return;
+            var result = loadAsync();
         }
     }
 }

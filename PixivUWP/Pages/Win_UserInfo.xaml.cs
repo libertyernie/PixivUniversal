@@ -18,6 +18,7 @@ using Pixeez.Objects;
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -45,49 +46,64 @@ namespace PixivUWP.Pages
         public Win_UserInfo()
         {
             this.InitializeComponent();
-            list.LoadingMoreItems += List_LoadingMoreItems;
-            list.HasMoreItemsEvent += List_HasMoreItemsEvent;
-            list_fav.LoadingMoreItems += List_fav_LoadingMoreItems;
-            list_fav.HasMoreItemsEvent += List_fav_HasMoreItemsEvent;
+            //list.LoadingMoreItems += List_LoadingMoreItems;
+            //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
+            //list_fav.LoadingMoreItems += List_fav_LoadingMoreItems;
+            //list_fav.HasMoreItemsEvent += List_fav_HasMoreItemsEvent;
             mdc.MasterListView = MasterListView;
             mdc_fav.MasterListView = MasterListView_fav;
             MasterListView.ItemsSource = list;
             MasterListView_fav.ItemsSource = list_fav;
         }
+
+        private async Task firstLoadAsync()
+        {
+            while (scrollRoot.ScrollableHeight - 500 <= 10)
+                if (await loadAsync() == false)
+                    return;
+        }
+
+        private async Task firstLoadAsync_fav()
+        {
+            while (scrollRoot_fav.ScrollableHeight - 500 <= 10)
+                if (await loadAsync_fav() == false)
+                    return;
+        }
+
         string nexturl = null;
         string nexturl_fav = null;
 
-        private void List_fav_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
+        bool _isLoading_fav = false;
+        private async Task<bool> loadAsync_fav()
         {
-            args.Item1 = nexturl_fav != string.Empty;
-        }
-
-        private async void List_fav_LoadingMoreItems(ItemViewList<Work> sender, Tuple<OperationDeferral<uint>, uint> args)
-        {
-            var nowcount = list.Count;
+            if (_isLoading_fav) return true;
+            Debug.WriteLine("loadAsync() called.");
+            _isLoading_fav = true;
             try
             {
                 var root = nexturl_fav == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(pix_user.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl_fav);
-                nexturl = root.next_url ?? string.Empty;
+                nexturl_fav = root.next_url ?? string.Empty;
                 foreach (var one in root.illusts)
                 {
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
+                _isLoading_fav = false;
+                return true;
             }
             catch
             {
-                nexturl = string.Empty;
-            }
-            finally
-            {
-                args.Item1.Complete((uint)(list.Count - nowcount));
+                _isLoading_fav = false;
+                return false;
             }
         }
 
-        private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<OperationDeferral<uint>, uint> args)
+        bool _isLoading = false;
+        private async Task<bool> loadAsync()
         {
-            var nowcount = list.Count;
+            if (_isLoading) return true;
+            Debug.WriteLine("loadAsync() called.");
+            _isLoading = true;
             try
             {
                 var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserWorksAsync(pix_user.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl);
@@ -97,21 +113,71 @@ namespace PixivUWP.Pages
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
+                _isLoading = false;
+                return true;
             }
             catch
             {
-                nexturl = string.Empty;
-            }
-            finally
-            {
-                args.Item1.Complete((uint)(list.Count - nowcount));
+                _isLoading = false;
+                return false;
             }
         }
 
-        private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
-        {
-            args.Item1= nexturl != string.Empty;
-        }
+        //private void List_fav_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
+        //{
+        //    args.Item1 = nexturl_fav != string.Empty;
+        //}
+
+        //private async void List_fav_LoadingMoreItems(ItemViewList<Work> sender, Tuple<OperationDeferral<uint>, uint> args)
+        //{
+        //    var nowcount = list.Count;
+        //    try
+        //    {
+        //        var root = nexturl_fav == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserFavoriteWorksAsync(pix_user.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl_fav);
+        //        nexturl = root.next_url ?? string.Empty;
+        //        foreach (var one in root.illusts)
+        //        {
+        //            if (!list.Contains(one, Data.WorkEqualityComparer.Default))
+        //                list.Add(one);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        nexturl = string.Empty;
+        //    }
+        //    finally
+        //    {
+        //        args.Item1.Complete((uint)(list.Count - nowcount));
+        //    }
+        //}
+
+        //private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<OperationDeferral<uint>, uint> args)
+        //{
+        //    var nowcount = list.Count;
+        //    try
+        //    {
+        //        var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.GetUserWorksAsync(pix_user.Id.Value) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl);
+        //        nexturl = root.next_url ?? string.Empty;
+        //        foreach (var one in root.illusts)
+        //        {
+        //            if (!list.Contains(one, Data.WorkEqualityComparer.Default))
+        //                list.Add(one);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        nexturl = string.Empty;
+        //    }
+        //    finally
+        //    {
+        //        args.Item1.Complete((uint)(list.Count - nowcount));
+        //    }
+        //}
+
+        //private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
+        //{
+        //    args.Item1= nexturl != string.Empty;
+        //}
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -124,6 +190,8 @@ namespace PixivUWP.Pages
         {
             pix_user = e.Parameter as User;
             await RefreshAsync();
+            var result_fav = firstLoadAsync_fav();
+            var result = firstLoadAsync();
         }
 
         public async Task RefreshAsync()
@@ -170,6 +238,24 @@ namespace PixivUWP.Pages
                 case 2:
                     return mdc_fav.GoBack();
             }
+        }
+
+        double _originHeight_fav = 0;
+        private void scrollRoot_fav_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            if (scrollRoot_fav.VerticalOffset == _originHeight_fav) return;
+            _originHeight_fav = scrollRoot_fav.VerticalOffset;
+            if (scrollRoot_fav.VerticalOffset <= scrollRoot_fav.ScrollableHeight - 500) return;
+            var result = loadAsync_fav();
+        }
+
+        double _originHeight = 0;
+        private void scrollRoot_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            if (scrollRoot.VerticalOffset == _originHeight) return;
+            _originHeight = scrollRoot.VerticalOffset;
+            if (scrollRoot.VerticalOffset <= scrollRoot.ScrollableHeight - 500) return;
+            var result = loadAsync();
         }
     }
 }
