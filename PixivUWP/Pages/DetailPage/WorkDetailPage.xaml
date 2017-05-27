@@ -46,12 +46,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     </TextBlock>
                 </ScrollViewer>
             </PivotItem>
-            <PivotItem  Header="Comments" Margin="12,0">
-                <StackPanel>
-                    <TextBlock TextWrapping="Wrap" >您的评论：</TextBlock>
-                    <TextBox InputScope="Text" Margin="0,0,60,0" />
-                </StackPanel>
-            </PivotItem>
         </Pivot>
         <CommandBar Grid.Row="3">
             <AppBarButton x:Name="relate" x:Uid="abbRelate" Icon="Link" Click="relate_Click"/>

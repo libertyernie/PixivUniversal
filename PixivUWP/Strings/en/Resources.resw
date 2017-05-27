@@ -350,16 +350,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. This app now supports English, Japanese and Traditional-Chinese; 
-2. Settings page has been updated and a list of contributors has been added;
-3. Fix some problems when navigating in Related Work page and Information of Author page;
-4. Fix some issues which crash this app.
+    <value>1. Change to Waterfall UI; 
+2. Provide two selections of Load Mode (place holder with no effect);
+3. Fix bugs.
 
 Our translations are done by human contributors, so it will be appreciated if you can provide better translations.</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.0.14β</value>
+    <value>Update: V1.0.17β</value>
     <comment>更新内容弹出标题</comment>
   </data>
 </root>
