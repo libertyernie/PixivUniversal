@@ -57,11 +57,36 @@ namespace PixivUWP.Data
 
         }
 
+        static Queue<FrameworkElement> loadQueue = new Queue<FrameworkElement>();
+
+        static bool isQueuedLoading = false;
+
+        public static void ClearQueue()
+            => loadQueue.Clear();
+
+        private async static void QueuedLoad()
+        {
+            if (isQueuedLoading) return;
+            isQueuedLoading = true;
+            while(loadQueue.Count>0)
+            {
+                var tmpSender = loadQueue.Dequeue();
+                await LoadPictureAsync(tmpSender);
+            }
+            isQueuedLoading = false;
+        }
+
         private async static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
-            await LoadPictureAsync(sender);
+            if (((int)Data.AppDataHelper.GetValue("LoadPolicy")) == 0)
+                await LoadPictureAsync(sender);
+            else
+            {
+                loadQueue.Enqueue(sender);
+                QueuedLoad();
+            }
         }
 
         // Using a DependencyProperty as the backing store for EnableAutoLoadWorkImg.  This enables animation, styling, binding, etc...
