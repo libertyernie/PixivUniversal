@@ -58,21 +58,52 @@ namespace PixivUWP.Data
         }
 
         static Queue<FrameworkElement> loadQueue = new Queue<FrameworkElement>();
+        static Queue<FrameworkElement> tmpQueue = new Queue<FrameworkElement>();
 
+        static bool isPaused = false;
         static bool isQueuedLoading = false;
 
         public static void ClearQueue()
             => loadQueue.Clear();
 
+        public static void PauseQueuedLoad()
+        {
+            if (isPaused) return;
+            isPaused = true;
+            storeQueue();
+        }
+
+        private static void storeQueue()
+        {
+            tmpQueue.Enqueue(loadQueue.Dequeue());
+            loadQueue.Clear();
+        }
+
+        public static void ResumeQueuedLoad()
+        {
+            if (!isPaused) return;
+            isPaused = false;
+            resumeQueue();
+            QueuedLoad();
+        }
+
+        private  static void resumeQueue()
+        {
+            while (tmpQueue.Count > 0)
+                loadQueue.Enqueue(tmpQueue.Dequeue());
+        }
+
         private async static void QueuedLoad()
         {
             if (isQueuedLoading) return;
             isQueuedLoading = true;
-            while(loadQueue.Count>0)
+            while (loadQueue.Count > 0 && (!isPaused))
             {
                 var tmpSender = loadQueue.Dequeue();
                 await LoadPictureAsync(tmpSender);
             }
+            if (isPaused)
+                storeQueue();
             isQueuedLoading = false;
         }
 
@@ -82,8 +113,17 @@ namespace PixivUWP.Data
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
             if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 1)
             {
-                loadQueue.Enqueue(sender);
-                QueuedLoad();
+                if (!isPaused)
+                {
+                    loadQueue.Enqueue(sender);
+                    QueuedLoad();
+                }
+                else
+                {
+                    tmpQueue.Enqueue(sender);
+                    if (!isPaused)
+                        resumeQueue();
+                }
             }
             else
                 await LoadPictureAsync(sender);
