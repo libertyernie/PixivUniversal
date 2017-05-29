@@ -80,13 +80,13 @@ namespace PixivUWP.Data
         {
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
-            if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 0)
-                await LoadPictureAsync(sender);
-            else
+            if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 1)
             {
                 loadQueue.Enqueue(sender);
                 QueuedLoad();
             }
+            else
+                await LoadPictureAsync(sender);
         }
 
         // Using a DependencyProperty as the backing store for EnableAutoLoadWorkImg.  This enables animation, styling, binding, etc...
