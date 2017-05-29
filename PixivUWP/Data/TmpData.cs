@@ -80,7 +80,7 @@ namespace PixivUWP.Data
         {
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
-            if (((int)Data.AppDataHelper.GetValue("LoadPolicy")) == 0)
+            if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 0)
                 await LoadPictureAsync(sender);
             else
             {
