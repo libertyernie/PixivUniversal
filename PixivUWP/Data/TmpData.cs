@@ -17,6 +17,7 @@
 using Pixeez.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -71,6 +72,7 @@ namespace PixivUWP.Data
             foreach (var tmp in loadingPics)
                 tmp.AsAsyncAction().Cancel();
             loadingPics.Clear();
+            loaded.Clear();
         }
 
         private async static Task QueuedLoad()
@@ -85,8 +87,11 @@ namespace PixivUWP.Data
             isQueuedLoading = false;
         }
 
+        static List<FrameworkElement> loaded = new List<FrameworkElement>();
+
         private static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
+            if (loaded.Contains(sender)) return;
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
             if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 1)
@@ -132,6 +137,7 @@ namespace PixivUWP.Data
                                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                                     await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
                                     img.Source = bitmap;
+                                    loaded.Add(sender);
                                 }
                             }
                         }
