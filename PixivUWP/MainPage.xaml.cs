@@ -317,6 +317,7 @@ namespace PixivUWP
             {
                 return;
             }
+            Data.TmpData.StopLoading();
             MenuItemList.SelectedIndex = -1;
             switch (MenuBottomItemList.SelectedIndex)
             {
@@ -387,6 +388,7 @@ namespace PixivUWP
             //{
             //    btn_Refresh.IsEnabled = true;
             //}
+            Data.TmpData.StopLoading();
             MainFrame.Navigate(MainFrame.Content.GetType());
         }
 
@@ -442,6 +444,8 @@ namespace PixivUWP
         {
             MenuToggle.IsChecked = false;
             MenuToggle_Click(null, null);
+            MenuItemList.SelectedIndex = -1;
+            Data.TmpData.StopLoading();
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
         }
     }

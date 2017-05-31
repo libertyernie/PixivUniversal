@@ -157,6 +157,7 @@ namespace PixivUWP.Pages
 
         private void byPopularity_Checked(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.StopLoading();
             _bypopular = true;
             list.Clear();
             MasterListView.ItemsSource = list;
@@ -164,6 +165,7 @@ namespace PixivUWP.Pages
 
         private void byPopularity_Unchecked(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.StopLoading();
             _bypopular = false;
             list.Clear();
             MasterListView.ItemsSource = list;
