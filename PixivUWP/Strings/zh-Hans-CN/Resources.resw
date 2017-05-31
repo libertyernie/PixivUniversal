@@ -354,7 +354,8 @@
 1、资源占用；
 2、低网速下排程加载对效果的提升；
 3、搜索页面刷新是否崩溃；
-4、其它未知的Bug。</value>
+4、图片是否仍出现重复加载的现象；
+5、其它未知的Bug。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
