@@ -389,6 +389,11 @@ namespace PixivUWP
             //    btn_Refresh.IsEnabled = true;
             //}
             Data.TmpData.StopLoading();
+            if (MainFrame.Content is Pages.pg_Search)
+            {
+                MainFrame.Navigate(typeof(Pages.pg_Search), currentQueryString);
+                return;
+            }
             MainFrame.Navigate(MainFrame.Content.GetType());
         }
 
@@ -440,6 +445,8 @@ namespace PixivUWP
             MenuToggle_Click(null, null);
         }
 
+        string currentQueryString;
+
         private void Searchbox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             MenuToggle.IsChecked = false;
@@ -447,6 +454,7 @@ namespace PixivUWP
             MenuItemList.SelectedIndex = -1;
             Data.TmpData.StopLoading();
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
+            currentQueryString = args.QueryText;
         }
     }
 }
