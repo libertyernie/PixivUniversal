@@ -60,79 +60,57 @@ namespace PixivUWP.Data
         static Queue<FrameworkElement> loadQueue = new Queue<FrameworkElement>();
         static Queue<FrameworkElement> tmpQueue = new Queue<FrameworkElement>();
 
-        static bool isPaused = false;
         static bool isQueuedLoading = false;
 
-        public static void ClearQueue()
+        static void ClearQueue()
             => loadQueue.Clear();
 
-        public static void PauseQueuedLoad()
+        public static void StopLoading()
         {
-            if (isPaused) return;
-            isPaused = true;
-            storeQueue();
+            ClearQueue();
+            foreach (var tmp in loadingPics)
+                tmp.AsAsyncAction().Cancel();
+            loadingPics.Clear();
         }
 
-        private static void storeQueue()
-        {
-            tmpQueue.Enqueue(loadQueue.Dequeue());
-            loadQueue.Clear();
-        }
-
-        public static void ResumeQueuedLoad()
-        {
-            if (!isPaused) return;
-            isPaused = false;
-            resumeQueue();
-            QueuedLoad();
-        }
-
-        private  static void resumeQueue()
-        {
-            while (tmpQueue.Count > 0)
-                loadQueue.Enqueue(tmpQueue.Dequeue());
-        }
-
-        private async static void QueuedLoad()
+        private async static Task QueuedLoad()
         {
             if (isQueuedLoading) return;
             isQueuedLoading = true;
-            while (loadQueue.Count > 0 && (!isPaused))
+            while (loadQueue.Count > 0)
             {
                 var tmpSender = loadQueue.Dequeue();
                 await LoadPictureAsync(tmpSender);
             }
-            if (isPaused)
-                storeQueue();
             isQueuedLoading = false;
         }
 
-        private async static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
             if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 1)
             {
-                if (!isPaused)
-                {
-                    loadQueue.Enqueue(sender);
-                    QueuedLoad();
-                }
-                else
-                {
-                    tmpQueue.Enqueue(sender);
-                    if (!isPaused)
-                        resumeQueue();
-                }
+                loadQueue.Enqueue(sender);
+                var tmptask = QueuedLoad();
+                loadingPics.Add(tmptask);
+                var tmpwaiter = tmptask.GetAwaiter();
+                tmpwaiter.OnCompleted(() => loadingPics.Remove(tmptask));
             }
             else
-                await LoadPictureAsync(sender);
+            {
+                var tmptask = LoadPictureAsync(sender);
+                loadingPics.Add(tmptask);
+                var tmpwaiter = tmptask.GetAwaiter();
+                tmpwaiter.OnCompleted(() => loadingPics.Remove(tmptask));
+            }
         }
 
         // Using a DependencyProperty as the backing store for EnableAutoLoadWorkImg.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EnableAutoLoadWorkImgProperty =
             DependencyProperty.RegisterAttached("EnableAutoLoadWorkImg", typeof(bool), typeof(Image), new PropertyMetadata(false, OnEnableAutoLoadWorkImgChanged));
 
+        static List<Task> loadingPics = new List<Task>();
 
         public static async Task LoadPictureAsync(FrameworkElement sender)
         {
