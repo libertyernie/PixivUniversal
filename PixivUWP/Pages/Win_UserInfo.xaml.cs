@@ -85,8 +85,8 @@ namespace PixivUWP.Pages
                 nexturl_fav = root.next_url ?? string.Empty;
                 foreach (var one in root.illusts)
                 {
-                    if (!list.Contains(one, Data.WorkEqualityComparer.Default))
-                        list.Add(one);
+                    if (!list_fav.Contains(one, Data.WorkEqualityComparer.Default))
+                        list_fav.Add(one);
                 }
                 _isLoading_fav = false;
                 return true;
