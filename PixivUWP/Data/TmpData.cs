@@ -94,17 +94,17 @@ namespace PixivUWP.Data
             if (loaded.Contains(sender)) return;
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
-            if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 1)
+            if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 0)
             {
-                loadQueue.Enqueue(sender);
-                var tmptask = QueuedLoad();
+                var tmptask = LoadPictureAsync(sender);
                 loadingPics.Add(tmptask);
                 var tmpwaiter = tmptask.GetAwaiter();
                 tmpwaiter.OnCompleted(() => loadingPics.Remove(tmptask));
             }
             else
             {
-                var tmptask = LoadPictureAsync(sender);
+                loadQueue.Enqueue(sender);
+                var tmptask = QueuedLoad();
                 loadingPics.Add(tmptask);
                 var tmpwaiter = tmptask.GetAwaiter();
                 tmpwaiter.OnCompleted(() => loadingPics.Remove(tmptask));

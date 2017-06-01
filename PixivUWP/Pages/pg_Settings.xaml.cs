@@ -84,7 +84,7 @@ namespace PixivUWP.Pages
             }
             catch
             {
-                loadpolicy.SelectedIndex = 0;
+                loadpolicy.SelectedIndex = 1;
             }
         }
 
