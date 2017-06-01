@@ -119,6 +119,7 @@ namespace PixivUWP.Data
 
         public static async Task LoadPictureAsync(FrameworkElement sender)
         {
+            if (loaded.Contains(sender)) return;
             try
             {
                 if (sender.Parent is Panel pl)
