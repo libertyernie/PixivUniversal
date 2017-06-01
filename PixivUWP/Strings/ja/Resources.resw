@@ -362,15 +362,15 @@
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
-    <value>ロードモード（*一時的に無効にする）</value>
+    <value>ロードモード</value>
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">
-    <value>同期アドイン（黙認）</value>
+    <value>同期アドイン</value>
     <comment>同步加载</comment>
   </data>
   <data name="loadpolicy2.Content" xml:space="preserve">
-    <value>スケジュール負荷</value>
+    <value>スケジュール負荷（黙認）</value>
     <comment>排程加载</comment>
   </data>
   <data name="loadpolicyinfo.Text" xml:space="preserve">

@@ -362,15 +362,15 @@
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
-    <value>載入模式（*暫時無效）</value>
+    <value>載入模式</value>
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">
-    <value>同步加載（預設）</value>
+    <value>同步加載（高性能）</value>
     <comment>同步加载</comment>
   </data>
   <data name="loadpolicy2.Content" xml:space="preserve">
-    <value>排程加載</value>
+    <value>排程加載（預設）</value>
     <comment>排程加载</comment>
   </data>
   <data name="loadpolicyinfo.Text" xml:space="preserve">

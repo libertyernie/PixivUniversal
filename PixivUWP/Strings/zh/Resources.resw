@@ -363,7 +363,7 @@
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
-    <value>加载模式（*暂时无效）</value>
+    <value>加载模式</value>
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">

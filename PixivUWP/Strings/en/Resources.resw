@@ -362,15 +362,15 @@ Info: This version may cause high memory usage, which will be improved in the ne
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
-    <value>Load Mode (*Place Holder)</value>
+    <value>Load Mode</value>
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">
-    <value>Multi-Task (Default)</value>
+    <value>Multi-Task</value>
     <comment>同步加载</comment>
   </data>
   <data name="loadpolicy2.Content" xml:space="preserve">
-    <value>Single-Task</value>
+    <value>Single-Task (Default)</value>
     <comment>排程加载</comment>
   </data>
   <data name="loadpolicyinfo.Text" xml:space="preserve">
