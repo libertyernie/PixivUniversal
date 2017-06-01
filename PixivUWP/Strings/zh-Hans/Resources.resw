@@ -367,11 +367,11 @@
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">
-    <value>同步加载（默认）</value>
+    <value>同步加载（高性能）</value>
     <comment>同步加载</comment>
   </data>
   <data name="loadpolicy2.Content" xml:space="preserve">
-    <value>排程加载</value>
+    <value>排程加载（默认）</value>
     <comment>排程加载</comment>
   </data>
   <data name="loadpolicyinfo.Text" xml:space="preserve">
