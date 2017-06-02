@@ -25,29 +25,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Image x:Name="bigimg" Margin="1,2,2,2" />
-        <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
-        <TextBlock  Margin="5,0" VerticalAlignment="Bottom" Padding="0">
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="bigimg" Margin="1,2,2,2" Stretch="Uniform"/>
+                <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
+                <TextBlock  Margin="5,0" VerticalAlignment="Bottom" Padding="0" Grid.Row="1">
                 <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>
-        </TextBlock>
-        <Pivot Grid.Row="2" x:Name="pivot" Margin="5,0">
-            <PivotItem Header="Profile" Margin="0">
-                <ScrollViewer>
-                    <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="5,0,0,0">
-                    <Run x:Name="time"></Run> | <Run x:Name="siz"></Run> | <Run x:Name="tool"></Run><LineBreak/>
-                    Tags :<Run x:Name="tags"></Run><LineBreak/>
-                    <Run x:Name="des"></Run>
-                    </TextBlock>
-                </ScrollViewer>
-            </PivotItem>
-        </Pivot>
-        <CommandBar Grid.Row="3">
+                </TextBlock>
+                <Pivot Grid.Row="2" x:Name="pivot" Margin="5,0">
+                    <PivotItem Header="Profile" Margin="0">
+                        <ScrollViewer>
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="5,0,0,0">
+                                <Run x:Name="time"></Run> | <Run x:Name="siz"></Run> | <Run x:Name="tool"></Run><LineBreak/>
+                                Tags :<Run x:Name="tags"></Run><LineBreak/>
+                                <Run x:Name="des"></Run>
+                            </TextBlock>
+                        </ScrollViewer>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </ScrollViewer>
+        <CommandBar Grid.Row="1">
             <AppBarButton x:Name="relate" x:Uid="abbRelate" Icon="Link" Click="relate_Click"/>
             <AppBarButton Visibility="Collapsed" x:Name="watchbigimg" x:Uid="abbWatchBig" Click="watchbigimg_Click" Icon="ViewAll"/>
             <AppBarButton x:Name="downloadbutton" x:Uid="abbDownload" Icon="Download" Click="AppBarButton_Click"/>
@@ -64,6 +71,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </controls:ContextFlyoutSetter.CompatibleContextFlyout>
             </AppBarToggleButton>
             <AppBarToggleButton x:Name="gz" x:Uid="abbAddFriend" Icon="AddFriend" Click="gz_Click" />
+            <AppBarButton x:Name="zoomin" Icon="ZoomIn" Click="zoomin_Click"/>
+            <AppBarButton x:Name="zoomout" Icon="ZoomOut" Click="zoomout_Click"/>
         </CommandBar>
     </Grid>
 </Page>

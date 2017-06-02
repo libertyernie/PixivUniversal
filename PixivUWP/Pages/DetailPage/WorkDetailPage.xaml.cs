@@ -296,5 +296,13 @@ namespace PixivUWP.Pages.DetailPage
                 tb.Text = sb.ToString();
             }
         }
+
+        private void zoomin_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void zoomout_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
