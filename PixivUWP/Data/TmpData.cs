@@ -35,7 +35,7 @@ namespace PixivUWP.Data
         public static string Password;
         public static Pixeez.AuthResult CurrentAuth;
         public static Dictionary<object, int> OpenedWindows = new Dictionary<object, int>();
-
+        public static bool isBackTrigger = false;
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {

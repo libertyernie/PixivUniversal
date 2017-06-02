@@ -234,31 +234,32 @@ namespace PixivUWP
 
         private void MenuItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Data.TmpData.isBackTrigger)
+            {
+                Data.TmpData.isBackTrigger = false;
+                return;
+            }
             if (MenuItemList.SelectedIndex == -1)
             {
                 return;
             }
             MenuBottomItemList.SelectedIndex = -1;
+            Data.TmpData.StopLoading();
             switch (MenuItemList.SelectedIndex)
             {
                 case 0:
-                    Data.TmpData.StopLoading();
                     MainFrame.Navigate(typeof(Pages.pg_Main));
                     break;
                 case 1:
-                    Data.TmpData.StopLoading();
                     MainFrame.Navigate(typeof(Pages.pg_Feeds));
                     break;
                 case 2:
-                    Data.TmpData.StopLoading();
                     MainFrame.Navigate(typeof(Pages.pg_Mywork));
                     break;
                 case 3:
-                    Data.TmpData.StopLoading();
                     MainFrame.Navigate(typeof(Pages.pg_Collection));
                     break;
                 case 4:
-                    Data.TmpData.StopLoading();
                     MainFrame.Navigate(typeof(Pages.pg_Download));
                     break;
             }
@@ -313,6 +314,11 @@ namespace PixivUWP
 
         private async void MenuBottomItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Data.TmpData.isBackTrigger)
+            {
+                Data.TmpData.isBackTrigger = false;
+                return;
+            }
             if (MenuBottomItemList.SelectedIndex == -1)
             {
                 return;
