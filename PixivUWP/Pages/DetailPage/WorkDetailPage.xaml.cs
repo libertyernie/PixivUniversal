@@ -298,11 +298,9 @@ namespace PixivUWP.Pages.DetailPage
         }
 
         private void zoomin_Click(object sender, RoutedEventArgs e)
-        {
-        }
+            => scalable.ZoomIn();
 
         private void zoomout_Click(object sender, RoutedEventArgs e)
-        {
-        }
+            => scalable.ZoomOut();
     }
 }

@@ -31,12 +31,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <ScrollViewer>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="500"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="bigimg" Margin="1,2,2,2" Stretch="Uniform"/>
+                <controls:ScalableGrid x:Name="scalable" Width="Auto" HorizontalAlignment="Center">
+                    <Image x:Name="bigimg" Margin="1,2,2,2" Stretch="Uniform" Width="Auto"/>
+                </controls:ScalableGrid>
                 <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
+                <Canvas Grid.Row="1" Grid.RowSpan="2" Background="White"/>
                 <TextBlock  Margin="5,0" VerticalAlignment="Bottom" Padding="0" Grid.Row="1">
                 <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>

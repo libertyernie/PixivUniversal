@@ -11,6 +11,9 @@ using Windows.UI.Xaml.Media;
 
 namespace PixivUWP.Controls
 {
+    /// <summary>
+    /// 引用自https://raw.githubusercontent.com/manupstairs/UWPSamples/master/UWPSamples/PhotosBrowser/ScalableGrid.cs的对象
+    /// </summary>
     public class ScalableGrid : Grid
     {
         private TransformGroup transformGroup;
@@ -53,8 +56,10 @@ namespace PixivUWP.Controls
         }
 
         private void ScalableGrid_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
+            => zoom(e.Delta.Scale, e.Delta.Translation.X, e.Delta.Translation.Y);
+
+        private void zoom(double size,double x,double y)
         {
-            //this.ManipulationMode = this.SetCurrentMainpulationModes();
             if (scaleTransform.ScaleX == 1 && scaleTransform.ScaleY == 1)
             {
                 this.ManipulationMode = ManipulationModes.System | ManipulationModes.Scale;
@@ -64,17 +69,23 @@ namespace PixivUWP.Controls
                 this.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY | ManipulationModes.Scale | ManipulationModes.TranslateInertia;
             }
 
-            scaleTransform.ScaleX *= e.Delta.Scale;
-            scaleTransform.ScaleY *= e.Delta.Scale;
+            scaleTransform.ScaleX *= size;
+            scaleTransform.ScaleY *= size;
             if (scaleTransform.ScaleY < 1)
             {
                 scaleTransform.ScaleX = scaleTransform.ScaleY = 1;
             }
 
-            translateTransform.X += e.Delta.Translation.X;
-            translateTransform.Y += e.Delta.Translation.Y;
+            translateTransform.X += x;
+            translateTransform.Y += y;
             StopWhenTranslateToEdge();
         }
+
+        public void ZoomIn()
+            => zoom(1.25, 0, 0);
+
+        public void ZoomOut()
+            => zoom(0.8, 0, 0);
 
         private void StopWhenTranslateToEdge()
         {
