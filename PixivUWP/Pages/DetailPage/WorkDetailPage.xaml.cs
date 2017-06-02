@@ -36,6 +36,7 @@ namespace PixivUWP.Pages.DetailPage
     {
         string err1 = "";
         string err2 = "";
+        Frame MainFrame;
 
         public WorkDetailPage()
         {
@@ -43,6 +44,12 @@ namespace PixivUWP.Pages.DetailPage
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             err1 = loader.GetString("ErrorLoading");
             err2 = loader.GetString("Error");
+            MainFrame = ((((this.Parent as
+                Frame).Parent as
+                Grid).Parent as
+                MasterDetailControl).Parent as
+                Windows.UI.Xaml.Controls.Page).Parent as
+                Frame;
         }
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -162,13 +169,10 @@ namespace PixivUWP.Pages.DetailPage
 
         private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
-            (((((this.Parent as 
-                Frame).Parent as 
-                Grid).Parent as 
-                MasterDetailControl).Parent as 
-                Windows.UI.Xaml.Controls.Page).Parent as 
-                Frame).Navigate(typeof(Win_UserInfo), Work.User);
+            MainFrame.Navigate(typeof(Win_UserInfo), Work.User);
             //弹出该作者的信息
             //await CreateNewWindowAsync(Work.User.Id.Value.ToString(), typeof(Win_UserInfo), Work.User);
 
@@ -245,13 +249,10 @@ namespace PixivUWP.Pages.DetailPage
 
         private void relate_Click(object sender, RoutedEventArgs e)
         {
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
-            (((((this.Parent as
-                Frame).Parent as
-                Grid).Parent as
-                MasterDetailControl).Parent as
-                Windows.UI.Xaml.Controls.Page).Parent as
-                Frame).Navigate(typeof(Win_Related), Work);
+            MainFrame.Navigate(typeof(Win_Related), Work);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

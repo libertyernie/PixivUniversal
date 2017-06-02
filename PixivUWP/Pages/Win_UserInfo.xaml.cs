@@ -42,7 +42,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable
+    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable,IBackHandlable
     {
         public Win_UserInfo()
         {
@@ -57,7 +57,7 @@ namespace PixivUWP.Pages
             MasterListView_fav.ItemsSource = list_fav;
         }
 
-        internal BackInfo GenerateBackInfo()
+        public BackInfo GenerateBackInfo()
             => new BackInfo { list = this.list, param = new object[] { this.list_fav, this.nexturl, this.nexturl_fav, this.pix_user } };
 
         private async Task firstLoadAsync()

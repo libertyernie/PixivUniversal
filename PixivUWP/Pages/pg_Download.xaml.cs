@@ -62,8 +62,6 @@ namespace PixivUWP.Pages
         public static readonly DependencyProperty MaxValueProperty =
             DependencyProperty.Register("MaxValue", typeof(int), typeof(DownloadTask), new PropertyMetadata(100));
 
-        internal BackInfo GenerateBackInfo() => null;
-
         public int Value
         {
             get { return (int)GetValue(ValueProperty); }
@@ -78,7 +76,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Download : Page
+    public sealed partial class pg_Download : Page,IBackHandlable
     {
 
         public pg_Download()
@@ -109,6 +107,9 @@ namespace PixivUWP.Pages
                 two.Completed = progresschange;
             }
         }
+
+        public BackInfo GenerateBackInfo() => null;
+
         public void progresschange(IAsyncOperationWithProgress<DownloadOperation, DownloadOperation> a, DownloadOperation b)
         {
             var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>

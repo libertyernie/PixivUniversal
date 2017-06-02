@@ -37,7 +37,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Settings : Page
+    public sealed partial class pg_Settings : Page,IBackHandlable
     {
         string strithome="";
         string strqqgroup="";
@@ -89,7 +89,7 @@ namespace PixivUWP.Pages
             }
         }
 
-        internal BackInfo GenerateBackInfo() => null;
+        public BackInfo GenerateBackInfo() => null;
 
         private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {

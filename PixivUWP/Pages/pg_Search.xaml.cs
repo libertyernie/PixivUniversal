@@ -26,7 +26,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Search : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable
+    public sealed partial class pg_Search : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable,IBackHandlable
     {
         ItemViewList<Work> list = new ItemViewList<Work>();
         string _query;
@@ -41,7 +41,7 @@ namespace PixivUWP.Pages
             mdc.MasterListView = MasterListView;
         }
 
-        internal BackInfo GenerateBackInfo()
+        public BackInfo GenerateBackInfo()
             => new BackInfo { list = this.list, param = new object[] { this._query, this.nowpage } };
 
         private async Task firstLoadAsync()
