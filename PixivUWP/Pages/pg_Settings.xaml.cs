@@ -14,6 +14,7 @@
 //You should have received a copy of the GNU General Public License
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+using PixivUWP.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -87,6 +88,8 @@ namespace PixivUWP.Pages
                 loadpolicy.SelectedIndex = 1;
             }
         }
+
+        internal BackInfo GenerateBackInfo() => null;
 
         private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {

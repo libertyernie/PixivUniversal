@@ -1,4 +1,5 @@
 ﻿using Pixeez.Objects;
+using PixivUWP.Data;
 using PixivUWP.Pages.DetailPage;
 using PixivUWP.ViewModels;
 using System;
@@ -39,6 +40,9 @@ namespace PixivUWP.Pages
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
         }
+
+        internal BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = new object[] { this._query, this.nowpage } };
 
         private async Task firstLoadAsync()
         {

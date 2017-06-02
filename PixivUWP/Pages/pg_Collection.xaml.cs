@@ -34,6 +34,7 @@ using Windows.UI.Xaml.Navigation;
 using PixivUWP.Pages.DetailPage;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using PixivUWP.Data;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -52,8 +53,10 @@ namespace PixivUWP.Pages
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
             MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-            var result = firstLoadAsync();
         }
+
+        internal BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = this.nexturl };
 
         private async Task firstLoadAsync()
         {
@@ -120,6 +123,7 @@ namespace PixivUWP.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             MasterListView.ItemsSource = list;
+            var result = firstLoadAsync();
         }
 
 

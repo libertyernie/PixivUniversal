@@ -15,6 +15,7 @@
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using Pixeez.Objects;
+using PixivUWP.Data;
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,9 @@ namespace PixivUWP.Pages
             MasterListView.ItemsSource = list;
             MasterListView_fav.ItemsSource = list_fav;
         }
+
+        internal BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = new object[] { this.list_fav, this.nexturl, this.nexturl_fav, this.pix_user } };
 
         private async Task firstLoadAsync()
         {

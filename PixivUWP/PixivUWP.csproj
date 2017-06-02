@@ -131,6 +131,7 @@
     <Compile Include="Controls\WaterfallPanel.cs" />
     <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
+    <Compile Include="Data\BackInfo.cs" />
     <Compile Include="Data\DownloadManager.cs" />
     <Compile Include="Data\VersionHelper.cs" />
     <Compile Include="Data\WorkEqualityComparer.cs" />
