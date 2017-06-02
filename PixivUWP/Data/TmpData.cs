@@ -22,6 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -122,6 +123,11 @@ namespace PixivUWP.Data
             if (loaded.Contains(sender)) return;
             try
             {
+                CoreDispatcher dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+                await dispatcher.RunAsync(CoreDispatcherPriority.Low,
+                     () =>
+                     { }
+                     );
                 if (sender.Parent is Panel pl)
                 {
                     if (pl.FindName("pro") is TextBlock ring)
