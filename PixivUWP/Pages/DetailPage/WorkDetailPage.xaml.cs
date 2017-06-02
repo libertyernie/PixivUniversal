@@ -160,10 +160,17 @@ namespace PixivUWP.Pages.DetailPage
             }
         }
 
-        private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
+            Data.TmpData.StopLoading();
+            (((((this.Parent as 
+                Frame).Parent as 
+                Grid).Parent as 
+                MasterDetailControl).Parent as 
+                Windows.UI.Xaml.Controls.Page).Parent as 
+                Frame).Navigate(typeof(Win_UserInfo), Work.User);
             //弹出该作者的信息
-            await CreateNewWindowAsync(Work.User.Id.Value.ToString(), typeof(Win_UserInfo), Work.User);
+            //await CreateNewWindowAsync(Work.User.Id.Value.ToString(), typeof(Win_UserInfo), Work.User);
 
         }
 
@@ -236,9 +243,15 @@ namespace PixivUWP.Pages.DetailPage
             });
         }
 
-        private async void relate_Click(object sender, RoutedEventArgs e)
+        private void relate_Click(object sender, RoutedEventArgs e)
         {
-            await CreateNewWindowAsync("related" + Work.Id, typeof(Win_Related), Work);
+            Data.TmpData.StopLoading();
+            (((((this.Parent as
+                Frame).Parent as
+                Grid).Parent as
+                MasterDetailControl).Parent as
+                Windows.UI.Xaml.Controls.Page).Parent as
+                Frame).Navigate(typeof(Win_Related), Work);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
