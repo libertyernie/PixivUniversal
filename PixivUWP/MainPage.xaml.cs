@@ -353,6 +353,8 @@ namespace PixivUWP
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.menuItem = MenuItemList;
+            Data.TmpData.menuBottomItem = MenuBottomItemList;
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             if (checkVersion())
                 await new Windows.UI.Popups.MessageDialog(loader.GetString("PopupContent"), loader.GetString("PopupTitle")).ShowAsync();

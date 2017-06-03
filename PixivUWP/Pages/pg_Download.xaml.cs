@@ -78,6 +78,19 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Download : Page,IBackHandlable
     {
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = 4;
+                    Data.TmpData.menuBottomItem.SelectedIndex = -1;
+                }
+            }
+            catch { }
+        }
 
         public pg_Download()
         {

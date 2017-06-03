@@ -132,6 +132,9 @@ namespace PixivUWP.Pages
             {
                 if ((bool)((object[])e.Parameter)[0])
                 {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = 2;
+                    Data.TmpData.menuBottomItem.SelectedIndex = -1;
                     list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<IllustWork>;
                     nexturl = ((BackInfo)((object[])e.Parameter)[1]).param as string;
                 }

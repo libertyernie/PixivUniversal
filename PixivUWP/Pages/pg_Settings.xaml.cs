@@ -110,5 +110,19 @@ namespace PixivUWP.Pages
         {
             Data.AppDataHelper.SetValue("LoadPolicy", loadpolicy.SelectedIndex);
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = -1;
+                    Data.TmpData.menuBottomItem.SelectedIndex = 0;
+                }
+            }
+            catch { }
+        }
     }
 }

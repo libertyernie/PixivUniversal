@@ -190,6 +190,8 @@ namespace PixivUWP.Pages
         User pix_user;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Data.TmpData.menuItem.SelectedIndex = -1;
+            Data.TmpData.menuBottomItem.SelectedIndex = -1;
             try
             {
                 if ((bool)((object[])e.Parameter)[0])
