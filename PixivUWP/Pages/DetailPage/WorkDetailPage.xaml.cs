@@ -44,16 +44,16 @@ namespace PixivUWP.Pages.DetailPage
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             err1 = loader.GetString("ErrorLoading");
             err2 = loader.GetString("Error");
+        }
+        Work Work;
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
             MainFrame = ((((this.Parent as
                 Frame).Parent as
                 Grid).Parent as
                 MasterDetailControl).Parent as
                 Windows.UI.Xaml.Controls.Page).Parent as
                 Frame;
-        }
-        Work Work;
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
-        {
             Work = e.Parameter as Work;
             await RefreshAsync();
             if (Work is IllustWork iw)
