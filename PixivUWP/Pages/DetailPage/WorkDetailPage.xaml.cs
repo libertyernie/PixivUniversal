@@ -48,12 +48,6 @@ namespace PixivUWP.Pages.DetailPage
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MainFrame = ((((this.Parent as
-                Frame).Parent as
-                Grid).Parent as
-                MasterDetailControl).Parent as
-                Windows.UI.Xaml.Controls.Page).Parent as
-                Frame;
             Work = e.Parameter as Work;
             await RefreshAsync();
             if (Work is IllustWork iw)
@@ -316,5 +310,15 @@ namespace PixivUWP.Pages.DetailPage
 
         private void zoomout_Click(object sender, RoutedEventArgs e)
             => scalable.ZoomOut();
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame = ((((this.Parent as
+                Frame).Parent as
+                Grid).Parent as
+                MasterDetailControl).Parent as
+                Windows.UI.Xaml.Controls.Page).Parent as
+                Frame;
+        }
     }
 }
