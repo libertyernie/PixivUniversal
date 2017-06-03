@@ -453,7 +453,8 @@ namespace PixivUWP
             MenuToggle_Click(null, null);
             MenuItemList.SelectedIndex = -1;
             var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
-            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            if (tmpInfo != null)
+                Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
             currentQueryString = args.QueryText;
