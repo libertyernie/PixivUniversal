@@ -368,22 +368,10 @@ namespace PixivUWP
 
         private bool Goback()
         {
-            Frame.BackStack.Clear();
-            if (MenuItemList.SelectedIndex != 0)
-            {
-                MenuItemList.SelectedIndex = 0;
-                return true;
-            }
-            else
-            {
-                if(Frame.CanGoBack)
-                {
-                    Frame.GoBack();
-                    return true;
-                }
-            }
-            return false;
+            var backInfo = Data.UniversalBackHandler.Back();
+            if (backInfo == null) return false;
 
+            return true;
         }
 
         private void btn_Refresh_Click(object sender, RoutedEventArgs e)
