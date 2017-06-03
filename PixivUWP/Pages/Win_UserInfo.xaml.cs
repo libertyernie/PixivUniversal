@@ -226,8 +226,6 @@ namespace PixivUWP.Pages
             finally
             {
                 await RefreshAsync();
-                MasterListView.ItemsSource = list;
-                MasterListView_fav.ItemsSource = list_fav;
             }
         }
 
@@ -300,9 +298,15 @@ namespace PixivUWP.Pages
             switch(pivot.SelectedIndex)
             {
                 case 1:
+                    Data.TmpData.StopLoading();
+                    MasterListView_fav.ItemsSource = null;
+                    MasterListView.ItemsSource = list;
                     var result = firstLoadAsync();
                     break;
                 case 2:
+                    Data.TmpData.StopLoading();
+                    MasterListView.ItemsSource = null;
+                    MasterListView_fav.ItemsSource = list_fav;
                     var result_fav = firstLoadAsync_fav();
                     break;
             }

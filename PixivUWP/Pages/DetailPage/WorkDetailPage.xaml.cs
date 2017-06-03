@@ -313,12 +313,7 @@ namespace PixivUWP.Pages.DetailPage
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MainFrame = ((((this.Parent as
-                Frame).Parent as
-                Grid).Parent as
-                MasterDetailControl).Parent as
-                Windows.UI.Xaml.Controls.Page).Parent as
-                Frame;
+            MainFrame = Data.TmpData.mainFrame;
         }
     }
 }

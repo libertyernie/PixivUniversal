@@ -38,6 +38,7 @@ namespace PixivUWP.Data
         public static bool isBackTrigger = false;
         public static ListView menuItem;
         public static ListView menuBottomItem;
+        public static Frame mainFrame;
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {
