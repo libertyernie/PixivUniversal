@@ -28,7 +28,7 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Search : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable,IBackHandlable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<Work> list;
         string _query;
         bool _bypopular;
 
@@ -53,10 +53,38 @@ namespace PixivUWP.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _query = e.Parameter as string;
-            qText.Text = _query;
-            MasterListView.ItemsSource = list;
-            var result = firstLoadAsync();
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    _query = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as string;
+                    nowpage = (int)(((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1]);
+                }
+                else
+                {
+                    list = new ItemViewList<Work>();
+                    _query = e.Parameter as string;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                list = new ItemViewList<Work>();
+                _query = e.Parameter as string;
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                list = new ItemViewList<Work>();
+                _query = e.Parameter as string;
+            }
+            finally
+            {
+                qText.Text = _query;
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+            }
         }
 
         bool _isLoading = false;

@@ -53,8 +53,6 @@ namespace PixivUWP.Pages
             //list_fav.HasMoreItemsEvent += List_fav_HasMoreItemsEvent;
             mdc.MasterListView = MasterListView;
             mdc_fav.MasterListView = MasterListView_fav;
-            MasterListView.ItemsSource = list;
-            MasterListView_fav.ItemsSource = list_fav;
         }
 
         public BackInfo GenerateBackInfo()
@@ -81,7 +79,7 @@ namespace PixivUWP.Pages
         private async Task<bool> loadAsync_fav()
         {
             if (_isLoading_fav) return true;
-            Debug.WriteLine("loadAsync() called.");
+            Debug.WriteLine("loadAsync_fav() called.");
             _isLoading_fav = true;
             try
             {
@@ -192,10 +190,45 @@ namespace PixivUWP.Pages
         User pix_user;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            pix_user = e.Parameter as User;
-            await RefreshAsync();
-            var result_fav = firstLoadAsync_fav();
-            var result = firstLoadAsync();
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    list_fav = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as ItemViewList<Work>;
+                    nexturl = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1] as string;
+                    nexturl_fav = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[2] as string;
+                    pix_user = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[3] as User;
+                }
+                else
+                {
+                    list = new ItemViewList<Work>();
+                    list_fav = new ItemViewList<Work>();
+                    pix_user = e.Parameter as User;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                list = new ItemViewList<Work>();
+                list_fav = new ItemViewList<Work>();
+                pix_user = e.Parameter as User;
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                list = new ItemViewList<Work>();
+                list_fav = new ItemViewList<Work>();
+                pix_user = e.Parameter as User;
+            }
+            finally
+            {
+                await RefreshAsync();
+                MasterListView.ItemsSource = list;
+                MasterListView_fav.ItemsSource = list_fav;
+                var result_fav = firstLoadAsync_fav();
+                var result = firstLoadAsync();
+            }
         }
 
         public async Task RefreshAsync()
@@ -218,8 +251,8 @@ namespace PixivUWP.Pages
             }
             catch { }
         }
-        ItemViewList<Work> list = new ItemViewList<Work>();
-        ItemViewList<Work> list_fav = new ItemViewList<Work>();
+        ItemViewList<Work> list;
+        ItemViewList<Work> list_fav;
         private void PivotItem_Loaded(object sender, RoutedEventArgs e)
         {
             //MasterListView.ItemsSource = await Data.TmpData.CurrentAuth.Tokens.GetUsersWorksAsync(pix_user.Id.Value);

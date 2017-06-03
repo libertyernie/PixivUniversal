@@ -45,7 +45,7 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Mywork : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable,IBackHandlable
     {
-        ItemViewList<IllustWork> list = new ItemViewList<IllustWork>();
+        ItemViewList<IllustWork> list;
         public pg_Mywork()
         {
             this.InitializeComponent();
@@ -143,6 +143,7 @@ namespace PixivUWP.Pages
             catch (NullReferenceException)
             {
                 Debug.WriteLine("NullException");
+                list = new ItemViewList<IllustWork>();
             }
             finally
             {

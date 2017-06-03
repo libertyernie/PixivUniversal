@@ -27,13 +27,12 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class Win_Related : Windows.UI.Xaml.Controls.Page, IBackable,IBackHandlable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<Work> list;
         public Win_Related()
         {
             this.InitializeComponent();
             //list.LoadingMoreItems += List_LoadingMoreItems;
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
-            MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
         }
 
@@ -79,8 +78,37 @@ namespace PixivUWP.Pages
         Work Work;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Work = e.Parameter as Work;
-            var result = firstLoadAsync();
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    nexturl = ((object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as string;
+                    Work = ((object[])((BackInfo)((object[])e.Parameter)[1]).param)[1] as Work;
+                }
+                else
+                {
+                    Work = e.Parameter as Work;
+                    list = new ItemViewList<Work>();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                Work = e.Parameter as Work;
+                list = new ItemViewList<Work>();
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                Work = e.Parameter as Work;
+                list = new ItemViewList<Work>();
+            }
+            finally
+            {
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+            }
         }
         string nexturl = null;
         //private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)

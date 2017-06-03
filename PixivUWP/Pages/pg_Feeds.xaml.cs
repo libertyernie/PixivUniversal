@@ -45,7 +45,7 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Feeds : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable,IBackHandlable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<Work> list;
         public pg_Feeds()
         {
             this.InitializeComponent();
@@ -136,6 +136,7 @@ namespace PixivUWP.Pages
             catch (NullReferenceException)
             {
                 Debug.WriteLine("NullException");
+                list = new ItemViewList<Work>();
             }
             finally
             {

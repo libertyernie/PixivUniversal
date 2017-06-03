@@ -367,6 +367,7 @@ namespace PixivUWP
         {
             var backInfo = Data.UniversalBackHandler.Back();
             if (backInfo == null) return false;
+            Data.TmpData.StopLoading();
             MainFrame.Navigate(backInfo.page, new object[] { true, backInfo.info });
             return true;
         }

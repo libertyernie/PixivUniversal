@@ -136,6 +136,7 @@ namespace PixivUWP.Pages
             catch (NullReferenceException)
             {
                 Debug.WriteLine("NullException");
+                list = new ItemViewList<IllustWork>();
             }
             finally
             {
