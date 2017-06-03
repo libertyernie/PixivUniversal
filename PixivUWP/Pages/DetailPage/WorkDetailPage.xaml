@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <controls:ScalableGrid x:Name="scalable" Width="Auto" HorizontalAlignment="Center">
-                    <Image x:Name="bigimg" Margin="1,2,2,2" Stretch="Uniform" Width="Auto"/>
+                    <Image x:Name="bigimg" Margin="5,2" Stretch="Uniform" Width="Auto"/>
                 </controls:ScalableGrid>
                 <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
                 <Canvas Grid.Row="1" Grid.RowSpan="2" Background="White"/>
@@ -44,17 +44,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>
                 </TextBlock>
-                <Pivot Grid.Row="2" x:Name="pivot" Margin="5,0">
-                    <PivotItem Header="Profile" Margin="0">
-                        <ScrollViewer>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="5,0,0,0">
-                                <Run x:Name="time"></Run> | <Run x:Name="siz"></Run> | <Run x:Name="tool"></Run><LineBreak/>
-                                Tags :<Run x:Name="tags"></Run><LineBreak/>
-                                <Run x:Name="des"></Run>
-                            </TextBlock>
-                        </ScrollViewer>
-                    </PivotItem>
-                </Pivot>
+                <TextBlock Grid.Row="2" IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="10,0">
+                      <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run><LineBreak/>
+                      Tags :<Run x:Name="tags"></Run><LineBreak/>
+                      <Run x:Name="des"></Run>
+                </TextBlock>
             </Grid>
         </ScrollViewer>
         <CommandBar Grid.Row="1">
