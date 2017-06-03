@@ -45,13 +45,12 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Collection : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable,IBackHandlable
     {
-        ItemViewList<IllustWork> list = new ItemViewList<IllustWork>();
+        ItemViewList<IllustWork> list;
         public pg_Collection()
         {
             this.InitializeComponent();
             //list.LoadingMoreItems += List_LoadingMoreItems;
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
-            MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
         }
 
@@ -122,8 +121,27 @@ namespace PixivUWP.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MasterListView.ItemsSource = list;
-            var result = firstLoadAsync();
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<IllustWork>;
+                    nexturl = ((BackInfo)((object[])e.Parameter)[1]).param as string;
+                }
+                else
+                {
+                    list = new ItemViewList<IllustWork>();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+            }
+            finally
+            {
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+            }
         }
 
 

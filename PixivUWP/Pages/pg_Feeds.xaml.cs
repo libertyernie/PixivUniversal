@@ -121,8 +121,27 @@ namespace PixivUWP.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MasterListView.ItemsSource = list;
-            var result = firstLoadAsync();
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    nowpage = (int)((BackInfo)((object[])e.Parameter)[1]).param;
+                }
+                else
+                {
+                    list = new ItemViewList<Work>();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+            }
+            finally
+            {
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

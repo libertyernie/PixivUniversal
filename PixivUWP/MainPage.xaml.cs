@@ -121,16 +121,12 @@ namespace PixivUWP
                 if (ib != null && ib.GoBack() == false)
                 {
                     //MainFrame.Navigate(typeof(Pages.DetailPage.BlankPage));
-                    if (e != null) e.Handled = Goback();
-                }
-                else
-                {
-                    if (e != null) e.Handled = true;
+                    Goback();
                 }
             }
             else
             {
-                if (e != null) e.Handled = Goback();
+                Goback();
             }
         }
 
@@ -371,7 +367,7 @@ namespace PixivUWP
         {
             var backInfo = Data.UniversalBackHandler.Back();
             if (backInfo == null) return false;
-
+            MainFrame.Navigate(backInfo.page, new object[] { true, backInfo.info });
             return true;
         }
 
