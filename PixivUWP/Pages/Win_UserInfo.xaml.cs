@@ -226,8 +226,6 @@ namespace PixivUWP.Pages
                 await RefreshAsync();
                 MasterListView.ItemsSource = list;
                 MasterListView_fav.ItemsSource = list_fav;
-                var result_fav = firstLoadAsync_fav();
-                var result = firstLoadAsync();
             }
         }
 
@@ -293,6 +291,19 @@ namespace PixivUWP.Pages
             _originHeight = scrollRoot.VerticalOffset;
             if (scrollRoot.VerticalOffset <= scrollRoot.ScrollableHeight - 500) return;
             var result = loadAsync();
+        }
+
+        private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch(pivot.SelectedIndex)
+            {
+                case 1:
+                    var result = firstLoadAsync();
+                    break;
+                case 2:
+                    var result_fav = firstLoadAsync_fav();
+                    break;
+            }
         }
     }
 }

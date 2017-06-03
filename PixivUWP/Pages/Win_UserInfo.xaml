@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <NavigationThemeTransition />
         </TransitionCollection>
     </Page.Transitions>
-    <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SelectionChanged="pivot_SelectionChanged">
         <PivotItem x:Uid="pivotUserInfo">
             <StackPanel Orientation="Vertical">
                 <Image x:Name="userpro" Width="170" Height="170" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
