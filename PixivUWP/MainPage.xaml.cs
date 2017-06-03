@@ -244,6 +244,8 @@ namespace PixivUWP
                 return;
             }
             MenuBottomItemList.SelectedIndex = -1;
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
             switch (MenuItemList.SelectedIndex)
             {
@@ -323,6 +325,8 @@ namespace PixivUWP
             {
                 return;
             }
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
             MenuItemList.SelectedIndex = -1;
             switch (MenuBottomItemList.SelectedIndex)
@@ -455,9 +459,12 @@ namespace PixivUWP
 
         private void Searchbox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            if (args.QueryText == "") return;
             MenuToggle.IsChecked = false;
             MenuToggle_Click(null, null);
             MenuItemList.SelectedIndex = -1;
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
             currentQueryString = args.QueryText;

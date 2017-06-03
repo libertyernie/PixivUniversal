@@ -25,4 +25,9 @@ namespace PixivUWP.Data
         public Type page
         { get; set; }
     }
+
+    internal interface IBackHandlable
+    {
+        BackInfo GenerateBackInfo();
+    }
 }

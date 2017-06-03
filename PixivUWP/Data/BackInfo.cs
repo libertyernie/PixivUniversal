@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PixivUWP.Data
 {
-    internal class BackInfo
+    public class BackInfo
     {
         public object list
         { get; set; }
