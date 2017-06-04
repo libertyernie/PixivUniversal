@@ -353,12 +353,12 @@
     <value>这是一个内部测试版本。请首要测试：
 1、资源占用；
 2、低网速下排程加载对效果的提升；
-3、缩略图片不加载的问题；
+3、全局后退栈工作是否正常；
 4、其它未知的Bug。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.0.19β 更新内容</value>
+    <value>版本 V1.1.0β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
