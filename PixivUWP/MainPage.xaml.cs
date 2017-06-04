@@ -387,6 +387,9 @@ namespace PixivUWP
             //{
             //    btn_Refresh.IsEnabled = true;
             //}
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable)?.GenerateBackInfo();
+            if (tmpInfo != null)
+                Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
             if (MainFrame.Content is Pages.pg_Search)
             {

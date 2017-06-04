@@ -76,7 +76,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Download : Page,IBackHandlable
+    public sealed partial class pg_Download : Page,IBackHandlable,IBackable
     {
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -205,5 +205,7 @@ namespace PixivUWP.Pages
             tasks.Clear();
             dic2.Clear();
         }
+
+        public bool GoBack() => false;
     }
 }
