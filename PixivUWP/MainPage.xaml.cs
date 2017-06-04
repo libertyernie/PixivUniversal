@@ -121,12 +121,18 @@ namespace PixivUWP
                 if (ib != null && ib.GoBack() == false)
                 {
                     //MainFrame.Navigate(typeof(Pages.DetailPage.BlankPage));
-                    Goback();
+                    var handled = Goback();
+                    if (e != null) e.Handled = handled;
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
             else
             {
-                Goback();
+                var handled = Goback();
+                if (e != null) e.Handled = handled;
             }
         }
 
