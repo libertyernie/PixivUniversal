@@ -16,5 +16,7 @@ namespace PixivUWP.Data
         public object param
         { get; set; }
 
+        public int selectedIndex
+        { get; set; }
     }
 }

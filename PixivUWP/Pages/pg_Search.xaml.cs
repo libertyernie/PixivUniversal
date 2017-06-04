@@ -41,8 +41,10 @@ namespace PixivUWP.Pages
             mdc.MasterListView = MasterListView;
         }
 
+        int selectedindex = -1;
+
         public BackInfo GenerateBackInfo()
-            => new BackInfo { list = this.list, param = new object[] { this._query, this.nowpage } };
+            => new BackInfo { list = this.list, param = new object[] { this._query, this.nowpage }, selectedIndex = MasterListView.SelectedIndex };
 
         private async Task firstLoadAsync()
         {
@@ -62,6 +64,7 @@ namespace PixivUWP.Pages
                     list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
                     _query = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as string;
                     nowpage = (int)(((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1]);
+                    selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
                 }
                 else
                 {
@@ -86,6 +89,11 @@ namespace PixivUWP.Pages
                 qText.Text = _query;
                 MasterListView.ItemsSource = list;
                 var result = firstLoadAsync();
+                if (selectedindex != -1)
+                {
+                    MasterListView.SelectedIndex = selectedindex;
+                    mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), MasterListView.Items[selectedindex]);
+                }
             }
         }
 
