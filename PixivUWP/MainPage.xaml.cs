@@ -126,7 +126,7 @@ namespace PixivUWP
                 }
                 else
                 {
-                    e.Handled = true;
+                    if (e != null) e.Handled = true;
                 }
             }
             else
