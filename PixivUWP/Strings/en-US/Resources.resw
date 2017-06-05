@@ -350,15 +350,18 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. Change to Waterfall UI; 
-2. Provide two selections of Load Mode (place holder with no effect);
-3. Fix bugs.
-
-Info: This version may cause high memory usage, which will be improved in the next version. Refreshing the Search page crashes the app, which will be fixed in the next version.</value>
+    <value>0. (Emergency) Fixed the issue which results in no pictures is loaded until you click one of them; 
+  *Thank З. Василий (from Russia) for mentioning this bug in his feedback in time.
+1. Now you can select different load mode depends on your network quality; 
+2. Removed the unnecessary multi-window design; 
+3. Now you can zoom in or zoom out the picture (Experimental); 
+4. Now you can use "Back" button normally; 
+5. Fixed other issues which crash this app; 
+6. Fixed issue which causes high memory usage. </value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.0.17β</value>
+    <value>Update: V1.1.3β</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -366,7 +369,7 @@ Info: This version may cause high memory usage, which will be improved in the ne
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">
-    <value>Multi-Task</value>
+    <value>Multi-Task (Performace)</value>
     <comment>同步加载</comment>
   </data>
   <data name="loadpolicy2.Content" xml:space="preserve">

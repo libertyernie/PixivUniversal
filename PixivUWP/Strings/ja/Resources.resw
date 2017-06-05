@@ -351,14 +351,18 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. 滝流のためのページ表示モードを変更しなさい
-2. 増加スケジュールロードモード（*一時的に無効にする）
-3. プログラムがクラッシュする可能性がある問題を修正
-注: このバージョンは、高メモリを消費し、次のバージョンが最適化されて ,検索ページの更新によってアプリケーションがクラッシュする，次のバージョンが修正されます。</value>
+    <value>0. (Emergency) Fixed the issue which results in no pictures is loaded until you click one of them; 
+  *Thank З. Василий (from Russia) for mentioning this bug in his feedback in time.
+1. Now you can select different load mode depends on your network quality; 
+2. Removed the unnecessary multi-window design; 
+3. Now you can zoom in or zoom out the picture (Experimental); 
+4. Now you can use "Back" button normally; 
+5. Fixed other issues which crash this app; 
+6. Fixed issue which causes high memory usage.</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.0.17β 更新されたコンテンツ</value>
+    <value>バージョンV1.1.3β 更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
