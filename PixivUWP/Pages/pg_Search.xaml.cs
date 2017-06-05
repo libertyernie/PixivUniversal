@@ -203,6 +203,7 @@ namespace PixivUWP.Pages
             _bypopular = true;
             list.Clear();
             MasterListView.ItemsSource = list;
+            var result = firstLoadAsync();
         }
 
         private void byPopularity_Unchecked(object sender, RoutedEventArgs e)
@@ -211,6 +212,7 @@ namespace PixivUWP.Pages
             _bypopular = false;
             list.Clear();
             MasterListView.ItemsSource = list;
+            var result = firstLoadAsync();
         }
 
         double _originHeight = 0;
