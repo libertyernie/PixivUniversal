@@ -202,6 +202,7 @@ namespace PixivUWP.Pages
             Data.TmpData.StopLoading();
             _bypopular = true;
             list.Clear();
+            nowpage = 1;
             MasterListView.ItemsSource = list;
             var result = firstLoadAsync();
         }
@@ -211,6 +212,7 @@ namespace PixivUWP.Pages
             Data.TmpData.StopLoading();
             _bypopular = false;
             list.Clear();
+            nowpage = 1;
             MasterListView.ItemsSource = list;
             var result = firstLoadAsync();
         }
