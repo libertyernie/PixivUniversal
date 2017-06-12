@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
+using Pixeez;
 
 namespace TileBackground
 {
@@ -20,9 +21,18 @@ namespace TileBackground
                (false, "", "") :
                (true, (string)AppDataHelper.GetValue("uname"), (string)AppDataHelper.GetValue("upasswd"));
 
-        public void Run(IBackgroundTaskInstance taskInstance)
+        public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            throw new NotImplementedException();
+            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            (bool isAuthed, string username, string password) = getAuth();
+            if (!isAuthed)
+            {
+                deferral.Complete();
+                return;
+            }
+            var token = await Auth.AuthorizeAsync(username, password, null);
+
+            deferral.Complete();
         }
     }
 }
