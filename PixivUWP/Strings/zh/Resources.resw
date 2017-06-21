@@ -350,18 +350,11 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>0、（紧急）修复瀑布流UI无法加载的问题；
-  *感谢俄罗斯网友З. Василий对该问题的及时反馈。
-1、新增“排程加载”模式和“高性能”加载模式；
-2、移除了不必要的多窗口设计；
-3、图片现在可以缩放了（实验功能）；
-4、全局可后退；
-5、修复了若干导致崩溃的Bug；
-6、资源占用大幅优化；</value>
+    <value>这是个内部测试版。请着重测试以下内容：动态磁贴的更新（每15分钟作为间隔）</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.3β 更新内容</value>
+    <value>版本 V1.1.4β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

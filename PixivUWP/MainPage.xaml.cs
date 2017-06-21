@@ -131,6 +131,7 @@ namespace PixivUWP
                 taskBuilder.TaskEntryPoint = taskEntryPoint;
                 taskBuilder.SetTrigger(new TimeTrigger(15, false));
                 var registration = taskBuilder.Register();
+                new TileBackground.TileBackground().Run(null);
             }
         }
 

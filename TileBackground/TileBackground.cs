@@ -28,7 +28,7 @@ namespace TileBackground
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            BackgroundTaskDeferral deferral = taskInstance?.GetDeferral();
             object numToday = AppDataHelper.GetValue("numtoday");
             int numtoday;
             if (numToday == null)
@@ -126,7 +126,7 @@ namespace TileBackground
             };
             var notification = new TileNotification(tile.GetXml());
             updater.Update(notification);
-            deferral.Complete();
+            deferral?.Complete();
         }
     }
 }
