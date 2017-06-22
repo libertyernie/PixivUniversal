@@ -93,7 +93,7 @@ namespace TileBackground
             subgroupa.Children.Add(new AdaptiveText() { Text = "Pixiv #" + numtoday, HintWrap = true });
             subgroupa.HintWeight = 3;
             AdaptiveSubgroup subgroupb = new AdaptiveSubgroup();
-            subgroupb.Children.Add(new AdaptiveText() { Text = "By: " + ranks[0].Works[numtoday - 1].Work.User.Account, HintStyle = AdaptiveTextStyle.CaptionSubtle, HintWrap = true, HintAlign = AdaptiveTextAlign.Right });
+            subgroupb.Children.Add(new AdaptiveText() { Text = "By: " + ranks[0].Works[numtoday - 1].Work.User.Name, HintStyle = AdaptiveTextStyle.CaptionSubtle, HintWrap = true, HintAlign = AdaptiveTextAlign.Right });
             subgroupb.HintWeight = 7;
             AdaptiveGroup maingroup = new AdaptiveGroup();
             maingroup.Children.Add(subgroupa);
