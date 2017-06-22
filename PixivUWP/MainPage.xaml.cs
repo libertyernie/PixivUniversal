@@ -172,7 +172,7 @@ namespace PixivUWP
         public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
         {
             new MenuItem() {Symbol=""},
-            new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
