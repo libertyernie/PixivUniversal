@@ -210,6 +210,8 @@
   <ItemGroup>
     <Content Include="Assets\Avatar.png" />
     <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\bandlogo24.png" />
+    <Content Include="Assets\bandlogo48.png" />
     <Content Include="Assets\beta-testing-logo.png" />
     <Content Include="Assets\beta-testing.png" />
     <Content Include="Assets\BlankHolder.png" />

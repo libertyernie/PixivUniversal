@@ -123,8 +123,57 @@ namespace PixivUWP.Pages
                 }
             }
             catch { }
+            var res = BandHelper.HasTile();
+            var awaiter = res.GetAwaiter();
+            awaiter.OnCompleted(() =>
+            {
+                band_Connect.Content = awaiter.GetResult() ? "- Pixiv Tile" : "+ Pixiv Tile";
+                band_Connect.IsEnabled = true;
+            });
         }
 
         public bool GoBack() => false;
+
+        private void band_Connect_Click(object sender, RoutedEventArgs e)
+        {
+            if (band_Connect.Content.ToString() == "+ Pixiv Tile")
+            {
+                band_Connect.IsEnabled = false;
+                var res = BandHelper.CreateTileAsync();
+                var awaiter = res.GetAwaiter();
+                awaiter.OnCompleted(() =>
+                {
+                    if (awaiter.GetResult())
+                    {
+                        band_Connect.Content = "- Pixiv Tile";
+                        band_Connect.IsEnabled = true;
+                    }
+                    else
+                    {
+                        new Controls.MyToast("Error").Show();
+                        band_Connect.IsEnabled = true;
+                    }
+                });
+            }
+            else
+            {
+                band_Connect.IsEnabled = false;
+                var res = BandHelper.RemoveTileAsync();
+                var awaiter = res.GetAwaiter();
+                awaiter.OnCompleted(() =>
+                {
+                    if (awaiter.GetResult())
+                    {
+                        band_Connect.Content = "+ Pixiv Tile";
+                        band_Connect.IsEnabled = true;
+                    }
+                    else
+                    {
+                        new Controls.MyToast("Error").Show();
+                        band_Connect.IsEnabled = true;
+                    }
+                });
+            }
+        }
     }
 }
