@@ -373,4 +373,12 @@
     <value>*注意：如果您的网络连接状况（指到Pixiv的连接，下同）较好，使用同步加载能尽快完整显示所有结果；如果您的网络连接状况较差，使用排程加载能避免大面积图片加载失败并缩短单张加载耗时</value>
     <comment>加载模式说明</comment>
   </data>
+  <data name="pgRank.Text" xml:space="preserve">
+    <value>热门作品</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>热门作品</value>
+    <comment>左侧汉堡菜单提示文字</comment>
+  </data>
 </root>

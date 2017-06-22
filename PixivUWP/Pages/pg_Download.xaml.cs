@@ -85,7 +85,7 @@ namespace PixivUWP.Pages
                 if ((bool)((object[])e.Parameter)[0])
                 {
                     Data.TmpData.isBackTrigger = true;
-                    Data.TmpData.menuItem.SelectedIndex = 4;
+                    Data.TmpData.menuItem.SelectedIndex = 5;
                     Data.TmpData.menuBottomItem.SelectedIndex = -1;
                 }
             }

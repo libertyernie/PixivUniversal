@@ -417,7 +417,6 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
         /// <para>- <c>long</c> illustId (required)</para>
         /// </summary>
         /// <returns>Works.</returns>
-        [Obsolete]
         public async Task<List<NormalWork>> GetWorksAsync(long illustId)
         {
             var url = "https://public-api.secure.pixiv.net/v1/works/" + illustId.ToString() + ".json";

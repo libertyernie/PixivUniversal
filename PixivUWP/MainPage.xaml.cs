@@ -64,10 +64,11 @@ namespace PixivUWP
             this.InitializeComponent();
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             menuItems[0].Label = loader.GetString("Main");
-            menuItems[1].Label = loader.GetString("Feeds");
-            menuItems[2].Label = loader.GetString("Mywork");
-            menuItems[3].Label = loader.GetString("Collection");
-            menuItems[4].Label = loader.GetString("Download");
+            menuItems[1].Label = loader.GetString("Rank");
+            menuItems[2].Label = loader.GetString("Feeds");
+            menuItems[3].Label = loader.GetString("Mywork");
+            menuItems[4].Label = loader.GetString("Collection");
+            menuItems[5].Label = loader.GetString("Download");
             menuBottomItems[0].Label = loader.GetString("Settings");
             menuBottomItems[1].Label = loader.GetString("Feedback");
             version.Text = "v" + Data.VersionHelper.GetThisAppVersionString().ToString() + "β";
@@ -171,6 +172,7 @@ namespace PixivUWP
         public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
         {
             new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
@@ -288,15 +290,18 @@ namespace PixivUWP
                     MainFrame.Navigate(typeof(Pages.pg_Main));
                     break;
                 case 1:
-                    MainFrame.Navigate(typeof(Pages.pg_Feeds));
+                    MainFrame.Navigate(typeof(Pages.pg_Rank));
                     break;
                 case 2:
-                    MainFrame.Navigate(typeof(Pages.pg_Mywork));
+                    MainFrame.Navigate(typeof(Pages.pg_Feeds));
                     break;
                 case 3:
-                    MainFrame.Navigate(typeof(Pages.pg_Collection));
+                    MainFrame.Navigate(typeof(Pages.pg_Mywork));
                     break;
                 case 4:
+                    MainFrame.Navigate(typeof(Pages.pg_Collection));
+                    break;
+                case 5:
                     MainFrame.Navigate(typeof(Pages.pg_Download));
                     break;
             }

@@ -350,15 +350,18 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. 修改页面显示方式为瀑布流；
-2. 增加“排程加载”选项（暂无作用）；
-3. 修正部分导致崩溃的问题；
-
-注意：该版本内存占用较高，下版本会进行优化。在搜索页面刷新依然会导致应用崩溃，下版本将修复。</value>
+    <value>0、（緊急）修複瀑布流UI無法加載的問題；
+  *感謝俄羅斯網友З. Василий對該問題的及時反饋。
+1、新增“排程载入”模式和“高性能”载入模式；
+2、移除了不必要的多窗口設計；
+3、圖片現在可以縮放了（實驗功能）；
+4、全局可後退；
+5、修複了若幹導致崩潰的Bug；
+6、資源占用大幅優化；</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.0.17β 更新内容</value>
+    <value>版本 V1.1.3β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -376,5 +379,13 @@
   <data name="loadpolicyinfo.Text" xml:space="preserve">
     <value>*注意：如果您的网络连接状况（指到Pixiv的连接，下同）较好，使用同步加载能尽快完整显示所有结果；如果您的网络连接状况较差，使用排程加载能避免大面积图片加载失败并缩短单张加载耗时</value>
     <comment>加载模式说明</comment>
+  </data>
+  <data name="pgRank.Text" xml:space="preserve">
+    <value>熱門作品</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>熱門作品</value>
+    <comment>左侧汉堡菜单提示文字</comment>
   </data>
 </root>

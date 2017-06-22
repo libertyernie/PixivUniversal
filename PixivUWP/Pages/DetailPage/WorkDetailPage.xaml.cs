@@ -48,7 +48,8 @@ namespace PixivUWP.Pages.DetailPage
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Work = e.Parameter as Work;
+            var tmpWork = e.Parameter as Work;
+            Work =(await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(tmpWork.Id.Value))[0];
             await RefreshAsync();
             if (Work is IllustWork iw)
             {
@@ -93,7 +94,11 @@ namespace PixivUWP.Pages.DetailPage
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
                 siz.Text = Work.Width?.ToString() + "×" + Work.Height?.ToString();
-                tool.Text = new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
+                try
+                {
+                    tool.Text = new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
+                }
+                catch { }
                 fs.IsChecked = Work.IsBookMarked();
                 string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
                 des.Text = Work.Caption ?? string.Empty;

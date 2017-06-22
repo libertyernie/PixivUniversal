@@ -380,4 +380,12 @@
     <value>*Info: Multi-Task mode can provide better experience, while Single Task mode requires lower network speed.</value>
     <comment>加载模式说明</comment>
   </data>
+  <data name="pgRank.Text" xml:space="preserve">
+    <value>Ranking</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Ranking</value>
+    <comment>左侧汉堡菜单提示问题</comment>
+  </data>
 </root>
