@@ -381,7 +381,7 @@
     <value>*注：もしあなたのネットワーク接続状況があれば （指すPixivの接続、以下同じ ）比較的に良いです ，同期アドインですべての結果を早く完全に表示できる ；もしあなたのネットワーク接続状況が劣るとしたら ，使用スケジュールロードモード大面積画像読み込みの失敗を回避し、単一のロード時間の消費を短縮</value>
     <comment>加载模式说明</comment>
   </data>
-  <data name="Pank" xml:space="preserve">
+  <data name="Rank" xml:space="preserve">
     <value>ランキング</value>
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
