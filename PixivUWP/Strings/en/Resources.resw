@@ -350,18 +350,13 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>0. (Emergency) Fixed the issue which results in no pictures is loaded until you click one of them; 
-  *Thank З. Василий (from Russia) for mentioning this bug in his feedback in time.
-1. Now you can select different load mode depends on your network quality; 
-2. Removed the unnecessary multi-window design; 
-3. Now you can zoom in or zoom out the picture (Experimental); 
-4. Now you can use "Back" button normally; 
-5. Fixed other issues which crash this app; 
-6. Fixed issue which causes high memory usage. </value>
+    <value>1. Live tile (showing the most popular works) is now supported; 
+2. Added "Ranking" page;
+3. Provide a "Windows Hello" switch (place holder);</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.1.3β</value>
+    <value>Update: V1.1.6β</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

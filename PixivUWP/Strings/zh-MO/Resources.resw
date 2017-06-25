@@ -350,18 +350,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>0、（緊急）修複瀑布流UI無法加載的問題；
-  *感謝俄羅斯網友З. Василий對該問題的及時反饋。
-1、新增“排程载入”模式和“高性能”载入模式；
-2、移除了不必要的多窗口設計；
-3、圖片現在可以縮放了（實驗功能）；
-4、全局可後退；
-5、修複了若幹導致崩潰的Bug；
-6、資源占用大幅優化；</value>
+    <value>1、现在支持动态磁贴（热门作品）了；
+2、加入“热门作品（综合排行榜）”功能；
+3、对微软手环能正确增删磁贴了，预计下次更新支持微软手环通知；
+4、提供Windows Hello选项（暂无作用）；
+5、润色瀑布流动画。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.3β 更新内容</value>
+    <value>版本 V1.1.6β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

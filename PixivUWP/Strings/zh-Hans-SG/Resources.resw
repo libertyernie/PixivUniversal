@@ -350,11 +350,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>这是个内部测试版。请着重测试以下内容：动态磁贴的更新（每15分钟作为间隔），排行榜功能</value>
+    <value>1、现在支持动态磁贴（热门作品）了；
+2、加入“热门作品（综合排行榜）”功能；
+3、对微软手环能正确增删磁贴了，预计下次更新支持微软手环通知；
+4、提供Windows Hello选项（暂无作用）；
+5、润色瀑布流动画。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.5β 更新内容</value>
+    <value>版本 V1.1.6β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
