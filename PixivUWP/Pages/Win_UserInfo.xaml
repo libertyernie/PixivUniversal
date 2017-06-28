@@ -80,18 +80,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <ScrollViewer Grid.Row="1" x:Name="scrollRoot_fav" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_fav_ViewChanged">
                             <ListView
                     x:Name="MasterListView_fav"
-                    ItemContainerTransitions="{x:Null}"
                     IsItemClickEnabled="True"
                     ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
                     ScrollViewer.VerticalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                                <ListView.Transitions>
+                                <ListView.ItemContainerTransitions>
                                     <TransitionCollection>
                                         <AddDeleteThemeTransition/>
                                     </TransitionCollection>
-                                </ListView.Transitions>
+                                </ListView.ItemContainerTransitions>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <controls:WaterfallPanel ColumnNum="2"/>
