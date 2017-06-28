@@ -22,9 +22,9 @@ namespace TileBackground
         }
 
         private static (bool isAuthed, string username, string password) getAuth()
-            => (AppDataHelper.GetValue("uname") == null || AppDataHelper.GetValue("upasswd") == null) ?
+            => (AppDataHelper.GetValue("uname") == null || AppDataHelper.GetValue("upasswd4tile") == null) ?
                (false, "", "") :
-               (true, (string)AppDataHelper.GetValue("uname"), (string)AppDataHelper.GetValue("upasswd"));
+               (true, (string)AppDataHelper.GetValue("uname"), (string)AppDataHelper.GetValue("upasswd4tile"));
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
@@ -129,6 +129,8 @@ namespace TileBackground
                 var notification = new TileNotification(tile.GetXml());
                 updater.Update(notification);
             }
+            catch
+            { }
             finally
             {
                 deferral?.Complete();

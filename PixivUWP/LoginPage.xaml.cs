@@ -129,6 +129,7 @@ namespace PixivUWP
                 AppDataHelper.SetValue("upasswd", txt_Password.Password);
             else
                 AppDataHelper.SetValue("upasswd", "");
+            AppDataHelper.SetValue("upasswd4tile", txt_Password.Password);
             AppDataHelper.SetValue("isrem", s_remember.IsChecked.ToString());
             AppDataHelper.SetValue("isauto", s_auto.IsChecked.ToString());
         }
