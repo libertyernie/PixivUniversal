@@ -261,14 +261,6 @@
     <value>Pixiv在線服務許可協議</value>
     <comment>关于说明</comment>
   </data>
-  <data name="aboutText5.Text" xml:space="preserve">
-    <value>開發者</value>
-    <comment>关于说明</comment>
-  </data>
-  <data name="aboutText6.Text" xml:space="preserve">
-    <value>友情連結</value>
-    <comment>关于说明</comment>
-  </data>
   <data name="backPolicy1.Content" xml:space="preserve">
     <value>僅非按資料用量計費的連結</value>
     <comment>后台策略描述</comment>
@@ -384,5 +376,17 @@
   <data name="Rank" xml:space="preserve">
     <value>熱門作品</value>
     <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>預覽圖像尺寸</value>
+    <comment>预览图尺寸说明</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>中</value>
+    <comment>预览图尺寸：中等</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>方形</value>
+    <comment>预览图尺寸：方形（中等）</comment>
   </data>
 </root>

@@ -219,8 +219,7 @@
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Large310x310Logo.scale-200.png" />
     <Content Include="Assets\Square48x48Logo.scale-200.png" />
-    <Content Include="Contributors_ithome.txt" />
-    <Content Include="Contributors_qqgroup.txt" />
+    <Content Include="Contributors.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

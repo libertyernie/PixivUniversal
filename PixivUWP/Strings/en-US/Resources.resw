@@ -305,14 +305,6 @@
     <value>Names not listed in order. Not including main developers. </value>
     <comment>贡献者说明</comment>
   </data>
-  <data name="contriText6.Text" xml:space="preserve">
-    <value>From ithome.com (forum)：</value>
-    <comment>贡献者说明</comment>
-  </data>
-  <data name="contriText7.Text" xml:space="preserve">
-    <value>From our QQ group：</value>
-    <comment>贡献者说明</comment>
-  </data>
   <data name="abbDownloadThis.Label" xml:space="preserve">
     <value>Download</value>
     <comment>大图页面底部按钮说明</comment>
@@ -385,11 +377,14 @@
   </data>
   <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
     <value>Preview Image Size</value>
+    <comment>预览图尺寸说明</comment>
   </data>
   <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
     <value>Medium</value>
+    <comment>预览图尺寸：中等</comment>
   </data>
   <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
     <value>SquareMedium</value>
+    <comment>预览图尺寸：方形（中等）</comment>
   </data>
 </root>

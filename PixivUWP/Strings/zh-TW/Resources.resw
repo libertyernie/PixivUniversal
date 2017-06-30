@@ -305,14 +305,6 @@
     <value>不考慮是否被採納，排名不分先後，不包含主要開發者</value>
     <comment>贡献者说明</comment>
   </data>
-  <data name="contriText6.Text" xml:space="preserve">
-    <value>以下來自IT之家：</value>
-    <comment>贡献者说明</comment>
-  </data>
-  <data name="contriText7.Text" xml:space="preserve">
-    <value>以下來自内測群：</value>
-    <comment>贡献者说明</comment>
-  </data>
   <data name="abbDownloadThis.Label" xml:space="preserve">
     <value>下載當前</value>
     <comment>大图页面底部按钮说明</comment>
@@ -384,5 +376,17 @@
   <data name="Rank" xml:space="preserve">
     <value>熱門作品</value>
     <comment>左侧汉堡菜单提示文字</comment>
+  </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>預覽圖像尺寸</value>
+    <comment>预览图尺寸说明</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>中</value>
+    <comment>预览图尺寸：中等</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>方形</value>
+    <comment>预览图尺寸：方形（中等）</comment>
   </data>
 </root>
