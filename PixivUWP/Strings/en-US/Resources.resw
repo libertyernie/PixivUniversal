@@ -383,4 +383,13 @@
     <value>Ranking</value>
     <comment>左侧汉堡菜单提示问题</comment>
   </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>Preview Image Size</value>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>SquareMedium</value>
+  </data>
 </root>

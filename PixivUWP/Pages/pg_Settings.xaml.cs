@@ -20,8 +20,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -44,31 +46,19 @@ namespace PixivUWP.Pages
         public pg_Settings()
         {
             this.InitializeComponent();
-            var fileo = Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors_ithome.txt"));
-            fileo.Completed += delegate
-              {
-                  var file = fileo.GetResults();
-                  var readstreamo = file.OpenReadAsync();
-                  readstreamo.Completed += delegate
-                    {
-                        var readstream = readstreamo.GetResults();
-                        StreamReader reader = new StreamReader(readstream.AsStream());
-                        strithome = reader.ReadToEnd();
-                        var fileo2 = Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors_qqgroup.txt"));
-                        fileo2.Completed += delegate
-                        {
-                            var file2 = fileo2.GetResults();
-                            var readstreamo2 = file2.OpenReadAsync();
-                            readstreamo2.Completed += delegate
-                            {
-                                var readstream2 = readstreamo2.GetResults();
-                                StreamReader reader2 = new StreamReader(readstream2.AsStream());
-                                strqqgroup = reader2.ReadToEnd();
-                            };
-                        };
-                    };
-              };
-            while (strqqgroup == "") { }
+            Yinyue200.OperationDeferral.OperationDeferral od = new Yinyue200.OperationDeferral.OperationDeferral();
+            od.Start();
+            Task.Run(() =>
+            {
+                try
+                {
+                    strithome = FileIO.ReadTextAsync(Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors_ithome.txt")).AsTask().Result).AsTask().Result;
+                    strqqgroup = FileIO.ReadTextAsync(Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors_qqgroup.txt")).AsTask().Result).AsTask().Result;
+                }
+                catch { }
+                od.Complete();
+            });
+            od.WaitOne();
             con_ithome.Text = strithome;
             con_qqgroup.Text = strqqgroup;
             try
@@ -86,6 +76,14 @@ namespace PixivUWP.Pages
             catch
             {
                 loadpolicy.SelectedIndex = 1;
+            }
+            try
+            {
+                imagepreviewsizepolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("PreviewImageSize");
+            }
+            catch
+            {
+                imagepreviewsizepolicy.SelectedIndex = 0;
             }
         }
 
