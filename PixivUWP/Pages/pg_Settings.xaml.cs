@@ -109,6 +109,12 @@ namespace PixivUWP.Pages
             Data.AppDataHelper.SetValue("LoadPolicy", loadpolicy.SelectedIndex);
         }
 
+        private void imagepreviewsizepolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Data.AppDataHelper.SetValue("PreviewImageSize", imagepreviewsizepolicy.SelectedIndex);
+        }
+
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             try
