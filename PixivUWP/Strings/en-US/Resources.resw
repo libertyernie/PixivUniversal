@@ -377,4 +377,13 @@ Info: This version may cause high memory usage, which will be improved in the ne
     <value>*Info: Multi-Task mode can provide better experience, while Single Task mode requires lower network speed.</value>
     <comment>加载模式说明</comment>
   </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>Preview Image Size</value>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>SquareMedium</value>
+  </data>
 </root>

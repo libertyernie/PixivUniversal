@@ -37,6 +37,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ComboBoxItem x:Uid="backPolicy3"/>
                     <ComboBoxItem x:Uid="backPolicy4"/>
                 </ComboBox>
+                <ComboBox x:Uid="imagepreviewsizepolicy" x:Name="imagepreviewsizepolicy"  Margin="5,0,-1,5" Width="280" SelectionChanged="imagepreviewsizepolicy_SelectionChanged">
+                    <ComboBoxItem x:Uid="imagepreviewsizepolicy_Medium"/>
+                    <ComboBoxItem x:Uid="imagepreviewsizepolicy_SquareMedium"/>
+                </ComboBox>
             </StackPanel>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">

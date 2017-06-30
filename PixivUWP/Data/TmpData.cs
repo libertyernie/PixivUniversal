@@ -68,7 +68,17 @@ namespace PixivUWP.Data
         public static readonly DependencyProperty EnableAutoLoadWorkImgProperty =
             DependencyProperty.RegisterAttached("EnableAutoLoadWorkImg", typeof(bool), typeof(Image), new PropertyMetadata(false, OnEnableAutoLoadWorkImgChanged));
 
-
+        public static string geturlbypolicy(ImageUrls urls)
+        {
+            switch(Data.AppDataHelper.GetValue("PreviewImageSize"))
+            {
+                default:
+                case 0:
+                    return urls.Medium;
+                case 1:
+                    return urls.SquareMedium;
+            }
+        }
         public static async Task LoadPictureAsync(FrameworkElement sender)
         {
             try
@@ -84,7 +94,7 @@ namespace PixivUWP.Data
                             if (img.DataContext != null)
                             {
                                 var work = (img.DataContext as Work);
-                                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, work.ImageUrls.Medium))
+                                using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, geturlbypolicy(work.ImageUrls)))
                                 {
                                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                                     await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
