@@ -17,10 +17,12 @@
 using Pixeez.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -33,7 +35,10 @@ namespace PixivUWP.Data
         public static string Password;
         public static Pixeez.AuthResult CurrentAuth;
         public static Dictionary<object, int> OpenedWindows = new Dictionary<object, int>();
-
+        public static bool isBackTrigger = false;
+        public static ListView menuItem;
+        public static ListView menuBottomItem;
+        public static Frame mainFrame;
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {
@@ -57,16 +62,64 @@ namespace PixivUWP.Data
 
         }
 
-        private async static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        static Queue<FrameworkElement> loadQueue = new Queue<FrameworkElement>();
+        static Queue<FrameworkElement> tmpQueue = new Queue<FrameworkElement>();
+
+        static bool isQueuedLoading = false;
+
+        static void ClearQueue()
+            => loadQueue.Clear();
+
+        public static void StopLoading()
         {
+            ClearQueue();
+            foreach (var tmp in loadingPics)
+                tmp.AsAsyncAction().Cancel();
+            loadingPics.Clear();
+            loaded.Clear();
+        }
+
+        private async static Task QueuedLoad()
+        {
+            if (isQueuedLoading) return;
+            isQueuedLoading = true;
+            while (loadQueue.Count > 0)
+            {
+                var tmpSender = loadQueue.Dequeue();
+                await LoadPictureAsync(tmpSender);
+            }
+            isQueuedLoading = false;
+        }
+
+        static List<FrameworkElement> loaded = new List<FrameworkElement>();
+
+        private static void Img_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (loaded.Contains(sender)) return;
             var img = sender as Image;
             img.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/BlankHolder.png"));
-            await LoadPictureAsync(sender);
+            if (((int?)Data.AppDataHelper.GetValue("LoadPolicy")) == 0)
+            {
+                var tmptask = LoadPictureAsync(sender);
+                loadingPics.Add(tmptask);
+                var tmpwaiter = tmptask.GetAwaiter();
+                tmpwaiter.OnCompleted(() => loadingPics.Remove(tmptask));
+            }
+            else
+            {
+                loadQueue.Enqueue(sender);
+                var tmptask = QueuedLoad();
+                loadingPics.Add(tmptask);
+                var tmpwaiter = tmptask.GetAwaiter();
+                tmpwaiter.OnCompleted(() => loadingPics.Remove(tmptask));
+            }
         }
 
         // Using a DependencyProperty as the backing store for EnableAutoLoadWorkImg.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EnableAutoLoadWorkImgProperty =
             DependencyProperty.RegisterAttached("EnableAutoLoadWorkImg", typeof(bool), typeof(Image), new PropertyMetadata(false, OnEnableAutoLoadWorkImgChanged));
+
+        static List<Task> loadingPics = new List<Task>();
 
         public static string geturlbypolicy(ImageUrls urls)
         {
@@ -81,8 +134,14 @@ namespace PixivUWP.Data
         }
         public static async Task LoadPictureAsync(FrameworkElement sender)
         {
+            if (loaded.Contains(sender)) return;
             try
             {
+                CoreDispatcher dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+                await dispatcher.RunAsync(CoreDispatcherPriority.Low,
+                     () =>
+                     { }
+                     );
                 if (sender.Parent is Panel pl)
                 {
                     if (pl.FindName("pro") is TextBlock ring)
@@ -99,6 +158,7 @@ namespace PixivUWP.Data
                                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                                     await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
                                     img.Source = bitmap;
+                                    loaded.Add(sender);
                                 }
                             }
                         }

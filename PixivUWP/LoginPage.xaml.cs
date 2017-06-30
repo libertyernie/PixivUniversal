@@ -62,6 +62,15 @@ namespace PixivUWP
                 beginLoading();
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
+            var appTitleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+            appTitleBar.ButtonBackgroundColor = Colors.White;
+            appTitleBar.ButtonForegroundColor = Colors.Black;
+            appTitleBar.ButtonHoverBackgroundColor = Colors.LightGray;
+            appTitleBar.ButtonHoverForegroundColor = Colors.Black;
+            appTitleBar.ButtonInactiveBackgroundColor = Colors.White;
+            appTitleBar.ButtonInactiveForegroundColor = Colors.Black;
+            appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
+            appTitleBar.ButtonPressedForegroundColor = Colors.Black;
         }
         private async Task logoAnimation()
         {
@@ -120,6 +129,7 @@ namespace PixivUWP
                 AppDataHelper.SetValue("upasswd", txt_Password.Password);
             else
                 AppDataHelper.SetValue("upasswd", "");
+            AppDataHelper.SetValue("upasswd4tile", txt_Password.Password);
             AppDataHelper.SetValue("isrem", s_remember.IsChecked.ToString());
             AppDataHelper.SetValue("isauto", s_auto.IsChecked.ToString());
         }

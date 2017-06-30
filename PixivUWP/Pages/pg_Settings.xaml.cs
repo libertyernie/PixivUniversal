@@ -14,6 +14,7 @@
 //You should have received a copy of the GNU General Public License
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+using PixivUWP.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,7 +39,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Settings : Page
+    public sealed partial class pg_Settings : Page,IBackHandlable,IBackable
     {
         string strithome="";
         string strqqgroup="";
@@ -74,7 +75,7 @@ namespace PixivUWP.Pages
             }
             catch
             {
-                loadpolicy.SelectedIndex = 0;
+                loadpolicy.SelectedIndex = 1;
             }
             try
             {
@@ -85,6 +86,8 @@ namespace PixivUWP.Pages
                 imagepreviewsizepolicy.SelectedIndex = 0;
             }
         }
+
+        public BackInfo GenerateBackInfo() => null;
 
         private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
@@ -109,6 +112,72 @@ namespace PixivUWP.Pages
         private void imagepreviewsizepolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Data.AppDataHelper.SetValue("PreviewImageSize", imagepreviewsizepolicy.SelectedIndex);
+        }
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = -1;
+                    Data.TmpData.menuBottomItem.SelectedIndex = 0;
+                }
+            }
+            catch { }
+            var res = BandHelper.HasTile();
+            var awaiter = res.GetAwaiter();
+            awaiter.OnCompleted(() =>
+            {
+                band_Connect.Content = awaiter.GetResult() ? "- Pixiv Tile" : "+ Pixiv Tile";
+                band_Connect.IsEnabled = true;
+            });
+        }
+
+        public bool GoBack() => false;
+
+        private void band_Connect_Click(object sender, RoutedEventArgs e)
+        {
+            if (band_Connect.Content.ToString() == "+ Pixiv Tile")
+            {
+                band_Connect.IsEnabled = false;
+                var res = BandHelper.CreateTileAsync();
+                var awaiter = res.GetAwaiter();
+                awaiter.OnCompleted(() =>
+                {
+                    if (awaiter.GetResult())
+                    {
+                        band_Connect.Content = "- Pixiv Tile";
+                        band_Connect.IsEnabled = true;
+                    }
+                    else
+                    {
+                        new Controls.MyToast("Error").Show();
+                        band_Connect.IsEnabled = true;
+                    }
+                });
+            }
+            else
+            {
+                band_Connect.IsEnabled = false;
+                var res = BandHelper.RemoveTileAsync();
+                var awaiter = res.GetAwaiter();
+                awaiter.OnCompleted(() =>
+                {
+                    if (awaiter.GetResult())
+                    {
+                        band_Connect.Content = "+ Pixiv Tile";
+                        band_Connect.IsEnabled = true;
+                    }
+                    else
+                    {
+                        new Controls.MyToast("Error").Show();
+                        band_Connect.IsEnabled = true;
+                    }
+                });
+            }
         }
     }
 }

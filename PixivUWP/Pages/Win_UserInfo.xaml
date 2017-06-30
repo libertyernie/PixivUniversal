@@ -23,8 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:PixivUWP.Controls"
     mc:Ignorable="d">
-
-    <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+    <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SelectionChanged="pivot_SelectionChanged">
         <PivotItem x:Uid="pivotUserInfo">
             <StackPanel Orientation="Vertical">
                 <Image x:Name="userpro" Width="170" Height="170" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -43,13 +47,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <ScrollViewer Grid.Row="1" x:Name="scrollRoot" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_ViewChanged">
                             <ListView
                     x:Name="MasterListView"
-                    ItemContainerTransitions="{x:Null}"
                     IsItemClickEnabled="True"
                     ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
                     ScrollViewer.VerticalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.ItemContainerTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </ListView.ItemContainerTransitions>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <controls:WaterfallPanel ColumnNum="2"/>
@@ -72,13 +80,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <ScrollViewer Grid.Row="1" x:Name="scrollRoot_fav" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_fav_ViewChanged">
                             <ListView
                     x:Name="MasterListView_fav"
-                    ItemContainerTransitions="{x:Null}"
                     IsItemClickEnabled="True"
                     ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
                     ScrollViewer.VerticalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.ItemContainerTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </ListView.ItemContainerTransitions>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <controls:WaterfallPanel ColumnNum="2"/>

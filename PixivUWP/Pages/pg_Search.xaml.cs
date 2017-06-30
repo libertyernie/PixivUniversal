@@ -1,4 +1,5 @@
 ﻿using Pixeez.Objects;
+using PixivUWP.Data;
 using PixivUWP.Pages.DetailPage;
 using PixivUWP.ViewModels;
 using System;
@@ -25,9 +26,9 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Search : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable
+    public sealed partial class pg_Search : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable,IBackHandlable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<Work> list;
         string _query;
         bool _bypopular;
 
@@ -40,6 +41,11 @@ namespace PixivUWP.Pages
             mdc.MasterListView = MasterListView;
         }
 
+        int selectedindex = -1;
+
+        public BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = new object[] { this._query, this.nowpage }, selectedIndex = MasterListView.SelectedIndex };
+
         private async Task firstLoadAsync()
         {
             while (scrollRoot.ScrollableHeight - 500 <= 10)
@@ -49,10 +55,46 @@ namespace PixivUWP.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _query = e.Parameter as string;
-            qText.Text = _query;
-            MasterListView.ItemsSource = list;
-            var result = firstLoadAsync();
+            Data.TmpData.menuItem.SelectedIndex = -1;
+            Data.TmpData.menuBottomItem.SelectedIndex = -1;
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    _query = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as string;
+                    nowpage = (int)(((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1]);
+                    selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
+                }
+                else
+                {
+                    list = new ItemViewList<Work>();
+                    _query = e.Parameter as string;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                list = new ItemViewList<Work>();
+                _query = e.Parameter as string;
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                list = new ItemViewList<Work>();
+                _query = e.Parameter as string;
+            }
+            finally
+            {
+                qText.Text = _query;
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+                if (selectedindex != -1)
+                {
+                    MasterListView.SelectedIndex = selectedindex;
+                    mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), MasterListView.Items[selectedindex]);
+                }
+            }
         }
 
         bool _isLoading = false;
@@ -157,16 +199,24 @@ namespace PixivUWP.Pages
 
         private void byPopularity_Checked(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.StopLoading();
             _bypopular = true;
             list.Clear();
+            TmpData.StopLoading();
+            nowpage = 1;
             MasterListView.ItemsSource = list;
+            var result = firstLoadAsync();
         }
 
         private void byPopularity_Unchecked(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.StopLoading();
             _bypopular = false;
             list.Clear();
+            TmpData.StopLoading();
+            nowpage = 1;
             MasterListView.ItemsSource = list;
+            var result = firstLoadAsync();
         }
 
         double _originHeight = 0;

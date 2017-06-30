@@ -77,7 +77,7 @@ namespace PixivUWP.Controls
 
             double flowWidth = finalSize.Width / ColumnNum;
 
-            // 要用到流的横坐标了，我们用一个数组来记录（其实最初是想多加些花样，用数组来方便索引横向偏移。不过本例中就只进行简单的乘法了）
+            // 要用到流的横坐标了，我们用一个数组来记录（其实最初是想多加些花样，用数组来方便索引横向偏移。不过本例中就只进行简单的乘法了）
             double[] xs = new double[ColumnNum];
 
             foreach (int idx in Enumerable.Range(0, ColumnNum))

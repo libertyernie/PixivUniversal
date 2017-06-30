@@ -1,26 +1,14 @@
-﻿//PixivUniversal
-//Copyright(C) 2017 Pixeez Plus Project
-
-//This program is free software; you can redistribute it and/or
-//modify it under the terms of the GNU General Public License
-//as published by the Free Software Foundation; version 2
-//of the License.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-using Pixeez.Objects;
+﻿using Pixeez.Objects;
+using PixivUWP.Data;
+using PixivUWP.Pages.DetailPage;
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -29,24 +17,20 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using PixivUWP.Pages.DetailPage;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using PixivUWP.Data;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
 namespace PixivUWP.Pages
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Feeds : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable,IBackHandlable
+    public sealed partial class pg_Rank : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable, IBackable, IBackHandlable
     {
         ItemViewList<Work> list;
-        public pg_Feeds()
+
+        public pg_Rank()
         {
             this.InitializeComponent();
             //list.LoadingMoreItems += List_LoadingMoreItems;
@@ -58,13 +42,53 @@ namespace PixivUWP.Pages
         int selectedindex = -1;
 
         public BackInfo GenerateBackInfo()
-            => new BackInfo { list = this.list, param = this.nowpage, selectedIndex = MasterListView.SelectedIndex };
+            => new BackInfo { list = this.list, param = new object[] { this.nowpage }, selectedIndex = MasterListView.SelectedIndex };
 
         private async Task firstLoadAsync()
         {
             while (scrollRoot.ScrollableHeight - 500 <= 10)
                 if (await loadAsync() == false)
                     return;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = 1;
+                    Data.TmpData.menuBottomItem.SelectedIndex = -1;
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    nowpage = (int)(((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0]);
+                    selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
+                }
+                else
+                {
+                    list = new ItemViewList<Work>();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                list = new ItemViewList<Work>();
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                list = new ItemViewList<Work>();
+            }
+            finally
+            {
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+                if (selectedindex != -1)
+                {
+                    MasterListView.SelectedIndex = selectedindex;
+                    mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), MasterListView.Items[selectedindex]);
+                }
+            }
         }
 
         bool _isLoading = false;
@@ -75,8 +99,9 @@ namespace PixivUWP.Pages
             _isLoading = true;
             try
             {
-                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync(nowpage))
+                foreach (var rone in (await Data.TmpData.CurrentAuth.Tokens.GetRankingAllAsync("daily", nowpage, 30))[0].Works)
                 {
+                    var one = rone.Work;
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
@@ -93,7 +118,7 @@ namespace PixivUWP.Pages
 
         //private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         //{
-        //    args.Item1= !isfinish;
+        //    args.Item1 = !isfinish;
         //}
 
         int nowpage = 1;
@@ -104,7 +129,7 @@ namespace PixivUWP.Pages
         //    var nowcount = list.Count;
         //    try
         //    {
-        //        foreach (var one in await Data.TmpData.CurrentAuth.Tokens.GetLatestWorksAsync(nowpage))
+        //        foreach (var one in await Data.TmpData.CurrentAuth.Tokens.SearchWorksAsync(_query, nowpage, 30, "text", "all", "desc", _bypopular ? "popular" : "date"))
         //        {
         //            if (!list.Contains(one, Data.WorkEqualityComparer.Default))
         //                list.Add(one);
@@ -121,41 +146,6 @@ namespace PixivUWP.Pages
         //    }
         //}
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            try
-            {
-                if ((bool)((object[])e.Parameter)[0])
-                {
-                    Data.TmpData.isBackTrigger = true;
-                    Data.TmpData.menuItem.SelectedIndex = 2;
-                    Data.TmpData.menuBottomItem.SelectedIndex = -1;
-                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
-                    nowpage = (int)((BackInfo)((object[])e.Parameter)[1]).param;
-                    selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
-                }
-                else
-                {
-                    list = new ItemViewList<Work>();
-                }
-            }
-            catch (NullReferenceException)
-            {
-                Debug.WriteLine("NullException");
-                list = new ItemViewList<Work>();
-            }
-            finally
-            {
-                MasterListView.ItemsSource = list;
-                var result = firstLoadAsync();
-                if (selectedindex != -1)
-                {
-                    MasterListView.SelectedIndex = selectedindex;
-                    mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), MasterListView.Items[selectedindex]);
-                }
-            }
-        }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -166,6 +156,29 @@ namespace PixivUWP.Pages
             mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
         }
 
+
+        private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            try
+            {
+                var img = sender as Image;
+                img.Source = null;
+                if (img.DataContext != null)
+                {
+                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
+                    {
+                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+                        img.Source = bitmap;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+
+        }
 
         public Task RefreshAsync()
         {
@@ -187,6 +200,5 @@ namespace PixivUWP.Pages
             if (scrollRoot.VerticalOffset <= scrollRoot.ScrollableHeight - 500) return;
             var result = loadAsync();
         }
-
     }
 }

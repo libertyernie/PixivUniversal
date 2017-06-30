@@ -34,6 +34,7 @@ using Windows.UI.Xaml.Navigation;
 using PixivUWP.Pages.DetailPage;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using PixivUWP.Data;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -42,18 +43,21 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Collection : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable
+    public sealed partial class pg_Collection : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable,IBackHandlable
     {
-        ItemViewList<IllustWork> list = new ItemViewList<IllustWork>();
+        ItemViewList<IllustWork> list;
         public pg_Collection()
         {
             this.InitializeComponent();
             //list.LoadingMoreItems += List_LoadingMoreItems;
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
-            MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
-            var result = firstLoadAsync();
         }
+
+        int selectedindex = -1;
+
+        public BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = this.nexturl, selectedIndex = MasterListView.SelectedIndex };
 
         private async Task firstLoadAsync()
         {
@@ -119,7 +123,37 @@ namespace PixivUWP.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MasterListView.ItemsSource = list;
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = 4;
+                    Data.TmpData.menuBottomItem.SelectedIndex = -1;
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<IllustWork>;
+                    nexturl = ((BackInfo)((object[])e.Parameter)[1]).param as string;
+                    selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
+                }
+                else
+                {
+                    list = new ItemViewList<IllustWork>();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                list = new ItemViewList<IllustWork>();
+            }
+            finally
+            {
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+                if (selectedindex != -1)
+                {
+                    MasterListView.SelectedIndex = selectedindex;
+                    mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), MasterListView.Items[selectedindex]);
+                }
+            }
         }
 
 

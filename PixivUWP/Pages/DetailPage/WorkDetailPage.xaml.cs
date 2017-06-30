@@ -36,6 +36,7 @@ namespace PixivUWP.Pages.DetailPage
     {
         string err1 = "";
         string err2 = "";
+        Frame MainFrame;
 
         public WorkDetailPage()
         {
@@ -47,7 +48,8 @@ namespace PixivUWP.Pages.DetailPage
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Work = e.Parameter as Work;
+            var tmpWork = e.Parameter as Work;
+            Work =(await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(tmpWork.Id.Value))[0];
             await RefreshAsync();
             if (Work is IllustWork iw)
             {
@@ -92,7 +94,11 @@ namespace PixivUWP.Pages.DetailPage
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
                 siz.Text = Work.Width?.ToString() + "×" + Work.Height?.ToString();
-                tool.Text = new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
+                try
+                {
+                    tool.Text = new Converter.TagsToStr().Convert(Work.Tools, null, null, null).ToString();
+                }
+                catch { }
                 fs.IsChecked = Work.IsBookMarked();
                 string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
                 des.Text = Work.Caption ?? string.Empty;
@@ -160,10 +166,14 @@ namespace PixivUWP.Pages.DetailPage
             }
         }
 
-        private async void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
+            MainFrame.Navigate(typeof(Win_UserInfo), Work.User);
             //弹出该作者的信息
-            await CreateNewWindowAsync(Work.User.Id.Value.ToString(), typeof(Win_UserInfo), Work.User);
+            //await CreateNewWindowAsync(Work.User.Id.Value.ToString(), typeof(Win_UserInfo), Work.User);
 
         }
 
@@ -236,9 +246,12 @@ namespace PixivUWP.Pages.DetailPage
             });
         }
 
-        private async void relate_Click(object sender, RoutedEventArgs e)
+        private void relate_Click(object sender, RoutedEventArgs e)
         {
-            await CreateNewWindowAsync("related" + Work.Id, typeof(Win_Related), Work);
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
+            MainFrame.Navigate(typeof(Win_Related), Work);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -295,6 +308,17 @@ namespace PixivUWP.Pages.DetailPage
                 }
                 tb.Text = sb.ToString();
             }
+        }
+
+        private void zoomin_Click(object sender, RoutedEventArgs e)
+            => scalable.ZoomIn();
+
+        private void zoomout_Click(object sender, RoutedEventArgs e)
+            => scalable.ZoomOut();
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame = Data.TmpData.mainFrame;
         }
     }
 }

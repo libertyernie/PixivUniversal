@@ -1,7 +1,7 @@
-## Pixiv通用客户端
+﻿## Pixiv通用客户端
 
 ### 简介
- Pixiv通用客户端旨在构建在WindowsPC、Windows移动端、安卓系统设备和传统Win32平台上的统一的Pixiv服务浏览体验；该项目分成四个部分：PixivUWP，PixivAndroid，PixivWPF和Pixeez（Pixiv第三方API封装）。
+ Pixiv通用客户端旨在构建在WindowsPC、Windows移动端、安卓系统设备和传统Win32平台上的统一的Pixiv服务浏览体验；该项目分成五个部分：PixivUWP，PixivAndroid，PixivWPF，Pixeez（Pixiv第三方API封装）和TileBackground（动态磁贴后台组件）。
 
 ### 仓库规范
  非项目组成员将无法编辑任何内容；对于开发人员的仓库规范如下：

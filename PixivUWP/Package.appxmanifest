@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-->
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="18416PixeezPlusProject.PixivUWP" Publisher="CN=1A1912C0-F77F-4F6F-B8BA-0DF953939E75" Version="1.0.17.0" />
+  <Identity Name="18416PixeezPlusProject.PixivUWP" Publisher="CN=1A1912C0-F77F-4F6F-B8BA-0DF953939E75" Version="1.1.7.0" />
   <mp:PhoneIdentity PhoneProductId="5e2ba6da-0419-4b82-8f83-dd58cca931b4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Pixiv UWP</DisplayName>
@@ -32,17 +32,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="PixivUWP.App">
       <uap:VisualElements DisplayName="Pixiv UWP" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="https://git.oschina.net/ThomasWFan/PixivUniversal" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Pixiv UWP">
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\Square48x48Logo.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Pixiv UWP" Square310x310Logo="Assets\Large310x310Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\Blank.png" BackgroundColor="white" />
       </uap:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="TileBackground.TileBackground">
+          <BackgroundTasks>
+            <Task Type="timer" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
     <uap:Capability Name="picturesLibrary" />
+    <DeviceCapability Name="bluetooth" />
   </Capabilities>
 </Package>

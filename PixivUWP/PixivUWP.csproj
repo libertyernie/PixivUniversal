@@ -99,6 +99,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="ScalableGridDiagram.cd" />
     <None Include="PixivUWP_StoreKey.pfx" />
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
@@ -126,10 +127,14 @@
     </Compile>
     <Compile Include="Controls\ContextFlyoutSetter.cs" />
     <Compile Include="Controls\MyToast.xaml.cs" />
+    <Compile Include="Controls\ScalableGrid.cs" />
     <Compile Include="Controls\WaterfallPanel.cs" />
     <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
+    <Compile Include="Data\BackInfo.cs" />
+    <Compile Include="Data\BandHelper.cs" />
     <Compile Include="Data\DownloadManager.cs" />
+    <Compile Include="Data\UniversalBackHandler.cs" />
     <Compile Include="Data\VersionHelper.cs" />
     <Compile Include="Data\WorkEqualityComparer.cs" />
     <Compile Include="Pages\DetailPage\BlankPage.xaml.cs">
@@ -160,6 +165,9 @@
     </Compile>
     <Compile Include="Pages\pg_Mywork.xaml.cs">
       <DependentUpon>pg_Mywork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pg_Rank.xaml.cs">
+      <DependentUpon>pg_Rank.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\pg_Search.xaml.cs">
       <DependentUpon>pg_Search.xaml</DependentUpon>
@@ -202,11 +210,15 @@
   <ItemGroup>
     <Content Include="Assets\Avatar.png" />
     <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\bandlogo24.png" />
+    <Content Include="Assets\bandlogo48.png" />
     <Content Include="Assets\beta-testing-logo.png" />
     <Content Include="Assets\beta-testing.png" />
     <Content Include="Assets\BlankHolder.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Large310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square48x48Logo.scale-200.png" />
     <Content Include="Contributors_ithome.txt" />
     <Content Include="Contributors_qqgroup.txt" />
     <Content Include="Properties\Default.rd.xml" />
@@ -275,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\pg_Rank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\pg_Search.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,6 +330,10 @@
     <ProjectReference Include="..\PixivAPI\PixivAPI.csproj">
       <Project>{64a77199-1953-453a-9f5e-e387fb022b9d}</Project>
       <Name>PixivAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TileBackground\TileBackground.csproj">
+      <Project>{f3c2f113-b59d-42ee-b3c0-08646a8056e8}</Project>
+      <Name>TileBackground</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

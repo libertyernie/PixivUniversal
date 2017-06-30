@@ -29,13 +29,17 @@
                 <ScrollViewer Grid.Row="1" x:Name="scrollRoot" VerticalScrollBarVisibility="Auto" ViewChanged="scrollRoot_ViewChanged">
                     <ListView
                     x:Name="MasterListView"
-                    ItemContainerTransitions="{x:Null}"
                     IsItemClickEnabled="True"
                     ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
                     ScrollViewer.VerticalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition/>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <controls:WaterfallPanel ColumnNum="2"/>

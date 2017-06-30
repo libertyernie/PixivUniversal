@@ -350,31 +350,39 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. 修改页面显示方式为瀑布流；
-2. 增加“排程加载”选项（暂无作用）；
-3. 修正部分导致崩溃的问题；
-
-注意：该版本内存占用较高，下版本会进行优化。在搜索页面刷新依然会导致应用崩溃，下版本将修复。</value>
+    <value>1、现在支持动态磁贴（热门作品）了；
+2、加入“热门作品（综合排行榜）”功能；
+3、对微软手环能正确增删磁贴了，预计下次更新支持微软手环通知；
+4、提供Windows Hello选项（暂无作用）；
+5、润色瀑布流动画。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.0.17β 更新内容</value>
+    <value>版本 V1.1.7β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
-    <value>載入模式（*暫時無效）</value>
+    <value>載入模式</value>
     <comment>加载模式标题</comment>
   </data>
   <data name="loadpolicy1.Content" xml:space="preserve">
-    <value>同步加載（預設）</value>
+    <value>同步加載（高性能）</value>
     <comment>同步加载</comment>
   </data>
   <data name="loadpolicy2.Content" xml:space="preserve">
-    <value>排程加載</value>
+    <value>排程加載（預設）</value>
     <comment>排程加载</comment>
   </data>
   <data name="loadpolicyinfo.Text" xml:space="preserve">
     <value>*注意：如果您的网络连接状况（指到Pixiv的连接，下同）较好，使用同步加载能尽快完整显示所有结果；如果您的网络连接状况较差，使用排程加载能避免大面积图片加载失败并缩短单张加载耗时</value>
     <comment>加载模式说明</comment>
+  </data>
+  <data name="pgRank.Text" xml:space="preserve">
+    <value>熱門作品</value>
+    <comment>页标题</comment>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>熱門作品</value>
+    <comment>左侧汉堡菜单提示文字</comment>
   </data>
 </root>

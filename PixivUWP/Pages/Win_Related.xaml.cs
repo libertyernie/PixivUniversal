@@ -1,4 +1,5 @@
 ﻿using Pixeez.Objects;
+using PixivUWP.Data;
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,17 +25,21 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class Win_Related : Windows.UI.Xaml.Controls.Page, IBackable
+    public sealed partial class Win_Related : Windows.UI.Xaml.Controls.Page, IBackable,IBackHandlable
     {
-        ItemViewList<Work> list = new ItemViewList<Work>();
+        ItemViewList<Work> list;
         public Win_Related()
         {
             this.InitializeComponent();
             //list.LoadingMoreItems += List_LoadingMoreItems;
             //list.HasMoreItemsEvent += List_HasMoreItemsEvent;
-            MasterListView.ItemsSource = list;
             mdc.MasterListView = MasterListView;
         }
+
+        int selectedindex = -1;
+
+        public BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = new object[] { this.nexturl, this.Work }, selectedIndex = MasterListView.SelectedIndex };
 
         private async Task firstLoadAsync()
         {
@@ -75,8 +80,45 @@ namespace PixivUWP.Pages
         Work Work;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Work = e.Parameter as Work;
-            var result = firstLoadAsync();
+            Data.TmpData.menuItem.SelectedIndex = -1;
+            Data.TmpData.menuBottomItem.SelectedIndex = -1;
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    nexturl = ((object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as string;
+                    Work = ((object[])((BackInfo)((object[])e.Parameter)[1]).param)[1] as Work;
+                    selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
+                }
+                else
+                {
+                    Work = e.Parameter as Work;
+                    list = new ItemViewList<Work>();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                Work = e.Parameter as Work;
+                list = new ItemViewList<Work>();
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                Work = e.Parameter as Work;
+                list = new ItemViewList<Work>();
+            }
+            finally
+            {
+                MasterListView.ItemsSource = list;
+                var result = firstLoadAsync();
+                if (selectedindex != -1)
+                {
+                    MasterListView.SelectedIndex = selectedindex;
+                    mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), MasterListView.Items[selectedindex]);
+                }
+            }
         }
         string nexturl = null;
         //private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)

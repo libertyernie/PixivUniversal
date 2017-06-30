@@ -14,6 +14,7 @@
 //You should have received a copy of the GNU General Public License
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+using PixivUWP.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -61,8 +62,6 @@ namespace PixivUWP.Pages
         public static readonly DependencyProperty MaxValueProperty =
             DependencyProperty.Register("MaxValue", typeof(int), typeof(DownloadTask), new PropertyMetadata(100));
 
-
-
         public int Value
         {
             get { return (int)GetValue(ValueProperty); }
@@ -77,8 +76,21 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class pg_Download : Page
+    public sealed partial class pg_Download : Page,IBackHandlable,IBackable
     {
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    Data.TmpData.isBackTrigger = true;
+                    Data.TmpData.menuItem.SelectedIndex = 5;
+                    Data.TmpData.menuBottomItem.SelectedIndex = -1;
+                }
+            }
+            catch { }
+        }
 
         public pg_Download()
         {
@@ -108,6 +120,9 @@ namespace PixivUWP.Pages
                 two.Completed = progresschange;
             }
         }
+
+        public BackInfo GenerateBackInfo() => null;
+
         public void progresschange(IAsyncOperationWithProgress<DownloadOperation, DownloadOperation> a, DownloadOperation b)
         {
             var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -190,5 +205,7 @@ namespace PixivUWP.Pages
             tasks.Clear();
             dic2.Clear();
         }
+
+        public bool GoBack() => false;
     }
 }

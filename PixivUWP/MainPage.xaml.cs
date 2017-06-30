@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -63,10 +64,11 @@ namespace PixivUWP
             this.InitializeComponent();
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             menuItems[0].Label = loader.GetString("Main");
-            menuItems[1].Label = loader.GetString("Feeds");
-            menuItems[2].Label = loader.GetString("Mywork");
-            menuItems[3].Label = loader.GetString("Collection");
-            menuItems[4].Label = loader.GetString("Download");
+            menuItems[1].Label = loader.GetString("Rank");
+            menuItems[2].Label = loader.GetString("Feeds");
+            menuItems[3].Label = loader.GetString("Mywork");
+            menuItems[4].Label = loader.GetString("Collection");
+            menuItems[5].Label = loader.GetString("Download");
             menuBottomItems[0].Label = loader.GetString("Settings");
             menuBottomItems[1].Label = loader.GetString("Feedback");
             version.Text = "v" + Data.VersionHelper.GetThisAppVersionString().ToString() + "β";
@@ -106,6 +108,37 @@ namespace PixivUWP
             });
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.RegisterBackgroundTask();
+        }
+
+        private async void RegisterBackgroundTask()
+        {
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            if (backgroundAccessStatus == BackgroundAccessStatus.AlwaysAllowed ||
+                backgroundAccessStatus == BackgroundAccessStatus.AllowedSubjectToSystemPolicy)
+            {
+                foreach (var task in BackgroundTaskRegistration.AllTasks)
+                {
+                    if (task.Value.Name == taskName)
+                    {
+                        task.Value.Unregister(true);
+                    }
+                }
+
+                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
+                taskBuilder.Name = taskName;
+                taskBuilder.TaskEntryPoint = taskEntryPoint;
+                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                var registration = taskBuilder.Register();
+                new TileBackground.TileBackground().Run(null);
+            }
+        }
+
+        private const string taskName = "TileBackground";
+        private const string taskEntryPoint = "TileBackground.TileBackground";
+
         private bool checkVersion()
         {
             if ((string)Data.AppDataHelper.GetValue("last_version") == Data.VersionHelper.GetThisAppVersionString().ToString()) return false;
@@ -121,7 +154,8 @@ namespace PixivUWP
                 if (ib != null && ib.GoBack() == false)
                 {
                     //MainFrame.Navigate(typeof(Pages.DetailPage.BlankPage));
-                    if (e != null) e.Handled = Goback();
+                    var handled = Goback();
+                    if (e != null) e.Handled = handled;
                 }
                 else
                 {
@@ -130,13 +164,15 @@ namespace PixivUWP
             }
             else
             {
-                if (e != null) e.Handled = Goback();
+                var handled = Goback();
+                if (e != null) e.Handled = handled;
             }
         }
 
         public ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>()
         {
             new MenuItem() {Symbol=""},
+            new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
             new MenuItem() {Symbol=""},
@@ -234,26 +270,38 @@ namespace PixivUWP
 
         private void MenuItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Data.TmpData.isBackTrigger)
+            {
+                Data.TmpData.isBackTrigger = false;
+                return;
+            }
             if (MenuItemList.SelectedIndex == -1)
             {
                 return;
             }
             MenuBottomItemList.SelectedIndex = -1;
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable)?.GenerateBackInfo();
+            if (tmpInfo != null)
+                Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
             switch (MenuItemList.SelectedIndex)
             {
                 case 0:
                     MainFrame.Navigate(typeof(Pages.pg_Main));
                     break;
                 case 1:
-                    MainFrame.Navigate(typeof(Pages.pg_Feeds));
+                    MainFrame.Navigate(typeof(Pages.pg_Rank));
                     break;
                 case 2:
-                    MainFrame.Navigate(typeof(Pages.pg_Mywork));
+                    MainFrame.Navigate(typeof(Pages.pg_Feeds));
                     break;
                 case 3:
-                    MainFrame.Navigate(typeof(Pages.pg_Collection));
+                    MainFrame.Navigate(typeof(Pages.pg_Mywork));
                     break;
                 case 4:
+                    MainFrame.Navigate(typeof(Pages.pg_Collection));
+                    break;
+                case 5:
                     MainFrame.Navigate(typeof(Pages.pg_Download));
                     break;
             }
@@ -308,10 +356,18 @@ namespace PixivUWP
 
         private async void MenuBottomItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Data.TmpData.isBackTrigger)
+            {
+                Data.TmpData.isBackTrigger = false;
+                return;
+            }
             if (MenuBottomItemList.SelectedIndex == -1)
             {
                 return;
             }
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
             MenuItemList.SelectedIndex = -1;
             switch (MenuBottomItemList.SelectedIndex)
             {
@@ -340,6 +396,9 @@ namespace PixivUWP
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.menuItem = MenuItemList;
+            Data.TmpData.menuBottomItem = MenuBottomItemList;
+            Data.TmpData.mainFrame = MainFrame;
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             if (checkVersion())
                 await new Windows.UI.Popups.MessageDialog(loader.GetString("PopupContent"), loader.GetString("PopupTitle")).ShowAsync();
@@ -352,22 +411,11 @@ namespace PixivUWP
 
         private bool Goback()
         {
-            Frame.BackStack.Clear();
-            if (MenuItemList.SelectedIndex != 0)
-            {
-                MenuItemList.SelectedIndex = 0;
-                return true;
-            }
-            else
-            {
-                if(Frame.CanGoBack)
-                {
-                    Frame.GoBack();
-                    return true;
-                }
-            }
-            return false;
-
+            var backInfo = Data.UniversalBackHandler.Back();
+            if (backInfo == null) return false;
+            Data.TmpData.StopLoading();
+            MainFrame.Navigate(backInfo.page, new object[] { true, backInfo.info });
+            return true;
         }
 
         private void btn_Refresh_Click(object sender, RoutedEventArgs e)
@@ -382,6 +430,15 @@ namespace PixivUWP
             //{
             //    btn_Refresh.IsEnabled = true;
             //}
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable)?.GenerateBackInfo();
+            if (tmpInfo != null)
+                Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
+            if (MainFrame.Content is Pages.pg_Search)
+            {
+                MainFrame.Navigate(typeof(Pages.pg_Search), currentQueryString);
+                return;
+            }
             MainFrame.Navigate(MainFrame.Content.GetType());
         }
 
@@ -433,11 +490,20 @@ namespace PixivUWP
             MenuToggle_Click(null, null);
         }
 
+        string currentQueryString;
+
         private void Searchbox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            if (args.QueryText == "") return;
             MenuToggle.IsChecked = false;
             MenuToggle_Click(null, null);
+            MenuItemList.SelectedIndex = -1;
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            if (tmpInfo != null)
+                Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
+            currentQueryString = args.QueryText;
         }
     }
 }

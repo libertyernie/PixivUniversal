@@ -1,10 +1,11 @@
 ﻿{
   "dependencies": {
     "HockeySDK.UWP": "4.1.6",
+    "Microsoft.Band": "1.3.20628",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
     "Microsoft.Services.Store.Engagement": "10.1610.0",
-    "OperationDeferral": "1.1.0",
-    "PackageTuple": "1.0.1"
+    "OperationDeferral": "1.1.1",
+    "PackageTuple": "1.0.2"
   },
   "frameworks": {
     "uap10.0": {}

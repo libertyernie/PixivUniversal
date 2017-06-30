@@ -15,6 +15,7 @@
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using Pixeez.Objects;
+using PixivUWP.Data;
 using PixivUWP.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace PixivUWP.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable
+    public sealed partial class Win_UserInfo : Windows.UI.Xaml.Controls.Page, DetailPage.IRefreshable,IBackable,IBackHandlable
     {
         public Win_UserInfo()
         {
@@ -52,9 +53,10 @@ namespace PixivUWP.Pages
             //list_fav.HasMoreItemsEvent += List_fav_HasMoreItemsEvent;
             mdc.MasterListView = MasterListView;
             mdc_fav.MasterListView = MasterListView_fav;
-            MasterListView.ItemsSource = list;
-            MasterListView_fav.ItemsSource = list_fav;
         }
+
+        public BackInfo GenerateBackInfo()
+            => new BackInfo { list = this.list, param = new object[] { this.list_fav, this.nexturl, this.nexturl_fav, this.pix_user } };
 
         private async Task firstLoadAsync()
         {
@@ -77,7 +79,7 @@ namespace PixivUWP.Pages
         private async Task<bool> loadAsync_fav()
         {
             if (_isLoading_fav) return true;
-            Debug.WriteLine("loadAsync() called.");
+            Debug.WriteLine("loadAsync_fav() called.");
             _isLoading_fav = true;
             try
             {
@@ -85,8 +87,8 @@ namespace PixivUWP.Pages
                 nexturl_fav = root.next_url ?? string.Empty;
                 foreach (var one in root.illusts)
                 {
-                    if (!list.Contains(one, Data.WorkEqualityComparer.Default))
-                        list.Add(one);
+                    if (!list_fav.Contains(one, Data.WorkEqualityComparer.Default))
+                        list_fav.Add(one);
                 }
                 _isLoading_fav = false;
                 return true;
@@ -188,10 +190,43 @@ namespace PixivUWP.Pages
         User pix_user;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            pix_user = e.Parameter as User;
-            await RefreshAsync();
-            var result_fav = firstLoadAsync_fav();
-            var result = firstLoadAsync();
+            Data.TmpData.menuItem.SelectedIndex = -1;
+            Data.TmpData.menuBottomItem.SelectedIndex = -1;
+            try
+            {
+                if ((bool)((object[])e.Parameter)[0])
+                {
+                    list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
+                    list_fav = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as ItemViewList<Work>;
+                    nexturl = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1] as string;
+                    nexturl_fav = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[2] as string;
+                    pix_user = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[3] as User;
+                }
+                else
+                {
+                    list = new ItemViewList<Work>();
+                    list_fav = new ItemViewList<Work>();
+                    pix_user = e.Parameter as User;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("NullException");
+                list = new ItemViewList<Work>();
+                list_fav = new ItemViewList<Work>();
+                pix_user = e.Parameter as User;
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine("InvalidCastException");
+                list = new ItemViewList<Work>();
+                list_fav = new ItemViewList<Work>();
+                pix_user = e.Parameter as User;
+            }
+            finally
+            {
+                await RefreshAsync();
+            }
         }
 
         public async Task RefreshAsync()
@@ -214,8 +249,8 @@ namespace PixivUWP.Pages
             }
             catch { }
         }
-        ItemViewList<Work> list = new ItemViewList<Work>();
-        ItemViewList<Work> list_fav = new ItemViewList<Work>();
+        ItemViewList<Work> list;
+        ItemViewList<Work> list_fav;
         private void PivotItem_Loaded(object sender, RoutedEventArgs e)
         {
             //MasterListView.ItemsSource = await Data.TmpData.CurrentAuth.Tokens.GetUsersWorksAsync(pix_user.Id.Value);
@@ -256,6 +291,25 @@ namespace PixivUWP.Pages
             _originHeight = scrollRoot.VerticalOffset;
             if (scrollRoot.VerticalOffset <= scrollRoot.ScrollableHeight - 500) return;
             var result = loadAsync();
+        }
+
+        private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch(pivot.SelectedIndex)
+            {
+                case 1:
+                    Data.TmpData.StopLoading();
+                    MasterListView_fav.ItemsSource = null;
+                    MasterListView.ItemsSource = list;
+                    var result = firstLoadAsync();
+                    break;
+                case 2:
+                    Data.TmpData.StopLoading();
+                    MasterListView.ItemsSource = null;
+                    MasterListView_fav.ItemsSource = list_fav;
+                    var result_fav = firstLoadAsync_fav();
+                    break;
+            }
         }
     }
 }
