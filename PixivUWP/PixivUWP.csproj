@@ -217,6 +217,13 @@
     <Content Include="Assets\BlankHolder.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\JumplistIcons\Collection.png" />
+    <Content Include="Assets\JumplistIcons\Feed.png" />
+    <Content Include="Assets\JumplistIcons\MarkCurrent.png" />
+    <Content Include="Assets\JumplistIcons\MyWork.png" />
+    <Content Include="Assets\JumplistIcons\Rank.png" />
+    <Content Include="Assets\JumplistIcons\ShareCurrent.png" />
+    <Content Include="Assets\JumplistIcons\ViewCurrent.png" />
     <Content Include="Assets\Large310x310Logo.scale-200.png" />
     <Content Include="Assets\Square48x48Logo.scale-200.png" />
     <Content Include="Contributors.txt" />
