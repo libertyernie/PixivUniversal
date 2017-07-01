@@ -29,6 +29,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
+using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -396,6 +397,32 @@ namespace PixivUWP
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            if (JumpList.IsSupported())
+            {
+                var list = await JumpList.LoadCurrentAsync();
+                if (list.Items.Count == 0)
+                {
+                    var item1 = JumpListItem.CreateWithArguments("viewcurrent", "查看当前磁贴图片");
+                    item1.GroupName = "骚操作";
+                    var item2 = JumpListItem.CreateWithArguments("sharecurrent", "分享当前磁贴图片");
+                    item2.GroupName = "骚操作";
+                    var item3 = JumpListItem.CreateWithArguments("feed", "最新动态");
+                    item3.GroupName = "位置";
+                    var item4 = JumpListItem.CreateWithArguments("rank", "热门作品");
+                    item4.GroupName = "位置";
+                    var item5 = JumpListItem.CreateWithArguments("collection", "我的收藏");
+                    item5.GroupName = "位置";
+                    var item6 = JumpListItem.CreateWithArguments("mywork", "关注动态");
+                    item6.GroupName = "位置";
+                    list.Items.Add(item1);
+                    list.Items.Add(item2);
+                    list.Items.Add(item3);
+                    list.Items.Add(item4);
+                    list.Items.Add(item5);
+                    list.Items.Add(item6);
+                    await list.SaveAsync();
+                }
+            }
             Data.TmpData.menuItem = MenuItemList;
             Data.TmpData.menuBottomItem = MenuBottomItemList;
             Data.TmpData.mainFrame = MainFrame;
