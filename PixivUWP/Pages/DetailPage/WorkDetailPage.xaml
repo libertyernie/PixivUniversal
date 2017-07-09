@@ -70,6 +70,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <AppBarToggleButton x:Name="gz" x:Uid="abbAddFriend" Icon="AddFriend" Click="gz_Click" />
             <AppBarButton x:Name="zoomin" Icon="ZoomIn" Click="zoomin_Click"/>
             <AppBarButton x:Name="zoomout" Icon="ZoomOut" Click="zoomout_Click"/>
+            <AppBarButton x:Name="shared_button" Click="shared_button_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE72D;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
         </CommandBar>
     </Grid>
 </Page>

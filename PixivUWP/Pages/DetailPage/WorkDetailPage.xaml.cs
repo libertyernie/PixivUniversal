@@ -320,5 +320,20 @@ namespace PixivUWP.Pages.DetailPage
         {
             MainFrame = Data.TmpData.mainFrame;
         }
+
+        private void shared_button_Click(object sender, RoutedEventArgs e)
+        {
+            var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView();
+            Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act2 = null;
+            Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act = (Windows.ApplicationModel.DataTransfer.DataTransferManager sender1, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args) =>
+            {
+                Windows.ApplicationModel.DataTransfer.DataRequest request = args.Request;
+                request.Data= Controls.ShareHelper.GenPackage(Controls.ShareHelper.ShareType.Link, new Uri($"https://www.pixiv.net/member_illust.php?mode=medium&illust_id={Work.Id}", UriKind.Absolute));
+                dataTransferManager.DataRequested -= act2;
+            };
+            act2 = act;
+            dataTransferManager.DataRequested += act2;
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
     }
 }
