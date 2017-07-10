@@ -343,13 +343,14 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. Live tile (showing the most popular works) is now supported; 
-2. Added "Ranking" page;
-3. Provide a "Windows Hello" switch (place holder);</value>
+    <value>⭐今はあなたの好きな写真を共有できます
+⭐windows hello オプションを提供します(しばらく無効)
+⭐画像がアドインない問題を修復しました。
+⭐一部のインターフェイスの読み込み効果は最適化されています。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.1.7β 更新されたコンテンツ</value>
+    <value>バージョンV1.1.10β 更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
