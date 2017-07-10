@@ -387,20 +387,24 @@
     <value>SquareMedium</value>
     <comment>预览图尺寸：方形（中等）</comment>
   </data>
-  <data name="share.Label" xml:space="preserve">
+  <data name="abbShare.Label" xml:space="preserve">
     <value>Share</value>
     <comment>分享按钮文字</comment>
   </data>
-  <data name="zoomin" xml:space="preserve">
+  <data name="abbZoomin.Label" xml:space="preserve">
     <value>Zoom In</value>
     <comment>放大按钮文字</comment>
   </data>
-  <data name="zoomout" xml:space="preserve">
+  <data name="abbZoomout.Label" xml:space="preserve">
     <value>Zoom Out</value>
     <comment>缩小按钮文字</comment>
   </data>
-  <data name="category" xml:space="preserve">
+  <data name="category.Text" xml:space="preserve">
     <value>Category</value>
     <comment>详情页底部飞出“分类”</comment>
+  </data>
+  <data name="ok.Button" xml:space="preserve">
+    <value>OK</value>
+    <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
 </root>

@@ -205,10 +205,6 @@
     <value>搜索Pixiv…</value>
     <comment>搜索框提示文字</comment>
   </data>
-  <data name="Settings" xml:space="preserve">
-    <value>设置</value>
-    <comment>左侧汉堡菜单提示文字</comment>
-  </data>
   <data name="comboPolicy.Header" xml:space="preserve">
     <value>后台下载策略(仅对新启动的下载有效)</value>
     <comment>组合框提示语</comment>
@@ -389,16 +385,24 @@
     <value>方形</value>
     <comment>预览图尺寸：方形（中等）</comment>
   </data>
-  <data name="share.Label" xml:space="preserve">
+  <data name="abbShare.Label" xml:space="preserve">
     <value>分享</value>
     <comment>分享按钮文字</comment>
   </data>
-  <data name="zoomin" xml:space="preserve">
+  <data name="abbZoomin.Label" xml:space="preserve">
     <value>放大</value>
     <comment>放大按钮文字</comment>
   </data>
-  <data name="zoomout" xml:space="preserve">
+  <data name="abbZoomout.Label" xml:space="preserve">
     <value>缩小</value>
     <comment>缩小按钮文字</comment>
+  </data>
+  <data name="ok.Button" xml:space="preserve">
+    <value>确认</value>
+    <comment>作品详细页面底部飞窗确认按钮</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+    <comment>左侧汉堡菜单提示文字</comment>
   </data>
 </root>
