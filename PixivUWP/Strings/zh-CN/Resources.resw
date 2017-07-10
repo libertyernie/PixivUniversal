@@ -397,7 +397,7 @@
     <value>缩小</value>
     <comment>缩小按钮文字</comment>
   </data>
-  <data name="ok.Button" xml:space="preserve">
+  <data name="ok.Content" xml:space="preserve">
     <value>确认</value>
     <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
