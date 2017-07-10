@@ -387,7 +387,7 @@
     <value>SquareMedium</value>
     <comment>预览图尺寸：方形（中等）</comment>
   </data>
-  <data name="share" xml:space="preserve">
+  <data name="share.Label" xml:space="preserve">
     <value>Share</value>
     <comment>分享按钮文字</comment>
   </data>

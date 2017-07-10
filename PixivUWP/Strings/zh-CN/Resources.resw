@@ -389,7 +389,7 @@
     <value>方形</value>
     <comment>预览图尺寸：方形（中等）</comment>
   </data>
-  <data name="share" xml:space="preserve">
+  <data name="share.Label" xml:space="preserve">
     <value>分享</value>
     <comment>分享按钮文字</comment>
   </data>
