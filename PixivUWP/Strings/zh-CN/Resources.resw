@@ -405,4 +405,8 @@
     <value>设置</value>
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
+  <data name="category.Text" xml:space="preserve">
+    <value>分类</value>
+    <comment>详情页底部飞出“分类”</comment>
+  </data>
 </root>

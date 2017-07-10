@@ -405,4 +405,8 @@
     <value>确认</value>
     <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
+  <data name="category.Text" xml:space="preserve">
+    <value>分类</value>
+    <comment>详情页底部飞出“分类”</comment>
+  </data>
 </root>
