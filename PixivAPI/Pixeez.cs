@@ -761,6 +761,30 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
 
             return await this.AccessApiAsync<Paginated<NormalWork>>(MethodType.GET, url, param);
         }
+//# 搜索 (Search) (无需登录)
+//# search_target - 搜索类型
+//# partial_match_for_tags  - 标签部分一致
+//# exact_match_for_tags    - 标签完全一致
+//# title_and_caption       - 标题说明文
+//# sort: [date_desc, date_asc]
+//# duration: [within_last_day, within_last_week, within_last_month]
+        public async Task<Illusts> SearchIllustWorksAsync(string query, string search_target = "partial_match_for_tags",  string sort = "date_desc",string filter= "for_ios",string offset= null,bool req_auth= true, string duration=null)
+        {
+            var url = "https://app-api.pixiv.net/v1/search/illust";
+
+            var param = new Dictionary<string, string>
+            {
+                {"word",query },
+                {"search_target",search_target },
+                {"sort",sort },
+                {"filter",filter }
+            };
+            if (duration != null)
+                param["duration"] = duration;
+            if (offset != null)
+                param["offset"] = offset;
+            return await this.AccessNewApiAsync<Illusts>(url,req_auth,param);
+        }
 
         /// <summary>
         /// <para>Available parameters:</para>

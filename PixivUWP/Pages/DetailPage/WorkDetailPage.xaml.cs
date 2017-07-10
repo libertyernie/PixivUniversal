@@ -48,13 +48,16 @@ namespace PixivUWP.Pages.DetailPage
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var tmpWork = e.Parameter as Work;
-            Work =(await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(tmpWork.Id.Value))[0];
+            Work = e.Parameter as Work;
             await RefreshAsync();
             if (Work is IllustWork iw)
             {
                 if(iw.meta_pages != null && iw.meta_pages.Length > 1)
                     watchbigimg.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Work = (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(Work.Id.Value))[0];
             }
         }
 
