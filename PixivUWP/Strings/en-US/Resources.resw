@@ -403,7 +403,7 @@
     <value>Category</value>
     <comment>详情页底部飞出“分类”</comment>
   </data>
-  <data name="ok.Button" xml:space="preserve">
+  <data name="ok.Content" xml:space="preserve">
     <value>OK</value>
     <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
