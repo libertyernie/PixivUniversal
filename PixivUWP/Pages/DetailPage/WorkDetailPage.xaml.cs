@@ -328,7 +328,8 @@ namespace PixivUWP.Pages.DetailPage
             Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act = (Windows.ApplicationModel.DataTransfer.DataTransferManager sender1, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args) =>
             {
                 Windows.ApplicationModel.DataTransfer.DataRequest request = args.Request;
-                request.Data= Controls.ShareHelper.GenPackage(Controls.ShareHelper.ShareType.Link, new Uri($"https://www.pixiv.net/member_illust.php?mode=medium&illust_id={Work.Id}", UriKind.Absolute));
+                Controls.ShareHelper.GenPackage(request.Data,Controls.ShareHelper.ShareType.Link, new Uri($"https://www.pixiv.net/member_illust.php?mode=medium&illust_id={Work.Id}", UriKind.Absolute));
+                args.Request.Data.Properties.Title = Work.Title;
                 dataTransferManager.DataRequested -= act2;
             };
             act2 = act;

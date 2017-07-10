@@ -20,9 +20,8 @@ namespace PixivUWP.Controls
 
         static DataPackage package;
 
-        public static DataPackage GenPackage(ShareType shareType, object data)
+        public static void GenPackage(DataPackage package, ShareType shareType, object data)
         {
-            package = new DataPackage();
             switch(shareType)
             {
                 case ShareType.Link:
@@ -40,7 +39,6 @@ namespace PixivUWP.Controls
                 default:
                     throw new ShareTypeException();
             }
-            return package;
         }
     }
 
