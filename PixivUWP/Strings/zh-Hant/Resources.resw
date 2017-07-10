@@ -342,11 +342,10 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1、现在支持动态磁贴（热门作品）了；
-2、加入“热门作品（综合排行榜）”功能；
-3、对微软手环能正确增删磁贴了，预计下次更新支持微软手环通知；
-4、提供Windows Hello选项（暂无作用）；
-5、润色瀑布流动画。</value>
+    <value>⭐現在能分享你喜歡的圖片了；
+⭐提供Windows Hello選項（暫無作用）；
+⭐修復了一處導致圖片無法加載的問題；
+⭐優化了部分界面的加載效果。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
