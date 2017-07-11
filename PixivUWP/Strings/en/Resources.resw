@@ -408,4 +408,17 @@
     <value>OK</value>
     <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
+  <data name="MicrosoftBand.Text" xml:space="preserve">
+    <value>Microsoft Band</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="WindowsHelloinfo.Text" xml:space="preserve">
+    <value>You can use Windows Hello to define access to the software to protect your privacy.
+（This feature is not enabled）</value>
+    <comment>Windows Hello 信息介绍文字</comment>
+  </data>
+  <data name="WinFeatures.Text" xml:space="preserve">
+    <value>Windows Features</value>
+    <comment>windows 功能提示文字</comment>
+  </data>
 </root>
