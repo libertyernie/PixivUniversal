@@ -421,4 +421,16 @@
     <value>Windows Features</value>
     <comment>windows 功能提示文字</comment>
   </data>
+  <data name="viewPolicy.Header" xml:space="preserve">
+    <value>Picture Loading Policy (Not available)</value>
+    <comment>图片清晰度提示文字</comment>
+  </data>
+  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
+    <value>High</value>
+    <comment>图片清晰度：高</comment>
+  </data>
+  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
+    <value>Normal</value>
+    <comment>图片清晰度：普通</comment>
+  </data>
 </root>
