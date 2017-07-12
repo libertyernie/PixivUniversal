@@ -76,6 +76,8 @@ namespace PixivUWP
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            if (e.Arguments == "") Data.TmpData.jumpList = "null";
+            else Data.TmpData.jumpList = e.Arguments;
             if(mainview==null)
             {
                 mainview = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
