@@ -342,11 +342,10 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1、现在支持动态磁贴（热门作品）了；
-2、加入“热门作品（综合排行榜）”功能；
-3、对微软手环能正确增删磁贴了，预计下次更新支持微软手环通知；
-4、提供Windows Hello选项（暂无作用）；
-5、润色瀑布流动画。</value>
+    <value>⭐現在能分享你喜歡的圖片了；
+⭐提供Windows Hello選項（暫無作用）；
+⭐修復了一處導致圖片無法加載的問題；
+⭐優化了部分界面的加載效果。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
@@ -388,5 +387,25 @@
   <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
     <value>方形</value>
     <comment>预览图尺寸：方形（中等）</comment>
+  </data>
+  <data name="abbShare.Label" xml:space="preserve">
+    <value>分享</value>
+    <comment>分享按钮文字</comment>
+  </data>
+  <data name="abbZoomin.Label" xml:space="preserve">
+    <value>放大</value>
+    <comment>放大按钮文字</comment>
+  </data>
+  <data name="abbZoomout.Label" xml:space="preserve">
+    <value>縮小</value>
+    <comment>缩小按钮文字</comment>
+  </data>
+  <data name="category.Text" xml:space="preserve">
+    <value>類別</value>
+    <comment>详情页底部飞出“分类”</comment>
+  </data>
+  <data name="ok.Content" xml:space="preserve">
+    <value>確認</value>
+    <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
 </root>

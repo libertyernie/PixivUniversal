@@ -229,23 +229,55 @@ namespace PixivUWP.Pages
             }
         }
 
+        string getinfostr(string value,string head)
+        {
+            if(value!=null)
+            {
+                return head + ":" + value + Environment.NewLine;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         public async Task RefreshAsync()
         {
             try
             {
                 pivot.Title = pix_user.Name + (!string.IsNullOrEmpty(pix_user.Email) ? "(" + pix_user.Email + ")" : string.Empty);
-                string imgurl = pix_user.ProfileImageUrls.Px170x170 ?? pix_user.ProfileImageUrls.Px50x50 ?? pix_user.ProfileImageUrls.Px16x16;
-                if(imgurl==null)
-                {
-                    pix_user = (await Data.TmpData.CurrentAuth.Tokens.GetUsersAsync(pix_user.Id.Value)).Single();
-                    imgurl = pix_user.ProfileImageUrls.Px170x170;
-                }
-                using (var res = await PixivUWP.Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, imgurl))
+
+                //string imgurl = pix_user.ProfileImageUrls.Px170x170 ?? pix_user.ProfileImageUrls.Px50x50 ?? pix_user.ProfileImageUrls.Px16x16;
+                var newuserinfo = await Data.TmpData.CurrentAuth.Tokens.GetUserInfoAsync(pix_user.Id.Value.ToString());
+                //if (imgurl==null)
+                //{
+                //    pix_user = ().Single();
+                //    imgurl = pix_user.ProfileImageUrls.Px170x170;
+                //}
+                using (var res = await PixivUWP.Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, newuserinfo.user.profile_image_urls.Medium))
                 {
                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                     await bitmap.SetSourceAsync((await res.GetResponseStreamAsync()).AsRandomAccessStream());
                     userpro.Source = bitmap;
                 }
+                if (newuserinfo.profile != null)
+                {
+                    userinfo.Text = string.Concat(getinfostr(newuserinfo.profile.birth, "BirthDate"),
+    getinfostr(newuserinfo.profile.gender, "Gender"), getinfostr(newuserinfo.profile.webpage, "homepage"), getinfostr(newuserinfo.user.comment, "intro"),
+    getinfostr(newuserinfo.profile.job, "job"), getinfostr(newuserinfo.profile.region, "loc"));
+                }
+
+                //TODO:国际化
+                //            if (pix_user.Profile != null)
+                //            {
+                //                userinfo.Text = string.Concat(getinfostr(pix_user.Profile.BirthDate, "BirthDate"), getinfostr(pix_user.Profile.BloodType, "BloodType"),
+                //getinfostr(pix_user.Profile.Gender, "Gender"), getinfostr(pix_user.Profile.Homepage, "homepage"), getinfostr(pix_user.Profile.Introduction, "intro"),
+                //getinfostr(pix_user.Profile.Job, "job"), getinfostr(pix_user.Profile.Location, "loc"));
+                //            }
+                //            else
+                //            {
+
+                //            }
             }
             catch { }
         }

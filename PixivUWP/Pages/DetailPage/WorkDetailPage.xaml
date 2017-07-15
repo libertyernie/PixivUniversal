@@ -61,19 +61,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <StackPanel>
                             <TextBlock TextWrapping="Wrap" x:Uid="category"/>
                             <TextBox x:Name="inputbox" Loaded="inputbox_Loaded"/>
-                            <Button Click="Button_Click" Margin="0,5,0,0" HorizontalAlignment="Center">确定</Button>
+                            <Button Click="Button_Click"  x:Uid="ok" Margin="0,5,0,0" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Flyout>
                 </controls:ContextFlyoutSetter.CompatibleContextFlyout>
             </AppBarToggleButton>
             <AppBarToggleButton x:Name="gz" x:Uid="abbAddFriend" Icon="AddFriend" Click="gz_Click" />
-            <AppBarButton x:Name="shared_button" x:Uid="share" Click="shared_button_Click">
+            <AppBarButton x:Name="shared_button" x:Uid="abbShare" Click="shared_button_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE72D;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="zoomin" x:Uid="zoomin" Icon="ZoomIn" Click="zoomin_Click"/>
-            <AppBarButton x:Name="zoomout" x:Uid="zoomout" Icon="ZoomOut" Click="zoomout_Click"/>
+            <AppBarButton x:Name="zoomin" x:Uid="abbZoomin" Icon="ZoomIn" Click="zoomin_Click"/>
+            <AppBarButton x:Name="zoomout" x:Uid="abbZoomout" Icon="ZoomOut" Click="zoomout_Click"/>
         </CommandBar>
     </Grid>
 </Page>

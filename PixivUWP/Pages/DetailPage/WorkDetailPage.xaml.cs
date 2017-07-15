@@ -24,6 +24,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
+using System.Text.RegularExpressions;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -48,13 +49,16 @@ namespace PixivUWP.Pages.DetailPage
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var tmpWork = e.Parameter as Work;
-            Work =(await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(tmpWork.Id.Value))[0];
+            Work = e.Parameter as Work;
             await RefreshAsync();
             if (Work is IllustWork iw)
             {
                 if(iw.meta_pages != null && iw.meta_pages.Length > 1)
                     watchbigimg.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Work = (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(Work.Id.Value))[0];
             }
         }
 
@@ -101,7 +105,7 @@ namespace PixivUWP.Pages.DetailPage
                 catch { }
                 fs.IsChecked = Work.IsBookMarked();
                 string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
-                des.Text = Work.Caption ?? string.Empty;
+                des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption), @"<br(\s.+?)?>", Environment.NewLine,RegexOptions.IgnoreCase) ?? string.Empty;//暴力解决有br标签的问题
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, url))
