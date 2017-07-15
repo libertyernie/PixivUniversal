@@ -24,6 +24,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
+using System.Text.RegularExpressions;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -104,7 +105,7 @@ namespace PixivUWP.Pages.DetailPage
                 catch { }
                 fs.IsChecked = Work.IsBookMarked();
                 string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
-                des.Text = Work.Caption ?? string.Empty;
+                des.Text = Regex.Replace(Work.Caption, @"<br(\s.+?)*>", Environment.NewLine) ?? string.Empty;//暴力解决有br标签的问题
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, url))
