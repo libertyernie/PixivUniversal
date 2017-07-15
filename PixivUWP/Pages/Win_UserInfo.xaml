@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <PivotItem x:Uid="pivotUserInfo">
             <StackPanel Orientation="Vertical">
                 <Image x:Name="userpro" Width="170" Height="170" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="userinfo" TextWrapping="Wrap" Margin="10,5,10,0"/> <!--用户详细信息占位，等待后端代码补全-->
+                <TextBlock x:Name="userinfo" TextWrapping="Wrap" Margin="10,5,10,0"/>
             </StackPanel>
         </PivotItem>
 
