@@ -104,22 +104,9 @@
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en\Resources.resw" />
-    <PRIResource Include="Strings\ja-JP\Resources.resw" />
     <PRIResource Include="Strings\ja\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant-TW\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant-MO\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant-HK\Resources.resw" />
-    <PRIResource Include="Strings\zh-TW\Resources.resw" />
-    <PRIResource Include="Strings\zh-MO\Resources.resw" />
-    <PRIResource Include="Strings\zh-HK\Resources.resw" />
     <PRIResource Include="Strings\zh-Hant\Resources.resw" />
-    <PRIResource Include="Strings\zh-SG\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hans-SG\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hans-CN\Resources.resw" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw" />
-    <PRIResource Include="Strings\zh\Resources.resw" />
-    <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
