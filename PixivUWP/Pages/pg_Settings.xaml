@@ -40,10 +40,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ComboBoxItem x:Uid="imagepreviewsizepolicy_Medium"/>
                     <ComboBoxItem x:Uid="imagepreviewsizepolicy_SquareMedium"/>
                 </ComboBox>
-                <ComboBox x:Name="viewpolicy" x:Uid=" viewPolicy" Margin="5,0,-1,5" Width="280">
+                <!--TODO:改为作品详情页清晰度-->
+                <!--<ComboBox x:Name="viewpolicy" x:Uid=" viewPolicy" Margin="5,0,-1,5" Width="280" SelectionChanged="viewpolicy_SelectionChanged">
                     <ComboBoxItem x:Uid="viewpolicy_normalpic" />
                     <ComboBoxItem x:Uid="viewpolicy_fullpic" />
-                </ComboBox>
+                </ComboBox>-->
                 <ComboBox x:Name="loadpolicy" x:Uid="comboLoadPolicy" Margin="5,0,-1,0" SelectionChanged="loadpolicy_SelectionChanged" Width="280">
                     <ComboBoxItem x:Uid="loadpolicy1"/>
                     <ComboBoxItem x:Uid="loadpolicy2"/>

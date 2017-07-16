@@ -58,6 +58,7 @@ namespace PixivUWP.Pages
             });
             od.WaitOne();
             contributors.Text = str_con;
+            //下面这部分代码写得真暴力
             try
             {
                 backpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("BackgroundTransferCostPolicy");
@@ -82,6 +83,14 @@ namespace PixivUWP.Pages
             {
                 imagepreviewsizepolicy.SelectedIndex = 0;
             }
+            //try
+            //{
+            //    viewpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("DetailImageSize");
+            //}
+            //catch
+            //{
+            //    viewpolicy.SelectedIndex = 0;
+            //}
         }
 
         public BackInfo GenerateBackInfo() => null;
@@ -176,5 +185,10 @@ namespace PixivUWP.Pages
                 });
             }
         }
+
+        //private void viewpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Data.AppDataHelper.SetValue("DetailImageSize", viewpolicy.SelectedIndex);
+        //}
     }
 }
