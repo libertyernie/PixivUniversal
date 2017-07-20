@@ -105,9 +105,41 @@ namespace PixivUWP.Pages.DetailPage
                 catch { }
                 fs.IsChecked = Work.IsBookMarked();
                 string url;
-                var connectioncost = Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile().GetConnectionCost();
+                var profile = Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile();
+                bool wwanok;
+                if (profile.IsWwanConnectionProfile)
+                {
+                    switch (profile.WwanConnectionProfileDetails.GetCurrentDataClass())
+                    {
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xRtt:
+                        case Windows.Networking.Connectivity.WwanDataClass.None:
+                        case Windows.Networking.Connectivity.WwanDataClass.Gprs:
+                        case Windows.Networking.Connectivity.WwanDataClass.Edge:
+                            wwanok = false;
+                            break;
+                        default:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xEvdo:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xEvdoRevA:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xEvdv:
+                        case Windows.Networking.Connectivity.WwanDataClass.Custom:
+                        case Windows.Networking.Connectivity.WwanDataClass.CdmaUmb:
+                        case Windows.Networking.Connectivity.WwanDataClass.Umts:
+                        case Windows.Networking.Connectivity.WwanDataClass.Hsdpa:
+                        case Windows.Networking.Connectivity.WwanDataClass.Hsupa:
+                        case Windows.Networking.Connectivity.WwanDataClass.LteAdvanced:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma3xRtt:
+                            wwanok = true;
+                            break;
+                    }
+                }
+                else
+                {
+                    wwanok = true;
+                }
+                var connectioncost = profile.GetConnectionCost();
                 if(connectioncost.ApproachingDataLimit==false &&connectioncost.OverDataLimit==false &&
-                    (connectioncost.NetworkCostType==Windows.Networking.Connectivity.NetworkCostType.Unrestricted|| connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unknown))
+                    (connectioncost.NetworkCostType==Windows.Networking.Connectivity.NetworkCostType.Unrestricted|| connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unknown)
+                    &&wwanok)
                 {
                     url = Work.ImageUrls.Original ?? Work.ImageUrls.Large ?? Work.ImageUrls.Medium;
                 }
