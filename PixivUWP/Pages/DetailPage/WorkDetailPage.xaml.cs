@@ -104,7 +104,17 @@ namespace PixivUWP.Pages.DetailPage
                 }
                 catch { }
                 fs.IsChecked = Work.IsBookMarked();
-                string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
+                string url;
+                var connectioncost = Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile().GetConnectionCost();
+                if(connectioncost.ApproachingDataLimit==false &&connectioncost.OverDataLimit==false &&
+                    (connectioncost.NetworkCostType==Windows.Networking.Connectivity.NetworkCostType.Unrestricted|| connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unknown))
+                {
+                    url = Work.ImageUrls.Original ?? Work.ImageUrls.Large ?? Work.ImageUrls.Medium;
+                }
+                else
+                {
+                    url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
+                }
                 des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption), @"<br(\s.+?)?>", Environment.NewLine,RegexOptions.IgnoreCase) ?? string.Empty;//暴力解决有br标签的问题
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
