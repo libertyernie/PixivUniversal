@@ -397,4 +397,16 @@
     <value>はい</value>
     <comment>作品详细页面底部飞窗确认按钮</comment>
   </data>
+  <data name="viewpolicy.Header" xml:space="preserve">
+    <value>詳細画像の明瞭度</value>
+    <comment>详情图清晰度提示文字</comment>
+  </data>
+  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
+    <value>Original</value>
+    <comment>详情图清晰度：高</comment>
+  </data>
+  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
+    <value>通常の</value>
+    <comment>详情图清晰度：普通</comment>
+  </data>
 </root>

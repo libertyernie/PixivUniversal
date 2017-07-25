@@ -409,15 +409,15 @@
     <comment>详情页底部飞出“分类”</comment>
   </data>
   <data name="viewpolicy.Header" xml:space="preserve">
-    <value>图片清晰度 (未完成)</value>
-    <comment>图片清晰度提示文字</comment>
+    <value>详情图清晰度</value>
+    <comment>详情图清晰度提示文字</comment>
   </data>
   <data name="viewpolicy_fullpic.Content" xml:space="preserve">
-    <value>高清</value>
-    <comment>图片清晰度：高</comment>
+    <value>原图</value>
+    <comment>详情图清晰度：高</comment>
   </data>
   <data name="viewpolicy_normalpic.Content" xml:space="preserve">
     <value>普通</value>
-    <comment>图片清晰度：普通</comment>
+    <comment>详情图清晰度：普通</comment>
   </data>
 </root>
