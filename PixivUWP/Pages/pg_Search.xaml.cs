@@ -44,7 +44,7 @@ namespace PixivUWP.Pages
         int selectedindex = -1;
 
         public BackInfo GenerateBackInfo()
-            => new BackInfo { list = this.list, param = new object[] { this._query, this.nowpage }, selectedIndex = MasterListView.SelectedIndex };
+            => new BackInfo { list = this.list, param = new object[] { this._query, this.nowurl }, selectedIndex = MasterListView.SelectedIndex };
 
         private async Task firstLoadAsync()
         {
@@ -63,7 +63,7 @@ namespace PixivUWP.Pages
                 {
                     list = ((BackInfo)((object[])e.Parameter)[1]).list as ItemViewList<Work>;
                     _query = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as string;
-                    nowpage = (int)(((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1]);
+                    nexturl = (string)(((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1]);
                     selectedindex = ((BackInfo)((object[])e.Parameter)[1]).selectedIndex;
                 }
                 else
@@ -105,12 +105,14 @@ namespace PixivUWP.Pages
             _isLoading = true;
             try
             {
-                foreach (var one in await Data.TmpData.CurrentAuth.Tokens.SearchWorksAsync(_query, nowpage, 30, "text", "all", "desc", _bypopular ? "popular" : "date"))
+                var root = nexturl == null ? await Data.TmpData.CurrentAuth.Tokens.SearchIllustWorksAsync(_query) : await Data.TmpData.CurrentAuth.Tokens.AccessNewApiAsync<Illusts>(nexturl);
+                nowurl = nexturl;
+                nexturl = root.next_url ?? string.Empty;
+                foreach (var one in root.illusts)
                 {
                     if (!list.Contains(one, Data.WorkEqualityComparer.Default))
                         list.Add(one);
                 }
-                nowpage++;
                 _isLoading = false;
                 return true;
             }
@@ -123,10 +125,10 @@ namespace PixivUWP.Pages
 
         //private void List_HasMoreItemsEvent(ItemViewList<Work> sender, PackageTuple.WriteableTuple<bool> args)
         //{
-        //    args.Item1 = !isfinish;
+        //    args.Item1 = nexturl!=string.Empty;
         //}
-
-        int nowpage = 1;
+        string nowurl = null;
+        string nexturl = null;
         //bool isfinish = false;
         //private async void List_LoadingMoreItems(ItemViewList<Work> sender, Tuple<Yinyue200.OperationDeferral.OperationDeferral<uint>, uint> args)
         //{
@@ -161,30 +163,6 @@ namespace PixivUWP.Pages
             mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
         }
 
-
-        private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            try
-            {
-                var img = sender as Image;
-                img.Source = null;
-                if (img.DataContext != null)
-                {
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
-                    {
-                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                        img.Source = bitmap;
-                    }
-                }
-            }
-            catch
-            {
-
-            }
-
-        }
-
         public Task RefreshAsync()
         {
             list.Clear();
@@ -203,7 +181,7 @@ namespace PixivUWP.Pages
             _bypopular = true;
             list.Clear();
             TmpData.StopLoading();
-            nowpage = 1;
+            nexturl = null;
             MasterListView.ItemsSource = list;
             var result = firstLoadAsync();
         }
@@ -214,7 +192,7 @@ namespace PixivUWP.Pages
             _bypopular = false;
             list.Clear();
             TmpData.StopLoading();
-            nowpage = 1;
+            nexturl = null;
             MasterListView.ItemsSource = list;
             var result = firstLoadAsync();
         }

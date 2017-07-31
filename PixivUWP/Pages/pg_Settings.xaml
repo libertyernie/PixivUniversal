@@ -30,25 +30,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem x:Uid="pivotSettings">
             <StackPanel>
-                <ComboBox x:Name="loadpolicy" x:Uid="comboLoadPolicy" Margin="5,0,-1,0" SelectionChanged="loadpolicy_SelectionChanged" Width="280">
-                    <ComboBoxItem x:Uid="loadpolicy1"/>
-                    <ComboBoxItem x:Uid="loadpolicy2"/>
-                </ComboBox>
-                <TextBlock Margin="5,0,-1,10" x:Uid="loadpolicyinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
                 <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,5" Width="280">
                     <ComboBoxItem x:Uid="backPolicy1"/>
                     <ComboBoxItem x:Uid="backPolicy2"/>
                     <ComboBoxItem x:Uid="backPolicy3"/>
                     <ComboBoxItem x:Uid="backPolicy4"/>
                 </ComboBox>
-                <TextBlock Text="Microsoft Band" Margin="5,5,-1,5"/>
-                <Button x:Name="band_Connect" Content="+ Pixiv Tile" Margin="5,0,-1,5" Width="280" Click="band_Connect_Click" IsEnabled="False"/>
-                <TextBlock Text="Windows Features" Margin="5,5,-1,0"/>
-                <ToggleSwitch x:Name="chk_WindowsHello" OnContent="Windows Hello" OffContent="Windows Hello" Margin="5,0,-1,5" Width="280"/>
                 <ComboBox x:Uid="imagepreviewsizepolicy" x:Name="imagepreviewsizepolicy"  Margin="5,0,-1,5" Width="280" SelectionChanged="imagepreviewsizepolicy_SelectionChanged">
                     <ComboBoxItem x:Uid="imagepreviewsizepolicy_Medium"/>
                     <ComboBoxItem x:Uid="imagepreviewsizepolicy_SquareMedium"/>
                 </ComboBox>
+                <!--TODO:改为作品详情页清晰度-->
+                <!--<ComboBox x:Name="viewpolicy" x:Uid=" viewPolicy" Margin="5,0,-1,5" Width="280" SelectionChanged="viewpolicy_SelectionChanged">
+                    <ComboBoxItem x:Uid="viewpolicy_normalpic" />
+                    <ComboBoxItem x:Uid="viewpolicy_fullpic" />
+                </ComboBox>-->
+                <ComboBox x:Name="loadpolicy" x:Uid="comboLoadPolicy" Margin="5,0,-1,0" SelectionChanged="loadpolicy_SelectionChanged" Width="280">
+                    <ComboBoxItem x:Uid="loadpolicy1"/>
+                    <ComboBoxItem x:Uid="loadpolicy2"/>
+                </ComboBox>
+                <TextBlock Margin="5,0,-1,10" x:Uid="loadpolicyinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
+                <TextBlock x:Uid="WinFeatures" Margin="5,5,-1,0"/>
+                <ToggleSwitch x:Name="chk_WindowsHello" OnContent="Windows Hello" OffContent="Windows Hello" Margin="5,0,-1,0"/>
+                <TextBlock Margin="5,0,-1,10" x:Uid="WindowsHelloinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
+                <TextBlock x:Uid="MicrosoftBand"  Margin="5,5,-1,5"/>
+                <Button x:Name="band_Connect" Content="+ Pixiv Tile" Margin="5,0,-1,5" Width="280" Click="band_Connect_Click" IsEnabled="False"/>
             </StackPanel>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">
@@ -87,12 +93,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </TextBlock>
                 <ScrollViewer Grid.Row="1">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock TextWrapping="Wrap" Margin="5,5,5,0"/>
-                        <TextBlock x:Uid="contriText6" TextWrapping="Wrap" Margin="5,5,5,0" FontWeight="Bold"/>
-                        <TextBlock x:Name="con_ithome" TextWrapping="Wrap" Margin="10,5,5,0"/>
-                        <TextBlock TextWrapping="Wrap" Margin="5,5,5,0"/>
-                        <TextBlock x:Uid="contriText7" TextWrapping="Wrap" Margin="5,5,5,0" FontWeight="Bold"/>
-                        <TextBlock x:Name="con_qqgroup" TextWrapping="Wrap" Margin="10,5,5,0"/>
+                        <TextBlock x:Name="contributors" TextWrapping="Wrap" Margin="10,5,5,0"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

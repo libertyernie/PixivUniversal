@@ -24,6 +24,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
+using System.Text.RegularExpressions;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -48,13 +49,16 @@ namespace PixivUWP.Pages.DetailPage
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var tmpWork = e.Parameter as Work;
-            Work =(await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(tmpWork.Id.Value))[0];
+            Work = e.Parameter as Work;
             await RefreshAsync();
             if (Work is IllustWork iw)
             {
                 if(iw.meta_pages != null && iw.meta_pages.Length > 1)
                     watchbigimg.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Work = (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(Work.Id.Value))[0];
             }
         }
 
@@ -100,8 +104,50 @@ namespace PixivUWP.Pages.DetailPage
                 }
                 catch { }
                 fs.IsChecked = Work.IsBookMarked();
-                string url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
-                des.Text = Work.Caption ?? string.Empty;
+                string url;
+                var profile = Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile();
+                bool wwanok;
+                if (profile.IsWwanConnectionProfile)
+                {
+                    switch (profile.WwanConnectionProfileDetails.GetCurrentDataClass())
+                    {
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xRtt:
+                        case Windows.Networking.Connectivity.WwanDataClass.None:
+                        case Windows.Networking.Connectivity.WwanDataClass.Gprs:
+                        case Windows.Networking.Connectivity.WwanDataClass.Edge:
+                            wwanok = false;
+                            break;
+                        default:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xEvdo:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xEvdoRevA:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma1xEvdv:
+                        case Windows.Networking.Connectivity.WwanDataClass.Custom:
+                        case Windows.Networking.Connectivity.WwanDataClass.CdmaUmb:
+                        case Windows.Networking.Connectivity.WwanDataClass.Umts:
+                        case Windows.Networking.Connectivity.WwanDataClass.Hsdpa:
+                        case Windows.Networking.Connectivity.WwanDataClass.Hsupa:
+                        case Windows.Networking.Connectivity.WwanDataClass.LteAdvanced:
+                        case Windows.Networking.Connectivity.WwanDataClass.Cdma3xRtt:
+                            wwanok = true;
+                            break;
+                    }
+                }
+                else
+                {
+                    wwanok = true;
+                }
+                var connectioncost = profile.GetConnectionCost();
+                if(connectioncost.ApproachingDataLimit==false &&connectioncost.OverDataLimit==false &&
+                    (connectioncost.NetworkCostType==Windows.Networking.Connectivity.NetworkCostType.Unrestricted|| connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unknown)
+                    &&wwanok)
+                {
+                    url = Work.ImageUrls.Original ?? Work.ImageUrls.Large ?? Work.ImageUrls.Medium;
+                }
+                else
+                {
+                    url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
+                }
+                des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption), @"<br(\s.+?)?>", Environment.NewLine,RegexOptions.IgnoreCase) ?? string.Empty;//暴力解决有br标签的问题
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, url))
@@ -319,6 +365,22 @@ namespace PixivUWP.Pages.DetailPage
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MainFrame = Data.TmpData.mainFrame;
+        }
+
+        private void shared_button_Click(object sender, RoutedEventArgs e)
+        {
+            var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView();
+            Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act2 = null;
+            Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act = (Windows.ApplicationModel.DataTransfer.DataTransferManager sender1, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args) =>
+            {
+                Windows.ApplicationModel.DataTransfer.DataRequest request = args.Request;
+                Controls.ShareHelper.GenPackage(request.Data,Controls.ShareHelper.ShareType.Link, new Uri($"https://www.pixiv.net/member_illust.php?mode=medium&illust_id={Work.Id}", UriKind.Absolute));
+                args.Request.Data.Properties.Title = Work.Title;
+                dataTransferManager.DataRequested -= act2;
+            };
+            act2 = act;
+            dataTransferManager.DataRequested += act2;
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
         }
     }
 }

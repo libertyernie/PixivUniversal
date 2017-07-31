@@ -41,8 +41,7 @@ namespace PixivUWP.Pages
     /// </summary>
     public sealed partial class pg_Settings : Page,IBackHandlable,IBackable
     {
-        string strithome="";
-        string strqqgroup="";
+        string str_con= "";
         public pg_Settings()
         {
             this.InitializeComponent();
@@ -52,15 +51,14 @@ namespace PixivUWP.Pages
             {
                 try
                 {
-                    strithome = FileIO.ReadTextAsync(Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors_ithome.txt")).AsTask().Result).AsTask().Result;
-                    strqqgroup = FileIO.ReadTextAsync(Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors_qqgroup.txt")).AsTask().Result).AsTask().Result;
+                    str_con = FileIO.ReadTextAsync(Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Contributors.txt")).AsTask().Result).AsTask().Result;
                 }
                 catch { }
                 od.Complete();
             });
             od.WaitOne();
-            con_ithome.Text = strithome;
-            con_qqgroup.Text = strqqgroup;
+            contributors.Text = str_con;
+            //下面这部分代码写得真暴力
             try
             {
                 backpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("BackgroundTransferCostPolicy");
@@ -85,6 +83,14 @@ namespace PixivUWP.Pages
             {
                 imagepreviewsizepolicy.SelectedIndex = 0;
             }
+            //try
+            //{
+            //    viewpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("DetailImageSize");
+            //}
+            //catch
+            //{
+            //    viewpolicy.SelectedIndex = 0;
+            //}
         }
 
         public BackInfo GenerateBackInfo() => null;
@@ -179,5 +185,10 @@ namespace PixivUWP.Pages
                 });
             }
         }
+
+        //private void viewpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Data.AppDataHelper.SetValue("DetailImageSize", viewpolicy.SelectedIndex);
+        //}
     }
 }

@@ -151,9 +151,9 @@ namespace PixivUWP.Pages
 
         }
 
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void MasterListView_ItemClickAsync(object sender, ItemClickEventArgs e)
         {
-            mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), e.ClickedItem);
+            mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(((NormalWork)e.ClickedItem).Id.Value))[0]);
         }
 
 

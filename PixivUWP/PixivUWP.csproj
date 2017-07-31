@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PixivUWP</RootNamespace>
     <AssemblyName>PixivUWP</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
@@ -104,22 +104,9 @@
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en\Resources.resw" />
-    <PRIResource Include="Strings\ja-JP\Resources.resw" />
     <PRIResource Include="Strings\ja\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant-TW\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant-MO\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant-HK\Resources.resw" />
-    <PRIResource Include="Strings\zh-TW\Resources.resw" />
-    <PRIResource Include="Strings\zh-MO\Resources.resw" />
-    <PRIResource Include="Strings\zh-HK\Resources.resw" />
     <PRIResource Include="Strings\zh-Hant\Resources.resw" />
-    <PRIResource Include="Strings\zh-SG\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hans-SG\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hans-CN\Resources.resw" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw" />
-    <PRIResource Include="Strings\zh\Resources.resw" />
-    <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -128,6 +115,7 @@
     <Compile Include="Controls\ContextFlyoutSetter.cs" />
     <Compile Include="Controls\MyToast.xaml.cs" />
     <Compile Include="Controls\ScalableGrid.cs" />
+    <Compile Include="Controls\ShareHelper.cs" />
     <Compile Include="Controls\WaterfallPanel.cs" />
     <Compile Include="Converter\IsLikedCvt.cs" />
     <Compile Include="Converter\TagsToStr.cs" />
@@ -217,10 +205,16 @@
     <Content Include="Assets\BlankHolder.png" />
     <Content Include="Assets\Blank.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\JumplistIcons\Collection.png" />
+    <Content Include="Assets\JumplistIcons\Feed.png" />
+    <Content Include="Assets\JumplistIcons\MarkCurrent.png" />
+    <Content Include="Assets\JumplistIcons\MyWork.png" />
+    <Content Include="Assets\JumplistIcons\Rank.png" />
+    <Content Include="Assets\JumplistIcons\ShareCurrent.png" />
+    <Content Include="Assets\JumplistIcons\ViewCurrent.png" />
     <Content Include="Assets\Large310x310Logo.scale-200.png" />
     <Content Include="Assets\Square48x48Logo.scale-200.png" />
-    <Content Include="Contributors_ithome.txt" />
-    <Content Include="Contributors_qqgroup.txt" />
+    <Content Include="Contributors.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

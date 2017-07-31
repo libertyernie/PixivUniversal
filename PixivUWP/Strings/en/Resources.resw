@@ -305,14 +305,6 @@
     <value>Names not listed in order. Not including main developers. </value>
     <comment>贡献者说明</comment>
   </data>
-  <data name="contriText6.Text" xml:space="preserve">
-    <value>From ithome.com (forum)：</value>
-    <comment>贡献者说明</comment>
-  </data>
-  <data name="contriText7.Text" xml:space="preserve">
-    <value>From our QQ group：</value>
-    <comment>贡献者说明</comment>
-  </data>
   <data name="abbDownloadThis.Label" xml:space="preserve">
     <value>Download</value>
     <comment>大图页面底部按钮说明</comment>
@@ -350,13 +342,14 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>1. Live tile (showing the most popular works) is now supported; 
-2. Added "Ranking" page;
-3. Provide a "Windows Hello" switch (place holder);</value>
+    <value>⭐You can now share pictures; 
+⭐Added Windows Hello option (currently UI only, no actual functions); 
+⭐Fixed a bug when pictures couldn't load; 
+⭐UI enhancements</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.1.7β</value>
+    <value>Update: V1.1.10β</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -382,5 +375,62 @@
   <data name="Rank" xml:space="preserve">
     <value>Ranking</value>
     <comment>左侧汉堡菜单提示问题</comment>
+  </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>Preview Image Size</value>
+    <comment>预览图尺寸说明</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>Medium</value>
+    <comment>预览图尺寸：中等</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>SquareMedium</value>
+    <comment>预览图尺寸：方形（中等）</comment>
+  </data>
+  <data name="abbShare.Label" xml:space="preserve">
+    <value>Share</value>
+    <comment>分享按钮文字</comment>
+  </data>
+  <data name="abbZoomin.Label" xml:space="preserve">
+    <value>Zoom In</value>
+    <comment>放大按钮文字</comment>
+  </data>
+  <data name="abbZoomout.Label" xml:space="preserve">
+    <value>Zoom Out</value>
+    <comment>缩小按钮文字</comment>
+  </data>
+  <data name="category.Text" xml:space="preserve">
+    <value>Category</value>
+    <comment>详情页底部飞出“分类”</comment>
+  </data>
+  <data name="ok.Content" xml:space="preserve">
+    <value>OK</value>
+    <comment>作品详细页面底部飞窗确认按钮</comment>
+  </data>
+  <data name="MicrosoftBand.Text" xml:space="preserve">
+    <value>Microsoft Band</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="WindowsHelloinfo.Text" xml:space="preserve">
+    <value>You can use Windows Hello to define access to the software to protect your privacy.
+（This feature is not enabled）</value>
+    <comment>Windows Hello 信息介绍文字</comment>
+  </data>
+  <data name="WinFeatures.Text" xml:space="preserve">
+    <value>Windows Features</value>
+    <comment>windows 功能提示文字</comment>
+  </data>
+  <data name="viewPolicy.Header" xml:space="preserve">
+    <value>Details Picture Clarity Policy</value>
+    <comment>详情图清晰度提示文字</comment>
+  </data>
+  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
+    <value>Original</value>
+    <comment>详情图清晰度：高</comment>
+  </data>
+  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
+    <value>Normal</value>
+    <comment>详情图清晰度：普通</comment>
   </data>
 </root>

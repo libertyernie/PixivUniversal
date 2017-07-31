@@ -49,7 +49,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ListView
                     x:Name="MasterListView"
                     IsItemClickEnabled="True"
-                    ItemClick="MasterListView_ItemClick" ItemTemplate="{StaticResource workitem}"
+                    ItemClick="MasterListView_ItemClickAsync" ItemTemplate="{StaticResource workitem}"
                     ScrollViewer.VerticalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollMode="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
