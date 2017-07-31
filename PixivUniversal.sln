@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixivWPF", "PixivWPF\PixivWPF.csproj", "{7D82D749-454A-4B22-AA71-FCB1C1215749}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixivAPI", "PixivAPI\PixivAPI.csproj", "{64A77199-1953-453A-9F5E-E387FB022B9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileBackground", "TileBackground\TileBackground.csproj", "{F3C2F113-B59D-42EE-B3C0-08646A8056E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITest", "APITest\APITest.csproj", "{2528D197-EE8A-471E-90B9-B38166ACCA67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,22 @@ Global
 		{F3C2F113-B59D-42EE-B3C0-08646A8056E8}.Release|x64.Build.0 = Release|x64
 		{F3C2F113-B59D-42EE-B3C0-08646A8056E8}.Release|x86.ActiveCfg = Release|x86
 		{F3C2F113-B59D-42EE-B3C0-08646A8056E8}.Release|x86.Build.0 = Release|x86
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|ARM.Build.0 = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|x64.Build.0 = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Debug|x86.Build.0 = Debug|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|ARM.Build.0 = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|x64.ActiveCfg = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|x64.Build.0 = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|x86.ActiveCfg = Release|Any CPU
+		{2528D197-EE8A-471E-90B9-B38166ACCA67}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

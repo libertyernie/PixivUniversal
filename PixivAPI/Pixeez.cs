@@ -322,7 +322,7 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
             return await AccessNewApiAsync<RecommendedRootobject>(url, req_auth, dic);
         }
 
-        public async void GetIllustComments(string illust_id, string offset = null, 
+        public async Task<IllustCommentObject> GetIllustComments(string illust_id, string offset = null, 
             bool? include_total_comments = null)
         {
             string url = "https://app-api.pixiv.net/v1/illust/comments";
@@ -334,7 +334,8 @@ string offset = null, bool? include_ranking_illusts = null, string bookmark_illu
                 dic["offset"] = offset;
             if (include_total_comments != null)
                 dic["include_total_comments"] = format_bool(include_total_comments.Value);
-            await AccessNewApiAsync<RecommendedRootobject>(url, true, dic);
+            var testv = await AccessNewApiAsync<IllustCommentObject>(url, true, dic);
+            return testv;
         }
 
         public async Task<T> AccessNewApiAsync<T>(string url, bool req_auth = true, Dictionary<string, string> dic = null, MethodType methodtype = MethodType.GET)

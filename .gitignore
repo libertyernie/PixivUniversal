@@ -246,3 +246,5 @@ ModelManifest.xml
 /PixivUWP/_pkginfo.txt
 /PixivAndroid/PixivAndroid.csproj.bak
 *.appx
+/APITest
+/APITest
