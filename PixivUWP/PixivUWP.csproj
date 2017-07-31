@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PixivUWP</RootNamespace>
     <AssemblyName>PixivUWP</AssemblyName>
-    <DefaultLanguage>en</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
@@ -103,7 +103,7 @@
     <None Include="PixivUWP_StoreKey.pfx" />
     <None Include="PixivUWP_TemporaryKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\ja\Resources.resw" />
     <PRIResource Include="Strings\zh-Hant\Resources.resw" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw" />
