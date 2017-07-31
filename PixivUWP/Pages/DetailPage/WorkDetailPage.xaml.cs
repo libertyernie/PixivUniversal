@@ -382,5 +382,10 @@ namespace PixivUWP.Pages.DetailPage
             dataTransferManager.DataRequested += act2;
             Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
         }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            scalable.MaxHeight = (sender as Grid).ActualHeight - 92;
+        }
     }
 }
