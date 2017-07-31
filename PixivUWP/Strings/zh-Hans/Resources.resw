@@ -342,14 +342,11 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐现在能分享你喜欢的图片了；
-⭐提供Windows Hello选项（暂无作用）；
-⭐修复了一处导致图片无法加载的问题；
-⭐优化了部分界面的加载效果。</value>
+    <value>这是一个内部测试版本。重点测试：作品详细页的图片会不会被过分放大。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.10β 更新内容</value>
+    <value>版本 V1.1.11β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
