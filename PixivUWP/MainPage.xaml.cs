@@ -448,6 +448,7 @@ namespace PixivUWP
                     list.Items.Add(item4);
                     list.Items.Add(item5);
                     list.Items.Add(item6);
+                    list.Items.Clear();
                 }
                 await list.SaveAsync();
             }
