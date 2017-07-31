@@ -170,6 +170,7 @@
       <DependentUpon>Win_UserInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgressBarVisualHelper.cs" />
+    <Compile Include="ViewModels\CommentListItem.cs" />
     <Compile Include="ViewModels\ItemViewList.cs" />
     <Compile Include="ViewModels\MainItemModel.cs" />
     <Compile Include="Data\AppDataHelper.cs" />

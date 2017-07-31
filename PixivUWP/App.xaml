@@ -50,6 +50,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     </Grid>
                 </Grid>
             </DataTemplate>
+            <DataTemplate x:Key="commentitem">
+                <Grid>
+                    
+                </Grid>
+            </DataTemplate>
             <Style x:Key="StretchListViewItem" TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             </Style>
