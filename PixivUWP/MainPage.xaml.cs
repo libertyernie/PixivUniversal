@@ -554,6 +554,7 @@ namespace PixivUWP
         private void btn_User_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(typeof(Pages.Win_UserInfo), Data.TmpData.CurrentAuth.Authorize.User);
+            contentroot.IsPaneOpen = false;
         }
     }
 }
