@@ -53,7 +53,6 @@ namespace PixivUWP.Pages.DetailPage
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             Work = e.Parameter as Work;
-            await RefreshAsync();
             if (Work is IllustWork iw)
             {
                 if(iw.meta_pages != null && iw.meta_pages.Length > 1)
@@ -63,6 +62,7 @@ namespace PixivUWP.Pages.DetailPage
             {
                 Work = (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(Work.Id.Value))[0];
             }
+            await RefreshAsync();
         }
 
         private async void fs_Click(object sender, RoutedEventArgs e)
