@@ -258,7 +258,7 @@ namespace PixivUWP.Pages
                 {
                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                     await bitmap.SetSourceAsync((await res.GetResponseStreamAsync()).AsRandomAccessStream());
-                    userpro.Source = bitmap;
+                    userpro.ImageSource = bitmap;
                 }
                 if (newuserinfo.profile != null)
                 {
