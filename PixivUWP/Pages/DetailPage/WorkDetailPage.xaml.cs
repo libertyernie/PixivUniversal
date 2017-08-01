@@ -386,17 +386,18 @@ namespace PixivUWP.Pages.DetailPage
             Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
         }
 
+        //防止显示的图片大小异常
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            const int appbarheightandtwolinestextheight = 92;
+            const int MarginDown = 92;
             var grid = (sender as Grid);
-            if (grid.ActualHeight > appbarheightandtwolinestextheight)
+            if (grid.ActualHeight > MarginDown)
             {
-                scalable.Height = grid.ActualHeight - appbarheightandtwolinestextheight;
+                scalable.Height = grid.ActualHeight - MarginDown;
             }
             else
             {
-                ;//
+                ;
             }
         }
 
