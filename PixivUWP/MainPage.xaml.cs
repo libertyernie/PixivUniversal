@@ -550,5 +550,10 @@ namespace PixivUWP
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
             currentQueryString = args.QueryText;
         }
+
+        private void btn_User_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(typeof(Pages.Win_UserInfo), Data.TmpData.CurrentAuth.Authorize.User);
+        }
     }
 }

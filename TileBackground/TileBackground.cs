@@ -21,6 +21,7 @@ using Windows.UI.Notifications;
 using System.IO;
 using Windows.Storage;
 using Microsoft.Toolkit.Uwp.Notifications;
+using PixivUWP.Data;
 
 namespace TileBackground
 {
