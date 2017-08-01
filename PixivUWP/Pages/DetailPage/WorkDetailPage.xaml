@@ -91,7 +91,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <CommandBar Grid.Row="1">
             <AppBarButton x:Name="relate" x:Uid="abbRelate" Icon="Link" Click="relate_Click"/>
             <AppBarButton Visibility="Collapsed" x:Name="watchbigimg" x:Uid="abbWatchBig" Click="watchbigimg_Click" Icon="ViewAll"/>
-            <AppBarButton x:Name="downloadbutton" x:Uid="abbDownload" Icon="Download" Click="AppBarButton_Click"/>
             <AppBarToggleButton x:Name="fs" x:Uid="abbFavorite" Icon="Favorite" Click="fs_Click" Loaded="fs_Loaded">
                 <controls:ContextFlyoutSetter.CompatibleContextFlyout>
                     <Flyout>
@@ -109,6 +108,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <FontIcon Glyph="&#xE72D;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
+            <AppBarButton x:Name="downloadbutton" x:Uid="abbDownload" Icon="Download" Click="AppBarButton_Click"/>
             <AppBarButton x:Name="zoomin" x:Uid="abbZoomin" Icon="ZoomIn" Click="zoomin_Click"/>
             <AppBarButton x:Name="zoomout" x:Uid="abbZoomout" Icon="ZoomOut" Click="zoomout_Click"/>
         </CommandBar>
