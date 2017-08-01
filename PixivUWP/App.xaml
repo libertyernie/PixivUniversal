@@ -50,20 +50,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     </Grid>
                 </Grid>
             </DataTemplate>
-            <DataTemplate x:Key="commentitem">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{Binding LeftMargin}"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="{Binding Avatar}" Grid.Column="1"/>
-                    <StackPanel Grid.Column="2" Orientation="Vertical">
-                        <TextBlock Text="{Binding Comment.user.name}"/>
-                        <TextBlock Text="{Binding Comment.comment}"/>
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
             <Style x:Key="StretchListViewItem" TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             </Style>
