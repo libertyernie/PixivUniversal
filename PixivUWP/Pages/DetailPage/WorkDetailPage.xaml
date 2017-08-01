@@ -50,7 +50,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                       Tags :<Run x:Name="tags"></Run><LineBreak/>
                       <Run x:Name="des"></Run>
                 </TextBlock>
-                <ListView Grid.Row="3" IsItemClickEnabled="False" SelectionMode="None">
+                <ListView x:Name="commentList" Grid.Row="3" IsItemClickEnabled="False" SelectionMode="None">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition/>
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -59,7 +64,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Avatar}" Grid.Column="1"/>
+                                <Ellipse Grid.Column="1" Width="36" Height="36">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Avatar}" Stretch="Uniform"/>
+                                    </Ellipse.Fill>
+
+                                </Ellipse>
                                 <StackPanel Grid.Column="2" Orientation="Vertical">
                                     <TextBlock Text="{Binding Comment.user.name}"/>
                                     <TextBlock Text="{Binding Comment.comment}"/>

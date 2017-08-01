@@ -25,6 +25,8 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
+using PixivUWP.ViewModels;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -45,6 +47,7 @@ namespace PixivUWP.Pages.DetailPage
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             err1 = loader.GetString("ErrorLoading");
             err2 = loader.GetString("Error");
+            commentList.ItemsSource = commentItem;
         }
         Work Work;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -92,9 +95,9 @@ namespace PixivUWP.Pages.DetailPage
         {
             PixivUWP.ProgressBarVisualHelper.SetYFHelperVisibility(pro, true);
             gz.IsEnabled = false;
-
             try
             {
+                var rescomm = loadComment();
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
                 siz.Text = Work.Width?.ToString() + "×" + Work.Height?.ToString();
@@ -386,6 +389,39 @@ namespace PixivUWP.Pages.DetailPage
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             scalable.MaxHeight = (sender as Grid).ActualHeight - 92;
+        }
+
+        private ObservableCollection<CommentListItem> commentItem = new ObservableCollection<CommentListItem>();
+
+        //加载评论
+        private async Task loadComment(int offset = 0)
+        {
+            if (offset == 0)
+                commentItem.Clear();
+            var res = await Data.TmpData.CurrentAuth.Tokens.GetIllustComments(Work.Id.ToString(), offset.ToString(), true);
+            foreach (var comm in res.comments)
+            {
+                CommentListItem item = new CommentListItem();
+                item.Avatar = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                item.LeftMargin = 0;
+                item.Comment = comm;
+                await fillAvatar(item);
+                commentItem.Add(item);
+            }
+            if (res.next_url != null)
+            {
+                var rescomm = loadComment(offset + 30);
+            }
+        }
+
+        //填充头像
+        private async Task fillAvatar(CommentListItem item)
+        {
+
+            using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, item.Comment.user.profile_image_urls.medium))
+            {
+                await item.Avatar.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
+            }
         }
     }
 }
