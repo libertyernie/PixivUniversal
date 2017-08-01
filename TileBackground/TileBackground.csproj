@@ -107,7 +107,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppDataHelper.cs" />
+    <Compile Include="..\PixivUWP\Data\AppDataHelper.cs">
+      <Link>AppDataHelper.cs</Link>
+    </Compile>
     <Compile Include="TileBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,7 +118,7 @@
       <Version>5.3.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
-      <Version>1.4.1</Version>
+      <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.3.1</Version>
