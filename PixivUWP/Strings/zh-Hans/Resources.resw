@@ -342,11 +342,11 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>这是一个内部测试版本。重点测试：作品详细页的图片会不会被过分放大。</value>
+    <value>这是一个内部测试版本。重点测试：作品详细页的图片会不会被过分放大；评论是否正确加载；有无崩溃问题。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.11β 更新内容</value>
+    <value>版本 V1.1.12β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
