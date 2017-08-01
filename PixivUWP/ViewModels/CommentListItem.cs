@@ -10,7 +10,7 @@ namespace PixivUWP.ViewModels
 {
     public class CommentListItem
     {
-        public IllustCommentObject Comment { get; set; }
+        public Comment Comment { get; set; }
         public int LeftMargin { get; set; }
         public BitmapImage Avatar { get; set; }
     }
