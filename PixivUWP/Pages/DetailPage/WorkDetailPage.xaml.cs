@@ -389,6 +389,7 @@ namespace PixivUWP.Pages.DetailPage
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             scalable.MaxHeight = (sender as Grid).ActualHeight - 92;
+            scalable.MinHeight = (sender as Grid).ActualHeight - 92;
         }
 
         private ObservableCollection<CommentListItem> commentItem = new ObservableCollection<CommentListItem>();
@@ -403,7 +404,7 @@ namespace PixivUWP.Pages.DetailPage
             {
                 CommentListItem item = new CommentListItem();
                 item.Avatar = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                item.LeftMargin = 0;
+                item.LeftMargin = "0";
                 item.Comment = comm;
                 await fillAvatar(item);
                 commentItem.Add(item);
