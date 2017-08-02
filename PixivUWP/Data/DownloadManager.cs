@@ -73,7 +73,7 @@ namespace PixivUWP.Data
                     var a = op.StartAsync();
                     a.Completed = delegate
                       {
-                          Data.ToastHelper.SendToast("下载完成", filename + ex + "现已成功储存于您的图片库中", null, "ms-appx:///Assets/Square44x44Logo.scale-200.png");
+                          Data.ToastHelper.SendToast("下载完成", filename + ex + "现已下载", null, "ms-appx:///Assets/Square44x44Logo.scale-200.png");
                       };
                 }
                 catch { }
