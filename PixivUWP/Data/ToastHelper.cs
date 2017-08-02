@@ -22,6 +22,12 @@ namespace PixivUWP.Data
                 generic.AppLogoOverride.Source = logo;
                 generic.AppLogoOverride.HintCrop = hintcrop;
             }
+            ToastContent tcontent = new ToastContent()
+            {
+                Visual=visual
+            };
+            var toast = new ToastNotification(tcontent.GetXml());
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
 }
