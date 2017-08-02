@@ -10,7 +10,7 @@ namespace PixivUWP.Data
 {
     public static class ToastHelper
     {
-        public static void SendToast(string title = "Pixiv UWP", string content = "", string image = null, string logo = null, ToastGenericAppLogoCrop hintcrop = ToastGenericAppLogoCrop.Circle)
+        public static void SendToast(string title = "Pixiv UWP", string content = "", string image = null, string logo = null, ToastGenericAppLogoCrop hintcrop = ToastGenericAppLogoCrop.None)
         {
             ToastVisual visual = new ToastVisual();
             ToastBindingGeneric generic = new ToastBindingGeneric();
@@ -19,6 +19,7 @@ namespace PixivUWP.Data
             if (image != null) generic.Children.Add(new AdaptiveImage { Source = image });
             if (logo != null)
             {
+                generic.AppLogoOverride = new ToastGenericAppLogo();
                 generic.AppLogoOverride.Source = logo;
                 generic.AppLogoOverride.HintCrop = hintcrop;
             }

@@ -73,7 +73,7 @@ namespace PixivUWP.Data
                     var a = op.StartAsync();
                     a.Completed = delegate
                       {
-                          Data.ToastHelper.SendToast("下载完成");
+                          Data.ToastHelper.SendToast("下载完成", filename + ex + "现已储存于图片库中", null, "ms-appx:///Assets/bandlogo48.png");
                       };
                 }
                 catch { }
