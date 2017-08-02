@@ -71,6 +71,10 @@ namespace PixivUWP.Data
                     downloader.SetRequestHeader("Referer", "https://app-api.pixiv.net/");
                     var op = downloader.CreateDownload(result, file);
                     var a = op.StartAsync();
+                    a.Completed = delegate
+                      {
+                          Data.ToastHelper.SendToast("下载完成");
+                      };
                 }
                 catch { }
             }

@@ -22,6 +22,7 @@ namespace PixivUWP.Data
                 generic.AppLogoOverride.Source = logo;
                 generic.AppLogoOverride.HintCrop = hintcrop;
             }
+            visual.BindingGeneric = generic;
             ToastContent tcontent = new ToastContent()
             {
                 Visual=visual
