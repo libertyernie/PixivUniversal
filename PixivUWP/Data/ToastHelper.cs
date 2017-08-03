@@ -26,6 +26,34 @@ namespace PixivUWP.Data
             visual.BindingGeneric = generic;
             ToastContent tcontent = new ToastContent()
             {
+                Visual = visual
+            };
+            var toast = new ToastNotification(tcontent.GetXml());
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+        public static void SendToast(ToastVisual visual)
+        {
+            ToastContent tcontent = new ToastContent()
+            {
+                Visual = visual
+            };
+            var toast = new ToastNotification(tcontent.GetXml());
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+        public static void SendToast(ToastContent content)
+        {
+            var toast = new ToastNotification(content.GetXml());
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+        public static void SendToast(ToastBindingGeneric generic)
+        {
+            ToastVisual visual = new ToastVisual();
+            visual.BindingGeneric = generic;
+            ToastContent tcontent = new ToastContent()
+            {
                 Visual=visual
             };
             var toast = new ToastNotification(tcontent.GetXml());
