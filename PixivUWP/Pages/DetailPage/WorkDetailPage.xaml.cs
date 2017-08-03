@@ -53,7 +53,6 @@ namespace PixivUWP.Pages.DetailPage
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             Work = e.Parameter as Work;
-            await RefreshAsync();
             if (Work is IllustWork iw)
             {
                 if(iw.meta_pages != null && iw.meta_pages.Length > 1)
@@ -63,6 +62,7 @@ namespace PixivUWP.Pages.DetailPage
             {
                 Work = (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(Work.Id.Value))[0];
             }
+            await RefreshAsync();
         }
 
         private async void fs_Click(object sender, RoutedEventArgs e)
@@ -386,10 +386,19 @@ namespace PixivUWP.Pages.DetailPage
             Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
         }
 
+        //防止显示的图片大小异常
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            scalable.MaxHeight = (sender as Grid).ActualHeight - 92;
-            scalable.MinHeight = (sender as Grid).ActualHeight - 92;
+            const int MarginDown = 92;
+            var grid = (sender as Grid);
+            if (grid.ActualHeight > MarginDown)
+            {
+                scalable.Height = grid.ActualHeight - MarginDown;
+            }
+            else
+            {
+                ;
+            }
         }
 
         private ObservableCollection<CommentListItem> commentItem = new ObservableCollection<CommentListItem>();

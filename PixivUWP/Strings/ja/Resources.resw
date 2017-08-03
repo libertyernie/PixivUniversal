@@ -343,14 +343,17 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐今はあなたの好きな写真を共有できます
-⭐windows hello オプションを提供します(しばらく無効)
-⭐画像がアドインない問題を修復しました。
-⭐一部のインターフェイスの読み込み効果は最適化されています。</value>
+    <value>⭐Now you can view the comments and see an author's info; 
+⭐See your own profile by clicking the profile picture; 
+⭐Added notifications when a background download is complete; 
+⭐The app can now adjust image quality for different connections; 
+⭐Fixed problems displaying some text; 
+⭐Fixed problems where images may zoom in too much; 
+⭐Other fixes in details</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.1.10β 更新されたコンテンツ</value>
+    <value>バージョンV1.2.1β 更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -408,5 +411,9 @@
   <data name="viewpolicy_normalpic.Content" xml:space="preserve">
     <value>通常の</value>
     <comment>详情图清晰度：普通</comment>
+  </data>
+  <data name="textComments.Text" xml:space="preserve">
+    <value>コメント</value>
+    <comment>作品详情页面：评论</comment>
   </data>
 </root>
