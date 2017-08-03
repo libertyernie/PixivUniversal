@@ -342,14 +342,18 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐現在能分享你喜歡的圖片了；
-⭐提供Windows Hello選項（暫無作用）；
-⭐修復了一處導致圖片無法加載的問題；
-⭐優化了部分界面的加載效果。</value>
+    <value>⭐現在可以查看評論了
+⭐可以查看作者的詳細資訊了
+⭐點擊自己的頭像後可以查看個人資訊
+⭐後臺下載完成後將發送通知
+⭐將根據網路調整展示圖片的清晰度
+⭐解決了部分文字顯示的問題
+⭐修正了顯示圖片過分放大的問題
+⭐其他細節方面的修復</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.7β 更新内容</value>
+    <value>版本 V1.2.1β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -419,5 +423,9 @@
   <data name="viewpolicy_normalpic.Content" xml:space="preserve">
     <value>普通</value>
     <comment>详情图清晰度：普通</comment>
+  </data>
+  <data name="textComments.Text" xml:space="preserve">
+    <value>評論</value>
+    <comment>作品详情页面：评论</comment>
   </data>
 </root>

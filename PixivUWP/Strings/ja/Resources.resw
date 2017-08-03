@@ -350,7 +350,7 @@
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.1.10β 更新されたコンテンツ</value>
+    <value>バージョンV1.2.1β 更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -408,5 +408,9 @@
   <data name="viewpolicy_normalpic.Content" xml:space="preserve">
     <value>通常の</value>
     <comment>详情图清晰度：普通</comment>
+  </data>
+  <data name="textComments.Text" xml:space="preserve">
+    <value>コメント</value>
+    <comment>作品详情页面：评论</comment>
   </data>
 </root>

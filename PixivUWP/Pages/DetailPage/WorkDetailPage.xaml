@@ -56,9 +56,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                       Tags :<Run x:Name="tags"></Run><LineBreak/>
                       <Run x:Name="des"></Run>
                 </TextBlock>
-                <TextBlock Grid.Row="3" Margin="5 10" FontWeight="Bold">
-                    Comments
-                </TextBlock>
+                <TextBlock Grid.Row="3" x:Uid="textComments" Margin="5 10" FontWeight="Bold"/>
                 <ListView x:Name="commentList" Grid.Row="4" IsItemClickEnabled="False" SelectionMode="None">
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
