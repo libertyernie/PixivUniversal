@@ -422,6 +422,8 @@ namespace PixivUWP.Pages.DetailPage
             {
                 var rescomm = loadComment(offset + 30);
             }
+            else if (commentItem.Count == 0)
+                txtComment.Text = "No comments";
         }
 
         //填充头像
