@@ -59,6 +59,7 @@ namespace PixivUWP.Pages
             od.WaitOne();
             contributors.Text = str_con;
             //下面这部分代码写得真暴力
+            //设置以后假如多了这里迟早成瓶颈
             try
             {
                 backpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("BackgroundTransferCostPolicy");
@@ -82,6 +83,14 @@ namespace PixivUWP.Pages
             catch
             {
                 imagepreviewsizepolicy.SelectedIndex = 0;
+            }
+            try
+            {
+                软件主题.SelectedIndex = (int)Data.AppDataHelper.GetValue(nameof(软件主题));
+            }
+            catch
+            {
+                软件主题.SelectedIndex = 1;
             }
             //try
             //{
@@ -184,6 +193,11 @@ namespace PixivUWP.Pages
                     }
                 });
             }
+        }
+
+        private void 软件主题_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Data.AppDataHelper.SetValue(nameof(软件主题), 软件主题.SelectedIndex);
         }
 
         //private void viewpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
