@@ -51,6 +51,24 @@ namespace PixivUWP
             this.Suspending += OnSuspending;
             //UnhandledException += App_UnhandledException;
             Microsoft.HockeyApp.HockeyClient.Current.Configure("dd4a5cc7b28845c9804fc0cc29beb64b");//如果你创建了一个新的项目根据本项目，请删除这行代码
+            try
+            {
+                switch ((int)Data.AppDataHelper.GetValue("软件主题"))
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        RequestedTheme = ApplicationTheme.Light;
+                        break;
+                    case 2:
+                        RequestedTheme = ApplicationTheme.Dark;
+                        break;
+                }
+            }
+            catch
+            {
+                RequestedTheme = ApplicationTheme.Light;
+            }
         }
 
         private async void CurrentView_Consolidated(Windows.UI.ViewManagement.ApplicationView sender, Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs args)

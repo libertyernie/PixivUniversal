@@ -37,7 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid Background="WhiteSmoke">
+                <Grid Background="WhiteSmoke" RequestedTheme="Light">
                     <TextBlock
                     x:Uid="pgMywork"
                     Width="Auto"

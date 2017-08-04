@@ -15,6 +15,8 @@
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Newtonsoft.Json;
+
 namespace Pixeez.Objects
 {
 
@@ -24,12 +26,22 @@ namespace Pixeez.Objects
         public NewProfile profile { get; set; }
         public NewWorkspace workspace { get; set; }
     }
-
-    public class NewUser
+    public class UserBase
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string account { get; set; }
+        [JsonProperty("mail_address")]
+        public string Email { get; set; }
+        [JsonProperty("id")]
+        public long? Id { get; set; }
+
+        [JsonProperty("account")]
+        public string Account { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+    }
+
+    public class NewUser:UserBase
+    {
+
         public ImageUrls profile_image_urls { get; set; }
         public string comment { get; set; }
         public bool is_followed { get; set; }

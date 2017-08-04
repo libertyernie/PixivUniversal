@@ -126,20 +126,10 @@ namespace Pixeez.Objects
         public string BloodType { get; set; }
     }
 
-    public class User
+    public class User:UserBase
     {
 
-        [JsonProperty("id")]
-        public long? Id { get; set; }
 
-        [JsonProperty("account")]
-        public string Account { get; set; }
-
-        [JsonProperty("mail_address")]
-        public string Email { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
 
         [JsonProperty("is_following")]
         public bool? IsFollowing { get; set; }
