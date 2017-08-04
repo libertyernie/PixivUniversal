@@ -71,7 +71,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Ellipse Grid.Column="1" Width="36" Height="36">
+                                <Ellipse Grid.Column="1" Width="36" Height="36" PointerReleased="Ellipse_PointerReleased">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="{Binding Avatar}" Stretch="Uniform"/>
                                     </Ellipse.Fill>

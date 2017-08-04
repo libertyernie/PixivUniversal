@@ -9,7 +9,7 @@ namespace Pixeez.Objects
         public int id { get; set; }
         public string comment { get; set; }
         public DateTime date { get; set; }
-        public User user { get; set; }
+        public NewUser user { get; set; }
         public Comment parent_comment { get; set; }
     }
 

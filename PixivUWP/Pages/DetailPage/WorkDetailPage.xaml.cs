@@ -428,10 +428,20 @@ namespace PixivUWP.Pages.DetailPage
         private async Task fillAvatar(CommentListItem item)
         {
 
-            using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, item.Comment.user.profile_image_urls.medium))
+            using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestToGetImageAsync(Pixeez.MethodType.GET, item.Comment.user.profile_image_urls.Medium))
             {
                 await item.Avatar.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
             }
         }
+
+        private void Ellipse_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            var commentobj = ((CommentListItem)(((FrameworkElement)sender).DataContext)).Comment.user;
+            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+            Data.TmpData.StopLoading();
+            MainFrame.Navigate(typeof(Win_UserInfo), commentobj);
+        }
+
     }
 }
