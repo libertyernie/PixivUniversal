@@ -77,7 +77,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Background="AliceBlue" Margin="10 0 0 0" Width="Auto" HorizontalAlignment="Left">
-                                    <TextBlock Text="{Binding Comment.user.name}" TextWrapping="WrapWholeWords" Margin="5 5 5 0" FontWeight="Bold" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
+                                    <TextBlock Text="{Binding Comment.user.Name}" TextWrapping="WrapWholeWords" Margin="5 5 5 0" FontWeight="Bold" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
                                     <TextBlock Text="{Binding Comment.comment}" TextWrapping="WrapWholeWords" Margin="5" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
                                     <TextBlock Text="{Binding Comment.date}" TextWrapping="WrapWholeWords" Margin="5" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
                                 </StackPanel>
