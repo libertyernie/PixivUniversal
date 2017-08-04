@@ -130,7 +130,7 @@ namespace PixivUWP.Data
                 case 0:
                     return urls.Medium;
                 case 1:
-                    return urls.SquareMedium;
+                    return urls.SquareMedium ?? urls.Small;
             }
         }
         public static async Task LoadPictureAsync(FrameworkElement sender)
