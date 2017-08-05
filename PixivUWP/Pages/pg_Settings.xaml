@@ -30,6 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <Pivot x:Name="pivot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem x:Uid="pivotSettings">
             <StackPanel>
+                <ComboBox x:Name="软件主题" x:Uid="软件主题选择框" SelectionChanged="软件主题_SelectionChanged" Margin="5,0,-1,5" Width="280">
+                    <ComboBoxItem x:Uid="软件主题选择框_系统"></ComboBoxItem>
+                    <ComboBoxItem x:Uid="软件主题选择框_白"></ComboBoxItem>
+                    <ComboBoxItem x:Uid="软件主题选择框_黑"></ComboBoxItem>
+                </ComboBox>
                 <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,5" Width="280">
                     <ComboBoxItem x:Uid="backPolicy1"/>
                     <ComboBoxItem x:Uid="backPolicy2"/>
@@ -55,11 +60,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBlock Margin="5,0,-1,10" x:Uid="WindowsHelloinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
                 <TextBlock x:Uid="MicrosoftBand"  Margin="5,5,-1,5"/>
                 <Button x:Name="band_Connect" Content="+ Pixiv Tile" Margin="5,0,-1,5" Width="280" Click="band_Connect_Click" IsEnabled="False"/>
-                <ComboBox x:Name="软件主题" x:Uid="软件主题选择框" SelectionChanged="软件主题_SelectionChanged">
-                    <ComboBoxItem x:Uid="软件主题选择框_系统"></ComboBoxItem>
-                    <ComboBoxItem x:Uid="软件主题选择框_白"></ComboBoxItem>
-                    <ComboBoxItem x:Uid="软件主题选择框_黑"></ComboBoxItem>
-                </ComboBox>
             </StackPanel>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">
