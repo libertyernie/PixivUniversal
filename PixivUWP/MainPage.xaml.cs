@@ -553,6 +553,9 @@ namespace PixivUWP
 
         private void btn_User_Click(object sender, RoutedEventArgs e)
         {
+            Data.TmpData.StopLoading();
+            var backinfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), backinfo);
             MainFrame.Navigate(typeof(Pages.Win_UserInfo), Data.TmpData.CurrentAuth.Authorize.User);
             contentroot.IsPaneOpen = false;
         }
