@@ -421,7 +421,7 @@
     <comment>软件主题选择框</comment>
   </data>
   <data name="软件主题选择框_白.Content" xml:space="preserve">
-    <value>光</value>
+    <value>明るい</value>
     <comment>软件主题选择：浅色</comment>
   </data>
   <data name="软件主题选择框_系统.Content" xml:space="preserve">
@@ -429,7 +429,7 @@
     <comment>软件主题选择：系统</comment>
   </data>
   <data name="软件主题选择框_黑.Content" xml:space="preserve">
-    <value>暗</value>
+    <value>暗い</value>
     <comment>软件主题选择：深色</comment>
   </data>
 </root>
