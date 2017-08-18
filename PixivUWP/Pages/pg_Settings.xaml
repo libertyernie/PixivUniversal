@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <ComboBoxItem x:Uid="软件主题选择框_白"></ComboBoxItem>
                     <ComboBoxItem x:Uid="软件主题选择框_黑"></ComboBoxItem>
                 </ComboBox>
+                <TextBlock Margin="5,0,-1,10" x:Uid="软件主题说明" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
                 <ComboBox x:Name="backpolicy" x:Uid="comboPolicy" SelectionChanged="backpolicy_SelectionChanged" Margin="5,0,-1,5" Width="280">
                     <ComboBoxItem x:Uid="backPolicy1"/>
                     <ComboBoxItem x:Uid="backPolicy2"/>

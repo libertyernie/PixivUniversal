@@ -429,7 +429,7 @@
     <comment>作品详情页面：评论</comment>
   </data>
   <data name="软件主题选择框.Header" xml:space="preserve">
-    <value>软件主题（重启应用后生效）</value>
+    <value>软件（重启应用后生效）</value>
     <comment>软件主题选择框</comment>
   </data>
   <data name="软件主题选择框_白.Content" xml:space="preserve">
@@ -443,5 +443,9 @@
   <data name="软件主题选择框_黑.Content" xml:space="preserve">
     <value>深色</value>
     <comment>软件主题选择：深色</comment>
+  </data>
+  <data name="软件主题说明.Text" xml:space="preserve">
+    <value>*下次啓動應用程式時，會看到您所做的變更</value>
+    <comment>软件主题介绍文字</comment>
   </data>
 </root>

@@ -417,7 +417,7 @@
     <comment>作品详情页面：评论</comment>
   </data>
   <data name="软件主题选择框.Header" xml:space="preserve">
-    <value>ソフトウェアモード (アプリケーションが有効になると再起動)</value>
+    <value>ソフトウェアモード </value>
     <comment>软件主题选择框</comment>
   </data>
   <data name="软件主题选择框_白.Content" xml:space="preserve">
@@ -431,5 +431,9 @@
   <data name="软件主题选择框_黑.Content" xml:space="preserve">
     <value>暗い</value>
     <comment>软件主题选择：深色</comment>
+  </data>
+  <data name="软件主题说明.Text" xml:space="preserve">
+    <value>アプリケーションが有効になると再起動</value>
+    <comment>软件主题介绍文字</comment>
   </data>
 </root>
