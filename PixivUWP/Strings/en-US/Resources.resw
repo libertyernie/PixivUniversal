@@ -440,4 +440,20 @@
     <value>Comments</value>
     <comment>作品详情页面：评论</comment>
   </data>
+  <data name="软件主题选择框.Header" xml:space="preserve">
+    <value>Software Mode（Reboot after application takes effect）</value>
+    <comment>软件主题选择框</comment>
+  </data>
+  <data name="软件主题选择框_白.Content" xml:space="preserve">
+    <value>Light</value>
+    <comment>软件主题选择：浅色</comment>
+  </data>
+  <data name="软件主题选择框_系统.Content" xml:space="preserve">
+    <value>Use system setting</value>
+    <comment>软件主题选择：系统</comment>
+  </data>
+  <data name="软件主题选择框_黑.Content" xml:space="preserve">
+    <value>Dark</value>
+    <comment>软件主题选择：深色</comment>
+  </data>
 </root>

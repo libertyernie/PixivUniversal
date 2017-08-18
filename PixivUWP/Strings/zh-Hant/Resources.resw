@@ -428,4 +428,20 @@
     <value>評論</value>
     <comment>作品详情页面：评论</comment>
   </data>
+  <data name="软件主题选择框.Header" xml:space="preserve">
+    <value>软件主题（重启应用后生效）</value>
+    <comment>软件主题选择框</comment>
+  </data>
+  <data name="软件主题选择框_白.Content" xml:space="preserve">
+    <value>淺色</value>
+    <comment>软件主题选择：浅色</comment>
+  </data>
+  <data name="软件主题选择框_系统.Content" xml:space="preserve">
+    <value>使用系統設定</value>
+    <comment>软件主题选择：系统</comment>
+  </data>
+  <data name="软件主题选择框_黑.Content" xml:space="preserve">
+    <value>深色</value>
+    <comment>软件主题选择：深色</comment>
+  </data>
 </root>

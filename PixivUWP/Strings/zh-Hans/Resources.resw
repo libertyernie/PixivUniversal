@@ -430,14 +430,18 @@
   </data>
   <data name="软件主题选择框.Header" xml:space="preserve">
     <value>软件主题（重启应用后生效）</value>
+    <comment>软件主题选择框</comment>
   </data>
   <data name="软件主题选择框_白.Content" xml:space="preserve">
-    <value>白</value>
+    <value>浅色</value>
+    <comment>软件主题选择：浅色</comment>
   </data>
   <data name="软件主题选择框_系统.Content" xml:space="preserve">
-    <value>系统</value>
+    <value>使用系統设置</value>
+    <comment>软件主题选择：系统</comment>
   </data>
   <data name="软件主题选择框_黑.Content" xml:space="preserve">
-    <value>黑</value>
+    <value>深色</value>
+    <comment>软件主题选择：深色</comment>
   </data>
 </root>
