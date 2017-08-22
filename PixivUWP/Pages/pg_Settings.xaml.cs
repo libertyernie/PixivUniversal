@@ -202,7 +202,10 @@ namespace PixivUWP.Pages
 
         private void logout_Click(object sender, RoutedEventArgs e)
         {
-
+            Data.AppDataHelper.SetValue("isrem", false);
+            Data.AppDataHelper.SetValue("isauto", false);
+            Data.AppDataHelper.SetValue("upasswd", null);
+            (Window.Current.Content as Frame).Navigate(typeof(LoginPage));
         }
 
         //private void viewpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
