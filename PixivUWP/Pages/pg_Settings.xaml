@@ -61,6 +61,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBlock Margin="5,0,-1,10" x:Uid="WindowsHelloinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
                 <TextBlock x:Uid="MicrosoftBand"  Margin="5,5,-1,5"/>
                 <Button x:Name="band_Connect" Content="+ Pixiv Tile" Margin="5,0,-1,5" Width="280" Click="band_Connect_Click" IsEnabled="False"/>
+                <TextBlock Text="Account"  Margin="5,5,-1,5"/>
+                <Button x:Name="logout" Content="Log Out" Margin="5,0,-1,5" Width="280" Click="logout_Click"/>
             </StackPanel>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">

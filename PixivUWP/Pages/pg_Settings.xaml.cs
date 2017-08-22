@@ -200,6 +200,11 @@ namespace PixivUWP.Pages
             Data.AppDataHelper.SetValue(nameof(软件主题), 软件主题.SelectedIndex);
         }
 
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         //private void viewpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    Data.AppDataHelper.SetValue("DetailImageSize", viewpolicy.SelectedIndex);
