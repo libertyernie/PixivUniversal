@@ -20,7 +20,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid Background="WhiteSmoke" RequestedTheme="Light">
+                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                         <TextBlock x:Name="qText" HorizontalAlignment="Center" Width="Auto" Margin="16" FontSize="18"/>
                         <CheckBox x:Name="byPopularity" HorizontalAlignment="Center" x:Uid="chkByPop" Checked="byPopularity_Checked" Unchecked="byPopularity_Unchecked"/>
