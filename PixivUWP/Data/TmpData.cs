@@ -40,6 +40,7 @@ namespace PixivUWP.Data
         public static ListView menuBottomItem;
         public static Frame mainFrame;
         public static string jumpList;
+        public static bool islight = true;
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {

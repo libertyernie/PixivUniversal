@@ -38,6 +38,7 @@ using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 using Pixeez;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -122,13 +123,12 @@ namespace PixivUWP
             };
         }
 
-        private void settitlecolor()
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var view = ApplicationView.GetForCurrentView();
-            view.TitleBar.ButtonBackgroundColor = Color.FromArgb(255, 175, 126, 255);
-            view.TitleBar.ButtonInactiveBackgroundColor = Color.FromArgb(255, 175, 126, 255);
-            view.TitleBar.ButtonHoverBackgroundColor = Color.FromArgb(255, 159, 100, 255);
-            view.TitleBar.ButtonPressedBackgroundColor = Color.FromArgb(255, 198, 163, 255);
+            if (Data.TmpData.islight)
+                image.Source = new BitmapImage(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+            else
+                image.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
         }
 
         /// <summary>

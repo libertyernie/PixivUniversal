@@ -46,7 +46,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <Image x:Name="bigimg" Margin="5,2" Stretch="Uniform" Width="Auto"/>
                 </controls:ScalableGrid>
                 <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
-                <Canvas Grid.Row="1" Grid.RowSpan="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                <Canvas Grid.Row="1" Grid.RowSpan="4" Margin="0 0 0 -5" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
                 <TextBlock  Margin="5,0" VerticalAlignment="Bottom" Padding="0" Grid.Row="1">
                 <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>
