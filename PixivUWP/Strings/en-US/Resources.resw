@@ -410,8 +410,7 @@
     <comment>Microsoft Band提示文字</comment>
   </data>
   <data name="WindowsHelloinfo.Text" xml:space="preserve">
-    <value>You can use Windows Hello to define access to the software to protect your privacy.
-（This feature is not enabled）</value>
+    <value>You can use Windows Hello to define access to the software to protect your privacy.</value>
     <comment>Windows Hello 信息介绍文字</comment>
   </data>
   <data name="WinFeatures.Text" xml:space="preserve">
@@ -461,5 +460,9 @@
   <data name="Logout.Content" xml:space="preserve">
     <value>Log Out</value>
     <comment>登出按钮文字</comment>
+  </data>
+  <data name="PlusPixivTile.Content" xml:space="preserve">
+    <value>+ Pixiv Tile</value>
+    <comment>为Microsoft Band添加 Pixiv Tile</comment>
   </data>
 </root>

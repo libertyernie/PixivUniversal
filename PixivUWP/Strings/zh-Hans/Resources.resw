@@ -438,7 +438,7 @@
     <comment>软件主题选择：深色</comment>
   </data>
   <data name="软件主题说明.Text" xml:space="preserve">
-    <value>*注：本设置生效需重启应用</value>
+    <value>本设置生效需重启应用</value>
     <comment>软件主题介绍文字</comment>
   </data>
   <data name="Account.Text" xml:space="preserve">
@@ -448,5 +448,13 @@
   <data name="Logout.Content" xml:space="preserve">
     <value>登出</value>
     <comment>登出按钮文字</comment>
+  </data>
+  <data name="WindowsHelloinfo.Text" xml:space="preserve">
+    <value>您可以使用Windows Hello功能来保护您在本软件上的隐私</value>
+    <comment>Windows Hello 信息介绍文字</comment>
+  </data>
+  <data name="PlusPixivTile.Content" xml:space="preserve">
+    <value>+ Pixiv Tile</value>
+    <comment>为Microsoft Band添加 Pixiv Tile</comment>
   </data>
 </root>
