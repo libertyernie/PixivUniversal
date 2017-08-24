@@ -448,4 +448,12 @@
     <value>*注：本设置生效需重启应用</value>
     <comment>软件主题介绍文字</comment>
   </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>账户</value>
+    <comment>账户设置标题</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>登出</value>
+    <comment>登出按钮文字</comment>
+  </data>
 </root>

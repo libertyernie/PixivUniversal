@@ -61,8 +61,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBlock Margin="5,0,-1,10" x:Uid="WindowsHelloinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
                 <TextBlock x:Uid="MicrosoftBand"  Margin="5,5,-1,5"/>
                 <Button x:Name="band_Connect" Content="+ Pixiv Tile" Margin="5,0,-1,5" Width="280" Click="band_Connect_Click" IsEnabled="False"/>
-                <TextBlock Text="Account"  Margin="5,5,-1,5"/>
-                <Button x:Name="logout" Content="Log Out" Margin="5,0,-1,5" Width="280" Click="logout_Click"/>
+                <TextBlock  x:Uid="Account" Margin="5,5,-1,5"/>
+                <Button x:Name="logout" x:Uid="Logout" Content="Log Out" Margin="5,0,-1,5" Width="280" Click="logout_Click"/>
             </StackPanel>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">
@@ -83,8 +83,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko</Hyperlink><LineBreak/>
                 <LineBreak/>
                 <Bold><Run x:Uid="aboutText6"/></Bold><LineBreak/>
-                <Hyperlink Click="Hyperlink_Click">越飞阅读</Hyperlink><LineBreak/>
-                <Hyperlink Click="Hyperlink_Click2">MoeSpirit</Hyperlink><LineBreak/><LineBreak/>
+                <Hyperlink Click="Hyperlink_Click">Flyreader</Hyperlink><LineBreak/>
+                <Hyperlink Click="Hyperlink_Click2">Moespirit</Hyperlink><LineBreak/><LineBreak/>
             </TextBlock>
         </PivotItem>
         <PivotItem x:Uid="pivotContributors">

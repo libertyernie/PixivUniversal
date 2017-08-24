@@ -448,4 +448,12 @@
     <value>*下次啓動應用程式時，會看到您所做的變更</value>
     <comment>软件主题介绍文字</comment>
   </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>帳戶</value>
+    <comment>账户设置标题</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>登出</value>
+    <comment>登出按钮文字</comment>
+  </data>
 </root>

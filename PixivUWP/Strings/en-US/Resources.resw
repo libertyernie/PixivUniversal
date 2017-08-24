@@ -460,4 +460,12 @@
     <value>Reboot after application takes effect.</value>
     <comment>软件主题介绍文字</comment>
   </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>Account</value>
+    <comment>账户设置标题</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Logout</value>
+    <comment>登出按钮文字</comment>
+  </data>
 </root>
