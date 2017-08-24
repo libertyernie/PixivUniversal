@@ -1,0 +1,7 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PixivUWP.Views.Themes">
+    <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SystemControlHighlightAltBaseHighBrush" Color="#FFFFFFFF"/>
+</ResourceDictionary>
