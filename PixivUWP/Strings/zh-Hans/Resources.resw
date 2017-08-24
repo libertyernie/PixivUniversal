@@ -342,18 +342,11 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐现在可以查看评论了
-⭐可以查看作者的详细信息了
-⭐点击自己的头像后可以查看个人信息
-⭐后台下载完成后将发送通知
-⭐将根据网络调整展示图片的清晰度
-⭐解决了部分文字显示的问题
-⭐修正了显示图片过分放大的问题
-⭐其他细节方面的修复</value>
+    <value>这是一个内测版本，主要测试：登出功能；黑暗主题</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.2.1β 更新内容</value>
+    <value>版本 V1.2.6β 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
