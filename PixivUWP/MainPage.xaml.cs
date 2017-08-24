@@ -101,6 +101,10 @@ namespace PixivUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.RegisterBackgroundTask();
+            if (Data.TmpData.islight)
+                logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+            else
+                logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
         }
 
         private async void RegisterBackgroundTask()

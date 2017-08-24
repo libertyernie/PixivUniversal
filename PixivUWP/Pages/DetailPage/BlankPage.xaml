@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical" Height="Auto" VerticalAlignment="Center" Margin="0">
             <StackPanel Orientation="Horizontal" Height="128" Width="Auto" HorizontalAlignment="Center">
-                <Image Source="ms-appx:///Assets/SplashScreen.png" Margin="-32 0 0 0"/>
+                <Image x:Name="logo" Margin="-32 0 0 0"/>
                 <Image Source="ms-appx:///Assets/beta-testing-logo.png" Height="64" Margin="-48 0 0 0"/>
             </StackPanel>
             <Grid>
