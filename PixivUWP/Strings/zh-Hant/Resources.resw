@@ -342,14 +342,7 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐現在可以查看評論了
-⭐可以查看作者的詳細資訊了
-⭐點擊自己的頭像後可以查看個人資訊
-⭐後臺下載完成後將發送通知
-⭐將根據網路調整展示圖片的清晰度
-⭐解決了部分文字顯示的問題
-⭐修正了顯示圖片過分放大的問題
-⭐其他細節方面的修復</value>
+    <value>⭐這是一個內測版本，包含功能：登出功能；黑暗主題</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">

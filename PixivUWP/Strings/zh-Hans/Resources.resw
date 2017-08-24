@@ -342,7 +342,7 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>这是一个内测版本，主要测试：登出功能；黑暗主题</value>
+    <value>⭐这是一个内测版本，主要测试：登出功能；黑暗主题</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">

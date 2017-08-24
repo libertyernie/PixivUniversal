@@ -343,13 +343,7 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐Now you can view the comments and see an author's info; 
-⭐See your own profile by clicking the profile picture; 
-⭐Added notifications when a background download is complete; 
-⭐The app can now adjust image quality for different connections; 
-⭐Fixed problems displaying some text; 
-⭐Fixed problems where images may zoom in too much; 
-⭐Other fixes in details</value>
+    <value>⭐これは、ベータ版です。関数を含める: ログアウト機能; 暗いテーマ</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
