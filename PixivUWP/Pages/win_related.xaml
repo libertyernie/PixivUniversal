@@ -19,7 +19,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid Background="WhiteSmoke">
+                <Grid Background="{ThemeResource SystemControlBackgroundAltMediumBrush}">
                     <TextBlock
                     x:Uid="pgRelated"
                     Width="Auto"
