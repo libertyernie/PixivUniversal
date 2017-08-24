@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light" Source="Views/Themes/LightDefault.xaml"/>
+                <ResourceDictionary x:Key="Dark" Source="Views/Themes/DarkDefault.xaml"/>
             </ResourceDictionary.ThemeDictionaries>
             <SolidColorBrush x:Key="ApplicationStartPageBackgroundThemeBrush" Color="#00adee"/>
             <DataTemplate x:Key="StandardTileTemplate">

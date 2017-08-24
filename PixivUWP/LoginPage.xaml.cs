@@ -58,19 +58,36 @@ namespace PixivUWP
                 s_auto.IsChecked = Convert.ToBoolean(AppDataHelper.GetValue("isauto") as string);
             if (AppDataHelper.GetValue("isrem") != null)
                 s_remember.IsChecked = Convert.ToBoolean(AppDataHelper.GetValue("isrem") as string);
-            if (s_auto.IsChecked==true)
+            if (s_auto.IsChecked == true)
                 beginLoading();
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
             var appTitleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
-            appTitleBar.ButtonBackgroundColor = Colors.White;
-            appTitleBar.ButtonForegroundColor = Colors.Black;
-            appTitleBar.ButtonHoverBackgroundColor = Colors.LightGray;
-            appTitleBar.ButtonHoverForegroundColor = Colors.Black;
-            appTitleBar.ButtonInactiveBackgroundColor = Colors.White;
-            appTitleBar.ButtonInactiveForegroundColor = Colors.Black;
-            appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
-            appTitleBar.ButtonPressedForegroundColor = Colors.Black;
+            switch (App.Current.RequestedTheme)
+            {
+                case ApplicationTheme.Light:
+                    appTitleBar.ButtonBackgroundColor = Colors.White;
+                    appTitleBar.ButtonForegroundColor = Colors.Black;
+                    appTitleBar.ButtonHoverBackgroundColor = Colors.LightGray;
+                    appTitleBar.ButtonHoverForegroundColor = Colors.Black;
+                    appTitleBar.ButtonInactiveBackgroundColor = Colors.White;
+                    appTitleBar.ButtonInactiveForegroundColor = Colors.Black;
+                    appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
+                    appTitleBar.ButtonPressedForegroundColor = Colors.Black;
+                    break;
+                case ApplicationTheme.Dark:
+                    appTitleBar.ButtonBackgroundColor = Colors.Black;
+                    appTitleBar.ButtonForegroundColor = Colors.White;
+                    appTitleBar.ButtonHoverBackgroundColor = Colors.DarkGray;
+                    appTitleBar.ButtonHoverForegroundColor = Colors.White;
+                    appTitleBar.ButtonInactiveBackgroundColor = Colors.Black;
+                    appTitleBar.ButtonInactiveForegroundColor = Colors.White;
+                    appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
+                    appTitleBar.ButtonPressedForegroundColor = Colors.White;
+                    break;
+                default:
+                    break;
+            }
         }
         private async Task logoAnimation()
         {
