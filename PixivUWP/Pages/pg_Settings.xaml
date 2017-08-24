@@ -59,7 +59,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <TextBlock  x:Uid="Account" Margin="5,5,-1,5" Width="280" HorizontalAlignment="Left"/>
                 <Button x:Name="logout" x:Uid="Logout" Content="Log Out" Margin="5,0,-1,5" Width="280" Click="logout_Click"/>
                 <TextBlock x:Uid="WinFeatures" Margin="5,5,-1,0" Width="280" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ToggleSwitch x:Name="chk_WindowsHello" OnContent="Windows Hello" OffContent="Windows Hello" Margin="5,0,-1,0"/>
+                <ToggleSwitch x:Name="chk_WindowsHello" OnContent="Windows Hello" OffContent="Windows Hello" IsEnabled="False" Margin="5,0,-1,0"/>
                 <TextBlock Margin="5,0,-1,10" x:Uid="WindowsHelloinfo" FontSize="12" TextWrapping="WrapWholeWords" Foreground="Gray" Width="280" HorizontalAlignment="Left"/>
                 <TextBlock x:Uid="MicrosoftBand"  Margin="5,5,-1,5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="280"/>
                 <Button x:Name="band_Connect" Content="+ Pixiv Tile" Margin="5,0,-1,5" Width="280" Click="band_Connect_Click" IsEnabled="False"/>
