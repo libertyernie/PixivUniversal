@@ -21,6 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns:converter="using:PixivUWP.Converter">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light" Source="Views/Themes/LightDefault.xaml"/>
+            </ResourceDictionary.ThemeDictionaries>
             <SolidColorBrush x:Key="ApplicationStartPageBackgroundThemeBrush" Color="#00adee"/>
             <DataTemplate x:Key="StandardTileTemplate">
                 <Grid>

@@ -2,6 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivUWP.Views.Themes">
-    <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="#FF000000"/>
-    <SolidColorBrush x:Key="SystemControlHighlightAltBaseHighBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SystemControlBackgroundChromeMediumLowBrush" Color="#FFF2F2F2"/>
+    <SolidColorBrush x:Key="SystemControlForegroundChromeHighBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="#19000000"/>
+    <SolidColorBrush x:Key="SystemControlHighlightAltBaseHighBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SystemControlHighlightListMediumBrush" Color="#33000000"/>
+    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SystemControlDisabledBaseLowBrush" Color="#33000000"/>
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SystemControlBackgroundAltMediumBrush" Color="#99FFFFFF"/>
 </ResourceDictionary>
