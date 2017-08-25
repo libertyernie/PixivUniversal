@@ -443,7 +443,7 @@
     <comment>为Microsoft Band添加 Pixiv Tile</comment>
   </data>
   <data name="WindowsHelloinfo.Text" xml:space="preserve">
-    <value>You can use Windows Hello to define access to the software to protect your privacy.</value>
+    <value>プライバシーを保護するため、パソコンのWindowsHello機能を利用し、アプリへのアクセスを制御できます</value>
     <comment>Windows Hello 信息介绍文字</comment>
   </data>
   <data name="WinFeatures.Text" xml:space="preserve">
