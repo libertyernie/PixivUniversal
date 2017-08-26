@@ -345,7 +345,7 @@
     <value>⭐现在支持“暗黑主题”了；
 ⭐增加了“登出”功能；
 ⭐进行了界面细节优化；
-⭐修复了蜜汁BUG并部分历史遗留问题；</value>
+⭐修复了蜜汁BUG和部分历史遗留问题；</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
