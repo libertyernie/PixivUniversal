@@ -343,7 +343,9 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐これは、ベータ版です。関数を含める: ログアウト機能; 暗いテーマ</value>
+    <value>⭐今、「ダークテーマ」をサポートしています
+⭐「ログアウト」機能を追加する
+⭐いくつかのUIの調整とバグ修正</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">

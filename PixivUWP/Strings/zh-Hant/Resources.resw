@@ -342,7 +342,10 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐這是一個內測版本，包含功能：登出功能；黑暗主題</value>
+    <value>⭐現在支持“暗黑主題”了；
+⭐增加了“登出”功能；
+⭐進行了界面細節優化；
+⭐修復了蜜汁BUG和部分歷史遺留問題；</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">

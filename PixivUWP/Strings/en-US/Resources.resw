@@ -342,7 +342,7 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐Now we support "Dark Theme" 
+    <value>⭐Now we support the "Dark Theme" 
 ⭐You can "Log Out" in this version
 ⭐Some UI tweaks and bug-fixes</value>
     <comment>更新内容</comment>
