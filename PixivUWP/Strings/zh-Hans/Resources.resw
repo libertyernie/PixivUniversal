@@ -342,11 +342,14 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐这是一个内测版本，主要测试：登出功能；黑暗主题</value>
+    <value>⭐現在支持“暗黑主題”了；
+⭐增加了“登出”功能；
+⭐進行了界面細節優化；
+⭐修復了蜜汁BUG和部分歷史遺留問題；</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.2.6β 更新内容</value>
+    <value>版本 V1.3.2β（DarkNight） 更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

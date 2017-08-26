@@ -342,11 +342,13 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐This is a insider version that contains functionality: logout function; Dark theme</value>
+    <value>⭐Now we support "Dark Theme" 
+⭐You can "Log Out" in this version
+⭐Some UI tweaks and bug-fixes</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.2.1β</value>
+    <value>Update: V1.3.2β（DarkNight）</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
