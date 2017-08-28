@@ -93,15 +93,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <AppBarToggleButton x:Name="fs" x:Uid="abbFavorite" Icon="Favorite" Click="fs_Click" Loaded="fs_Loaded">
                 <controls:ContextFlyoutSetter.CompatibleContextFlyout>
                     <Flyout>
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap" x:Uid="category"/>
+                        <StackPanel Width="200">
+                            <TextBlock TextWrapping="Wrap" x:Uid="category" Margin="0,0,0,2"/>
                             <TextBox x:Name="inputbox" Loaded="inputbox_Loaded"/>
-                            <Button Click="Button_Click"  x:Uid="ok" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                            <Button Click="Button_Click"  x:Uid="ok" Margin="5,5,5,5" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Flyout>
                 </controls:ContextFlyoutSetter.CompatibleContextFlyout>
             </AppBarToggleButton>
-            <AppBarToggleButton x:Name="gz" x:Uid="abbAddFriend" Icon="AddFriend" Click="gz_Click" />
+            <AppBarToggleButton x:Name="gz" x:Uid="abbAddFriend" Icon="AddFriend" Click="gz_Click" >
+                <controls:ContextFlyoutSetter.CompatibleContextFlyout>
+                    <Flyout>
+                        <StackPanel Width="200">
+                            <TextBlock TextWrapping="Wrap" x:Uid="私人关注" Margin="0,0,0,2"/>
+                            <ToggleSwitch  IsEnabled="False"/>
+                        </StackPanel>
+                    </Flyout>
+                </controls:ContextFlyoutSetter.CompatibleContextFlyout>
+            </AppBarToggleButton>
             <AppBarButton x:Name="shared_button" x:Uid="abbShare" Click="shared_button_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE72D;"/>

@@ -90,16 +90,8 @@ namespace PixivUWP.Pages
             }
             catch
             {
-                软件主题.SelectedIndex = 1;
+                软件主题.SelectedIndex = 0;
             }
-            //try
-            //{
-            //    viewpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("DetailImageSize");
-            //}
-            //catch
-            //{
-            //    viewpolicy.SelectedIndex = 0;
-            //}
         }
 
         public BackInfo GenerateBackInfo() => null;
@@ -207,10 +199,5 @@ namespace PixivUWP.Pages
             Data.AppDataHelper.SetValue("upasswd", null);
             (Window.Current.Content as Frame).Navigate(typeof(LoginPage));
         }
-
-        //private void viewpolicy_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    Data.AppDataHelper.SetValue("DetailImageSize", viewpolicy.SelectedIndex);
-        //}
     }
 }

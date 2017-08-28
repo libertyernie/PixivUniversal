@@ -169,7 +169,7 @@
     <value>パスワード</value>
     <comment>登录界面密码输入框说明</comment>
   </data>
-  <data name="hyperlkSignup.Content" xml:space="preserve">
+  <data name="Signup.Content" xml:space="preserve">
     <value>新規登録</value>
     <comment>注册超链接文字</comment>
   </data>
@@ -210,7 +210,7 @@
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
   <data name="comboPolicy.Header" xml:space="preserve">
-    <value>バックグラウンドダウンロードをする（新しい操作のみ）</value>
+    <value>バックグラウンドダウンロードをする</value>
     <comment>组合框提示语</comment>
   </data>
   <data name="pivotAbout.Header" xml:space="preserve">
@@ -394,19 +394,7 @@
   </data>
   <data name="ok.Content" xml:space="preserve">
     <value>はい</value>
-    <comment>作品详细页面底部飞窗确认按钮</comment>
-  </data>
-  <data name="viewpolicy.Header" xml:space="preserve">
-    <value>詳細画像の明瞭度</value>
-    <comment>详情图清晰度提示文字</comment>
-  </data>
-  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
-    <value>Original</value>
-    <comment>详情图清晰度：高</comment>
-  </data>
-  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
-    <value>通常の</value>
-    <comment>详情图清晰度：普通</comment>
+    <comment>确定按钮文字</comment>
   </data>
   <data name="textComments.Text" xml:space="preserve">
     <value>コメント</value>
@@ -451,5 +439,42 @@
   <data name="WinFeatures.Text" xml:space="preserve">
     <value>Windows 機能</value>
     <comment>windows 功能提示文字</comment>
+  </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>プレビュー画像サイズ</value>
+    <comment>预览图尺寸说明</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>標準</value>
+    <comment>预览图尺寸：中等</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>正方形</value>
+    <comment>预览图尺寸：方形（中等）</comment>
+  </data>
+  <data name="AreyouLogout.Text" xml:space="preserve">
+    <value>サインアウトしてもよろしいですか？</value>
+    <comment>登出确认提示文字</comment>
+  </data>
+  <data name="MicrosoftBandinfo.Text" xml:space="preserve">
+    <value>この設定では、Pixiv UWPタイルをMicrosoft Bandに送信できます</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="个性化.Text" xml:space="preserve">
+    <value>パーソナライズド</value>
+    <comment>个性化类别提示文字</comment>
+  </data>
+  <data name="后台下载说明.Text" xml:space="preserve">
+    <value>自分のニーズに応じてバックグラウンドのダウンロード方法を選択することができます。この設定は新しいスタートダウンロードにのみ有効です
+*注：バックグラウンドダウンロード後、ソフトウェアはダウンロード通知を送信しません</value>
+    <comment>后台下载说明文字</comment>
+  </data>
+  <data name="私人关注.Text" xml:space="preserve">
+    <value>プライベートフォロー</value>
+    <comment>私人关注飞窗提示文字</comment>
+  </data>
+  <data name="网络.Text" xml:space="preserve">
+    <value>ネットワーク</value>
+    <comment>网络类别提示文字</comment>
   </data>
 </root>

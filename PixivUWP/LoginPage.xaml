@@ -37,7 +37,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
                 </Grid.RowDefinitions>
                 <TextBox Grid.Row="0" Margin="20 0" x:Name="txt_UserName" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="1" InputScope="Url" IsSpellCheckEnabled="False">
                     <TextBox.HeaderTemplate>
@@ -53,10 +54,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         </DataTemplate>
                     </PasswordBox.HeaderTemplate>
                 </PasswordBox>
-                <CheckBox x:Name="s_remember" Grid.Row="2" Margin="20,0" x:Uid="chkboxRem" Checked="s_remember_Toggled" Unchecked="s_remember_Toggled"/>
-                <CheckBox x:Name="s_auto" Grid.Row="2" HorizontalAlignment="Right" Margin="84,0,-16,0" x:Uid="chkboxAuto" Unchecked="s_auto_Toggled" Checked="s_auto_Toggled"/>
-                <Button Grid.Row="3" Margin="20,-30,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1" x:Uid="btnLogin"/>
-                <HyperlinkButton Margin="0,0,20,0" Grid.Row="3" NavigateUri="http://www.pixiv.net" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Uid="hyperlkSignup"/>
+                <CheckBox x:Name="s_remember" Grid.Row="2" x:Uid="chkboxRem" Checked="s_remember_Toggled" Unchecked="s_remember_Toggled" Margin="30,0,0,0"/>
+                <CheckBox x:Name="s_auto" Grid.Row="2" x:Uid="chkboxAuto" Unchecked="s_auto_Toggled" Checked="s_auto_Toggled" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                <Button Grid.Row="3" Margin="20,-10,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1" x:Uid="btnLogin"/>
+                <Button Grid.Row="4" Margin="20,0" HorizontalAlignment="Stretch" Click="RegButton_Click" BorderThickness="1" x:Uid="Signup"/>
             </Grid>
         </Grid>
     </Grid>

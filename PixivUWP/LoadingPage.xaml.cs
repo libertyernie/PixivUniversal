@@ -197,7 +197,7 @@ namespace PixivUWP
                 image.Opacity = 100;
                 margin2.Top = -315;
                 Data.AppDataHelper.SetValue("upasswd", "");
-                Data.AppDataHelper.SetValue("uname", "");
+                //Data.AppDataHelper.SetValue("uname", "");
                 Data.AppDataHelper.SetValue("isauto", false.ToString());
                 Data.AppDataHelper.SetValue("isrem", false.ToString());
                 Frame.Navigate(typeof(LoginPage));

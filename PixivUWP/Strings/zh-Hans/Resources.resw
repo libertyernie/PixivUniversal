@@ -169,7 +169,7 @@
     <value>密码</value>
     <comment>登录界面密码输入框说明</comment>
   </data>
-  <data name="hyperlkSignup.Content" xml:space="preserve">
+  <data name="Signup.Content" xml:space="preserve">
     <value>注册</value>
     <comment>注册超链接文字</comment>
   </data>
@@ -381,8 +381,8 @@
     <comment>预览图尺寸说明</comment>
   </data>
   <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
-    <value>中等</value>
-    <comment>预览图尺寸：中等</comment>
+    <value>标准</value>
+    <comment>预览图尺寸：标准</comment>
   </data>
   <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
     <value>方形</value>
@@ -401,24 +401,12 @@
     <comment>缩小按钮文字</comment>
   </data>
   <data name="ok.Content" xml:space="preserve">
-    <value>确认</value>
-    <comment>作品详细页面底部飞窗确认按钮</comment>
+    <value>确定</value>
+    <comment>确定按钮文字</comment>
   </data>
   <data name="category.Text" xml:space="preserve">
     <value>分类</value>
     <comment>详情页底部飞出“分类”</comment>
-  </data>
-  <data name="viewpolicy.Header" xml:space="preserve">
-    <value>详情图清晰度</value>
-    <comment>详情图清晰度提示文字</comment>
-  </data>
-  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
-    <value>原图</value>
-    <comment>详情图清晰度：高</comment>
-  </data>
-  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
-    <value>普通</value>
-    <comment>详情图清晰度：普通</comment>
   </data>
   <data name="textComments.Text" xml:space="preserve">
     <value>评论</value>
@@ -441,7 +429,7 @@
     <comment>软件主题选择：深色</comment>
   </data>
   <data name="软件主题说明.Text" xml:space="preserve">
-    <value>本设置生效需重启应用</value>
+    <value>*注意：本设置生效需重启应用</value>
     <comment>软件主题介绍文字</comment>
   </data>
   <data name="Account.Text" xml:space="preserve">
@@ -453,11 +441,40 @@
     <comment>登出按钮文字</comment>
   </data>
   <data name="WindowsHelloinfo.Text" xml:space="preserve">
-    <value>您可以使用Windows Hello功能来保护您在本软件上的隐私</value>
+    <value>您可以使用Windows Hello功能来保护您在本软件上的隐私，防止未经授权的访问</value>
     <comment>Windows Hello 信息介绍文字</comment>
   </data>
   <data name="PlusPixivTile.Content" xml:space="preserve">
     <value>+ Pixiv Tile</value>
     <comment>为Microsoft Band添加 Pixiv Tile</comment>
+  </data>
+  <data name="私人关注.Text" xml:space="preserve">
+    <value>私人关注</value>
+    <comment>私人关注飞窗提示文字</comment>
+  </data>
+  <data name="WinFeatures.Text" xml:space="preserve">
+    <value>Windows 特色</value>
+    <comment>windows 功能提示文字</comment>
+  </data>
+  <data name="后台下载说明.Text" xml:space="preserve">
+    <value>您可以根据自己的需要来选择后台下载方式，该设置仅对新启动的下载有效
+*注意：关闭后台下载后软件将不发送完成下载通知</value>
+    <comment>后台下载说明文字</comment>
+  </data>
+  <data name="AreyouLogout.Text" xml:space="preserve">
+    <value>您确定要登出吗？</value>
+    <comment>登出确认提示文字</comment>
+  </data>
+  <data name="MicrosoftBandinfo.Text" xml:space="preserve">
+    <value>通过本设置，您可以发送Pixiv UWP磁贴到与本设备配对的Microsoft Band设备上</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="个性化.Text" xml:space="preserve">
+    <value>个性化</value>
+    <comment>个性化类别提示文字</comment>
+  </data>
+  <data name="网络.Text" xml:space="preserve">
+    <value>网络</value>
+    <comment>网络类别提示文字</comment>
   </data>
 </root>

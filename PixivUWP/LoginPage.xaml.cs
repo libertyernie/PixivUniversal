@@ -132,6 +132,11 @@ namespace PixivUWP
             beginLoading();
         }
 
+        private async void RegButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://accounts.pixiv.net/signup"));
+        }
+
         private async void beginLoading()
         {
             logoimage_animated.Opacity = 100;
