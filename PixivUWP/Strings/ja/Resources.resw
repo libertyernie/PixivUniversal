@@ -343,13 +343,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐今、「ダークテーマ」をサポートしています
-⭐「ログアウト」機能を追加する
-⭐いくつかのUIの調整とバグ修正</value>
+    <value>これは内部ベータ版ですが、主な改善点は次のとおりです。
+インターフェイスの最適化を設定して開始します。
+エラーの後にユーザー名を残してください。
+私的懸念モード（有効ではない）。
+不足しているコメントの追加と確認</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.3.2β（DarkNight） 更新されたコンテンツ</value>
+    <value>バージョンV1.3.4β更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
