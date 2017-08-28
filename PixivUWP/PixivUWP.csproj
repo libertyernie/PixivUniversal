@@ -102,6 +102,7 @@
     <None Include="ScalableGridDiagram.cd" />
     <None Include="PixivUWP_StoreKey.pfx" />
     <None Include="PixivUWP_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\ko\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\ja\Resources.resw" />
     <PRIResource Include="Strings\zh-Hant\Resources.resw" />

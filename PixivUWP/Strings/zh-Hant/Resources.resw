@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnLogin.Content" xml:space="preserve">
-    <value>登入</value>
+    <value>登錄</value>
     <comment>登录按钮文字</comment>
   </data>
   <data name="btnLoginError.Content" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>下载页面AppBar按钮文字</comment>
   </data>
   <data name="chkboxAuto.Content" xml:space="preserve">
-    <value>自動登入</value>
+    <value>自動登錄</value>
     <comment>登录界面自动登录复选框说明</comment>
   </data>
   <data name="chkboxRem.Content" xml:space="preserve">
@@ -477,5 +477,9 @@
   <data name="网络.Text" xml:space="preserve">
     <value>網路</value>
     <comment>网络类别提示文字</comment>
+  </data>
+  <data name="SignupCatchphrase.Text" xml:space="preserve">
+    <value>讓創作變得更有樂趣</value>
+    <comment>登陆界面口号</comment>
   </data>
 </root>

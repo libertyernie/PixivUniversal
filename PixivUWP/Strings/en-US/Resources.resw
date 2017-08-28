@@ -170,7 +170,7 @@
     <comment>登录界面密码输入框说明</comment>
   </data>
   <data name="Signup.Content" xml:space="preserve">
-    <value>Sign-up</value>
+    <value>Sign Up</value>
     <comment>注册超链接文字</comment>
   </data>
   <data name="Main" xml:space="preserve">
@@ -481,5 +481,9 @@
   <data name="网络.Text" xml:space="preserve">
     <value>Network Settings</value>
     <comment>网络类别提示文字</comment>
+  </data>
+  <data name="SignupCatchphrase.Text" xml:space="preserve">
+    <value>Spice up your creating process</value>
+    <comment>登陆界面口号</comment>
   </data>
 </root>

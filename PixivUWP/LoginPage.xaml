@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Center" Width="Auto" FontSize="20" Margin="0,0,0,20" VerticalAlignment="Bottom">服务登录</TextBlock>
+            <TextBlock x:Uid="SignupCatchphrase" HorizontalAlignment="Center" Width="Auto" FontSize="14" Margin="0,0,0,20" VerticalAlignment="Bottom" Text="让创作变得更有乐趣" FontWeight="Bold"/>
             <Image Grid.Row="0" x:Name="logoimage" RenderTransformOrigin="0.5,0.5" MaxWidth="400"/>
             <Grid Grid.Row="1" Margin="20,0">
                 <Grid.RowDefinitions>
@@ -57,7 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <CheckBox x:Name="s_remember" Grid.Row="2" x:Uid="chkboxRem" Checked="s_remember_Toggled" Unchecked="s_remember_Toggled" Margin="30,0,0,0"/>
                 <CheckBox x:Name="s_auto" Grid.Row="2" x:Uid="chkboxAuto" Unchecked="s_auto_Toggled" Checked="s_auto_Toggled" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                 <Button Grid.Row="3" Margin="20,-10,20,0" HorizontalAlignment="Stretch" Click="Button_Click" BorderThickness="1" x:Uid="btnLogin"/>
-                <Button Grid.Row="4" Margin="20,0" HorizontalAlignment="Stretch" Click="RegButton_Click" BorderThickness="1" x:Uid="Signup"/>
+                <Button Grid.Row="4" Margin="20,0" HorizontalAlignment="Stretch" Click="RegButton_Click" BorderThickness="1" x:Uid="Signup" Background="#25C6FF" Foreground="White"/>
             </Grid>
         </Grid>
     </Grid>

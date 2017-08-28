@@ -479,4 +479,8 @@
     <value>ネットワーク</value>
     <comment>网络类别提示文字</comment>
   </data>
+  <data name="SignupCatchphrase.Text" xml:space="preserve">
+    <value>創作活動をもっとたのしく</value>
+    <comment>登陆界面口号</comment>
+  </data>
 </root>
