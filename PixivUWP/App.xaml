@@ -18,10 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivUWP.Data"
-    xmlns:converter="using:PixivUWP.Converter"
-    RequestedTheme="Light">
+    xmlns:converter="using:PixivUWP.Converter">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light" Source="Views/Themes/LightDefault.xaml"/>
+                <ResourceDictionary x:Key="Dark" Source="Views/Themes/DarkDefault.xaml"/>
+            </ResourceDictionary.ThemeDictionaries>
             <SolidColorBrush x:Key="ApplicationStartPageBackgroundThemeBrush" Color="#00adee"/>
             <DataTemplate x:Key="StandardTileTemplate">
                 <Grid>
@@ -36,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <Grid Height="Auto" Margin="-10 2 -10 2">
                     <Image Name="img" MinHeight="125" Stretch="UniformToFill" local:TmpData.EnableAutoLoadWorkImg="True" Source="Assets/BlankHolder.jpg"/>
                     <TextBlock x:Name="pro" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Loading..."/>
-                    <Grid Grid.Row="1" Background="White" Opacity="0.8" VerticalAlignment="Bottom" Height="40">
+                    <Grid Grid.Row="1" Background="#99CCCCCC" RequestedTheme="Light" VerticalAlignment="Bottom" Height="40">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>

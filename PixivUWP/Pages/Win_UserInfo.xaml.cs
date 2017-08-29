@@ -187,7 +187,7 @@ namespace PixivUWP.Pages
         }
 
 
-        User pix_user;
+        UserBase pix_user;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             Data.TmpData.menuItem.SelectedIndex = -1;
@@ -200,13 +200,13 @@ namespace PixivUWP.Pages
                     list_fav = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[0] as ItemViewList<Work>;
                     nexturl = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[1] as string;
                     nexturl_fav = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[2] as string;
-                    pix_user = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[3] as User;
+                    pix_user = ((Object[])((BackInfo)((object[])e.Parameter)[1]).param)[3] as UserBase;
                 }
                 else
                 {
                     list = new ItemViewList<Work>();
                     list_fav = new ItemViewList<Work>();
-                    pix_user = e.Parameter as User;
+                    pix_user = e.Parameter as UserBase;
                 }
             }
             catch (NullReferenceException)
@@ -214,14 +214,14 @@ namespace PixivUWP.Pages
                 Debug.WriteLine("NullException");
                 list = new ItemViewList<Work>();
                 list_fav = new ItemViewList<Work>();
-                pix_user = e.Parameter as User;
+                pix_user = e.Parameter as UserBase;
             }
             catch (InvalidCastException)
             {
                 Debug.WriteLine("InvalidCastException");
                 list = new ItemViewList<Work>();
                 list_fav = new ItemViewList<Work>();
-                pix_user = e.Parameter as User;
+                pix_user = e.Parameter as UserBase;
             }
             finally
             {
@@ -258,7 +258,7 @@ namespace PixivUWP.Pages
                 {
                     var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                     await bitmap.SetSourceAsync((await res.GetResponseStreamAsync()).AsRandomAccessStream());
-                    userpro.Source = bitmap;
+                    userpro.ImageSource = bitmap;
                 }
                 if (newuserinfo.profile != null)
                 {

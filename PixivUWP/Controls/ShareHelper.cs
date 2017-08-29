@@ -18,7 +18,7 @@ namespace PixivUWP.Controls
             Bitmap
         }
 
-        static DataPackage package;
+        //static DataPackage package;
 
         public static void GenPackage(DataPackage package, ShareType shareType, object data)
         {

@@ -169,8 +169,8 @@
     <value>Password</value>
     <comment>登录界面密码输入框说明</comment>
   </data>
-  <data name="hyperlkSignup.Content" xml:space="preserve">
-    <value>Sign-up</value>
+  <data name="Signup.Content" xml:space="preserve">
+    <value>Sign Up</value>
     <comment>注册超链接文字</comment>
   </data>
   <data name="Main" xml:space="preserve">
@@ -342,14 +342,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐You can now share pictures; 
-⭐Added Windows Hello option (currently UI only, no actual functions); 
-⭐Fixed a bug when pictures couldn't load; 
-⭐UI enhancements</value>
+    <value>This is an Insider version, the main improvement is:
+【UI】 set and start interface optimization;
+【Adjust】 error after landing to retain the user name;
+【Add】 private attention mode (not enabled);
+【Translation】 add and check missing translation</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.1.10β</value>
+    <value>Update: V1.3.4β</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -381,7 +382,7 @@
     <comment>预览图尺寸说明</comment>
   </data>
   <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
-    <value>Medium</value>
+    <value>Standard</value>
     <comment>预览图尺寸：中等</comment>
   </data>
   <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
@@ -406,31 +407,83 @@
   </data>
   <data name="ok.Content" xml:space="preserve">
     <value>OK</value>
-    <comment>作品详细页面底部飞窗确认按钮</comment>
+    <comment>确定按钮文字</comment>
   </data>
   <data name="MicrosoftBand.Text" xml:space="preserve">
     <value>Microsoft Band</value>
     <comment>Microsoft Band提示文字</comment>
   </data>
   <data name="WindowsHelloinfo.Text" xml:space="preserve">
-    <value>You can use Windows Hello to define access to the software to protect your privacy.
-（This feature is not enabled）</value>
+    <value>You can use Windows Hello to define access to the software to protect your privacy.</value>
     <comment>Windows Hello 信息介绍文字</comment>
   </data>
   <data name="WinFeatures.Text" xml:space="preserve">
     <value>Windows Features</value>
     <comment>windows 功能提示文字</comment>
   </data>
-  <data name="viewPolicy.Header" xml:space="preserve">
-    <value>Details Picture Clarity Policy</value>
-    <comment>详情图清晰度提示文字</comment>
+  <data name="textComments.Text" xml:space="preserve">
+    <value>Comments</value>
+    <comment>作品详情页面：评论</comment>
   </data>
-  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
-    <value>Original</value>
-    <comment>详情图清晰度：高</comment>
+  <data name="软件主题选择框.Header" xml:space="preserve">
+    <value>Software Mode</value>
+    <comment>软件主题选择框</comment>
   </data>
-  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
-    <value>Normal</value>
-    <comment>详情图清晰度：普通</comment>
+  <data name="软件主题选择框_白.Content" xml:space="preserve">
+    <value>Light</value>
+    <comment>软件主题选择：浅色</comment>
+  </data>
+  <data name="软件主题选择框_系统.Content" xml:space="preserve">
+    <value>Use system setting</value>
+    <comment>软件主题选择：系统</comment>
+  </data>
+  <data name="软件主题选择框_黑.Content" xml:space="preserve">
+    <value>Dark</value>
+    <comment>软件主题选择：深色</comment>
+  </data>
+  <data name="软件主题说明.Text" xml:space="preserve">
+    <value>Reboot after application takes effect.</value>
+    <comment>软件主题介绍文字</comment>
+  </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>Account</value>
+    <comment>账户设置标题</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Log Out</value>
+    <comment>登出按钮文字</comment>
+  </data>
+  <data name="PlusPixivTile.Content" xml:space="preserve">
+    <value>+ Pixiv Tile</value>
+    <comment>为Microsoft Band添加 Pixiv Tile</comment>
+  </data>
+  <data name="AreyouLogout.Text" xml:space="preserve">
+    <value>Are you sure you want to log out?</value>
+    <comment>登出确认提示文字</comment>
+  </data>
+  <data name="MicrosoftBandinfo.Text" xml:space="preserve">
+    <value>You can send Pixiv UWP stickers to the Microsoft Band that is paired with this device</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="个性化.Text" xml:space="preserve">
+    <value>Personalize Settings</value>
+    <comment>个性化类别提示文字</comment>
+  </data>
+  <data name="后台下载说明.Text" xml:space="preserve">
+    <value>You can choose the background download method according to your own needs, this setting is only valid for the new start download
+* Note: After the background download, the software will not send the download notification</value>
+    <comment>后台下载说明文字</comment>
+  </data>
+  <data name="私人关注.Text" xml:space="preserve">
+    <value>Private attention</value>
+    <comment>私人关注飞窗提示文字</comment>
+  </data>
+  <data name="网络.Text" xml:space="preserve">
+    <value>Network Settings</value>
+    <comment>网络类别提示文字</comment>
+  </data>
+  <data name="SignupCatchphrase.Text" xml:space="preserve">
+    <value>Spice up your creating process</value>
+    <comment>登陆界面口号</comment>
   </data>
 </root>

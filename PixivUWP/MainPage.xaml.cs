@@ -15,27 +15,16 @@
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using Pixeez;
-using Pixeez.Objects;
 using PixivUWP.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
@@ -112,6 +101,10 @@ namespace PixivUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.RegisterBackgroundTask();
+            if (Data.TmpData.islight)
+                logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+            else
+                logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
         }
 
         private async void RegisterBackgroundTask()
@@ -448,6 +441,7 @@ namespace PixivUWP
                     list.Items.Add(item4);
                     list.Items.Add(item5);
                     list.Items.Add(item6);
+                    list.Items.Clear();
                 }
                 await list.SaveAsync();
             }
@@ -559,6 +553,15 @@ namespace PixivUWP
             Data.TmpData.StopLoading();
             MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
             currentQueryString = args.QueryText;
+        }
+
+        private void btn_User_Click(object sender, RoutedEventArgs e)
+        {
+            Data.TmpData.StopLoading();
+            var backinfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), backinfo);
+            MainFrame.Navigate(typeof(Pages.Win_UserInfo), Data.TmpData.CurrentAuth.Authorize.User);
+            contentroot.IsPaneOpen = false;
         }
     }
 }

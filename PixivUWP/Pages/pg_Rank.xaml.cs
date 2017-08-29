@@ -156,30 +156,6 @@ namespace PixivUWP.Pages
             mdc.MasterListView_ItemClick(typeof(DetailPage.WorkDetailPage), (await Data.TmpData.CurrentAuth.Tokens.GetWorksAsync(((NormalWork)e.ClickedItem).Id.Value))[0]);
         }
 
-
-        private async void Image_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            try
-            {
-                var img = sender as Image;
-                img.Source = null;
-                if (img.DataContext != null)
-                {
-                    using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, (img.DataContext as Work).ImageUrls.Small))
-                    {
-                        var bitmap = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
-                        img.Source = bitmap;
-                    }
-                }
-            }
-            catch
-            {
-
-            }
-
-        }
-
         public Task RefreshAsync()
         {
             list.Clear();

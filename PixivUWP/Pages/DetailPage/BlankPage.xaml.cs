@@ -27,6 +27,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -41,11 +42,14 @@ namespace PixivUWP.Pages.DetailPage
         public BlankPage()
         {
             this.InitializeComponent();
-            changeLog.Text =
-@"版本：v1.0.13.0β
-本版相较上版作出的改动：
-    1、界面细节优化；
-    2、精简了冗余代码并修复了已知BUG。";
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (Data.TmpData.islight)
+                logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+            else
+                logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
         }
     }
 }

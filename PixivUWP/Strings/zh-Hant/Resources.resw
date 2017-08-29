@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnLogin.Content" xml:space="preserve">
-    <value>登入</value>
+    <value>登錄</value>
     <comment>登录按钮文字</comment>
   </data>
   <data name="btnLoginError.Content" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>下载页面AppBar按钮文字</comment>
   </data>
   <data name="chkboxAuto.Content" xml:space="preserve">
-    <value>自動登入</value>
+    <value>自動登錄</value>
     <comment>登录界面自动登录复选框说明</comment>
   </data>
   <data name="chkboxRem.Content" xml:space="preserve">
@@ -169,7 +169,7 @@
     <value>密碼</value>
     <comment>登录界面密码输入框说明</comment>
   </data>
-  <data name="hyperlkSignup.Content" xml:space="preserve">
+  <data name="Signup.Content" xml:space="preserve">
     <value>註冊</value>
     <comment>注册超链接文字</comment>
   </data>
@@ -210,7 +210,7 @@
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
   <data name="comboPolicy.Header" xml:space="preserve">
-    <value>後台下載策略(僅對新啟動的下載有效)</value>
+    <value>後台下載策略</value>
     <comment>组合框提示语</comment>
   </data>
   <data name="pivotAbout.Header" xml:space="preserve">
@@ -342,14 +342,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐現在能分享你喜歡的圖片了；
-⭐提供Windows Hello選項（暫無作用）；
-⭐修復了一處導致圖片無法加載的問題；
-⭐優化了部分界面的加載效果。</value>
+    <value>这是一个内部测试版本，主要改进为：
+【界面】设置和启动界面优化；
+【调整】错误登陆后保留用户名；
+【新增】私密关注模式（未启用）；
+【翻译】新增并检查遗漏翻译</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.1.7β 更新内容</value>
+    <value>版本 V1.3.4β更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -381,8 +382,8 @@
     <comment>预览图尺寸说明</comment>
   </data>
   <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
-    <value>中</value>
-    <comment>预览图尺寸：中等</comment>
+    <value>标准</value>
+    <comment>预览图尺寸：标准</comment>
   </data>
   <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
     <value>方形</value>
@@ -406,18 +407,79 @@
   </data>
   <data name="ok.Content" xml:space="preserve">
     <value>確認</value>
-    <comment>作品详细页面底部飞窗确认按钮</comment>
+    <comment>确定按钮文字</comment>
   </data>
-  <data name="viewpolicy.Header" xml:space="preserve">
-    <value>詳情圖清晰度</value>
-    <comment>详情图清晰度提示文字</comment>
+  <data name="textComments.Text" xml:space="preserve">
+    <value>評論</value>
+    <comment>作品详情页面：评论</comment>
   </data>
-  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
-    <value>原图</value>
-    <comment>详情图清晰度：高</comment>
+  <data name="软件主题选择框.Header" xml:space="preserve">
+    <value>軟件主題</value>
+    <comment>软件主题选择框</comment>
   </data>
-  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
-    <value>普通</value>
-    <comment>详情图清晰度：普通</comment>
+  <data name="软件主题选择框_白.Content" xml:space="preserve">
+    <value>淺色</value>
+    <comment>软件主题选择：浅色</comment>
+  </data>
+  <data name="软件主题选择框_系统.Content" xml:space="preserve">
+    <value>使用系統設定</value>
+    <comment>软件主题选择：系统</comment>
+  </data>
+  <data name="软件主题选择框_黑.Content" xml:space="preserve">
+    <value>深色</value>
+    <comment>软件主题选择：深色</comment>
+  </data>
+  <data name="软件主题说明.Text" xml:space="preserve">
+    <value>下次啓動應用程式時，會看到您所做的變更</value>
+    <comment>软件主题介绍文字</comment>
+  </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>帳戶</value>
+    <comment>账户设置标题</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>登出</value>
+    <comment>登出按钮文字</comment>
+  </data>
+  <data name="WindowsHelloinfo.Text" xml:space="preserve">
+    <value>您可以使用Windows Hello機能來保護您在本軟件上的隱私，防止未經授權的訪問</value>
+    <comment>Windows Hello 信息介绍文字</comment>
+  </data>
+  <data name="PlusPixivTile.Content" xml:space="preserve">
+    <value>+ Pixiv Tile</value>
+    <comment>为Microsoft Band添加 Pixiv Tile</comment>
+  </data>
+  <data name="WinFeatures.Text" xml:space="preserve">
+    <value>Windows 特點</value>
+    <comment>windows 功能提示文字</comment>
+  </data>
+  <data name="AreyouLogout.Text" xml:space="preserve">
+    <value>您確定要登出嗎？</value>
+    <comment>登出确认提示文字</comment>
+  </data>
+  <data name="MicrosoftBandinfo.Text" xml:space="preserve">
+    <value>通過本設定，您可以發送Pixiv UWP磁貼到與本設備配對的Microsoft Band設備上</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="个性化.Text" xml:space="preserve">
+    <value>個人化</value>
+    <comment>个性化类别提示文字</comment>
+  </data>
+  <data name="后台下载说明.Text" xml:space="preserve">
+    <value>您可以根據自己的需要來選擇後臺下載管道，該設定僅對新啟動的下載有效
+*注意：關閉後臺下載後軟件將不發送完成下載通知</value>
+    <comment>后台下载说明文字</comment>
+  </data>
+  <data name="私人关注.Text" xml:space="preserve">
+    <value>私人關注</value>
+    <comment>私人关注飞窗提示文字</comment>
+  </data>
+  <data name="网络.Text" xml:space="preserve">
+    <value>網路</value>
+    <comment>网络类别提示文字</comment>
+  </data>
+  <data name="SignupCatchphrase.Text" xml:space="preserve">
+    <value>讓創作變得更有樂趣</value>
+    <comment>登陆界面口号</comment>
   </data>
 </root>

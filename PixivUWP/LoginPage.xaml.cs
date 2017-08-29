@@ -34,6 +34,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -58,20 +59,12 @@ namespace PixivUWP
                 s_auto.IsChecked = Convert.ToBoolean(AppDataHelper.GetValue("isauto") as string);
             if (AppDataHelper.GetValue("isrem") != null)
                 s_remember.IsChecked = Convert.ToBoolean(AppDataHelper.GetValue("isrem") as string);
-            if (s_auto.IsChecked==true)
+            if (s_auto.IsChecked == true)
                 beginLoading();
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
-            var appTitleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
-            appTitleBar.ButtonBackgroundColor = Colors.White;
-            appTitleBar.ButtonForegroundColor = Colors.Black;
-            appTitleBar.ButtonHoverBackgroundColor = Colors.LightGray;
-            appTitleBar.ButtonHoverForegroundColor = Colors.Black;
-            appTitleBar.ButtonInactiveBackgroundColor = Colors.White;
-            appTitleBar.ButtonInactiveForegroundColor = Colors.Black;
-            appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
-            appTitleBar.ButtonPressedForegroundColor = Colors.Black;
         }
+
         private async Task logoAnimation()
         {
             //Perform the animations
@@ -139,11 +132,48 @@ namespace PixivUWP
             beginLoading();
         }
 
+        private async void RegButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://accounts.pixiv.net/signup"));
+        }
+
         private async void beginLoading()
         {
             logoimage_animated.Opacity = 100;
             controls.Visibility = Visibility.Collapsed;
             await logoAnimation();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var appTitleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+            if ((Background as SolidColorBrush).Color == Colors.Black) Data.TmpData.islight = false;
+            if (Data.TmpData.islight)
+            {
+                logoimage_animated.Source = new BitmapImage(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+                logoimage.Source = new BitmapImage(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+                appTitleBar.ButtonBackgroundColor = Colors.White;
+                appTitleBar.ButtonForegroundColor = Colors.Black;
+                appTitleBar.ButtonHoverBackgroundColor = Colors.LightGray;
+                appTitleBar.ButtonHoverForegroundColor = Colors.Black;
+                appTitleBar.ButtonInactiveBackgroundColor = Colors.White;
+                appTitleBar.ButtonInactiveForegroundColor = Colors.Black;
+                appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
+                appTitleBar.ButtonPressedForegroundColor = Colors.Black;
+            }
+            else
+            {
+                logoimage_animated.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
+                logoimage.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
+                appTitleBar.ButtonBackgroundColor = Colors.Black;
+                appTitleBar.ButtonForegroundColor = Colors.White;
+                appTitleBar.ButtonHoverBackgroundColor = Colors.DarkGray;
+                appTitleBar.ButtonHoverForegroundColor = Colors.White;
+                appTitleBar.ButtonInactiveBackgroundColor = Colors.Black;
+                appTitleBar.ButtonInactiveForegroundColor = Colors.White;
+                appTitleBar.ButtonPressedBackgroundColor = Colors.Gray;
+                appTitleBar.ButtonPressedForegroundColor = Colors.White;
+            }
         }
 
         private void s_auto_Toggled(object sender, RoutedEventArgs e)

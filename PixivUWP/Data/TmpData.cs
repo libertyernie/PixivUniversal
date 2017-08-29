@@ -40,6 +40,7 @@ namespace PixivUWP.Data
         public static ListView menuBottomItem;
         public static Frame mainFrame;
         public static string jumpList;
+        public static bool islight = true;
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {
@@ -130,7 +131,7 @@ namespace PixivUWP.Data
                 case 0:
                     return urls.Medium;
                 case 1:
-                    return urls.SquareMedium;
+                    return urls.SquareMedium ?? urls.Small;
             }
         }
         public static async Task LoadPictureAsync(FrameworkElement sender)

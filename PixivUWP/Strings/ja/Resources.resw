@@ -169,7 +169,7 @@
     <value>パスワード</value>
     <comment>登录界面密码输入框说明</comment>
   </data>
-  <data name="hyperlkSignup.Content" xml:space="preserve">
+  <data name="Signup.Content" xml:space="preserve">
     <value>新規登録</value>
     <comment>注册超链接文字</comment>
   </data>
@@ -210,7 +210,7 @@
     <comment>左侧汉堡菜单提示文字</comment>
   </data>
   <data name="comboPolicy.Header" xml:space="preserve">
-    <value>バックグラウンドダウンロードをする（新しい操作のみ）</value>
+    <value>バックグラウンドダウンロードをする</value>
     <comment>组合框提示语</comment>
   </data>
   <data name="pivotAbout.Header" xml:space="preserve">
@@ -343,14 +343,15 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>⭐今はあなたの好きな写真を共有できます
-⭐windows hello オプションを提供します(しばらく無効)
-⭐画像がアドインない問題を修復しました。
-⭐一部のインターフェイスの読み込み効果は最適化されています。</value>
+    <value>これは内部ベータ版ですが、主な改善点は次のとおりです。
+インターフェイスの最適化を設定して開始します。
+エラーの後にユーザー名を残してください。
+私的懸念モード（有効ではない）。
+不足しているコメントの追加と確認</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.1.10β 更新されたコンテンツ</value>
+    <value>バージョンV1.3.4β更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
@@ -395,18 +396,91 @@
   </data>
   <data name="ok.Content" xml:space="preserve">
     <value>はい</value>
-    <comment>作品详细页面底部飞窗确认按钮</comment>
+    <comment>确定按钮文字</comment>
   </data>
-  <data name="viewpolicy.Header" xml:space="preserve">
-    <value>詳細画像の明瞭度</value>
-    <comment>详情图清晰度提示文字</comment>
+  <data name="textComments.Text" xml:space="preserve">
+    <value>コメント</value>
+    <comment>作品详情页面：评论</comment>
   </data>
-  <data name="viewpolicy_fullpic.Content" xml:space="preserve">
-    <value>Original</value>
-    <comment>详情图清晰度：高</comment>
+  <data name="软件主题选择框.Header" xml:space="preserve">
+    <value>ソフトウェアモード </value>
+    <comment>软件主题选择框</comment>
   </data>
-  <data name="viewpolicy_normalpic.Content" xml:space="preserve">
-    <value>通常の</value>
-    <comment>详情图清晰度：普通</comment>
+  <data name="软件主题选择框_白.Content" xml:space="preserve">
+    <value>明るい</value>
+    <comment>软件主题选择：浅色</comment>
+  </data>
+  <data name="软件主题选择框_系统.Content" xml:space="preserve">
+    <value>システム設定の使用</value>
+    <comment>软件主题选择：系统</comment>
+  </data>
+  <data name="软件主题选择框_黑.Content" xml:space="preserve">
+    <value>暗い</value>
+    <comment>软件主题选择：深色</comment>
+  </data>
+  <data name="软件主题说明.Text" xml:space="preserve">
+    <value>アプリケーションが有効になると再起動</value>
+    <comment>软件主题介绍文字</comment>
+  </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>アカウント</value>
+    <comment>账户设置标题</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>ログアウト</value>
+    <comment>登出按钮文字</comment>
+  </data>
+  <data name="PlusPixivTile.Content" xml:space="preserve">
+    <value>+ Pixiv Tile</value>
+    <comment>为Microsoft Band添加 Pixiv Tile</comment>
+  </data>
+  <data name="WindowsHelloinfo.Text" xml:space="preserve">
+    <value>プライバシーを保護するため、パソコンのWindowsHello機能を利用し、アプリへのアクセスを制御できます</value>
+    <comment>Windows Hello 信息介绍文字</comment>
+  </data>
+  <data name="WinFeatures.Text" xml:space="preserve">
+    <value>Windows 機能</value>
+    <comment>windows 功能提示文字</comment>
+  </data>
+  <data name="imagepreviewsizepolicy.Header" xml:space="preserve">
+    <value>プレビュー画像サイズ</value>
+    <comment>预览图尺寸说明</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_Medium.Content" xml:space="preserve">
+    <value>標準</value>
+    <comment>预览图尺寸：中等</comment>
+  </data>
+  <data name="imagepreviewsizepolicy_SquareMedium.Content" xml:space="preserve">
+    <value>正方形</value>
+    <comment>预览图尺寸：方形（中等）</comment>
+  </data>
+  <data name="AreyouLogout.Text" xml:space="preserve">
+    <value>サインアウトしてもよろしいですか？</value>
+    <comment>登出确认提示文字</comment>
+  </data>
+  <data name="MicrosoftBandinfo.Text" xml:space="preserve">
+    <value>この設定では、Pixiv UWPタイルをMicrosoft Bandに送信できます</value>
+    <comment>Microsoft Band提示文字</comment>
+  </data>
+  <data name="个性化.Text" xml:space="preserve">
+    <value>パーソナライズド</value>
+    <comment>个性化类别提示文字</comment>
+  </data>
+  <data name="后台下载说明.Text" xml:space="preserve">
+    <value>自分のニーズに応じてバックグラウンドのダウンロード方法を選択することができます。この設定は新しいスタートダウンロードにのみ有効です
+*注：バックグラウンドダウンロード後、ソフトウェアはダウンロード通知を送信しません</value>
+    <comment>后台下载说明文字</comment>
+  </data>
+  <data name="私人关注.Text" xml:space="preserve">
+    <value>プライベートフォロー</value>
+    <comment>私人关注飞窗提示文字</comment>
+  </data>
+  <data name="网络.Text" xml:space="preserve">
+    <value>ネットワーク</value>
+    <comment>网络类别提示文字</comment>
+  </data>
+  <data name="SignupCatchphrase.Text" xml:space="preserve">
+    <value>創作活動をもっとたのしく</value>
+    <comment>登陆界面口号</comment>
   </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿## Pixiv通用客户端
 
 ### 简介
- Pixiv通用客户端旨在构建在WindowsPC、Windows移动端、安卓系统设备和传统Win32平台上的统一的Pixiv服务浏览体验；该项目分成五个部分：PixivUWP，PixivAndroid，PixivWPF，Pixeez（Pixiv第三方API封装）和TileBackground（动态磁贴后台组件）。
+ Pixiv通用客户端旨在构建在WindowsPC、Windows移动端（UWP）、安卓系统设备和传统Win32平台上的统一的Pixiv服务浏览体验；该项目分成五个部分：PixivUWP、PixivAndroid、PixivWPF、Pixeez（Pixiv第三方API封装）和TileBackground（动态磁贴后台组件）。
 
 ### 仓库规范
  非项目组成员将无法编辑任何内容；对于开发人员的仓库规范如下：
@@ -17,7 +17,7 @@
 
 使用 Visual Studio 2017 或更高版本打开该项目的sln文件
 
-如果无法编译，您可能需要安装14393版本的 UWP SDK 以及 [Microsoft Store Services SDK](http://aka.ms/store-em-sdk)
+如果无法编译，您可能需要安装15063版本的 UWP SDK 以及 [Microsoft Store Services SDK](http://aka.ms/store-em-sdk)
 
 ### 许可
 

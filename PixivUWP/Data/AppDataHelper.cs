@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 namespace PixivUWP.Data
 {
     //引用自:http://www.cnblogs.com/tonge/p/4760217.html
-    public static class AppDataHelper
+    internal static class AppDataHelper
     {
         #region 字段
         /// <summary>
