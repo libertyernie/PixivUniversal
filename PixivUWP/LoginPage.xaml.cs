@@ -187,5 +187,11 @@ namespace PixivUWP
             if((sender as CheckBox).IsChecked!=true)
                 s_auto.IsChecked = false;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (txt_UserName.Text != "")
+                txt_Password.Focus(FocusState.Programmatic);
+        }
     }
 }
