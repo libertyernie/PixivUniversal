@@ -7,7 +7,7 @@ using Windows.Networking.Connectivity;
 
 namespace PixivUWP.Data
 {
-    public static class InternetConnectionHelper
+    internal static class InternetConnectionHelper
     {
         public enum ConnectionType
         {
