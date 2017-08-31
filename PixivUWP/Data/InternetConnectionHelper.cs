@@ -7,7 +7,7 @@ using Windows.Networking.Connectivity;
 
 namespace PixivUWP.Data
 {
-    public class InternetConnectionHelper
+    public static class InternetConnectionHelper
     {
         public enum ConnectionType
         {
@@ -16,7 +16,7 @@ namespace PixivUWP.Data
             Wired
         }
 
-        public ConnectionType GetConnectionType()
+        public static ConnectionType GetConnectionType()
         {
             ConnectionProfile profile = NetworkInformation.GetInternetConnectionProfile();
             if (profile.IsWlanConnectionProfile)

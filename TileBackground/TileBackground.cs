@@ -41,6 +41,12 @@ namespace TileBackground
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             BackgroundTaskDeferral deferral = taskInstance?.GetDeferral();
+            InternetConnectionHelper.ConnectionType connectionType = InternetConnectionHelper.GetConnectionType();
+            if (connectionType == InternetConnectionHelper.ConnectionType.WWan)
+            {
+                deferral?.Complete();
+                return;
+            }
             try
             {
                 object numToday = AppDataHelper.GetValue("numtoday");
