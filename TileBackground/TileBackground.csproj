@@ -110,6 +110,9 @@
     <Compile Include="..\PixivUWP\Data\AppDataHelper.cs">
       <Link>AppDataHelper.cs</Link>
     </Compile>
+    <Compile Include="..\PixivUWP\Data\InternetConnectionHelper.cs">
+      <Link>InternetConnectionHelper.cs</Link>
+    </Compile>
     <Compile Include="TileBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
