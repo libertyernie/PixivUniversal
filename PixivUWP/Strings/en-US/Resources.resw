@@ -343,14 +343,11 @@
   </data>
   <data name="PopupContent" xml:space="preserve">
     <value>This is an Insider version, the main improvement is:
-【UI】 set and start interface optimization;
-【Adjust】 error after landing to retain the user name;
-【Add】 private attention mode (not enabled);
-【Translation】 add and check missing translation</value>
+未翻译</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.3.4β</value>
+    <value>Update: V1.3.5β</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
