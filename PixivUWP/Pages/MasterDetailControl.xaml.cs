@@ -49,7 +49,15 @@ namespace PixivUWP.Pages
         public MasterDetailControl()
         {
             this.InitializeComponent();
-            MasterColumn.Width = new GridLength(Data.TmpData.waterflowwidth);
+            DefaultState.Setters.Add(new Setter()
+            {
+                Target = new TargetPropertyPath()
+                {
+                    Path = new PropertyPath("(MasterColumn.Width)"),
+                    Target = MasterColumn
+                },
+                Value = new GridLength(Data.TmpData.waterflowwidth)
+            });
             trigger.MinWindowWidth = (Data.TmpData.waterflowwidth + 400 < 720) ? 720 : Data.TmpData.waterflowwidth + 400;
             DetailContentPresenter.Navigate(typeof(BlankPage));
         }
