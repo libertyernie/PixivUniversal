@@ -7,6 +7,14 @@ using Microsoft.Services.Store.Engagement;
 
 namespace PixivUWP.Data
 {
+    internal static class Vote
+    {
+        public static bool NeedVote = true;
+        public static int VoteUID = 0;
+        public static string Name = "TestVote";
+        public static string Message = "This is a test vote";
+    }
+
     internal static class CustomEventHelper
     {
         public enum EventType
