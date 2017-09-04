@@ -140,6 +140,12 @@ namespace PixivUWP
             {
                 var token = await Auth.AuthorizeAsync(username, password,null);
                 Data.TmpData.CurrentAuth = token;
+                var leftwidth = Data.AppDataHelper.GetValue("leftwidth");
+                if (leftwidth != null) Data.TmpData.waterflowwidth = (int)leftwidth;
+                else Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
+                var leftcolum = Data.AppDataHelper.GetValue("leftcolum");
+                if (leftcolum != null) Data.TmpData.waterflowcolumnum = (int)leftcolum;
+                else Data.AppDataHelper.SetValue("leftcolum", Data.TmpData.waterflowcolumnum);
                 Frame.Navigate(typeof(MainPage));
                 Debug.Write("Access token: ");
                 Debug.WriteLine(token.Tokens.AccessToken);

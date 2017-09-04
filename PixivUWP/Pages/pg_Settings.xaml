@@ -42,6 +42,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <ComboBoxItem x:Uid="imagepreviewsizepolicy_Medium"/>
                         <ComboBoxItem x:Uid="imagepreviewsizepolicy_SquareMedium"/>
                     </ComboBox>
+                    <TextBlock Text="左侧栏" Margin="5,10,-1,5" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="宽度 默认值：320" Margin="5,0,-1,5"/>
+                    <TextBox x:Name="leftwidth" Margin="5,0,-1,5" Width="280" HorizontalAlignment="Left"/>
+                    <TextBlock Text="列数 默认值：2" Margin="5,0,-1,5"/>
+                    <TextBox x:Name="leftcolum" Margin="5,0,-1,5" Width="280" HorizontalAlignment="Left"/>
+                    <Button x:Name="updateleft" Content="更新左侧栏设置" Margin="5,0,-1,5" Width="280" Click="updateleft_Click"/>
                     <TextBlock x:Uid="网络" FontSize="18" Text="网络" Margin="5,20,-1,5" FontWeight="Bold"/>
                     <ComboBox x:Name="loadpolicy" x:Uid="comboLoadPolicy" Margin="5,0,-1,5" SelectionChanged="loadpolicy_SelectionChanged" Width="280" Header="加载模式">
                         <ComboBoxItem x:Uid="loadpolicy1"/>

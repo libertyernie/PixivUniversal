@@ -92,6 +92,8 @@ namespace PixivUWP.Pages
             {
                 软件主题.SelectedIndex = 0;
             }
+            leftwidth.Text = Data.TmpData.waterflowwidth.ToString();
+            leftcolum.Text = Data.TmpData.waterflowcolumnum.ToString();
         }
 
         public BackInfo GenerateBackInfo() => null;
@@ -198,6 +200,27 @@ namespace PixivUWP.Pages
             Data.AppDataHelper.SetValue("isauto", false);
             Data.AppDataHelper.SetValue("upasswd", null);
             (Window.Current.Content as Frame).Navigate(typeof(LoginPage));
+        }
+
+        private void updateleft_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(leftwidth.Text) <= 100 || Convert.ToInt32(leftcolum.Text) <= 0)
+                {
+                    ((Button)sender).Content = "值不合法";
+                    return;
+                }
+                Data.TmpData.waterflowwidth = Convert.ToInt32(leftwidth.Text);
+                Data.TmpData.waterflowcolumnum = Convert.ToInt32(leftcolum.Text);
+                Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
+                Data.AppDataHelper.SetValue("leftcolum", Data.TmpData.waterflowcolumnum);
+                ((Button)sender).Content = "更新成功";
+            }
+            catch
+            {
+                ((Button)sender).Content = "值不合法";
+            }
         }
     }
 }
