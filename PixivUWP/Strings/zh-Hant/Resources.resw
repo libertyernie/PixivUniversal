@@ -342,15 +342,11 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>这是一个内部测试版本，主要改进为：
-【界面】设置和启动界面优化；
-【调整】错误登陆后保留用户名；
-【新增】私密关注模式（未启用）；
-【翻译】新增并检查遗漏翻译</value>
+    <value>这是一个内部测试版本。</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.3.4β更新内容</value>
+    <value>版本 V1.3.5β更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

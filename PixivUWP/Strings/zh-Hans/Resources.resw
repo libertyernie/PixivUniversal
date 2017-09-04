@@ -342,15 +342,13 @@
     <comment>搜索筛选条件</comment>
   </data>
   <data name="PopupContent" xml:space="preserve">
-    <value>這是一個內部測試版本，主要改進為：
-【介面】設定和啟動介面優化；
-【調整】錯誤登陸後保留用戶名；
-【新增】私密關注模式（未啟用）；
-【翻譯】新增並檢查遺漏翻譯</value>
+    <value>这是一个内部测试版本，主要的改进为：
+【界面】设置和启动界面优化；
+【翻译】新增了基本的韩语翻译</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.3.4β更新内容</value>
+    <value>版本 V1.3.5β更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

@@ -77,26 +77,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             </ScrollViewer>
         </PivotItem>
         <PivotItem x:Uid="pivotAbout">
-            <TextBlock TextWrapping="Wrap" Margin="5,5,5,0">
-                <Bold>Pixiv Universal</Bold><LineBreak/>
-                Copyright © 2017 Pixeez Plus Project<LineBreak/><LineBreak/>
-                This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
-                This is free software, and you are welcome to redistribute it under certain conditions;<LineBreak/>
-                Click <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-2.0.html">here</Hyperlink> for details.<LineBreak/><LineBreak/>
-                <Run x:Uid="aboutText1"/><LineBreak/><LineBreak/>
-                <Bold><Run x:Uid="aboutText2"/></Bold><LineBreak/>
-                <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy"><Run x:Uid="aboutText3"/></Hyperlink><LineBreak/>
-                <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term"><Run x:Uid="aboutText4"/></Hyperlink><LineBreak/>
-                <LineBreak/>
-                <Bold><Run x:Uid="aboutText5"/></Bold><LineBreak/>
-                <Hyperlink NavigateUri="mailto:thomasw.fan@gmail.com">ThomasW.Fan</Hyperlink><LineBreak/>
-                <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/>
-                <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko</Hyperlink><LineBreak/>
-                <LineBreak/>
-                <Bold><Run x:Uid="aboutText6"/></Bold><LineBreak/>
-                <Hyperlink Click="Hyperlink_Click">Flyreader</Hyperlink><LineBreak/>
-                <Hyperlink Click="Hyperlink_Click2">Moespirit</Hyperlink><LineBreak/><LineBreak/>
-            </TextBlock>
+            <ScrollViewer>
+                <TextBlock TextWrapping="Wrap" Margin="5,5,5,0">
+                    <Bold>Pixiv Universal</Bold><LineBreak/>
+                    Copyright © 2017 Pixeez Plus Project<LineBreak/><LineBreak/>
+                    This program comes with ABSOLUTELY NO WARRANTY; <LineBreak/>
+                    This is free software, and you are welcome to redistribute it under certain conditions;<LineBreak/>
+                    Click <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-2.0.html">here</Hyperlink> for details.<LineBreak/><LineBreak/>
+                    <Run x:Uid="aboutText1"/><LineBreak/><LineBreak/>
+                    <Bold><Run x:Uid="aboutText2"/></Bold><LineBreak/>
+                    <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=privacy"><Run x:Uid="aboutText3"/></Hyperlink><LineBreak/>
+                    <Hyperlink NavigateUri="http://www.pixiv.net/terms/?page=term"><Run x:Uid="aboutText4"/></Hyperlink><LineBreak/>
+                    <LineBreak/>
+                    <Bold><Run x:Uid="aboutText5"/></Bold><LineBreak/>
+                    <Hyperlink NavigateUri="mailto:thomasw.fan@gmail.com">ThomasW.Fan</Hyperlink><LineBreak/>
+                    <Hyperlink NavigateUri="http://www.yinyue200.com">yinyue200</Hyperlink> <LineBreak/>
+                    <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko</Hyperlink><LineBreak/>
+                    <LineBreak/>
+                    <Bold><Run x:Uid="aboutText6"/></Bold><LineBreak/>
+                    <Hyperlink Click="Hyperlink_Click">Flyreader</Hyperlink><LineBreak/>
+                    <Hyperlink Click="Hyperlink_Click2">Moespirit</Hyperlink><LineBreak/><LineBreak/>
+                </TextBlock>
+            </ScrollViewer>
         </PivotItem>
         <PivotItem x:Uid="pivotContributors">
             <Grid>
