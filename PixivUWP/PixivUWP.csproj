@@ -121,6 +121,7 @@
     <Compile Include="Converter\TagsToStr.cs" />
     <Compile Include="Data\BackInfo.cs" />
     <Compile Include="Data\BandHelper.cs" />
+    <Compile Include="Data\CustomEventHelper.cs" />
     <Compile Include="Data\DownloadManager.cs" />
     <Compile Include="Data\InternetConnectionHelper.cs" />
     <Compile Include="Data\ToastHelper.cs" />
