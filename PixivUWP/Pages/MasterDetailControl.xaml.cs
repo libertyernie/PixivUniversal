@@ -49,6 +49,8 @@ namespace PixivUWP.Pages
         public MasterDetailControl()
         {
             this.InitializeComponent();
+            MasterColumn.Width = new GridLength(Data.TmpData.waterflowwidth);
+            trigger.MinWindowWidth = (Data.TmpData.waterflowwidth + 400 < 720) ? 720 : Data.TmpData.waterflowwidth + 400;
             DetailContentPresenter.Navigate(typeof(BlankPage));
         }
 

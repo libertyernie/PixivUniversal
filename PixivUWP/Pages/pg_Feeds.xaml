@@ -62,7 +62,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         </ListView.ItemContainerTransitions>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <controls:WaterfallPanel ColumnNum="2"/>
+                                <controls:WaterfallPanel/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ListView>

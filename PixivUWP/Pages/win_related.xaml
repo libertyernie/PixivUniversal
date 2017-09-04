@@ -43,7 +43,7 @@
                         </ListView.ItemContainerTransitions>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <controls:WaterfallPanel ColumnNum="2"/>
+                                <controls:WaterfallPanel/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ListView>

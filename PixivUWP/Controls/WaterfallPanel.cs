@@ -11,6 +11,11 @@ namespace PixivUWP.Controls
 {
     public class WaterfallPanel : Panel
     {
+        public WaterfallPanel()
+        {
+            ColumnNum = Data.TmpData.waterflowcolumnum;
+        }
+
         public int ColumnNum
         {
             get { return (int)GetValue(ColumnCountProperty); }

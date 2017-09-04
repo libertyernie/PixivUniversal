@@ -41,6 +41,8 @@ namespace PixivUWP.Data
         public static Frame mainFrame;
         public static string jumpList;
         public static bool islight = true;
+        public static int waterflowcolumnum = 2;
+        public static int waterflowwidth = 320;
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {
