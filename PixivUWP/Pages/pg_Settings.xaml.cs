@@ -222,5 +222,23 @@ namespace PixivUWP.Pages
                 ((Button)sender).Content = "值不合法";
             }
         }
+
+        private void resetleft_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Data.TmpData.waterflowwidth = 380;
+                Data.TmpData.waterflowcolumnum = 2;
+                Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
+                Data.AppDataHelper.SetValue("leftcolum", Data.TmpData.waterflowcolumnum);
+                leftwidth.Text = Data.TmpData.waterflowwidth.ToString();
+                leftcolum.Text = Data.TmpData.waterflowcolumnum.ToString();
+                ((Button)sender).Content = "重置成功";
+            }
+            catch
+            {
+                ((Button)sender).Content = "重置失败";
+            }
+        }
     }
 }
