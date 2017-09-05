@@ -42,21 +42,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <ComboBoxItem x:Uid="imagepreviewsizepolicy_Medium"/>
                         <ComboBoxItem x:Uid="imagepreviewsizepolicy_SquareMedium"/>
                     </ComboBox>
-                    <StackPanel Width="280" HorizontalAlignment="Left" Margin="5,0,-1,0">
-                        <TextBlock Text="瀑布流" Margin="0"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <TextBlock Text="宽度" Margin="0" Width="130"/>
-                            <TextBlock Text="列数" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
-                            <TextBox x:Name="leftwidth" Margin="0" Width="130" HorizontalAlignment="Left"/>
-                            <TextBox x:Name="leftcolum" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right" Width="280">
-                            <Button x:Name="updateleft" Content="更新" Margin="0" Click="updateleft_Click" Width="100" HorizontalAlignment="Left"/>
-                            <Button x:Name="resetleft" Content="重设" Margin="50,0,0,0" Click="resetleft_Click" Width="100" HorizontalAlignment="Right"/>
-                        </StackPanel>
-                </StackPanel>
+                    <TextBlock Text="瀑布流" Margin="5,0,-1,5"/>
+                    <TextBlock Margin="5,0,-1,5" Width="280" HorizontalAlignment="Left">
+                        Width:<Run x:Name="leftwidthview"/>
+                        <LineBreak/>
+                        Colum:<Run x:Name="leftcolumview"/>
+                    </TextBlock> 
+                    <Button x:Uid="setting" Margin="5,0,-1,5" Width="100" Content="设置">
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <StackPanel Width="280" HorizontalAlignment="Left" Margin="5,0,-1,0">
+                                <TextBlock Text="瀑布流设置" Margin="0"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <TextBlock Text="宽度" Margin="0" Width="130"/>
+                                    <TextBlock Text="列数" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                                     <TextBox x:Name="leftwidth" Margin="0" Width="130" HorizontalAlignment="Left"/>
+                                     <TextBox x:Name="leftcolum" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right" Width="280">
+                                     <Button x:Name="updateleft" Content="更新" Margin="0" Click="updateleft_Click" Width="100" HorizontalAlignment="Left"/>
+                                     <Button x:Name="resetleft" Content="重设" Margin="50,0,0,0" Click="resetleft_Click" Width="100" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                    </Button>
                     <TextBlock x:Uid="网络" FontSize="18" Text="网络" Margin="5,20,-1,5" FontWeight="Bold"/>
                     <ComboBox x:Name="loadpolicy" x:Uid="comboLoadPolicy" Margin="5,0,-1,5" SelectionChanged="loadpolicy_SelectionChanged" Width="280" Header="加载模式">
                         <ComboBoxItem x:Uid="loadpolicy1"/>
@@ -73,10 +85,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <TextBlock Margin="5,20,-1,5" x:Uid="Account" Text="账户" FontSize="18" FontWeight="Bold"/>
                     <Button x:Uid="Logout" Margin="5,0,-1,5" Width="100" Content="登出" >
                         <Button.Flyout >
-                            <Flyout>
-                                <StackPanel>
+                            <Flyout Placement="Right">
+                                <StackPanel Width="280">
                                     <TextBlock x:Uid="AreyouLogout" Text="您确定要登出吗？"/>
-                                    <Button x:Name="logout" x:Uid="ok" Click="logout_Click" Content="确认" Margin="0,5,0,0" HorizontalAlignment="Left"/>
+                                    <Button x:Name="logout" x:Uid="ok" Click="logout_Click" Content="确认" Margin="0,5,0,0" HorizontalAlignment="Left" Width="100"/>
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>

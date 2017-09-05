@@ -62,12 +62,24 @@ namespace PixivUWP.Pages
             //设置以后假如多了这里迟早成瓶颈
             try
             {
-                backpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("BackgroundTransferCostPolicy");
+                软件主题.SelectedIndex = (int)Data.AppDataHelper.GetValue(nameof(软件主题));
             }
             catch
             {
-                backpolicy.SelectedIndex = 0;
+                软件主题.SelectedIndex = 0;
             }
+            try
+            {
+                imagepreviewsizepolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("PreviewImageSize");
+            }
+            catch
+            {
+                imagepreviewsizepolicy.SelectedIndex = 0;
+            }
+            leftwidthview.Text = Data.TmpData.waterflowwidth.ToString();
+            leftcolumview.Text = Data.TmpData.waterflowcolumnum.ToString();
+            leftwidth.Text = leftwidthview.Text;
+            leftcolum.Text = leftcolumview.Text;
             try
             {
                 loadpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("LoadPolicy");
@@ -78,22 +90,15 @@ namespace PixivUWP.Pages
             }
             try
             {
-                imagepreviewsizepolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("PreviewImageSize");
+                backpolicy.SelectedIndex = (int)Data.AppDataHelper.GetValue("BackgroundTransferCostPolicy");
             }
             catch
             {
-                imagepreviewsizepolicy.SelectedIndex = 0;
+                backpolicy.SelectedIndex = 0;
             }
-            try
-            {
-                软件主题.SelectedIndex = (int)Data.AppDataHelper.GetValue(nameof(软件主题));
-            }
-            catch
-            {
-                软件主题.SelectedIndex = 0;
-            }
-            leftwidth.Text = Data.TmpData.waterflowwidth.ToString();
-            leftcolum.Text = Data.TmpData.waterflowcolumnum.ToString();
+            
+
+            
         }
 
         public BackInfo GenerateBackInfo() => null;
@@ -206,7 +211,7 @@ namespace PixivUWP.Pages
         {
             try
             {
-                if (Convert.ToInt32(leftwidth.Text) <= 100 || Convert.ToInt32(leftcolum.Text) <= 0)
+                if (Convert.ToInt32(leftwidth.Text) < 100 || Convert.ToInt32(leftcolum.Text) <= 0 || Convert.ToInt32(leftcolum.Text) > 10)
                 {
                     ((Button)sender).Content = "值不合法";
                     return;
@@ -215,6 +220,10 @@ namespace PixivUWP.Pages
                 Data.TmpData.waterflowcolumnum = Convert.ToInt32(leftcolum.Text);
                 Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
                 Data.AppDataHelper.SetValue("leftcolum", Data.TmpData.waterflowcolumnum);
+                leftwidthview.Text = Data.TmpData.waterflowwidth.ToString();
+                leftcolumview.Text = Data.TmpData.waterflowcolumnum.ToString();
+                leftwidth.Text = leftwidthview.Text;
+                leftcolum.Text = leftcolumview.Text;
                 ((Button)sender).Content = "更新成功";
             }
             catch
@@ -231,8 +240,10 @@ namespace PixivUWP.Pages
                 Data.TmpData.waterflowcolumnum = 2;
                 Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
                 Data.AppDataHelper.SetValue("leftcolum", Data.TmpData.waterflowcolumnum);
-                leftwidth.Text = Data.TmpData.waterflowwidth.ToString();
-                leftcolum.Text = Data.TmpData.waterflowcolumnum.ToString();
+                leftwidthview.Text = Data.TmpData.waterflowwidth.ToString();
+                leftcolumview.Text = Data.TmpData.waterflowcolumnum.ToString();
+                leftwidth.Text = leftwidthview.Text;
+                leftcolum.Text = leftcolumview.Text;
                 ((Button)sender).Content = "重置成功";
             }
             catch
