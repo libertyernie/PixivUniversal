@@ -508,4 +508,8 @@
     <value>设置</value>
     <comment>设置</comment>
   </data>
+  <data name="gotoBox.PlaceholderText" xml:space="preserve">
+    <value>输入Pixiv作品或作者ID...</value>
+    <comment>空页搜索框提示文字</comment>
+  </data>
 </root>
