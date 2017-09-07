@@ -236,7 +236,7 @@ namespace PixivUWP.Pages
         {
             try
             {
-                Data.TmpData.waterflowwidth = 380;
+                Data.TmpData.waterflowwidth = 320;
                 Data.TmpData.waterflowcolumnum = 2;
                 Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
                 Data.AppDataHelper.SetValue("leftcolum", Data.TmpData.waterflowcolumnum);
