@@ -42,28 +42,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <ComboBoxItem x:Uid="imagepreviewsizepolicy_Medium"/>
                         <ComboBoxItem x:Uid="imagepreviewsizepolicy_SquareMedium"/>
                     </ComboBox>
-                    <TextBlock Text="瀑布流" Margin="5,0,-1,5"/>
+                    <TextBlock x:Uid="瀑布流" Text="瀑布流" Margin="5,0,-1,5"/>
                     <TextBlock Margin="5,0,-1,5" Width="280" HorizontalAlignment="Left">
-                        Width:<Run x:Name="leftwidthview"/>
+                        <Run x:Uid="宽度" Text="宽度"/> <Run x:Name="leftwidthview"/>
                         <LineBreak/>
-                        Colum:<Run x:Name="leftcolumview"/>
-                    </TextBlock> 
-                    <Button x:Uid="setting" Margin="5,0,-1,5" Width="100" Content="设置">
+                        <Run x:Uid="列数" Text="列数"/> <Run x:Name="leftcolumview"/>
+                    </TextBlock>
+                    <Button x:Uid="Setting" Margin="5,0,-1,5" Width="100" Content="设置">
                     <Button.Flyout>
                         <Flyout Placement="Right">
                             <StackPanel Width="280" HorizontalAlignment="Left" Margin="5,0,-1,0">
-                                <TextBlock Text="瀑布流设置" Margin="0"/>
+                                    <TextBlock x:Uid="瀑布流设置" Text="瀑布流设置" Margin="0"/>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <TextBlock Text="宽度" Margin="0" Width="130"/>
-                                    <TextBlock Text="列数" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
+                                    <TextBlock x:Uid="宽度" Text="宽度" Margin="0" Width="130"/>
+                                    <TextBlock x:Uid="列数" Text="列数" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
                                      <TextBox x:Name="leftwidth" Margin="0" Width="130" HorizontalAlignment="Left"/>
                                      <TextBox x:Name="leftcolum" Margin="20,0,0,0" Width="130" HorizontalAlignment="Right"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right" Width="280">
-                                     <Button x:Name="updateleft" Content="更新" Margin="0" Click="updateleft_Click" Width="100" HorizontalAlignment="Left"/>
-                                     <Button x:Name="resetleft" Content="重设" Margin="50,0,0,0" Click="resetleft_Click" Width="100" HorizontalAlignment="Right"/>
+                                     <Button x:Uid="更新" x:Name="updateleft" Content="更新" Margin="0" Click="updateleft_Click" Width="100" HorizontalAlignment="Left"/>
+                                     <Button x:Uid="重设" x:Name="resetleft" Content="重设" Margin="50,0,0,0" Click="resetleft_Click" Width="100" HorizontalAlignment="Right"/>
                                 </StackPanel>
                             </StackPanel>
                         </Flyout>

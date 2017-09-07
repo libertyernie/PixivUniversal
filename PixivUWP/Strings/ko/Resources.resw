@@ -478,4 +478,32 @@
     <value>어두운</value>
     <comment>软件主题选择：深色</comment>
   </data>
+  <data name="Setting.Content" xml:space="preserve">
+    <value>Setting</value>
+    <comment>设置</comment>
+  </data>
+  <data name="列数.Text" xml:space="preserve">
+    <value>Colum</value>
+    <comment>列数</comment>
+  </data>
+  <data name="宽度.Text" xml:space="preserve">
+    <value>Width</value>
+    <comment>宽度</comment>
+  </data>
+  <data name="更新.Content" xml:space="preserve">
+    <value>UPDate</value>
+    <comment>更新</comment>
+  </data>
+  <data name="瀑布流.Text" xml:space="preserve">
+    <value>Waterfalls</value>
+    <comment>瀑布流</comment>
+  </data>
+  <data name="瀑布流设置.Text" xml:space="preserve">
+    <value>Waterfalls Setting</value>
+    <comment>瀑布流设置</comment>
+  </data>
+  <data name="重设.Content" xml:space="preserve">
+    <value>Reset</value>
+    <comment>重设</comment>
+  </data>
 </root>

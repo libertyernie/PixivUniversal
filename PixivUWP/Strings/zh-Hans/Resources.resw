@@ -480,4 +480,32 @@
     <value>让创作变得更有乐趣</value>
     <comment>登陆界面口号</comment>
   </data>
+  <data name="列数.Text" xml:space="preserve">
+    <value>列数</value>
+    <comment>列数</comment>
+  </data>
+  <data name="宽度.Text" xml:space="preserve">
+    <value>宽度</value>
+    <comment>宽度</comment>
+  </data>
+  <data name="更新.Content" xml:space="preserve">
+    <value>更新</value>
+    <comment>更新</comment>
+  </data>
+  <data name="瀑布流.Text" xml:space="preserve">
+    <value>瀑布流</value>
+    <comment>瀑布流</comment>
+  </data>
+  <data name="瀑布流设置.Text" xml:space="preserve">
+    <value>瀑布流设置</value>
+    <comment>瀑布流设置</comment>
+  </data>
+  <data name="重设.Content" xml:space="preserve">
+    <value>重设</value>
+    <comment>重设</comment>
+  </data>
+  <data name="Setting.Content" xml:space="preserve">
+    <value>设置</value>
+    <comment>设置</comment>
+  </data>
 </root>
