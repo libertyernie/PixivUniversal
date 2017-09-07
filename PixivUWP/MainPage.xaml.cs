@@ -140,6 +140,13 @@ namespace PixivUWP
             return true;
         }
 
+        private bool checkVote()
+        {
+            if ((string)Data.AppDataHelper.GetValue("vote_uid") == Data.Vote.VoteUID) return false;
+            Data.AppDataHelper.SetValue("vote_uid", Data.Vote.VoteUID);
+            return Data.Vote.NeedVote;
+        }
+
         private void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
             if (!(MainFrame.Content is Pages.DetailPage.BlankPage))
@@ -451,6 +458,23 @@ namespace PixivUWP
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             if (checkVersion())
                 await new Windows.UI.Popups.MessageDialog(loader.GetString("PopupContent"), loader.GetString("PopupTitle")).ShowAsync();
+            if (checkVote())
+            {
+                var md = new Windows.UI.Popups.MessageDialog(Data.Vote.Message, Data.Vote.Title);
+                md.Commands.Add(new Windows.UI.Popups.UICommand("同意") { Id = "y" });
+                md.Commands.Add(new Windows.UI.Popups.UICommand("否决") { Id = "n" });
+                md.Commands.Add(new Windows.UI.Popups.UICommand("弃权") { Id = "a" });
+                var res = await md.ShowAsync();
+                switch (res.Id as string)
+                {
+                    case "y":
+                        Data.CustomEventHelper.LogEvent(Data.Vote.Name + "_y", Data.CustomEventHelper.EventType.Vote);
+                        break;
+                    case "n":
+                        Data.CustomEventHelper.LogEvent(Data.Vote.Name + "_n", Data.CustomEventHelper.EventType.Vote);
+                        break;
+                }
+            }
         }
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)

@@ -10,8 +10,9 @@ namespace PixivUWP.Data
     internal static class Vote
     {
         public static bool NeedVote = true;
-        public static int VoteUID = 0;
+        public static string  VoteUID = "0";
         public static string Name = "TestVote";
+        public static string Title = "Test";
         public static string Message = "This is a test vote";
     }
 
