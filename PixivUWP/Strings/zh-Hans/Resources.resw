@@ -343,8 +343,12 @@
   </data>
   <data name="PopupContent" xml:space="preserve">
     <value>这是一个内部测试版本，主要的改进为：
-【界面】设置和启动界面优化；
-【翻译】新增了基本的韩语翻译</value>
+【功能】可以在起始面直接搜索图片ID和用户ID了；
+【功能】可以在设置中调整瀑布流设置了；
+【功能】新增了支持用户投票的功能；
+【翻译】新增了基本的韩语翻译；
+【修正】修正了在流量下下载图片耗费流量的问题；
+【修正】解决了瀑布流设置的诸多异常问题；</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
