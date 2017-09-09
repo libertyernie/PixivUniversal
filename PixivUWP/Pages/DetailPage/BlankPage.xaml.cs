@@ -51,5 +51,11 @@ namespace PixivUWP.Pages.DetailPage
             else
                 logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/DarkSplashScreen.scale-200.png"));
         }
+
+        private void gotobox()
+        {
+            
+        }
+        //等待完成“输入Pixiv作品或作者ID发起搜索”
     }
 }
