@@ -97,7 +97,6 @@ namespace PixivUWP.Pages.DetailPage
             gz.IsEnabled = false;
             try
             {
-                var rescomm = loadComment();
                 title.Text = Work.Title;
                 user.Text = Work.User.Name;
                 siz.Text = Work.Width?.ToString() + "×" + Work.Height?.ToString();
@@ -171,7 +170,7 @@ namespace PixivUWP.Pages.DetailPage
                     else
                         gz.Visibility = Visibility.Collapsed;
                 }
-                #region 获取作者头像
+                #region 获取头像
                 loadAvatar();
                 async void loadAvatar()
                 {
@@ -183,6 +182,7 @@ namespace PixivUWP.Pages.DetailPage
                         userpro.ImageSource = img;
                     }
                     catch { }
+                    var rescomm = loadComment();
                 }
                 #endregion
                 gz.IsEnabled = true;
