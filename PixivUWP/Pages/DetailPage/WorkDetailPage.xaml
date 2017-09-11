@@ -61,7 +61,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                 <ImageBrush x:Name="userpro"/>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto">
+                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Margin="10 0 0 0" Width="Auto">
                             <TextBlock VerticalAlignment="Bottom">
                                 <Bold FontSize="18"><Run  x:Name="title">Title</Run></Bold><LineBreak/>
                                 <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user">User</Run></Hyperlink>

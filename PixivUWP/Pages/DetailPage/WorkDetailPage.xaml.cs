@@ -405,7 +405,7 @@ namespace PixivUWP.Pages.DetailPage
         //防止显示的图片大小异常
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            const int MarginDown = 92;
+            const int MarginDown = 100;
             var grid = (sender as Grid);
             if (grid.ActualHeight > MarginDown)
             {
