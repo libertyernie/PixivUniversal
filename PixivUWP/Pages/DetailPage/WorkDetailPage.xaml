@@ -89,7 +89,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="1" PointerReleased="Ellipse_PointerReleased" Margin="5">
+                        <StackPanel Grid.Column="1" Margin="5">
                             <SymbolIcon Symbol="Tag"/>
                         </StackPanel>
                         <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto">
