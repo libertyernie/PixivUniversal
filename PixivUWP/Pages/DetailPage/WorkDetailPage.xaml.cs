@@ -55,7 +55,7 @@ namespace PixivUWP.Pages.DetailPage
             Work = e.Parameter as Work;
             if (Work is IllustWork iw)
             {
-                if(iw.meta_pages != null && iw.meta_pages.Length > 1)
+                if (iw.meta_pages != null && iw.meta_pages.Length > 1)
                     watchbigimg.Visibility = Visibility.Visible;
             }
             else
@@ -78,9 +78,9 @@ namespace PixivUWP.Pages.DetailPage
                 {
                     await PixivUWP.Data.TmpData.CurrentAuth.Tokens.AddMyFavoriteWorksAsync(Work.Id.Value);
                 }
-                Work.SetBookMarkedValue(fs.IsChecked==true);
+                Work.SetBookMarkedValue(fs.IsChecked == true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (!(ex is NullReferenceException))
                     fs.IsChecked = !fs.IsChecked;
@@ -140,9 +140,9 @@ namespace PixivUWP.Pages.DetailPage
                     wwanok = true;
                 }
                 var connectioncost = profile.GetConnectionCost();
-                if(connectioncost.ApproachingDataLimit==false &&connectioncost.OverDataLimit==false &&
-                    (connectioncost.NetworkCostType==Windows.Networking.Connectivity.NetworkCostType.Unrestricted|| connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unknown)
-                    &&wwanok)
+                if (connectioncost.ApproachingDataLimit == false && connectioncost.OverDataLimit == false &&
+                    (connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unrestricted || connectioncost.NetworkCostType == Windows.Networking.Connectivity.NetworkCostType.Unknown)
+                    && wwanok)
                 {
                     url = Work.ImageUrls.Original ?? Work.ImageUrls.Large ?? Work.ImageUrls.Medium;
                 }
@@ -150,7 +150,7 @@ namespace PixivUWP.Pages.DetailPage
                 {
                     url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
                 }
-                des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption), @"<br(\s.+?)?>", Environment.NewLine,RegexOptions.IgnoreCase) ?? string.Empty;//暴力解决有br标签的问题
+                des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption), @"<br(\s.+?)?>", Environment.NewLine, RegexOptions.IgnoreCase) ?? string.Empty;//暴力解决有br标签的问题
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 using (var stream = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, url))
@@ -160,11 +160,11 @@ namespace PixivUWP.Pages.DetailPage
                     bigimg.Source = bitmap;
                 }
                 string avimg = Work.User.GetAvatarUrl();
-                if (Work.User.is_followed.HasValue&&avimg!=null)
+                if (Work.User.is_followed.HasValue && avimg != null)
                     gz.IsChecked = Work.User.is_followed;
                 else
                 {
-                    var user=await Data.TmpData.CurrentAuth.Tokens.GetUsersAsync(Work.User.Id.Value);
+                    var user = await Data.TmpData.CurrentAuth.Tokens.GetUsersAsync(Work.User.Id.Value);
                     avimg = user[0].GetAvatarUrl() ?? avimg;
                     if (user[0].IsFollowing.HasValue)
                         gz.IsChecked = user[0].IsFollowing;
@@ -177,7 +177,7 @@ namespace PixivUWP.Pages.DetailPage
                 {
                     try
                     {
-                        var asyncres = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET,avimg, null);
+                        var asyncres = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET, avimg, null);
                         var img = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
                         await img.SetSourceAsync((await asyncres.GetResponseStreamAsync()).AsInputStream() as Windows.Storage.Streams.IRandomAccessStream);
                         userpro.ImageSource = img;
@@ -202,8 +202,8 @@ namespace PixivUWP.Pages.DetailPage
             gz.IsEnabled = false;
             try
             {
-                if(gz.IsChecked==true)
-                    await Data.TmpData.CurrentAuth.Tokens.AddFavouriteUser(Work.User.Id.Value);            
+                if (gz.IsChecked == true)
+                    await Data.TmpData.CurrentAuth.Tokens.AddFavouriteUser(Work.User.Id.Value);
                 else
                     await Data.TmpData.CurrentAuth.Tokens.DeleteFavouriteUser(Work.User.Id.Value.ToString());
                 Work.User.is_followed = gz.IsChecked;
@@ -223,7 +223,7 @@ namespace PixivUWP.Pages.DetailPage
             downloadbutton.IsEnabled = false;
             try
             {
-                await Data.DownloadManager.AddTaskAsync(Work.ImageUrls.Original ?? (Work as Pixeez.Objects.IllustWork)?.meta_single_page.OriginalImageUrl?? Work.ImageUrls.Large , Work.Id + "_p0");
+                await Data.DownloadManager.AddTaskAsync(Work.ImageUrls.Original ?? (Work as Pixeez.Objects.IllustWork)?.meta_single_page.OriginalImageUrl ?? Work.ImageUrls.Large, Work.Id + "_p0");
             }
             finally
             {
@@ -269,21 +269,21 @@ namespace PixivUWP.Pages.DetailPage
                         var frame = new Frame();
                         frame.Navigated += (s, e) =>
                         {
-                            if(frame.Content is IBackable)
+                            if (frame.Content is IBackable)
                                 sysnm.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
                             else
                                 sysnm.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
                         };
                         sysnm.BackRequested += (s, e) =>
                         {
-                            if(frame.Content is IBackable iba)
+                            if (frame.Content is IBackable iba)
                             {
                                 if (!iba.GoBack())
                                 {
-                                    var a=Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                                    {
-                                        Window.Current.Close();
-                                    });
+                                    var a = Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                      {
+                                          Window.Current.Close();
+                                      });
                                 }
                                 else
                                 {
@@ -291,7 +291,7 @@ namespace PixivUWP.Pages.DetailPage
                                 }
                             }
                         };
-                        newWindow.Closed += async(s, e) =>
+                        newWindow.Closed += async (s, e) =>
                         {
                             Window.Current.Content = null;
                             await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -357,12 +357,12 @@ namespace PixivUWP.Pages.DetailPage
 
         private async void inputbox_Loaded(object sender, RoutedEventArgs e)
         {
-            if(sender is TextBox tb)
+            if (sender is TextBox tb)
             {
                 var sb = new System.Text.StringBuilder();
                 foreach (var one in (await Data.TmpData.CurrentAuth.Tokens.GetBookMarkedDetailAsync(Work.Id.Value)).bookmark_detail.tags)
                 {
-                    if(one.is_registered==true)
+                    if (one.is_registered == true)
                     {
                         if (sb.Length != 0)
                         {
@@ -393,7 +393,7 @@ namespace PixivUWP.Pages.DetailPage
             Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act = (Windows.ApplicationModel.DataTransfer.DataTransferManager sender1, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args) =>
             {
                 Windows.ApplicationModel.DataTransfer.DataRequest request = args.Request;
-                Controls.ShareHelper.GenPackage(request.Data,Controls.ShareHelper.ShareType.Link, new Uri($"https://www.pixiv.net/member_illust.php?mode=medium&illust_id={Work.Id}", UriKind.Absolute));
+                Controls.ShareHelper.GenPackage(request.Data, Controls.ShareHelper.ShareType.Link, new Uri($"https://www.pixiv.net/member_illust.php?mode=medium&illust_id={Work.Id}", UriKind.Absolute));
                 args.Request.Data.Properties.Title = Work.Title;
                 dataTransferManager.DataRequested -= act2;
             };
@@ -454,12 +454,16 @@ namespace PixivUWP.Pages.DetailPage
 
         private void Ellipse_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            var commentobj = ((CommentListItem)(((FrameworkElement)sender).DataContext)).Comment.user;
-            var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
-            Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
-            Data.TmpData.StopLoading();
-            MainFrame.Navigate(typeof(Win_UserInfo), commentobj);
+            if (((FrameworkElement)sender).DataContext is CommentListItem)
+            {
+                var commentobj = ((CommentListItem)(((FrameworkElement)sender).DataContext)).Comment.user;
+                var tmpInfo = (MainFrame.Content as Data.IBackHandlable).GenerateBackInfo();
+                Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
+                Data.TmpData.StopLoading();
+                MainFrame.Navigate(typeof(Win_UserInfo), commentobj);
+            }
+            else
+                Hyperlink_Click(null, null);
         }
-
     }
 }
