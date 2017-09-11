@@ -26,7 +26,7 @@ namespace Pixeez.Objects
         public NewProfile profile { get; set; }
         public NewWorkspace workspace { get; set; }
     }
-    public class UserBase
+    public abstract class UserBase
     {
         [JsonProperty("mail_address")]
         public string Email { get; set; }
@@ -37,6 +37,8 @@ namespace Pixeez.Objects
         public string Account { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        public bool? is_followed { get; set; }
+        public abstract string GetAvatarUrl();
     }
 
     public class NewUser:UserBase
@@ -44,7 +46,11 @@ namespace Pixeez.Objects
 
         public ImageUrls profile_image_urls { get; set; }
         public string comment { get; set; }
-        public bool is_followed { get; set; }
+
+        public override string GetAvatarUrl()
+        {
+            return profile_image_urls.Small ?? profile_image_urls.Medium ?? profile_image_urls.Px128x128 ?? profile_image_urls.Px480mw ?? profile_image_urls.Original ?? profile_image_urls.SquareMedium;
+        }
     }
 
     public class NewProfile

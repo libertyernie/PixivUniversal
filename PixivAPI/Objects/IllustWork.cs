@@ -36,6 +36,8 @@ namespace Pixeez.Objects
 
     public class IllustWork : Work
     {
+        [JsonProperty("user")]
+        public NewUser user { get; set; }
         [JsonProperty("restrict")]
         public int Restrict { get; set; }
         public Tag[] tags { get; set; }
@@ -66,6 +68,8 @@ namespace Pixeez.Objects
                 return tg;
             }
         }
+
+        public override UserBase User => user;
 
         public override bool IsBookMarked()
         {

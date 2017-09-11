@@ -159,16 +159,32 @@ namespace PixivUWP.Pages.DetailPage
                     await bitmap.SetSourceAsync((await stream.GetResponseStreamAsync()).AsRandomAccessStream());
                     bigimg.Source = bitmap;
                 }
-                if (Work.User.is_followed.HasValue)
+                string avimg = Work.User.GetAvatarUrl();
+                if (Work.User.is_followed.HasValue&&avimg!=null)
                     gz.IsChecked = Work.User.is_followed;
                 else
                 {
                     var user=await Data.TmpData.CurrentAuth.Tokens.GetUsersAsync(Work.User.Id.Value);
+                    avimg = user[0].GetAvatarUrl() ?? avimg;
                     if (user[0].IsFollowing.HasValue)
                         gz.IsChecked = user[0].IsFollowing;
                     else
                         gz.Visibility = Visibility.Collapsed;
                 }
+                #region 获取作者头像
+                loadAvatar();
+                async void loadAvatar()
+                {
+                    try
+                    {
+                        var asyncres = await Data.TmpData.CurrentAuth.Tokens.SendRequestAsync(Pixeez.MethodType.GET,avimg, null);
+                        var img = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                        await img.SetSourceAsync((await asyncres.GetResponseStreamAsync()).AsInputStream() as Windows.Storage.Streams.IRandomAccessStream);
+                        userpro.ImageSource = img;
+                    }
+                    catch { }
+                }
+                #endregion
                 gz.IsEnabled = true;
             }
             catch

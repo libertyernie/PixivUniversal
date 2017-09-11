@@ -94,6 +94,9 @@ namespace Pixeez.Objects
         [JsonProperty("favorite_id")]
         public long? FavoriteId { get; set; }
 
+        [JsonProperty("user")]
+        public User user { get; set; }
+        public override UserBase User => user;
         public bool BookMarked
         {
             get
@@ -124,6 +127,7 @@ namespace Pixeez.Objects
 
         [JsonProperty("id")]
         public long? Id { get; set; }
+        public abstract UserBase User { get; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -157,8 +161,7 @@ namespace Pixeez.Objects
         [JsonProperty("reuploaded_time")]
         public string ReuploadedTime { get; set; }
 
-        [JsonProperty("user")]
-        public User User { get; set; }
+
 
         [JsonProperty("is_manga")]
         public bool? IsManga { get; set; }
