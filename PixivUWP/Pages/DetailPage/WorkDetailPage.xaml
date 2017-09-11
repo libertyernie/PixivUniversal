@@ -49,28 +49,55 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </controls:ScalableGrid>
                 <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
                 <Canvas Grid.Row="1" Grid.RowSpan="4" Margin="0 0 0 -5" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-                <TextBlock  Margin="5,0" VerticalAlignment="Bottom" Padding="0" Grid.Row="1">
-                <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
-                <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>
-                </TextBlock>
+                <StackPanel Grid.Row="1" Margin="5,0">
+                    <Grid Width="Auto" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding LeftMargin}"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse Grid.Column="1" Width="48" Height="48" PointerReleased="Ellipse_PointerReleased" Margin="10,0,0,0">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="userpro"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto">
+                            <TextBlock VerticalAlignment="Bottom">
+                                <Bold FontSize="18"><Run  x:Name="title">Title</Run></Bold><LineBreak/>
+                                <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user">User</Run></Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
                 <StackPanel Grid.Row="2" Margin="10,5">
                     <StackPanel.Background>
                         <SolidColorBrush Color="{ThemeResource SystemChromeHighColor}"/>
                     </StackPanel.Background>
-                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,5" >
-                        <Run x:Name="des">NoDes</Run>
+                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="5" >
+                        <Run x:Name="des" Foreground="White">Unknow</Run>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Margin="10,5" HorizontalAlignment="Left">
-                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" FontSize="13" >
-                        <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run>
+                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" FontSize="12" >
+                        <Run x:Name="time">UnknowTime</Run> · <Run x:Name="siz">UnknowSize</Run> · <Run x:Name="tool">UnknowTool</Run>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Background="AliceBlue" Margin="10,5">
-                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,5" >
-                        Tags :<LineBreak/>
-                        <Run x:Name="tags" Foreground="#25C6FF"></Run>
-                    </TextBlock>
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding LeftMargin}"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" PointerReleased="Ellipse_PointerReleased" Margin="5">
+                            <SymbolIcon Symbol="Tag"/>
+                        </StackPanel>
+                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto">
+                            <TextBlock TextWrapping="Wrap" Margin="5" >
+                                <Run x:Name="tags" Foreground="#25C6FF">Tag</Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
                 <TextBlock Grid.Row="5" x:Name="txtComment" x:Uid="textComments" Margin="5 10" FontWeight="Bold"/>
                 <ListView x:Name="commentList" Grid.Row="6" IsItemClickEnabled="False" SelectionMode="None">
