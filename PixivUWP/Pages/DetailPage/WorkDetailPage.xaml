@@ -41,6 +41,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <controls:ScalableGrid x:Name="scalable" Width="Auto" HorizontalAlignment="Center">
                     <Image x:Name="bigimg" Margin="5,2" Stretch="Uniform" Width="Auto"/>
@@ -51,13 +53,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 <Bold FontSize="16"><Run  x:Name="title"></Run></Bold><LineBreak/>
                 <Hyperlink Click="Hyperlink_Click" FontSize="14"><Run x:Name="user"></Run></Hyperlink>
                 </TextBlock>
-                <TextBlock Grid.Row="2" IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="10,0">
-                      <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run><LineBreak/>
-                      Tags :<Run x:Name="tags"></Run><LineBreak/>
-                      <Run x:Name="des"></Run>
-                </TextBlock>
-                <TextBlock Grid.Row="3" x:Name="txtComment" x:Uid="textComments" Margin="5 10" FontWeight="Bold"/>
-                <ListView x:Name="commentList" Grid.Row="4" IsItemClickEnabled="False" SelectionMode="None">
+                <StackPanel Grid.Row="2" Margin="10,5">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="{ThemeResource SystemChromeHighColor}"/>
+                    </StackPanel.Background>
+                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,5" >
+                        <Run x:Name="des">NoDes</Run>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Margin="10,5" HorizontalAlignment="Left">
+                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" FontSize="13" >
+                        <Run x:Name="time"></Run> · <Run x:Name="siz"></Run> · <Run x:Name="tool"></Run>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Background="AliceBlue" Margin="10,5">
+                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="0,5" >
+                        Tags :<LineBreak/>
+                        <Run x:Name="tags" Foreground="#25C6FF"></Run>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="5" x:Name="txtComment" x:Uid="textComments" Margin="5 10" FontWeight="Bold"/>
+                <ListView x:Name="commentList" Grid.Row="6" IsItemClickEnabled="False" SelectionMode="None">
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
                             <AddDeleteThemeTransition/>
