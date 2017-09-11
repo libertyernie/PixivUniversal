@@ -74,11 +74,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <SolidColorBrush Color="{ThemeResource SystemChromeHighColor}"/>
                     </StackPanel.Background>
                     <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" Margin="5" >
-                        <Run x:Name="des" Foreground="White">Unknow</Run>
+                        <Run x:Name="des" Foreground="White">UnknowText</Run>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Margin="10,5" HorizontalAlignment="Left">
-                    <TextBlock  IsTextSelectionEnabled="True" TextWrapping="Wrap" FontSize="12" >
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding LeftMargin}"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" PointerReleased="Ellipse_PointerReleased">
+                            <SymbolIcon Symbol="View"/>
+                        </StackPanel>
+                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto">
+                            <SymbolIcon Symbol="SolidStar"/>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock TextWrapping="Wrap" FontSize="12" >
                         <Run x:Name="time">UnknowTime</Run> · <Run x:Name="siz">UnknowSize</Run> · <Run x:Name="tool">UnknowTool</Run>
                     </TextBlock>
                 </StackPanel>
