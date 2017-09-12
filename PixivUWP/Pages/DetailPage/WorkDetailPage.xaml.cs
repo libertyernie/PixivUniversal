@@ -188,7 +188,7 @@ namespace PixivUWP.Pages.DetailPage
                 if(Work is Pixeez.Objects.IllustWork newwork)
                 {
                     userviewnum.Text = newwork.total_view.ToString();
-                    //userlikenum.Text=newwork.
+                    userlikenum.Text = newwork.total_bookmarks.ToString();
                 }
                 gz.IsEnabled = true;
             }
