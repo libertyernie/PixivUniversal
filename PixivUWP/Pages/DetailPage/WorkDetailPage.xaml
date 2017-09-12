@@ -69,7 +69,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                <StackPanel Grid.Row="2" Margin="20,5">
+                <StackPanel Grid.Row="2" Margin="10,5">
                     <StackPanel.Background>
                         <SolidColorBrush Color="#FFE6E3E3"/>
                     </StackPanel.Background>
@@ -77,7 +77,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <Run x:Name="des">UnknowText</Run>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="3" Margin="20,5" HorizontalAlignment="Left">
+                <StackPanel Grid.Row="3" Margin="10,5" HorizontalAlignment="Left">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -90,20 +90,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                             <SymbolIcon Symbol="View"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
-                            <TextBlock x:Name="userviewnum" FontSize="12">Unknow</TextBlock>
+                            <TextBlock x:Name="userviewnum" FontSize="12" Text="Unknow"/>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Margin="10,0,5,0">
                             <SymbolIcon Symbol="SolidStar"/>
                         </StackPanel>
                         <StackPanel Grid.Column="4">
-                            <TextBlock x:Name="userlikenum" FontSize="12">Unknow</TextBlock>
+                            <TextBlock x:Name="userlikenum" FontSize="12" Text="Unknow"/>
                         </StackPanel>
                     </Grid>
                     <TextBlock TextWrapping="Wrap" FontSize="12" >
                         <Run x:Name="time">UnknowTime</Run> · <Run x:Name="siz">UnknowSize</Run> · <Run x:Name="tool">UnknowTool</Run>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="4" Margin="20,5">
+                <StackPanel Grid.Row="4" Margin="10,5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -120,7 +120,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                <TextBlock Grid.Row="5" x:Name="txtComment" x:Uid="textComments" Margin="5 10" FontWeight="Bold" Text="评论"/>
+                <TextBlock Grid.Row="5" x:Name="txtComment" x:Uid="textComments" Margin="10 10" FontWeight="Bold" Text="评论"/>
                 <ListView x:Name="commentList" Grid.Row="6" IsItemClickEnabled="False" SelectionMode="None">
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
@@ -141,8 +141,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Background="AliceBlue" Margin="10 0 0 0" Width="Auto" HorizontalAlignment="Left">
-                                    <TextBlock Text="{Binding Comment.user.Name}" TextWrapping="WrapWholeWords" Margin="10 5 10 0" FontWeight="Bold" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
-                                    <TextBlock Text="{Binding Comment.date}" TextWrapping="WrapWholeWords" Margin="10 5 10 0" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True" FontSize="10"/>
+                                    <TextBlock Text="{Binding Comment.user.Name}" TextWrapping="WrapWholeWords" Margin="10 5 10 0" Width="Auto" HorizontalAlignment="Left" FontWeight="Bold" IsTextSelectionEnabled="True"/>
+                                    <TextBlock Text="{Binding Comment.date}" TextWrapping="WrapWholeWords" Margin="10 5 10 0" Width="Auto" HorizontalAlignment="Left" FontSize="10"/>
                                     <TextBlock Text="{Binding Comment.comment}" TextWrapping="WrapWholeWords" Margin="10 5 10 5" Width="Auto" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
                                 </StackPanel>
                             </Grid>
