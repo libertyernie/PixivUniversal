@@ -185,6 +185,11 @@ namespace PixivUWP.Pages.DetailPage
                     var rescomm = loadComment();
                 }
                 #endregion
+                if(Work is Pixeez.Objects.IllustWork newwork)
+                {
+                    userviewnum.Text = newwork.total_view.ToString();
+                    //userlikenum.Text=newwork.
+                }
                 gz.IsEnabled = true;
             }
             catch
