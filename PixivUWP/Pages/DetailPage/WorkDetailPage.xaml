@@ -82,13 +82,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="1">
+                        <StackPanel Grid.Column="1" Margin="0,0,5,0">
                             <SymbolIcon Symbol="View"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
+                            <TextBlock x:Name="userviewnum" FontSize="12">Unknow</TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Margin="10,0,5,0">
                             <SymbolIcon Symbol="SolidStar"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="4">
+                            <TextBlock x:Name="userlikenum" FontSize="12">Unknow</TextBlock>
                         </StackPanel>
                     </Grid>
                     <TextBlock TextWrapping="Wrap" FontSize="12" >
