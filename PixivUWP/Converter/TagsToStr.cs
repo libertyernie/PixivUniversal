@@ -23,6 +23,27 @@ using Windows.UI.Xaml.Data;
 
 namespace PixivUWP.Converter
 {
+    public class TagsToTagList:IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return null;
+            }
+            var array = (IList<string>)value;
+            var toreturn = new List<ViewModels.TagItem>();
+            foreach (var i in array)
+                toreturn.Add(new ViewModels.TagItem(i));
+            return toreturn;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class TagsToStr : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

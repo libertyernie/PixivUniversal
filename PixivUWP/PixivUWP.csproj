@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
+    <Compile Include="ViewModels\TagItem.cs" />
     <Compile Include="Views\BindableMargin.xaml.cs">
       <DependentUpon>BindableMargin.xaml</DependentUpon>
     </Compile>
