@@ -382,7 +382,7 @@ namespace PixivUWP
                     }
                     else
                     {
-                        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://git.oschina.net/ThomasWFan/PixivUniversal/issues", UriKind.Absolute));
+                        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://git.oschina.net/PixeezPlus/PixivUniversal/issues", UriKind.Absolute));
                     }
                     goto case 0;
             }
