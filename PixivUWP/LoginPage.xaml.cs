@@ -129,7 +129,14 @@ namespace PixivUWP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            beginLoading();
+            if (txt_UserName.Text == "" || txt_Password.Password == "")
+            {
+                new Controls.MyToast("Please enter your account and password！").Show();
+            }
+            else
+            {
+                beginLoading();
+            }
         }
 
         private async void RegButton_Click(object sender, RoutedEventArgs e)
