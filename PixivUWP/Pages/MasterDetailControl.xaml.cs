@@ -49,6 +49,7 @@ namespace PixivUWP.Pages
         public MasterDetailControl()
         {
             this.InitializeComponent();
+            if (AdaptiveStates.CurrentState == DefaultState) MasterColumn.Width = new GridLength(Data.TmpData.waterflowwidth);
             DefaultState.Setters.Add(new Setter()
             {
                 Target = new TargetPropertyPath()

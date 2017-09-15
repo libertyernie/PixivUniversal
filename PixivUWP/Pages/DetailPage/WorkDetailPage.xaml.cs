@@ -188,7 +188,7 @@ namespace PixivUWP.Pages.DetailPage
                 if(Work is Pixeez.Objects.IllustWork newwork)
                 {
                     userviewnum.Text = newwork.total_view.ToString();
-                    //userlikenum.Text=newwork.
+                    userlikenum.Text = newwork.total_bookmarks.ToString();
                 }
                 gz.IsEnabled = true;
             }
@@ -410,7 +410,7 @@ namespace PixivUWP.Pages.DetailPage
         //防止显示的图片大小异常
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            const int MarginDown = 100;
+            const int MarginDown = 110;
             var grid = (sender as Grid);
             if (grid.ActualHeight > MarginDown)
             {

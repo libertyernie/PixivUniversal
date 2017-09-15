@@ -49,7 +49,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                 </controls:ScalableGrid>
                 <ProgressBar x:Name="pro" Margin="10,0,10,-3" />
                 <Canvas Grid.Row="1" Grid.RowSpan="6" Margin="0 0 0 -5" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-                <StackPanel Grid.Row="1" Margin="5,0">
+                <StackPanel Grid.Row="1" Margin="5,10,5,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -69,7 +69,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                <StackPanel Grid.Row="2" Margin="10,5">
+                <StackPanel Grid.Row="2" Margin="10">
                     <StackPanel.Background>
                         <SolidColorBrush Color="#FFE6E3E3"/>
                     </StackPanel.Background>
@@ -77,7 +77,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <Run x:Name="des">UnknowText</Run>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="3" Margin="10,5" HorizontalAlignment="Left">
+                <StackPanel Grid.Row="3" Margin="15,5,10,5" HorizontalAlignment="Left">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -113,7 +113,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                         <StackPanel Grid.Column="1" Margin="5">
                             <SymbolIcon Symbol="Tag"/>
                         </StackPanel>
-                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto">
+                        <StackPanel RequestedTheme="Light" Orientation="Vertical" Grid.Column="2" Width="Auto" Margin="0,5,0,10">
                             <TextBlock TextWrapping="Wrap" Margin="5" >
                                 <Run x:Name="tags" Foreground="{StaticResource ApplicationStartPageBackgroundThemeBrush}">Tag</Run>
                             </TextBlock>
