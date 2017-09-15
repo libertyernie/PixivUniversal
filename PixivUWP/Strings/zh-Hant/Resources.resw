@@ -506,4 +506,7 @@
     <value>重設</value>
     <comment>重设</comment>
   </data>
+  <data name="flyreaderlink.Text" xml:space="preserve">
+    <value>越飛閱讀</value>
+  </data>
 </root>

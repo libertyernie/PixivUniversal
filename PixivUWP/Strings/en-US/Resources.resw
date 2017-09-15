@@ -511,4 +511,7 @@
     <value>Reset</value>
     <comment>重设</comment>
   </data>
+  <data name="flyreaderlink.Text" xml:space="preserve">
+    <value>Fly Reader</value>
+  </data>
 </root>

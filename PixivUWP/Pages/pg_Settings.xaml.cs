@@ -96,9 +96,6 @@ namespace PixivUWP.Pages
             {
                 backpolicy.SelectedIndex = 0;
             }
-            
-
-            
         }
 
         public BackInfo GenerateBackInfo() => null;

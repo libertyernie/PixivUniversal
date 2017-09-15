@@ -122,7 +122,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                     <Hyperlink NavigateUri="mailto:nekocn@outlook.com">SakuraNeko</Hyperlink><LineBreak/>
                     <LineBreak/>
                     <Bold><Run x:Uid="aboutText6"/></Bold><LineBreak/>
-                    <Hyperlink Click="Hyperlink_Click">Flyreader</Hyperlink><LineBreak/>
+                    <Hyperlink Click="Hyperlink_Click"><Run x:Uid="flyreaderlink"/></Hyperlink><LineBreak/>
                     <Hyperlink Click="Hyperlink_Click2">Moespirit</Hyperlink><LineBreak/><LineBreak/>
                 </TextBlock>
             </ScrollViewer>
