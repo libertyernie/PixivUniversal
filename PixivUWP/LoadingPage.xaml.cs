@@ -138,7 +138,7 @@ namespace PixivUWP
         {
             try
             {
-                var token = await Auth.AuthorizeAsync(username, password,null);
+                var token = await Auth.AuthorizeAsync(username, password,null, Data.AppDataHelper.GetDeiceId());
                 Data.TmpData.CurrentAuth = token;
                 var leftwidth = Data.AppDataHelper.GetValue("leftwidth");
                 if (leftwidth != null) Data.TmpData.waterflowwidth = (int)leftwidth;

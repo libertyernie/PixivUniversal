@@ -107,7 +107,7 @@ namespace Pixeez
         /// <para>- <c>string</c> password (required)</para>
         /// </summary>
         /// <returns>Tokens.</returns>
-        public static async Task<AuthResult> AuthorizeAsync(string username, string password, string refreshtoken)
+        public static async Task<AuthResult> AuthorizeAsync(string username, string password, string refreshtoken,string devicetoken)
         {
             var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Add("Referer", "http://www.pixiv.net/");
@@ -124,6 +124,7 @@ namespace Pixeez
                     { "get_secure_url","1" },
                     { "client_id", "bYGKuGVw91e0NMfPGp44euvGt59s" },
                     { "client_secret", "HP3RmkgAmEGro0gn1x9ioawQE8WMfvLXDz3ZqxpK" },
+                    { "device_token",  devicetoken },
                     { "grant_type", "password" },
                     { "username" ,username },
                     { "password" ,password },
@@ -136,6 +137,7 @@ namespace Pixeez
                     { "get_secure_url","1" },
                     { "client_id", "bYGKuGVw91e0NMfPGp44euvGt59s" },
                     { "client_secret", "HP3RmkgAmEGro0gn1x9ioawQE8WMfvLXDz3ZqxpK" },
+                    { "device_token",  devicetoken },
                     { "grant_type", "refresh_token" },
                     { "refresh_token" ,refreshtoken },
                 });

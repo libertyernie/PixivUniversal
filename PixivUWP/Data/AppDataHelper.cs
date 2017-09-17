@@ -25,6 +25,19 @@ namespace PixivUWP.Data
     //引用自:http://www.cnblogs.com/tonge/p/4760217.html
     internal static class AppDataHelper
     {
+        static readonly byte[] HashSalt = new byte[] { 0x03, 0x0a, 0x08, 0x05, 0x0c, 0x0c };
+        public static string GetDeiceId()
+        {
+            var easId = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation().Id;
+            var engine = Windows.Security.Cryptography.Core.HashAlgorithmProvider.OpenAlgorithm(Windows.Security.Cryptography.Core.HashAlgorithmNames.Md5);
+            byte[] by = easId.ToByteArray();
+            using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream(HashSalt.Length+by.Length))
+            {
+                memoryStream.Write(by,0,by.Length);
+                memoryStream.Write(HashSalt, 0, HashSalt.Length);
+                return Windows.Security.Cryptography.CryptographicBuffer.EncodeToHexString(engine.HashData(System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(memoryStream)));
+            }
+        }
         #region 字段
         /// <summary>
         /// 获取应用的设置容器
