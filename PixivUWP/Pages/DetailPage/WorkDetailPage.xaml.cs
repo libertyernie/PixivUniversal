@@ -149,7 +149,7 @@ namespace PixivUWP.Pages.DetailPage
                 {
                     url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
                 }
-                des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption??string.Empty), @"<br(\s.+?)?>", Environment.NewLine, RegexOptions.IgnoreCase) ?? string.Empty;//暴力解决有br标签的问题
+                des.Text = Regex.Replace(System.Net.WebUtility.HtmlDecode(Work.Caption??string.Empty), @"<br(\s.+?)?>", Environment.NewLine, RegexOptions.IgnoreCase);//暴力解决有br标签的问题
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 //tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();
                 Tags.ItemsSource = new Converter.TagsToTagList().Convert(Work.Tags, null, null, null);
