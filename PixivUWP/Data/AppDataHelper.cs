@@ -25,6 +25,7 @@ namespace PixivUWP.Data
     //引用自:http://www.cnblogs.com/tonge/p/4760217.html
     internal static class AppDataHelper
     {
+        public const string RefreshTokenKey = "RefreshToken";
         static readonly byte[] HashSalt = new byte[] { 0x03, 0x0a, 0x08, 0x05, 0x0c, 0x0c };
         public static string GetDeviceId()
         {
@@ -105,6 +106,8 @@ namespace PixivUWP.Data
             return null;
         }
         #endregion
+
+        public static bool ContainKey(string key) => localSettings.Values.ContainsKey(key);
 
         #region Remove已完成的设置
         /// <summary>

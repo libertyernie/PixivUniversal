@@ -138,8 +138,43 @@ namespace PixivUWP
         {
             try
             {
-                var token = await Auth.AuthorizeAsync(username, password,null, Data.AppDataHelper.GetDeviceId());
+                Pixeez.AuthResult token = default;
+                async Task 正常加载tokenAsync()
+                {
+                    token = await Auth.AuthorizeAsync(username, password, null, Data.AppDataHelper.GetDeviceId());
+                }
+                if (Data.AppDataHelper.ContainKey(Data.AppDataHelper.RefreshTokenKey))
+                {
+                    token = Newtonsoft.Json.JsonConvert.DeserializeObject<Pixeez.AuthResult>(Data.AppDataHelper.GetValue(Data.AppDataHelper.RefreshTokenKey).ToString());
+                    if (username == token.Key.Password && password == token.Key.Password)
+                    {
+                        //不使用密码认证
+                        if (DateTime.UtcNow >= token.Key.KeyExpTime)
+                        {
+                            //token 已过期
+                            try
+                            {
+                                token = await Auth.AuthorizeAsync(username, password, token.Authorize.RefreshToken, Data.AppDataHelper.GetDeviceId());
+                            }
+                            catch
+                            {
+                                await 正常加载tokenAsync();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        await 正常加载tokenAsync();
+                    }
+                }
+                else
+                {
+                    await 正常加载tokenAsync();
+                }
+
+
                 Data.TmpData.CurrentAuth = token;
+                Data.AppDataHelper.SetValue(Data.AppDataHelper.RefreshTokenKey, Newtonsoft.Json.JsonConvert.SerializeObject(token.Authorize));
                 var leftwidth = Data.AppDataHelper.GetValue("leftwidth");
                 if (leftwidth != null) Data.TmpData.waterflowwidth = (int)leftwidth;
                 else Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);
@@ -152,6 +187,7 @@ namespace PixivUWP
             }
             catch
             {
+                Data.AppDataHelper.Remove(Data.AppDataHelper.RefreshTokenKey);
                 status.Visibility = Visibility.Visible;
                 ProgressBarVisualHelper.SetYFHelperVisibility(ring, false);
             }
