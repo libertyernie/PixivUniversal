@@ -26,7 +26,7 @@ namespace PixivUWP.Data
     internal static class AppDataHelper
     {
         static readonly byte[] HashSalt = new byte[] { 0x03, 0x0a, 0x08, 0x05, 0x0c, 0x0c };
-        public static string GetDeiceId()
+        public static string GetDeviceId()
         {
             var easId = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation().Id;
             var engine = Windows.Security.Cryptography.Core.HashAlgorithmProvider.OpenAlgorithm(Windows.Security.Cryptography.Core.HashAlgorithmNames.Md5);

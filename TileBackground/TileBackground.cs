@@ -81,7 +81,7 @@ namespace TileBackground
                     deferral.Complete();
                     return;
                 }
-                var token = await Auth.AuthorizeAsync(username, password, null,AppDataHelper.GetDeiceId());
+                var token = await Auth.AuthorizeAsync(username, password, null,AppDataHelper.GetDeviceId());
                 var ranks = await token.Tokens.GetRankingAllAsync("daily", 1, 20);
                 //更新磁贴
                 var updater = TileUpdateManager.CreateTileUpdaterForApplication();
