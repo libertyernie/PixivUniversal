@@ -51,6 +51,7 @@ namespace PixivUWP
 
         public MainPage()
         {
+            Data.TmpData.mainPage = this;
             this.InitializeComponent();
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             menuItems[0].Label = loader.GetString("Main");
@@ -187,7 +188,7 @@ namespace PixivUWP
 
         private void MenuToggle_Click(object sender, RoutedEventArgs e)
         {
-            if(!contentroot.IsPaneOpen)
+            if(MenuToggle.IsChecked.Value)
             {
                 Storyboard storyboard = new Storyboard();
                 DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames()
@@ -228,7 +229,7 @@ namespace PixivUWP
                 Searchbox.Visibility = Visibility.Visible;
                 storyboard.Begin();
             }
-            contentroot.IsPaneOpen = !contentroot.IsPaneOpen;
+            contentroot.IsPaneOpen = MenuToggle.IsChecked.Value;
             //var _sender = sender as ToggleButton;
             //Storyboard storyboard = new Storyboard();
             //if(_sender.IsChecked==true)
@@ -517,6 +518,7 @@ namespace PixivUWP
 
         private void contentroot_PaneClosing(SplitView sender, SplitViewPaneClosingEventArgs args)
         {
+            MenuToggle.IsChecked = false;
             Storyboard storyboard = new Storyboard();
             DoubleAnimationUsingKeyFrames animation1 = new DoubleAnimationUsingKeyFrames()
             {
@@ -568,6 +570,11 @@ namespace PixivUWP
         private void Searchbox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.QueryText == "") return;
+            Query(args.QueryText);
+        }
+
+        internal void Query(string text)
+        {
             MenuToggle.IsChecked = false;
             MenuToggle_Click(null, null);
             MenuItemList.SelectedIndex = -1;
@@ -575,8 +582,8 @@ namespace PixivUWP
             if (tmpInfo != null)
                 Data.UniversalBackHandler.AddPage(MainFrame.Content.GetType(), tmpInfo);
             Data.TmpData.StopLoading();
-            MainFrame.Navigate(typeof(Pages.pg_Search), args.QueryText);
-            currentQueryString = args.QueryText;
+            MainFrame.Navigate(typeof(Pages.pg_Search), text);
+            currentQueryString = text;
         }
 
         private void btn_User_Click(object sender, RoutedEventArgs e)

@@ -471,5 +471,8 @@ namespace PixivUWP.Pages.DetailPage
             else
                 Hyperlink_Click(null, null);
         }
+
+        private void tagbutton_Click(object sender, RoutedEventArgs e)
+            => Data.TmpData.mainPage.Query(((Button)sender).Content as string);
     }
 }
