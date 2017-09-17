@@ -158,6 +158,11 @@ namespace PixivUWP
                             }
                             catch
                             {
+                                Debug.WriteLine("使用 refresh token 登录失败");
+#if DEBUG
+                                if(Debugger.IsAttached)
+                                    Debugger.Break();
+#endif
                                 await 正常加载tokenAsync();
                             }
                         }
