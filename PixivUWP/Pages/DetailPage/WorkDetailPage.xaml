@@ -123,7 +123,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Button Margin="0,0,5,5" Content="{Binding Tag}" Background="AliceBlue"/>
+                                        <Button x:Name="tagbutton" Click="tagbutton_Click" Margin="0,0,5,5" Content="{Binding Tag}" Background="AliceBlue"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
