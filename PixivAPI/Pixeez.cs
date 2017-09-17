@@ -92,11 +92,18 @@ namespace Pixeez
             this.Stream?.Dispose();
         }
     }
+    public class AuthKey
+    {
+        public string Password;
+        public string Username;
 
-    public struct AuthResult
+        public DateTime KeyExpTime;
+    }
+    public class AuthResult
     {
         public Tokens Tokens;
         public Authorize Authorize;
+        public AuthKey Key;
     }
 
     public class Auth
@@ -143,15 +150,15 @@ namespace Pixeez
                 });
             }
             var response = await httpClient.PostAsync("https://oauth.secure.pixiv.net/auth/token", param);
-            if (!response.IsSuccessStatusCode)
-                throw new InvalidOperationException();
+            response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
             var authorize = JToken.Parse(json).SelectToken("response").ToObject<Authorize>();
 
             var result = new Pixeez.AuthResult();
             result.Authorize = authorize;
-            result.Tokens = new Tokens(authorize.AccessToken);
+            result.Key = new AuthKey() { Password = password, Username = username, KeyExpTime = authorize.ExpiresIn.HasValue ? DateTime.UtcNow.AddSeconds(authorize.ExpiresIn.Value) : default };
+            result.Tokens = new Tokens(authorize.AccessToken) { RefreshToken = authorize.RefreshToken };
             return result;
         }
 
@@ -163,10 +170,12 @@ namespace Pixeez
 
     public class Tokens
     {
+        [Newtonsoft.Json.JsonProperty]
         public string RefreshToken { get; set; }
-
+        [Newtonsoft.Json.JsonProperty,Newtonsoft.Json.JsonRequired]
         public string AccessToken { get; private set; }
-
+        [Newtonsoft.Json.JsonConstructor]
+        private Tokens() { }
         internal Tokens(string accessToken)
         {
             this.AccessToken = accessToken;

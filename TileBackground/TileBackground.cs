@@ -81,7 +81,33 @@ namespace TileBackground
                     deferral.Complete();
                     return;
                 }
-                var token = await Auth.AuthorizeAsync(username, password, null,AppDataHelper.GetDeviceId());
+                Pixeez.AuthResult token;
+                async System.Threading.Tasks.Task 正常加载tokenAsync()
+                {
+                    token = await Auth.AuthorizeAsync(username, password, null, AppDataHelper.GetDeviceId());
+                }
+                token = AppDataHelper.ContainKey(AppDataHelper.RefreshTokenKey) ? Newtonsoft.Json.JsonConvert.DeserializeObject<Pixeez.AuthResult>(AppDataHelper.GetValue(AppDataHelper.RefreshTokenKey).ToString()) : default;
+                if (username == token.Key.Password && password == token.Key.Password)
+                {
+                    //不使用密码认证
+                    if (DateTime.UtcNow >= token.Key.KeyExpTime)
+                    {
+                        //token 已过期
+                        try
+                        {
+                            token = await Auth.AuthorizeAsync(username, password, token.Authorize.RefreshToken, AppDataHelper.GetDeviceId());
+                        }
+                        catch
+                        {
+                            await 正常加载tokenAsync();
+                        }
+                    }
+                }
+                else
+                {
+                    await 正常加载tokenAsync();
+                }
+                AppDataHelper.SetValue(AppDataHelper.RefreshTokenKey, Newtonsoft.Json.JsonConvert.SerializeObject(token));
                 var ranks = await token.Tokens.GetRankingAllAsync("daily", 1, 20);
                 //更新磁贴
                 var updater = TileUpdateManager.CreateTileUpdaterForApplication();
