@@ -107,7 +107,7 @@ namespace TileBackground
                 {
                     await 正常加载tokenAsync();
                 }
-                AppDataHelper.SetValue(AppDataHelper.RefreshTokenKey, Newtonsoft.Json.JsonConvert.SerializeObject(token.Authorize));
+                AppDataHelper.SetValue(AppDataHelper.RefreshTokenKey, Newtonsoft.Json.JsonConvert.SerializeObject(token));
                 var ranks = await token.Tokens.GetRankingAllAsync("daily", 1, 20);
                 //更新磁贴
                 var updater = TileUpdateManager.CreateTileUpdaterForApplication();

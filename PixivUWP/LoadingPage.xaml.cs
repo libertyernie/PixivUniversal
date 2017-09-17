@@ -146,7 +146,7 @@ namespace PixivUWP
                 if (Data.AppDataHelper.ContainKey(Data.AppDataHelper.RefreshTokenKey))
                 {
                     token = Newtonsoft.Json.JsonConvert.DeserializeObject<Pixeez.AuthResult>(Data.AppDataHelper.GetValue(Data.AppDataHelper.RefreshTokenKey).ToString());
-                    if (username == token.Key.Password && password == token.Key.Password)
+                    if (username == token.Key.Username && password == token.Key.Password)
                     {
                         //不使用密码认证
                         if (DateTime.UtcNow >= token.Key.KeyExpTime)
@@ -179,7 +179,7 @@ namespace PixivUWP
 
 
                 Data.TmpData.CurrentAuth = token;
-                Data.AppDataHelper.SetValue(Data.AppDataHelper.RefreshTokenKey, Newtonsoft.Json.JsonConvert.SerializeObject(token.Authorize));
+                Data.AppDataHelper.SetValue(Data.AppDataHelper.RefreshTokenKey, Newtonsoft.Json.JsonConvert.SerializeObject(token));
                 var leftwidth = Data.AppDataHelper.GetValue("leftwidth");
                 if (leftwidth != null) Data.TmpData.waterflowwidth = (int)leftwidth;
                 else Data.AppDataHelper.SetValue("leftwidth", Data.TmpData.waterflowwidth);

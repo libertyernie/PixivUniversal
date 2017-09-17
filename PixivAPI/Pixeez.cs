@@ -99,7 +99,7 @@ namespace Pixeez
 
         public DateTime KeyExpTime;
     }
-    public struct AuthResult
+    public class AuthResult
     {
         public Tokens Tokens;
         public Authorize Authorize;
@@ -170,10 +170,12 @@ namespace Pixeez
 
     public class Tokens
     {
+        [Newtonsoft.Json.JsonProperty]
         public string RefreshToken { get; set; }
-
+        [Newtonsoft.Json.JsonProperty,Newtonsoft.Json.JsonRequired]
         public string AccessToken { get; private set; }
-
+        [Newtonsoft.Json.JsonConstructor]
+        private Tokens() { }
         internal Tokens(string accessToken)
         {
             this.AccessToken = accessToken;
