@@ -163,7 +163,7 @@ namespace PixivUWP.Pages.DetailPage
                 {
                     url = Work is IllustWork ? Work.ImageUrls.Large : Work.ImageUrls.Medium;
                 }
-                string htmldoc = "<html><body>" + (Work.Caption ?? string.Empty) + "</body></html>";
+                string htmldoc = "<html><body><div style=\"word-wrap: break-word\">" + (Work.Caption ?? string.Empty) + "</div></body></html>";
                 des.NavigationCompleted += async (sender, args) => await sender.ResizeToContentAsync();
                 des.NavigateToString(htmldoc);
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
