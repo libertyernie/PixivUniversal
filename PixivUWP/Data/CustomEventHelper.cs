@@ -11,9 +11,9 @@ namespace PixivUWP.Data
     {
         public static bool NeedVote = true;
         public static string  VoteUID = "0";
-        public static string Name = "TestVote";
-        public static string Title = "Test";
-        public static string Message = "This is a test vote";
+        public static string Name = "Vote01";
+        public static string Title = "下载图片的缩略图调查";
+        public static string Message = "下载完成的通知中，是否需要显示下载图片的缩略图。";
     }
 
     internal static class CustomEventHelper
