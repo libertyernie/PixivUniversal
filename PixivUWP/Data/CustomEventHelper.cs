@@ -10,8 +10,8 @@ namespace PixivUWP.Data
     internal static class Vote
     {
         public static bool NeedVote = true;
-        public static string  VoteUID = "0";
-        public static string Name = "Vote01";
+        public static string VoteUID = "1";
+        public static string Name = "通知栏缩略图";
         public static string Title = "下载图片的缩略图调查";
         public static string Message = "下载完成的通知中，是否需要显示下载图片的缩略图。";
     }
