@@ -1,6 +1,6 @@
 ## Pixiv通用客户端
 
-[![Build status](https://ci.appveyor.com/api/projects/status/rsr1wo55e59nbfn2?svg=true)](https://ci.appveyor.com/project/yinyue200/routines)
+[![Build status](https://ci.appveyor.com/api/projects/status/5f0blsx5erxga6so?svg=true)](https://ci.appveyor.com/project/yinyue200/pixivuniversal)
 
 ### 简介
  Pixiv通用客户端旨在构建在WindowsPC、Windows移动端（UWP）、安卓系统设备和传统Win32平台上的统一的Pixiv服务浏览体验；该项目分成五个部分：PixivUWP、PixivAndroid、PixivWPF、Pixeez（Pixiv第三方API封装）和 TileBackground（动态磁贴后台组件）。
