@@ -410,7 +410,7 @@
 [Fixes] Fix an issue that may cause the Ranking illust page failed to load；
 [Fixes] Fix an issue that you can "login" (faked) even without entering usrname and passwd;
 [Fixes] Fix some Illust-Flow setting page errors;
-[Localization] Added basically support for Korean;</value>
+[Localization] Added basically support for Korean(We need Korean translation to help us complete localization.);</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
