@@ -165,7 +165,7 @@ namespace PixivUWP.Pages.DetailPage
                 }
                 string htmldoc = "<html><body><div style=\"word-wrap: break-word\">" + (Work.Caption ?? string.Empty) + "</div></body></html>";
                 des.NavigationCompleted += async (sender, args) => await sender.ResizeToContentAsync();
-                des.SizeChanged += async (sender, args) => await ((WebView)sender).ResizeToContentAsync();
+                //des.SizeChanged += async (sender, args) => await ((WebView)sender).ResizeToContentAsync();(暂时撤销改修改以防止出现更为严重的界面显示问题)
                 des.NavigateToString(htmldoc);
                 time.Text = Work.GetCreatedDate().ToString()  /* + "(创建与更新时间：" + Work.CreatedTime.LocalDateTime.ToString() + "," + Work.ReuploadedTime.ToString() + ")"*/;
                 //tags.Text = new Converter.TagsToStr().Convert(Work.Tags, null, null, null).ToString();

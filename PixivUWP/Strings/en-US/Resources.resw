@@ -347,6 +347,7 @@
 [Features] Upgrade to new API for better statability；
 [UI] Redesign the work detail page；
 [Fixes] Fix an issue that caused unexpectedly data usage when downloading illusts in cellular connection；
+[Fixes]Violence solves a large number of PIXIV mail problems encountered by users of the hosts-directed PIXIV server;
 [Fixes] Fix an issue that may cause the Ranking illust page failed to load；
 [Fixes] Fix an issue that you can "login" (faked) even without entering usrname and passwd;
 [Fixes] Fix some Illust-Flow setting page errors;
@@ -354,7 +355,7 @@
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>Update: V1.4.1β</value>
+    <value>Update: V1.4.2β</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
