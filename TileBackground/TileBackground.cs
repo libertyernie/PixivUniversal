@@ -88,7 +88,7 @@ namespace TileBackground
                     token = await Auth.AuthorizeAsync(username, password, null, AppDataHelper.GetDeviceId());
                 }
                 token = AppDataHelper.ContainKey(AppDataHelper.RefreshTokenKey) ? Newtonsoft.Json.JsonConvert.DeserializeObject<Pixeez.AuthResult>(AppDataHelper.GetValue(AppDataHelper.RefreshTokenKey).ToString()) : default;
-                if (username == token.Key.Password && password == token.Key.Password)
+                if (username == token.Key.Username && password == token.Key.Password)
                 {
                     //不使用密码认证
                     if (DateTime.UtcNow >= token.Key.KeyExpTime)
