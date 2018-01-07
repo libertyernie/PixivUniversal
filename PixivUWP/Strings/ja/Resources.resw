@@ -352,11 +352,11 @@
 「修復」 仮登録（ログイン情報がないの場合）もうなくなります
 「修復」 ウォーターフローの設定エラーを修正しました
 「修復」 基本的な韓国語サポート
-  [Fixes]Violence solves a large number of PIXIV mail problems encountered by users of the hosts-directed PIXIV server;</value>
+「修復」Fix a bug, which results in inbox being filled with a lot of Pixiv Emails;</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>バージョンV1.4.2β更新されたコンテンツ</value>
+    <value>バージョンV1.4.3β更新されたコンテンツ</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">

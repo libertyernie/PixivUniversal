@@ -350,12 +350,12 @@
 【修复】修复了热门图片无法加载的问题；
 【修复】修复了不输入账户和密码即可发起“假”登录的问题；
 【修复】解决了瀑布流设置的一些异常问题；
-【修复】暴力解决通过Hosts定向Pixiv服务器的用户遇到的大量Pixiv邮件问题
+【修复】解决了用户遇到的大量Pixiv邮件问题
 【翻译】新增了基本的韩语翻译；</value>
     <comment>更新内容</comment>
   </data>
   <data name="PopupTitle" xml:space="preserve">
-    <value>版本 V1.4.2β更新内容</value>
+    <value>版本 V1.4.3β更新内容</value>
     <comment>更新内容弹出标题</comment>
   </data>
   <data name="comboLoadPolicy.Header" xml:space="preserve">
