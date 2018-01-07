@@ -40,7 +40,7 @@ namespace TileBackground
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            return; //解决登录邮件问题之前的临时解决方案
+            //return; //解决登录邮件问题之前的临时解决方案
             BackgroundTaskDeferral deferral = taskInstance?.GetDeferral();
             try
             {
