@@ -23,6 +23,8 @@ using Newtonsoft.Json.Linq;
 using Pixeez.Objects;
 using System.Linq;
 using System.IO;
+using SimpleHTTP;
+using System.Text;
 
 namespace Pixeez
 {
@@ -116,12 +118,18 @@ namespace Pixeez
         /// <returns>Tokens.</returns>
         public static async Task<AuthResult> AuthorizeAsync(string username, string password, string refreshtoken,string devicetoken)
         {
-            var httpClient = new HttpClient();
+            var httpClient = new SimpleHTTP.HttpsClient("oauth.secure.pixiv.net", "210.129.120.41");
             //httpClient.DefaultRequestHeaders.Add("Referer", "http://www.pixiv.net/");
-            httpClient.DefaultRequestHeaders.Add("App-OS", "ios");
+            /*httpClient.DefaultRequestHeaders.Add("App-OS", "ios");
             httpClient.DefaultRequestHeaders.Add("App-OS-Version", "10.2.1");
             httpClient.DefaultRequestHeaders.Add("App-Version", "6.4.0");
-            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)");*/
+            httpClient.CustomizeHeader = "App-OS: ios\r\n" +
+                "App-OS-Version: 10.2.1\r\n" +
+                "App-Version: 6.4.0\r\n" +
+                "User-Agent: PixivIOSApp/6.0.9 (iOS 10.2.1; iPhone8,1)\r\n" +
+                "Content-Type: application/x-www-form-urlencoded\r\n" +
+                "Connection: Keep-Alive\r\n";
 
             FormUrlEncodedContent param;
             if (refreshtoken == null)
@@ -149,10 +157,10 @@ namespace Pixeez
                     { "refresh_token" ,refreshtoken },
                 });
             }
-            var response = await httpClient.PostAsync("https://oauth.secure.pixiv.net/auth/token", param);
-            response.EnsureSuccessStatusCode();
+            var response = httpClient.SendRequest("https://oauth.secure.pixiv.net/auth/token", RequestType.POST, await param.ReadAsStringAsync());
+            //response.EnsureSuccessStatusCode();
 
-            var json = await response.Content.ReadAsStringAsync();
+            var json = Encoding.ASCII.GetString(response.Content);
             var authorize = JToken.Parse(json).SelectToken("response").ToObject<Authorize>();
 
             var result = new Pixeez.AuthResult();
@@ -182,7 +190,7 @@ namespace Pixeez
         }
         public async Task<AsyncResponse> SendRequestWithAuthAsync(MethodType type, string url, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
-            var httpClient = new HttpClient();
+            var httpClient = new System.Net.Http.HttpClient();
             httpClient.DefaultRequestHeaders.Add("Referer", "http://spapi.pixiv.net/");
             httpClient.DefaultRequestHeaders.Add("User-Agent", "PixivIOSApp/5.8.7");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
@@ -190,13 +198,13 @@ namespace Pixeez
         }
         public async Task<AsyncResponse> SendRequestToGetImageAsync(MethodType type, string url, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
-            var httpClient = new HttpClient();
+            var httpClient = new System.Net.Http.HttpClient();
             httpClient.DefaultRequestHeaders.Add("Referer", "https://app-api.pixiv.net/");
             return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
         }
         public async Task<AsyncResponse> SendRequestWithoutAuthAsync(MethodType type, string url, bool needauth = false, IDictionary<string, string> param = null, IDictionary<string, string> headers = null)
         {
-            var httpClient = new HttpClient();
+            var httpClient = new System.Net.Http.HttpClient();
             httpClient.DefaultRequestHeaders.Add("App-OS", "ios");
             httpClient.DefaultRequestHeaders.Add("App-OS-Version", "10.2.1");
             httpClient.DefaultRequestHeaders.Add("App-Version", "6.4.0");
@@ -207,7 +215,7 @@ namespace Pixeez
             return await SendRequestWithoutHeaderAsync(type, url, param, headers, httpClient);
         }
 
-        private static async Task<AsyncResponse> SendRequestWithoutHeaderAsync(MethodType type, string url, IDictionary<string, string> param, IDictionary<string, string> headers, HttpClient httpClient)
+        private static async Task<AsyncResponse> SendRequestWithoutHeaderAsync(MethodType type, string url, IDictionary<string, string> param, IDictionary<string, string> headers, System.Net.Http.HttpClient httpClient)
         {
             if (headers != null)
             {

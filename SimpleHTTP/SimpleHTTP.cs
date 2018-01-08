@@ -73,7 +73,7 @@ namespace SimpleHTTP
         /// <param name="Content">内容</param>
         /// <param name="RequestType">请求类型</param>
         /// <returns>请求回应</returns>
-        public HttpResponse SendRequest(string Content, RequestType RequestType)
+        public HttpResponse SendRequest(string Content, RequestType RequestType, string PostContent = null)
         {
             HttpResponse response = new HttpResponse();
             byte[] toreturn = new byte[0];
@@ -81,8 +81,14 @@ namespace SimpleHTTP
             socket.ReceiveTimeout = 500;
             var request = ((RequestType == RequestType.GET) ? "GET" : "POST") + " " + Content + " HTTP/1.1\r\n" +
                 "Host: " + this.Hostname + "\r\n" +
-                "Content-Length: 0\r\n" + CustomizeHeader +
+                "Content-Length: " +
+                ((RequestType == RequestType.GET) ? "0" :
+                (PostContent == null ? "0" :
+                PostContent.Length.ToString())) +
+                "\r\n" + CustomizeHeader +
                 "\r\n";
+            if (RequestType == RequestType.POST)
+                request += PostContent;
             var socketresponse = socket.Send(Encoding.UTF8.GetBytes(request));
             byte[] buffer = new byte[8192];
             int bytes;
@@ -200,15 +206,21 @@ namespace SimpleHTTP
         /// <param name="Content">内容</param>
         /// <param name="RequestType">请求类型</param>
         /// <returns>请求回应</returns>
-        public HttpResponse SendRequest(string Content, RequestType RequestType)
+        public HttpResponse SendRequest(string Content, RequestType RequestType, string PostContent = null)
         {
             HttpResponse response = new HttpResponse();
             byte[] toreturn = new byte[0];
             socket.Connect(IPAddress.Parse(HostIP), Hostport);
             var request = ((RequestType == RequestType.GET) ? "GET" : "POST") + " " + Content + " HTTP/1.1\r\n" +
                 "Host: " + this.Hostname + "\r\n" +
-                "Content-Length: 0\r\n" + CustomizeHeader +
+                "Content-Length: " +
+                ((RequestType == RequestType.GET) ? "0" :
+                (PostContent == null ? "0" :
+                PostContent.Length.ToString())) +
+                "\r\n" + CustomizeHeader +
                 "\r\n";
+            if (RequestType == RequestType.POST)
+                request += PostContent;
             using (NetworkStream networkStream = new NetworkStream(socket))
             {
                 using (SslStream sslStream = new SslStream(networkStream, false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null))
