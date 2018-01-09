@@ -44,6 +44,11 @@ namespace PixivUWP.Data
         public static int waterflowcolumnum = 2;
         public static int waterflowwidth = 320;
         public static MainPage mainPage;
+        public static string OauthIP;
+        public static string AapiIP;
+        public static string PapiIP;
+        public static string SpapiIP;
+
 
         public static bool GetEnableAutoLoadWorkImg(Image obj)
         {

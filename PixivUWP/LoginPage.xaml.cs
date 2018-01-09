@@ -63,6 +63,11 @@ namespace PixivUWP
                 beginLoading();
             var curView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             curView.SetPreferredMinSize(new Windows.Foundation.Size(500, 630));
+
+            oauth_Text.Text = Data.TmpData.OauthIP;
+            aapi_Text.Text = Data.TmpData.AapiIP;
+            papi_Text.Text = Data.TmpData.PapiIP;
+            spapi_Text.Text = Data.TmpData.SpapiIP;
         }
 
         private async Task logoAnimation()
@@ -200,15 +205,66 @@ namespace PixivUWP
             if (txt_UserName.Text != "")
                 txt_Password.Focus(FocusState.Programmatic);
         }
+        private void Netset_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch Netset_Toggled = sender as ToggleSwitch;
+            if (Netset_Toggled != null)
+            {
+                if (Netset_Toggled.IsOn == true)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+
+        }
 
         private void updatenetset_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if ()//校验(不会写)
+                {
+                    ((Button)sender).Content = "值不合法";
+                    return;
+                }
+                Data.TmpData.OauthIP = oauth_Text.Text;
+                Data.TmpData.AapiIP = aapi_Text.Text;
+                Data.TmpData.PapiIP = papi_Text.Text;
+                Data.TmpData.SpapiIP = spapi_Text.Text;
+                Data.AppDataHelper.SetValue("oauthip", Data.TmpData.OauthIP);
+                Data.AppDataHelper.SetValue("aapiip", Data.TmpData.AapiIP);
+                Data.AppDataHelper.SetValue("papiip", Data.TmpData.PapiIP);
+                Data.AppDataHelper.SetValue("apapiip", Data.TmpData.SpapiIP);
+                ((Button)sender).Content = "更新成功";
+            }
+            catch
+            {
+                ((Button)sender).Content = "值不合法";
+            }
         }
 
         private void resetnetset_Click(object sander, RoutedEventArgs e)
         {
-
+            try
+            {
+                Data.TmpData.OauthIP = null;
+                Data.TmpData.AapiIP = null;
+                Data.TmpData.PapiIP = null;
+                Data.TmpData.SpapiIP = null;
+                Data.AppDataHelper.SetValue("oauthip", Data.TmpData.OauthIP);
+                Data.AppDataHelper.SetValue("aapiip", Data.TmpData.AapiIP);
+                Data.AppDataHelper.SetValue("papiip", Data.TmpData.PapiIP);
+                Data.AppDataHelper.SetValue("apapiip", Data.TmpData.SpapiIP);
+                ((Button)sender).Content = "重置成功";
+            }
+            catch
+            {
+                ((Button)sender).Content = "重置失败";
+            }
         }
     }
 }
