@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Contacts;
 
 namespace PixivUWP.Data
 {
@@ -27,6 +28,15 @@ namespace PixivUWP.Data
     {
         public const string RefreshTokenKey = "RefreshToken";
         static readonly byte[] HashSalt = new byte[] { 0x03, 0x0a, 0x08, 0x05, 0x0c, 0x0c };
+
+        public static async void PinContact(Contact contact)
+        {
+            //前面应放置API版本检查代码，仅能实装于16299
+            PinnedContactManager contactManager = PinnedContactManager.GetDefault();
+            if (contactManager.IsContactPinned(contact, PinnedContactSurface.Taskbar)) return;
+            await contactManager.RequestPinContactAsync(contact, PinnedContactSurface.Taskbar);
+        }
+
         public static string GetDeviceId()
         {
             var easId = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation().Id;
