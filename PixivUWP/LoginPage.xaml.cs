@@ -226,7 +226,7 @@ namespace PixivUWP
         {
             try
             {
-                if ()//校验(不会写)
+                if (false)//校验(不会写)
                 {
                     ((Button)sender).Content = "值不合法";
                     return;
@@ -247,7 +247,7 @@ namespace PixivUWP
             }
         }
 
-        private void resetnetset_Click(object sander, RoutedEventArgs e)
+        private void resetnetset_Click(object sender, RoutedEventArgs e)
         {
             try
             {
