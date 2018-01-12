@@ -101,6 +101,17 @@ namespace PixivUWP.Data
             return true;
         }
 
+        //从表中移除联系人
+        public static async Task<bool> deleteContactAsync(Contact contact)
+        {
+            if (!(await checkContactAsync(contact))) return false;
+            var contactList = await getContactListAsync();
+            await contactList.DeleteContactAsync(await contactList.GetContactAsync(contact.Id));
+            var contactAnnotationList = await getContactAnnotationListAsync();
+            await contactAnnotationList.DeleteAnnotationAsync(await contactAnnotationList.GetAnnotationAsync(contact.Id));
+            return true;
+        }
+
         //固定联系人
         public static async void PinContact(Contact contact)
         {
@@ -110,6 +121,8 @@ namespace PixivUWP.Data
             PinnedContactManager contactManager = PinnedContactManager.GetDefault();
             await contactManager.RequestPinContactAsync(contact, PinnedContactSurface.Taskbar);
         }
+
+
 
         public static string GetDeviceId()
         {
