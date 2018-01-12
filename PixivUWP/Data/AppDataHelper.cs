@@ -76,6 +76,31 @@ namespace PixivUWP.Data
             else return annotationLists[0];
         }
 
+        //检查联系人是否在列表里
+        public static async Task<bool> checkContactAsync(Contact contact)
+        {
+            var contactList = await getContactListAsync();
+            if ((await contactList.GetContactAsync(contact.Id)) == null)
+                return false;
+            else
+                return true;
+        }
+
+        //添加联系人进列表
+        public static async Task<bool> addContactAsync(Contact contact)
+        {
+            if (await checkContactAsync(contact)) return false;
+            var contactList = await getContactListAsync();
+            await contactList.SaveContactAsync(contact);
+            ContactAnnotation contactAnnotation = new ContactAnnotation();
+            contactAnnotation.ContactId = contact.Id;
+            contactAnnotation.ProviderProperties.Add("ContactPanelAppID", "18416PixeezPlusProject.PixivUWP_fsr1r9g7nfjfw");
+            contactAnnotation.SupportedOperations = ContactAnnotationOperations.ContactProfile;
+            var contactAnnotationList = await getContactAnnotationListAsync();
+            await contactAnnotationList.TrySaveAnnotationAsync(contactAnnotation);
+            return true;
+        }
+
         //固定联系人
         public static async void PinContact(Contact contact)
         {
