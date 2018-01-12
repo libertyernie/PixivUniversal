@@ -105,6 +105,8 @@ namespace PixivUWP.Data
         public static async void PinContact(Contact contact)
         {
             //前面应放置API版本检查代码，仅能实装于16299
+            if (await checkContactAsync(contact)) return;
+            await addContactAsync(contact);
             PinnedContactManager contactManager = PinnedContactManager.GetDefault();
             await contactManager.RequestPinContactAsync(contact, PinnedContactSurface.Taskbar);
         }
