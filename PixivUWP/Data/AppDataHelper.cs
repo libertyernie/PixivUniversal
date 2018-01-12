@@ -53,6 +53,29 @@ namespace PixivUWP.Data
             else return contactLists[0];
         }
 
+        //获取应用内联系人注释列表
+        private static async Task<ContactAnnotationList> getContactAnnotationListAsync()
+        {
+            var annotationStore = await ContactManager.RequestAnnotationStoreAsync(ContactAnnotationStoreAccessType.AppAnnotationsReadWrite);
+            if (annotationStore == null)
+            {
+#if DEBUG
+                Debug.WriteLine("无法获取ContactAnnotationStore");
+                if (Debugger.IsAttached) Debugger.Break();
+#endif
+                return null;
+            }
+            var annotationLists = await annotationStore.FindAnnotationListsAsync();
+            if (annotationLists.Count == 0)
+            {
+#if DEBUG
+                Debug.WriteLine("ContactAnnotationLists无数据，创建新List");
+#endif
+                return await annotationStore.CreateAnnotationListAsync();
+            }
+            else return annotationLists[0];
+        }
+
         //固定联系人
         public static async void PinContact(Contact contact)
         {
