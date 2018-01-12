@@ -122,7 +122,15 @@ namespace PixivUWP.Data
             await contactManager.RequestPinContactAsync(contact, PinnedContactSurface.Taskbar);
         }
 
-
+        public static async void UnpinContact(Contact contact)
+        {
+            //前面应放置API版本检查代码，仅能实装于16299
+            if (!(await checkContactAsync(contact))) return;
+            PinnedContactManager contactManager = PinnedContactManager.GetDefault();
+            var contactList = await getContactListAsync();
+            await contactManager.RequestUnpinContactAsync(await contactList.GetContactAsync(contact.Id), PinnedContactSurface.Taskbar);
+            await deleteContactAsync(contact);
+        }
 
         public static string GetDeviceId()
         {
