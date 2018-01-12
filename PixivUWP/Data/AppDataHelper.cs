@@ -16,6 +16,7 @@
 //Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,17 +24,40 @@ using Windows.ApplicationModel.Contacts;
 
 namespace PixivUWP.Data
 {
-    //引用自:http://www.cnblogs.com/tonge/p/4760217.html
+    //有关储存容器的部分引用自:http://www.cnblogs.com/tonge/p/4760217.html
     internal static class AppDataHelper
     {
         public const string RefreshTokenKey = "RefreshToken";
         static readonly byte[] HashSalt = new byte[] { 0x03, 0x0a, 0x08, 0x05, 0x0c, 0x0c };
 
+        //获取应用内联系人列表
+        private static async Task<ContactList> getContactListAsync()
+        {
+            var store = await ContactManager.RequestStoreAsync(ContactStoreAccessType.AppContactsReadWrite);
+            if (store == null)
+            {
+#if DEBUG
+                Debug.WriteLine("无法获取ContactStore");
+                if (Debugger.IsAttached) Debugger.Break();
+#endif
+                return null;
+            }
+            var contactLists = await store.FindContactListsAsync();
+            if (contactLists.Count == 0)
+            {
+#if DEBUG
+                Debug.WriteLine("ContactLists无数据，创建新List");
+#endif
+                return await store.CreateContactListAsync("PinnedContacts");
+            }
+            else return contactLists[0];
+        }
+
+        //固定联系人
         public static async void PinContact(Contact contact)
         {
             //前面应放置API版本检查代码，仅能实装于16299
             PinnedContactManager contactManager = PinnedContactManager.GetDefault();
-            if (contactManager.IsContactPinned(contact, PinnedContactSurface.Taskbar)) return;
             await contactManager.RequestPinContactAsync(contact, PinnedContactSurface.Taskbar);
         }
 
