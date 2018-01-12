@@ -47,13 +47,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.-
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <uap4:Extension Category="windows.contactPanel"/>
+        <uap4:Extension Category="windows.contactPanel" />
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
     <uap:Capability Name="picturesLibrary" />
+    <uap:Capability Name="contacts" />
     <DeviceCapability Name="bluetooth" />
   </Capabilities>
 </Package>

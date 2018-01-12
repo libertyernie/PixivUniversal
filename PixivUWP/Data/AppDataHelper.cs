@@ -80,10 +80,17 @@ namespace PixivUWP.Data
         public static async Task<bool> checkContactAsync(Contact contact)
         {
             var contactList = await getContactListAsync();
-            if ((await contactList.GetContactAsync(contact.Id)) == null)
+            try
+            {
+                if ((await contactList.GetContactFromRemoteIdAsync(contact.RemoteId)) == null)
+                    return false;
+                else
+                    return true;
+            }
+            catch
+            {
                 return false;
-            else
-                return true;
+            }
         }
 
         //添加联系人进列表
@@ -92,12 +99,15 @@ namespace PixivUWP.Data
             if (await checkContactAsync(contact)) return false;
             var contactList = await getContactListAsync();
             await contactList.SaveContactAsync(contact);
+            await contactList.SaveAsync();
             ContactAnnotation contactAnnotation = new ContactAnnotation();
-            contactAnnotation.ContactId = contact.Id;
-            contactAnnotation.ProviderProperties.Add("ContactPanelAppID", "18416PixeezPlusProject.PixivUWP_fsr1r9g7nfjfw");
+            //contactAnnotation.ContactId = contact.Id;
+            contactAnnotation.ContactListId = contact.ContactListId;
+            contactAnnotation.RemoteId = contact.RemoteId;
+            contactAnnotation.ProviderProperties.Add("ContactPanelAppID", "18416PixeezPlusProject.PixivUWP_fsr1r9g7nfjfw!App");
             contactAnnotation.SupportedOperations = ContactAnnotationOperations.ContactProfile;
             var contactAnnotationList = await getContactAnnotationListAsync();
-            await contactAnnotationList.TrySaveAnnotationAsync(contactAnnotation);
+            var b = await contactAnnotationList.TrySaveAnnotationAsync(contactAnnotation);
             return true;
         }
 
@@ -106,7 +116,7 @@ namespace PixivUWP.Data
         {
             if (!(await checkContactAsync(contact))) return false;
             var contactList = await getContactListAsync();
-            await contactList.DeleteContactAsync(await contactList.GetContactAsync(contact.Id));
+            await contactList.DeleteContactAsync(await contactList.GetContactFromRemoteIdAsync(contact.RemoteId));
             var contactAnnotationList = await getContactAnnotationListAsync();
             await contactAnnotationList.DeleteAnnotationAsync(await contactAnnotationList.GetAnnotationAsync(contact.Id));
             return true;
@@ -128,7 +138,7 @@ namespace PixivUWP.Data
             if (!(await checkContactAsync(contact))) return;
             PinnedContactManager contactManager = PinnedContactManager.GetDefault();
             var contactList = await getContactListAsync();
-            await contactManager.RequestUnpinContactAsync(await contactList.GetContactAsync(contact.Id), PinnedContactSurface.Taskbar);
+            await contactManager.RequestUnpinContactAsync(await contactList.GetContactFromRemoteIdAsync(contact.RemoteId), PinnedContactSurface.Taskbar);
             await deleteContactAsync(contact);
         }
 
